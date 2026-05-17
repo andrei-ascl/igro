@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "f94f14df5b392e1a7ed2",
+  "position": {
+    "x": 10.294906166219839,
+    "y": 0,
+    "z": 0,
+    "height": 719.49955317247543,
+    "width": 1269.70509383378,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "htmlContent443BE3AD55E043BF878BED274D3A6855",
+    "query": {
+      "queryState": {
+        "content": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_medidas"
+                    }
+                  },
+                  "Property": "HTML Dashboard IGRO"
+                }
+              },
+              "queryRef": "_medidas.HTML Dashboard IGRO",
+              "nativeQueryRef": "HTML Dashboard IGRO"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

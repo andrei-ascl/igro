@@ -1,0 +1,239 @@
+# IGRO — Índice de Gestão de Riscos da Ouvidoria
+
+> Pipeline analítico para consolidar KRIs (Key Risk Indicators) relacionados a riscos de atendimento em ouvidorias públicas, com pesquisa metodológica, modelo Power BI, validações e entregáveis institucionais.
+
+---
+
+## Core Objective
+
+Criar um índice composto (IGRO) que monitore dois riscos críticos em ouvidorias:
+- **Risco 0044:** Atendimento fora do prazo (TMR — Tempo Médio Resposta)
+- **Risco 0046:** Baixa qualidade no atendimento (RES — Resolutividade, RI — Respostas Insatisfatórias, NPS)
+
+O índice consolida metodologia acadêmica (índices compostos, normalização, ponderação, agregação) com benchmarking de ouvidorias estaduais brasileiras.
+
+---
+
+## Key Concepts
+
+- **KRI (Key Risk Indicator):** Indicador-chave que mede um risco específico; base para construir o IGRO
+- **Índice Composto:** Agregação ponderada de múltiplos KRIs em uma única métrica (0-100)
+- **Normalização:** Técnica (Min-Max, Z-score, Percentil) para colocar KRIs em escala comum
+- **Ponderação:** Atribuir pesos a cada KRI refletindo importância relativa
+- **Agregação:** Combinar KRIs ponderados em fórmula final (média, PCA, outra)
+- **Robustez:** Validar se o índice é estável mesmo com mudanças nos dados/pesos
+
+---
+
+## Project Structure
+
+```
+igro/
+├── 00_admin/               # Planejamento, memória, cronograma
+│   ├── planejamento/       # Desenho Técnico (10_), PRD (11_), estrutura
+│   └── controle_versoes/   # Memória do projeto, validações
+├── 01_referencias/         # Bibliografia, benchmarking, normas
+│   ├── artigos/            # Pesquisa sobre KRIs, benchmarking ouvidorias
+│   ├── livros/             # OCDE/JRC, guias, fontes
+│   └── metodologia/        # Pesquisa sobre índices compostos
+├── 02_dados/               # Dados brutos, processados, dicionário
+│   ├── 01_brutos/          # SGOe original (imutável)
+│   ├── 02_tratados/        # Processado (pronto para Power BI/análise)
+│   ├── 03_amostras/        # Amostras pequenas para teste
+│   └── schema/             # Dicionário de campos, metadados
+├── 03_estudos/             # Análises metodológicas, validações
+│   ├── metodologia/        # Pesquisa: normalização, ponderação, agregação
+│   ├── analises/           # Exploratória, sensibilidade, correlações
+│   └── validacoes/         # Testes de robustez, dados
+├── 04_notas_tecnicas/      # Rascunhos, revisões, versões finais
+├── 05_scripts/             # Automações, Power Query, utilitários
+├── 06_notebooks/           # Jupyter: exploração, modelagem
+│   └── exploracao/         # artigo_igro_graficos_tabelas.ipynb (main)
+├── 07_dashboards/          # Power BI, DAX, metadata
+│   └── powerbi/04_powerbi_e_dax/  # indice_igro_v2.pbix, documentação
+├── 08_apresentacoes/       # Slides, roteiros, infográficos
+├── 09_resultados/          # Relatórios, gráficos, artigo final
+│   ├── relatorios/         # Documentos finais
+│   └── artigo_igro_figuras_tabelas/  # Saída do notebook
+├── 10_publicacao/          # Versões finais para submissão
+├── skills/                 # Skills locais (powerbi-codex, goias-data-viz)
+├── README.md               # Este projeto (mapas, navegação)
+├── AGENTS.md               # Orientação por agentes
+├── CLAUDE.md               # Contexto operacional
+├── llms.txt                # Este arquivo (índice amigável IA)
+└── CHANGELOG.md            # Keep a Changelog format
+```
+
+---
+
+## Critical Files
+
+- **[00_admin/planejamento/03_especificacao_e_produto/10_Desenho_IGRO.md]** — Especificação: KRIs cobertos, metodologia, estrutura
+- **[00_admin/planejamento/03_especificacao_e_produto/11_PRD_IGRO.md]** — Requisitos funcionais, escopo, critérios aceite
+- **[00_admin/controle_versoes/MEMORIA_PROJETO.md]** — Log vivo: decisões, status, próximas ações
+- **[07_dashboards/powerbi/04_powerbi_e_dax/documentacao_modelo_semantico_igro.md]** — Especificação de medidas DAX, relacionamentos
+- **[07_dashboards/powerbi/04_powerbi_e_dax/indice_igro_v2.pbix]** — Modelo Power BI operacional
+- **[06_notebooks/exploracao/artigo_igro_graficos_tabelas.ipynb]** — Notebook principal: calcula indicadores, gera tabelas/gráficos
+- **[09_resultados/relatorios/memoria_trabalho_proximos_passos.md]** — Log: o que foi feito, próximos passos
+- **[02_dados/processed/]** — Base processada (fonte para Power BI e notebooks)
+
+---
+
+## Analytical Flow (5 steps)
+
+```
+1. INGESTÃO
+   SGOe → 02_dados/01_brutos/ (manifestacoes_*.csv)
+
+2. PROCESSAMENTO
+   02_dados/01_brutos/ → 02_dados/02_tratados/
+   (limpeza, padronização, filtros)
+
+3. CÁLCULO
+   02_dados/02_tratados/ → Power BI + Notebook
+   TMR (dias), RES (%), RI (%), NPS (-100 a +100)
+   ↓
+   IGRO = f(TMR, RES, RI, NPS) normalizado e ponderado
+
+4. VALIDAÇÃO
+   03_estudos/validacoes/ (robustez, sensibilidade)
+
+5. PUBLICAÇÃO
+   09_resultados/ → 10_publicacao/ (artigo, relatório final)
+```
+
+---
+
+## Quick Start
+
+```bash
+# 1. Entender o projeto (30 min)
+cat 00_admin/planejamento/03_especificacao_e_produto/10_Desenho_IGRO.md
+
+# 2. Revisar estado atual (10 min)
+cat 00_admin/controle_versoes/MEMORIA_PROJETO.md
+
+# 3. Trabalhar com dados (5 min)
+ls 02_dados/processed/
+cat 02_dados/schema/dicionario_campos_sgoe.md
+
+# 4. Executar notebook (10 min)
+jupyter notebook 06_notebooks/exploracao/artigo_igro_graficos_tabelas.ipynb
+# Editar célula 1: ARQUIVO_ENTRADA, PASTA_SAIDA
+# Kernel → Restart & Run All
+
+# 5. Consultar documentação Power BI (10 min)
+cat 07_dashboards/powerbi/04_powerbi_e_dax/documentacao_modelo_semantico_igro.md
+open 07_dashboards/powerbi/04_powerbi_e_dax/indice_igro_v2.pbix
+```
+
+---
+
+## Data Dictionary
+
+### Input Data (02_dados/processed/)
+
+**Tabela: Manifestacoes**
+
+| Campo | Tipo | Intervalo | Uso |
+|-------|------|-----------|-----|
+| `id_manifestacao` | int | 1+ | ID único |
+| `data_entrada` | date | YYYY-MM-DD | Temporal |
+| `data_resposta` | date | YYYY-MM-DD | Cálculo TMR |
+| `orgao_destino` | string | Catálogo | Segmentação |
+| `tipo_manifestacao` | string | Reclamação, Sugestão, Elogio | Segmentação |
+| `avaliacao_satisfacao` | int | 1-10 | NPS (promotor: 9-10, detrator: 0-6) |
+| `respondida` | bool | true/false | Resolutividade |
+
+### Output Metrics (Power BI & Notebook)
+
+| KRI | Fórmula | Intervalo | Meta |
+|-----|---------|-----------|------|
+| **TMR** | SUM(dias resposta) / COUNT(manifestações) | 0+ | < 30 dias |
+| **RES** | COUNT(respondidas) / COUNT(total) × 100 | 0-100% | > 80% |
+| **RI** | COUNT(insatisfeitas) / COUNT(respondidas) × 100 | 0-100% | < 10% |
+| **NPS** | % Promotores − % Detratores | -100 a +100 | > 50 |
+| **IGRO** | f(TMR_norm, RES_norm, RI_norm, NPS_norm) | 0-100 | > 70 |
+
+---
+
+## Key Methodological Decisions
+
+1. **Normalização:** Z-score (centrado em média, desvio padrão unitário)
+2. **Ponderação:** Defini pesos em 10_Desenho_IGRO.md e 03_especificacao_e_produto/
+3. **Agregação:** Média ponderada das dimensões normalizadas
+4. **Período:** Quadrimestral (alinhado com Prêmio das Ouvidorias)
+5. **Validação:** Análise de robustez em 05_Analise_Robustez_Sensibilidade.md
+
+---
+
+## Current Status
+
+| Item | Status | Owner |
+|------|--------|-------|
+| Estrutura do projeto | ✅ Organizada | Todos |
+| Pesquisa metodológica | ✅ Consolidada | Pesquisador |
+| Dados processados | ✅ Disponíveis | Analista Dados |
+| Modelo Power BI v2 | ✅ Operacional | Especialista BI |
+| Notebook principal | ✅ Funcional | Cientista Dados |
+| Artigo científico | 📝 Em revisão crítica | Pesquisador |
+| Documentação (READMEs) | ✅ v2.0 (skill templates) | Todos |
+
+**Próxima ação:** Finalizar artigo pós-Prêmio das Ouvidorias (2026-05-23)
+
+---
+
+## Configuration Variables
+
+| Variável | Localização | Exemplo |
+|----------|------------|---------|
+| `ARQUIVO_ENTRADA` | `06_notebooks/exploracao/artigo_igro_graficos_tabelas.ipynb` cell 1 | `manifestacoes_2026_05.csv` |
+| `DATA_INICIO`, `DATA_FIM` | Mesmo notebook | `2026-01-01`, `2026-05-31` |
+| `PASTA_SAIDA` | Mesmo notebook | `../09_resultados/artigo_igro_figuras_tabelas/` |
+| `PESOS_KRI` | `07_dashboards/powerbi/04_powerbi_e_dax/documentacao_modelo_semantico_igro.md` | TMR: 30%, RES: 40%, RI: 20%, NPS: 10% |
+
+---
+
+## Documentation Convention
+
+Quando a skill `documentation-templates` revisar este projeto, revisa em conjunto:
+
+- ✅ README.md (raiz)
+- ✅ llms.txt (índice IA-friendly)
+- ⏳ CHANGELOG.md (versioning)
+- ✅ AGENTS.md, CLAUDE.md (operacional)
+- ✅ 00_admin/README.md
+- ✅ 01_referencias/README.md
+- ✅ 02_dados/README.md
+- ✅ 03_estudos/README.md
+- ✅ 06_notebooks/README.md
+- ✅ 07_dashboards/README.md
+- ✅ 09_resultados/README.md
+
+Objetivo: Evitar doc-code drift, manter navegação clara, preservar auditabilidade.
+
+---
+
+## Next Steps
+
+1. Finalizar revisão crítica do artigo (10_publicacao/submissao/)
+2. Validar contagem de órgãos (52 vs. 51 mencionado)
+3. Exportar gráficos finais do notebook
+4. Submeter para Prêmio das Ouvidorias (ou publicação)
+5. Arquivar entrega em 10_publicacao/
+
+---
+
+## Contact
+
+- **Dúvidas sobre dados?** → Veja `02_dados/README.md`
+- **Dúvidas sobre KRIs/metodologia?** → Veja `03_estudos/metodologia/` ou `01_referencias/artigos/`
+- **Dúvidas sobre Power BI?** → Veja `07_dashboards/README.md`
+- **Dúvidas operacionais?** → Veja `CLAUDE.md`
+- **Acompanhar progresso?** → Veja `00_admin/controle_versoes/MEMORIA_PROJETO.md`
+
+---
+
+**Version:** 2.0 (llms.txt per documentation-templates)
+**Updated:** 2026-05-16
+**Maintained by:** Andrei Azevedo de Souza da Cunha Lima

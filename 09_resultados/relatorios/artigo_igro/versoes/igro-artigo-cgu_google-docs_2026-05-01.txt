@@ -1,0 +1,176 @@
+﻿2. Referencial Teórico — IGRO
+2.1 Ouvidoria pública como instrumento de controle e participação cidadã
+A ouvidoria pública consolidou-se como instituição estratégica para a governança no Brasil, especialmente após a Constituição Federal de 1988 e a promulgação da Lei Federal nº 13.460/2017, que estabelece os direitos dos usuários de serviços públicos. Esse arcabouço foi ampliado pela Lei de Acesso à Informação (Lei nº 12.527/2011) e pela Lei de Proteção de Dados Pessoais (Lei nº 13.709/2018), que expandiram o escopo das ouvidorias, posicionando-as não apenas como canais de escuta, mas como estruturas de inteligência organizacional.
+No Estado de Goiás, a garantia do acesso à informação é disciplinada pela Lei Estadual nº 18.025/2013, regulamentada pelo Decreto nº 10.306/2023, que estabelece os procedimentos para atendimento aos pedidos e organiza a atuação do Serviço de Informação ao Cidadão (SIC) no âmbito da rede de ouvidorias. No âmbito do Poder Executivo estadual, esse arranjo normativo é complementado pelo Decreto nº 10.466/2024, que regulamenta a atividade e a estrutura das ouvidorias, define sua subordinação técnica à Controladoria-Geral do Estado (CGE) e orienta a padronização do Sistema de Ouvidoria, posteriormente detalhada pela Instrução Normativa nº 01/2025-CGE.
+O papel institucional da ouvidoria transcende a mera recepção de manifestações. Como canal de participação e controle social institucionalizado, a ouvidoria opera em três dimensões complementares: (a) funcional — estruturando o fluxo de atendimento, recepção, análise e resposta às demandas cidadãs; (b) gerencial — transformando manifestações individuais em informações estratégicas para aprimoramento de processos e políticas; (c) cidadã — fortalecendo a democracia participativa e o controle social.
+
+
+As manifestações dirigidas à ouvidoria apresentam tipificações distintas, com implicações diferenciadas para a gestão de riscos. A Lei nº 13.460/2017 define categorias como reclamações (insatisfação com o serviço prestado), denúncias (alegações de ilegalidade ou irregularidade), solicitações (pedidos de informação ou ação), além de elogios e sugestões. Cada tipo gera ciclos de tratamento e expectativas de resposta que variam quanto ao prazo legal, à complexidade de apuração e ao potencial de escalação política ou midiática.
+No contexto do Estado de Goiás, a integridade desse fluxo é reforçada por normativos específicos. A Instrução Normativa nº 05/CGE/2025 estabelece critérios de admissibilidade para o tratamento de denúncias, enquanto a Instrução Normativa nº 06/CGE/2025 regulamenta a proteção ao denunciante de ilícitos, instituindo salvaguardas de identidade que mitigam riscos de retaliação e contribuem para o fortalecimento da confiança no canal.
+No caso da rede estadual de Goiás, o cenário operacional abrange 50 órgãos públicos e uma base superior a 100 mil manifestações registradas no período de 2024 a 2026. O Sistema de Gestão de Ouvidoria do Estado (SGOe) funciona como repositório centralizado, viabilizando — pela primeira vez em bases de dados públicos estaduais — a análise sistêmica de padrões de atendimento, identificação de gargalos setoriais e sinalização de riscos replicáveis. Este contexto operacional estabelece a demanda prática por um instrumento de monitoramento sintético capaz de traduzir essa complexidade em métricas interpretáveis pela alta gestão.
+
+
+A trajetória institucional de Goiás em governança pública — consolidada no Programa de Compliance Público (2019–2025), com ênfase em ética, transparência, responsabilização e gestão de riscos — criou condições para a transição das ouvidorias de um modelo reativo, centrado no registro de manifestações, para um modelo estratégico. Nesse novo arranjo, a ouvidoria atua como sensor institucional de riscos e vetor de transformação administrativa. A implementação do Programa de Maturidade das Ouvidorias Públicas (PMOP), com sua estrutura de 37 Boas Práticas Institucionalizáveis, forneceu o referencial de excelência. Nesse contexto, o IGRO emerge como instrumento de sinalização quantitativa voltado ao monitoramento dos dois riscos operacionais prioritários: tempestividade e qualidade do atendimento. 
+
+
+2.2 Gestão de riscos em serviços públicos: ISO 31000 e a Matriz de Gestão de Riscos
+A ISO 31000:2018 — Gestão de Riscos — Diretrizes estabeleceu-se como norma metodológica internacional para a identificação, avaliação e tratamento de riscos organizacionais. No setor público brasileiro, a adoção da ISO 31000 como fundação da Matriz de Gestão de Riscos (MGR) representa avanço significativo em relação a modelos anteriores, predominantemente orientados a controles internos isolados.
+
+
+Na estrutura da Controladoria-Geral do Estado de Goiás (CGE-GO), dois riscos operacionais foram classificados como prioritários para o funcionamento da ouvidoria: (1) Risco 0044 — Tempestividade, relacionado ao não cumprimento de prazos legais e regulamentares para resposta às manifestações; e (2) Risco 0046 — Qualidade, associado à efetividade, resolutividade e satisfação do atendimento prestado ao cidadão, com impacto direto na confiança institucional e na percepção de legitimidade do Estado. 
+
+
+Na metodologia aplicada no Estado de Goiás, a Matriz de Gestão de Riscos opera em ciclos quadrimestrais, alinhados ao calendário institucional de planejamento. Nesse contexto, os indicadores-chave de risco (Key Risk Indicators — KRIs) desempenham papel central no monitoramento contínuo, permitindo a identificação de desvios e a antecipação da materialização dos riscos.  A experiência de Goiás na integração da gestão de riscos às ouvidorias públicas demonstra um deslocamento paradigmático: as ouvidorias deixaram de ser vistas como instâncias procedimentais isoladas e passaram a integrar o ecossistema de governança e integridade (Andrade, 2025). Isso se manifesta concretamente na articulação entre: demandas recorrentes sinalizadas pela ouvidoria → identificação de causas-raiz → ações de controle estruturado → ciclos de melhoria contínua integrados à Matriz.
+
+
+A literatura de gestão de riscos (Power, 2004; COSO, 2017) distingue claramente entre: (a) ações de controle — as intervenções operacionais que mitigam o risco; (b) indicadores de monitoramento — as métricas que sinalizam o estado do risco; (c) índices sintéticos — consolidações dos múltiplos indicadores em um valor único para interpretação executiva. O IGRO situa-se especificamente nesta terceira categoria, funcionando como instrumento de sinalização rápida para decisores da alta gestão, capaz de traduzir dados operacionais do SGOe (Tempo Médio de Resposta, Resolutividade, Nota de Recomendação, Percentual de Respostas Insatisfatórias) em um indicador único auditável e conectado ao ciclo quadrimestral de governança.
+Nesse contexto, a formulação de Goodhart (1975) — segundo a qual “quando uma medida se torna uma meta, ela deixa de ser uma boa medida” — oferece uma lente crítica relevante para a gestão pública. Indicadores isolados, como o prazo de resposta, quando utilizados como metas centrais, podem induzir comportamentos disfuncionais, como respostas superficiais ou encerramentos prematuros de manifestações. A utilização de índices compostos, como o IGRO, mitiga esse risco ao integrar múltiplas dimensões de desempenho, reduzindo incentivos à otimização local em detrimento da efetividade sistêmica. 
+________________
+
+
+2.3 Índices compostos: fundamentos metodológicos OCDE/JRC
+Neste contexto, o Índice de Gestão de Riscos de Ouvidoria (IGRO) constitui um indicador sintético desenvolvido para mensurar o desempenho das ouvidorias sob a ótica da gestão de riscos. Ao integrar dimensões como tempestividade e qualidade do atendimento em uma única métrica, o IGRO permite avaliar de forma consolidada a efetividade operacional das unidades, funcionando como instrumento de monitoramento estratégico e apoio à tomada de decisão pela alta gestão.
+A construção de índices compostos — entendidos como consolidações matemáticas de múltiplos indicadores em um único valor agregado — é um campo metodológico maduro e amplamente documentado na literatura acadêmica e na prática institucional. O principal referencial técnico internacional é o Handbook on Constructing Composite Indicators: Methodology and User Guide (Nardo et al., 2008), elaborado pela Organização para a Cooperação e Desenvolvimento Econômico (OCDE) em parceria com o Joint Research Centre (JRC) da Comissão Europeia.
+Esse referencial estabelece diretrizes para a construção de indicadores compostos voltados à análise comparativa e ao suporte à decisão pública, sendo amplamente utilizado em índices internacionais de desempenho e governança.
+O Handbook OCDE/JRC define seis etapas fundamentais para a construção de índices compostos: (1) seleção teórica e empírica de indicadores; (2) análise da qualidade dos dados; (3) normalização para uma escala comum; (4) ponderação (atribuição de pesos); (5) agregação; e (6) análise de sensibilidade e incerteza. Essas etapas possuem natureza iterativa, permitindo revisões metodológicas ao longo do processo de construção.
+A etapa de normalização assume papel central, pois assegura a comparabilidade entre indicadores com diferentes escalas e unidades de medida. Enquanto métodos convencionais, como z-score e min-max, baseiam-se em distribuições históricas dos dados, o referencial OCDE/JRC recomenda, em contextos com metas institucionais definidas, a normalização por distância à meta (goalposts). Nesse modelo, estabelecem-se dois parâmetros: a meta (nível esperado de desempenho) e o limite mínimo aceitável. Os indicadores são então transformados para uma escala entre 0 e 1, na qual 1 representa o atingimento ou superação da meta e 0 indica desempenho inferior ao padrão mínimo. Essa abordagem aumenta a transparência metodológica e reduz a subjetividade na avaliação, aspecto especialmente relevante em contextos de auditoria.
+A agregação dos indicadores pode ser realizada por meio de média aritmética ponderada ou média geométrica. A média aritmética pressupõe substitutibilidade parcial entre dimensões, permitindo compensações entre indicadores. Já a média geométrica assume complementaridade entre os componentes, de modo que o baixo desempenho em uma dimensão não pode ser plenamente compensado por resultados elevados em outra.
+No caso do IGRO, adotou-se a média geométrica ponderada como método de agregação, conforme a seguinte expressão: 
+
+Em que:
+* KRIi​ representa o i-ésimo indicador normalizado (por exemplo, tempestividade e qualidade);
+* wi​ corresponde ao peso atribuído a cada indicador, 
+* ∏ denota o produtório, isto é, a multiplicação de todos os termos considerados.
+Essa formulação reflete a natureza interdependente dos riscos monitorados. A escolha da média geométrica está alinhada à lógica da gestão de riscos em ouvidoria, na qual o cumprimento de prazos sem qualidade — ou a qualidade sem tempestividade — não configura desempenho adequado, mas sim manifestação parcial de risco operacional. 
+O referencial OCDE/JRC é amplamente utilizado em iniciativas internacionais, como o Índice de Desenvolvimento Humano (IDH) e indicadores de governança e inovação, demonstrando sua robustez e aceitação institucional. Além disso, índices compostos apresentam vantagens relevantes, como a simplificação da comunicação e a síntese de múltiplas dimensões em uma única métrica, embora também sejam sensíveis a escolhas metodológicas, especialmente no que se refere à ponderação e agregação dos indicadores.
+A adoção desse referencial no IGRO assegura consistência metodológica, transparência analítica e potencial de replicação, posicionando o índice como instrumento adequado para o monitoramento estratégico da gestão de riscos em ouvidorias públicas.
+________________
+3. Metodologia
+3.1 Desenho de Pesquisa e Fonte de Dados
+Este estudo apresenta uma análise de natureza descritiva e exploratória sobre a construção e aplicação do Índice de Gestão de Riscos de Ouvidoria (IGRO), com base em dados operacionais do Sistema de Gestão de Ouvidoria do Estado de Goiás (SGOe). O período analisado compreende janeiro de 2024 a dezembro de 2026, totalizando 109.338 manifestações[a] cidadãs registradas na rede estadual de ouvidorias, composta por 51 unidades no âmbito do Poder Executivo estadual. 
+
+
+A escolha do SGOe como fonte de dados justifica-se por: (a) centralização integrada de manifestações em plataforma única, viabilizando análise sistêmica sem fragmentação; (b) estrutura padronizada de campos e classificações, permitindo comparabilidade entre órgãos e períodos; (c) alinhamento com Decreto Estadual 10.466/2024 e Instruções Normativas CGE-GO 01, 02, 05 e 06/2025, que regulamentam prazos e procedimentos de resposta; (d) capilaridade que abrange a totalidade do setor público estadual, viabilizando análise sem viés de seleção amostral.
+
+
+3.2 Seleção e Operacionalização dos Indicadores-Chave de Risco (KRIs)
+
+
+A seleção dos indicadores seguiu um processo de validação teórica fundamentado na ISO 31000:2018 e na Matriz de Gestão de Riscos da CGE-GO, a partir do qual foram identificados dois riscos operacionais prioritários para o funcionamento da ouvidoria: tempestividade e qualidade do atendimento. Para cada risco, foram definidos indicadores capazes de capturar sua potencial materialização, assegurando alinhamento entre o modelo teórico e a operacionalização empírica. 
+Eixo 1 — Tempestividade
+KRI 1.1 — Tempo Médio de Resposta (TMR)
+O Tempo Médio de Resposta (TMR) mensura o número médio de dias corridos entre o registro da manifestação no SGOe e o envio da resposta definitiva ao cidadão. Operacionalmente, é calculado como a média aritmética do intervalo para o conjunto de manifestações finalizadas no período de análise, excluindo-se aquelas ainda em tramitação.
+Do ponto de vista teórico, a tempestividade constitui dimensão central da justiça procedimental (Tyler, 2006), influenciando diretamente a percepção de legitimidade e confiança institucional. No plano normativo brasileiro, a Lei nº 13.460/2017 estabelece o prazo máximo de 30 dias para resposta ao cidadão, configurando um parâmetro formal mínimo para avaliação do desempenho das ouvidorias.
+No âmbito do Estado de Goiás, esse parâmetro é detalhado e operacionalizado por meio do Decreto nº 10.466/2024 e da Instrução Normativa nº 01/2025-CGE, que estabelecem o prazo de até 20 dias para resposta conclusiva, prorrogável por mais 10 dias mediante justificativa formal. Esse arranjo normativo confere maior precisão à avaliação da tempestividade, permitindo a mensuração mais acurada do risco associado ao descumprimento de prazos. 
+Para fins analíticos, adotam-se os seguintes intervalos interpretativos: valores superiores a 20 dias indicam risco elevado de descumprimento de expectativas de resposta; valores entre 10 e 20 dias refletem conformidade com os parâmetros legais; e valores inferiores a 10 dias sugerem elevado desempenho operacional. Esses intervalos funcionam como referenciais analíticos para classificação do risco, devendo ser interpretados em conjunto com indicadores de qualidade do atendimento.[b]
+A fonte de dados corresponde aos campos "data_entrada" e "data_resposta_definitiva"[c] do Sistema de Gestão de Ouvidoria do Estado de Goiás (SGOe).
+KRI 1.2 — Percentual de Manifestações em Atraso (≥ 30 dias) [d]
+O Percentual de Manifestações em Atraso mensura o risco de não conformidade regulatória ao indicar a proporção de manifestações cuja resposta ultrapassa 30 dias a partir da data de entrada. Operacionalmente, é calculado pela expressão: 
+
+
+
+Diferentemente do TMR, que capta o comportamento médio do tempo de resposta, este indicador evidencia diretamente a incidência de violações do prazo legal, funcionando como proxy de risco regulatório. Dessa forma, permite identificar unidades com desempenho aparentemente adequado em termos de média, mas que apresentam cauda longa de atrasos.
+Para fins interpretativos, valores próximos de 0% indicam conformidade plena; valores em torno de 20% sugerem que 1 em cada 5 manifestações ultrapassa o prazo legal; e valores superiores a esse patamar evidenciam risco material de não conformidade.
+O fundamento normativo decorre do Decreto Estadual nº 10.466/2024 e das Instruções Normativas CGE-GO nº 01 e 02/2025, que estabelecem os prazos máximos para resposta às manifestações.
+A fonte de dados corresponde aos campos "data_entrada" e "data_resposta_definitiva" do Sistema de Gestão de Ouvidoria do Estado de Goiás (SGOe), considerando-se apenas as manifestações finalizadas no período de análise.
+
+
+Eixo 2 — Qualidade
+KRI 2.1 — Percentual de Resolutividade Percebida (Pesquisa de Satisfação) 
+O Percentual de Resolutividade Percebida mensura a efetividade do atendimento sob a ótica do cidadão, a partir das respostas à pergunta: “Sua demanda foi resolvida?”, constante na Pesquisa de Satisfação do Sistema de Ouvidoria.
+O indicador incorpora tanto respostas afirmativas quanto parcialmente positivas, atribuindo peso intermediário às respostas “parcialmente”, de modo a capturar níveis distintos de resolução percebida. Operacionalmente, é calculado pela seguinte expressão:
+
+Essa abordagem permite refletir de forma mais acurada a experiência do usuário, incorporando gradações de satisfação quanto à solução apresentada. Dessa forma, o indicador captura não apenas a existência de resposta, mas a percepção de efetividade do atendimento.
+Para fins interpretativos, valores elevados indicam maior percepção de resolutividade por parte do cidadão, enquanto valores reduzidos sinalizam lacunas entre a atuação institucional e a expectativa do usuário, configurando risco de insatisfação e de perda de confiança no serviço.
+A fonte de dados corresponde aos registros da Pesquisa de Satisfação vinculada ao Sistema de Gestão de Ouvidoria do Estado de Goiás (SGOe).
+KRI 2.2 — Percentual de Respostas Insatisfatórias (% RI)
+
+
+O Percentual de Respostas Insatisfatórias (RI) mensura a proporção de manifestações cuja resposta conclusiva foi considerada inadequada pelo cidadão, evidenciada pela reabertura do caso após seu encerramento. Nesse sentido, a reabertura é utilizada como proxy objetiva de insatisfação, indicando que a resposta fornecida não atendeu à expectativa do usuário. 
+Operacionalmente, é calculado pela seguinte expressão: 
+
+
+        O indicador captura de forma direta o desalinhamento entre a resposta institucional e a percepção do cidadão, funcionando como medida de validação externa da qualidade do atendimento. Ao utilizar a reabertura como critério, reduz-se a subjetividade associada à análise de conteúdo e aumenta-se a confiabilidade da mensuração.
+Para fins interpretativos, valores próximos de 0% indicam baixo nível de insatisfação; valores em torno de 1% a 3% são considerados aceitáveis; e valores superiores a 5% sinalizam risco elevado de comprometimento da qualidade do atendimento.
+A fonte de dados corresponde ao campo “status_manifestacao”, considerando registros classificados como “Resposta insatisfatória”, no Sistema de Gestão de Ouvidoria do Estado de Goiás (SGOe).
+KRI 2.3 — Nota de Recomendação
+
+
+A Nota de Recomendação (NR) mensura a disposição do cidadão em recomendar o serviço de ouvidoria, a partir das respostas à pergunta: “Você recomendaria esta Ouvidoria?”, constante na Pesquisa de Satisfação do Sistema de Ouvidoria.
+Operacionalmente, o indicador corresponde à média aritmética das notas atribuídas pelos manifestantes, em escala de 1 a 10, sendo calculado pela seguinte expressão:
+
+em que notai representa a nota atribuída por cada respondente.
+O indicador captura dimensões de satisfação e confiança no serviço, refletindo a experiência global do usuário com o atendimento recebido.
+Para fins interpretativos, valores mais elevados indicam maior propensão à recomendação e, consequentemente, maior nível de confiança institucional, enquanto valores reduzidos sinalizam risco de insatisfação e fragilidade na percepção de qualidade do serviço.
+A fonte de dados corresponde aos registros da Pesquisa de Satisfação vinculada ao Sistema de Gestão de Ouvidoria do Estado de Goiás (SGOe).
+3.3 Normalização dos Indicadores: Distância à Meta com Goalposts
+Seguindo as recomendações do Handbook on Constructing Composite Indicators (OCDE/JRC), cada indicador foi normalizado para o intervalo [0,1][0,1][0,1] por meio do método de distância à meta (goalposts), adaptado ao contexto regulatório brasileiro. Nesse procedimento, definem-se dois parâmetros de referência: (i) a meta, correspondente ao nível desejado de desempenho; e (ii) o limite mínimo aceitável (goalpost), que representa o patamar inferior de referência.
+A normalização é realizada de modo que valores iguais ou superiores à meta sejam mapeados para 1, enquanto valores inferiores ao limite mínimo sejam mapeados para 0, sendo os valores intermediários escalonados proporcionalmente conforme sua distância relativa à meta.
+Normalização de TMR (dias):
+
+
+* Meta: 5 dias (excelência esperada)
+* Goalpost: 10 dias (limite de aceitabilidade)
+* Fórmula: TMR_normalizado = max(0, 1 - (TMR - 5) / (10 - 5)) = max(0, 1 - (TMR - 5) / 5) 
+* Interpretação correta: valor 1 quando TMR ≤ 5 dias; valor 0 quando TMR ≥ 10 dias. 
+
+
+Normalização de % RDP:
+
+
+* Meta: 1,0%
+* Goalpost: 2,0% (piso aceitável de conformidade)
+* Fórmula: RDP_normalizado = min(1, max(0, 1 - (RDP - 1) / (2 - 1))) = min(1, max(0, 1 - (RDP - 1)))  
+* Interpretação: valor 1 quando RDP ≤ 1%; valor 0 quando RDP ≥ 2%. 
+
+
+Normalização de TR:
+
+
+* Meta: 70% (resolutividade esperada)
+* Goalpost: 50% (piso aceitável)
+* Fórmula: TR_normalizado = min(1, max(0, (TR - 50) / (70 - 50))) = min(1, max(0, (TR - 50) / 20)) 
+* Interpretação: valor 1 quando TR ≥ 70%; valor 0 quando TR ≤ 50%. 
+
+
+Normalização de % RI:
+
+
+* Meta: 2,5% ou inferior (baixíssima insatisfação)
+* Goalpost: 3,5% (piso aceitável de insatisfação)
+* Fórmula: RI_normalizado = min(1, max(0, 1 - (RI - 2,5) / (3,5 - 2,5))) = min(1, max(0, 1 - (RI - 2,5))) 
+* Interpretação: valor 1 quando RI ≤ 2,5%; valor 0 quando RI ≥ 3,5%. 
+
+
+Normalização de Nota de Recomendação:
+
+
+* Meta: 8,0+ (excelente recomendação)
+* Goalpost: 6,0+ (aceitável recomendação)
+* Fórmula: NR_normalizado = min(1, max(0, (NR - 6,0) / (8,0 - 6,0))) = min(1, max(0, (NR - 6,0) / 2,0)) 
+* Interpretação: valor 1 quando NR ≥ 8,0; valor 0 quando NR ≤ 6,0. 
+
+
+
+
+
+
+________________
+Referências Bibliográficas (Padrão APA)
+* Andrade, M. T. (Org.). (2026). ***Compliance público na prática: O modelo de Goiás em Controle, Transparência e Governo Aberto (2019-2025)***. Estúdio da Palavra 3, 4.
+* Brasil. (1988). Constituição da República Federativa do Brasil. Presidência da República 5.
+* Brasil. (2011). Lei nº 12.527, de 18 de novembro de 2011 (Regula o acesso a informações). Presidência da República 6.
+* Brasil. (2017). Lei nº 13.460, de 26 de junho de 2017 (Dispõe sobre a proteção e defesa dos direitos do usuário dos serviços públicos). Presidência da República 7.
+* Brasil. (2018). Lei nº 13.709, de 14 de agosto de 2018 (Lei Geral de Proteção de Dados Pessoais - LGPD). Presidência da República 8.
+* Committee of Sponsoring Organizations of the Treadway Commission (COSO). (2017). Enterprise Risk Management: Integrating with Strategy and Performance (Vol. 2) 9.
+* Goodhart, C. A. E. (1975). Problems of monetary management: The U.K. experience 10.
+* International Organization for Standardization. (2018). ISO 31000:2018: Risk management – Guidelines 5, 7.
+* OECD. (2025). OECD Integrity Review of Brazil 2025: Consolidating Progress on Public Integrity. OECD Publishing. https://doi.org/10.1787/cfcce75d-en 11.
+* OECD, & JRC. (2008). Handbook on Constructing Composite Indicators: Methodology and User Guide. OECD Publishing 1, 12.
+* Power, M. (2004). The Risk Management of Everything: Rethinking the Politics of Uncertainty. Demos 13, 14.
+* Reichheld, F. F. (2003). The one number you need to grow. Harvard Business Review, 81(12), 46–54 15, 16.
+* Santos, A. R., Costa, J. I. P., Burger, F., & Tezza, R. (2019). O papel da ouvidoria pública uma análise a partir das dimensões funcional, gerencial e cidadã. Revista do Serviço Público, 70(4), 630–657 17, 18.
+[a]Ajustar período analisado e quantitativo
+[b]Melhorar este texto, para a realidade de GO, verificar metas.
+[c]Verificar colunas
+[d]Verificar se está aderente o modelo PBI

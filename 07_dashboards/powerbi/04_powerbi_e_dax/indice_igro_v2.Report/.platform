@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "indice_igro_v2"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "4700b5cb-1abf-41c6-804d-09f64ddda0d7"
+  }
+}

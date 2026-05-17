@@ -1,0 +1,100 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "nodeIndex": "f_relatorio",
+          "nodeLineageTag": "1ef260cb-def5-48b1-a775-38f30eab2601",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 307,
+            "y": 407
+          },
+          "nodeIndex": "f_pesquisa",
+          "nodeLineageTag": "d06eabcf-7571-48f4-9dd1-44575bf506a3",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 960,
+            "y": 0
+          },
+          "nodeIndex": "f_insatisfatorias",
+          "nodeLineageTag": "04ca9373-3d14-478c-8274-88ed004c9eab",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 877,
+            "y": 402.5
+          },
+          "nodeIndex": "_medidas",
+          "nodeLineageTag": "0e831e77-6aee-4c26-8ba6-8b41deee12c6",
+          "size": {
+            "height": 539,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 1244,
+            "y": 256.75
+          },
+          "nodeIndex": "dCalendario",
+          "nodeLineageTag": "bb0dcebb-e290-4854-bce7-2981d0a0871b",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1528,
+            "y": 268.75
+          },
+          "nodeIndex": "dOrgao_igro",
+          "nodeLineageTag": "22c4bafd-c6cf-4804-940f-94743964c4a3",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Todas as tabelas",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas as tabelas",
+  "defaultDiagram": "Todas as tabelas"
+}

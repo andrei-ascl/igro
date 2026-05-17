@@ -1,0 +1,276 @@
+/// [Dimensão] Calendário corporativo do modelo. Controla análises temporais por dia, mês, trimestre, quadrimestre, semestre e ano. A relação ativa principal usa f_relatorio[data_manifestacao].
+table dCalendario
+	lineageTag: b5d67530-7ced-4640-8414-2e2444da16f7
+	dataCategory: Time
+
+	/// [Papel: Chave] Data diária da dimensão calendário. Chave de relacionamento com tabelas fato; relação ativa principal com f_relatorio[data_manifestacao].
+	column Date
+		isUnique
+		lineageTag: 8eb64e7d-a8d8-4b8c-8793-9a630b3554ba
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Ano da data.
+	column Ano = YEAR(dCalendario[Date])
+		dataType: int64
+		lineageTag: 294047d2-dfad-499d-9394-69c35d574861
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Número do mês (1–12).
+	column Mes = MONTH(dCalendario[Date])
+		dataType: int64
+		lineageTag: 28f27298-d276-40c8-a60e-3c52b5038670
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Dia do mês (1–31).
+	column Dia = DAY(dCalendario[Date])
+		dataType: int64
+		lineageTag: 632005fe-64e5-41e3-b03c-569245ae2762
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Nome do mês por extenso em português.
+	column NomeMes = SWITCH(MONTH(dCalendario[Date]),1,"Janeiro",2,"Fevereiro",3,"Março",4,"Abril",5,"Maio",6,"Junho",7,"Julho",8,"Agosto",9,"Setembro",10,"Outubro",11,"Novembro",12,"Dezembro")
+		dataType: string
+		lineageTag: 2a42b221-8b74-4031-a4e3-3c0a2e910287
+		summarizeBy: none
+		sortByColumn: Mes
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Mês abreviado (3 letras) em português.
+	column MesAbrev = SWITCH(MONTH(dCalendario[Date]),1,"jan",2,"fev",3,"mar",4,"abr",5,"mai",6,"jun",7,"jul",8,"ago",9,"set",10,"out",11,"nov",12,"dez")
+		dataType: string
+		lineageTag: b3753005-0489-4b8e-922a-67576fdbdd11
+		summarizeBy: none
+		sortByColumn: Mes
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Chave numérica de ordenação ano-mês (ex: 202401). Usar para ordenar NomeMes e AnoMesLabel.
+	column AnoMes = YEAR(dCalendario[Date]) * 100 + MONTH(dCalendario[Date])
+		dataType: int64
+		lineageTag: a5042bb3-dee4-4557-be36-a1f12e4a9f9e
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Número do dia da semana (1=Seg, 7=Dom). ISO 8601.
+	column NumDiaSemana = WEEKDAY(dCalendario[Date], 2)
+		dataType: int64
+		lineageTag: d69559c5-811b-499b-86dc-7693948d3402
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Nome do dia da semana por extenso em português.
+	column NomeDiaSemana = SWITCH(WEEKDAY(dCalendario[Date],2),1,"Segunda-feira",2,"Terça-feira",3,"Quarta-feira",4,"Quinta-feira",5,"Sexta-feira",6,"Sábado",7,"Domingo")
+		dataType: string
+		lineageTag: 345f9b4e-21d5-4474-a2a3-5ac377814fec
+		summarizeBy: none
+		sortByColumn: NumDiaSemana
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Dia da semana abreviado (3 letras).
+	column DiaSemanaAbrev = SWITCH(WEEKDAY(dCalendario[Date],2),1,"Seg",2,"Ter",3,"Qua",4,"Qui",5,"Sex",6,"Sáb",7,"Dom")
+		dataType: string
+		lineageTag: 4b31ca0a-5ce8-4262-8ac7-89f82407b760
+		summarizeBy: none
+		sortByColumn: NumDiaSemana
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Número da semana no ano (ISO 8601, semana começa na segunda-feira).
+	column NumSemanaAno = WEEKNUM(dCalendario[Date], 2)
+		dataType: int64
+		lineageTag: d484f6ff-e460-48c4-b842-9e44f86bb1b0
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Chave numérica ano-semana para ordenação (ex: 202401).
+	column AnoSemana = YEAR(dCalendario[Date]) * 100 + WEEKNUM(dCalendario[Date], 2)
+		dataType: int64
+		lineageTag: c42a415b-7985-40ce-bfe6-a1ba85adfa52
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Trimestre do ano (1–4).
+	column Trimestre = ROUNDUP(MONTH(dCalendario[Date]) / 3, 0)
+		dataType: int64
+		lineageTag: da414d6a-1fd6-40f5-9c64-a4b11cf06127
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Quadrimestre do ano (1=jan-abr, 2=mai-ago, 3=set-dez). Base do Relatório de Gestão CGE-GO.
+	column Quadrimestre = SWITCH(TRUE(),MONTH(dCalendario[Date])<=4,1,MONTH(dCalendario[Date])<=8,2,3)
+		dataType: int64
+		lineageTag: 1b24cc27-739b-44d2-8f11-4db6b1cca8d6
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Nome do quadrimestre por extenso.
+	column NomeQuadrimestre = SWITCH(TRUE(),MONTH(dCalendario[Date])<=4,"1º Quadrimestre",MONTH(dCalendario[Date])<=8,"2º Quadrimestre","3º Quadrimestre")
+		dataType: string
+		lineageTag: 199b78b5-2650-4003-84bb-bb95e55a4ec0
+		summarizeBy: none
+		sortByColumn: AnoQuadri
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Chave numérica ano-quadrimestre para ordenação (ex: 20241).
+	column AnoQuadri = YEAR(dCalendario[Date])*10 + SWITCH(TRUE(),MONTH(dCalendario[Date])<=4,1,MONTH(dCalendario[Date])<=8,2,3)
+		dataType: int64
+		lineageTag: 236e9eb1-535f-4b24-83db-305b21743eca
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Semestre do ano (1 ou 2).
+	column Semestre = IF(MONTH(dCalendario[Date])<=6,1,2)
+		dataType: int64
+		lineageTag: d128512a-7aef-42e1-bd02-b472e26daa2b
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	/// TRUE se sábado ou domingo.
+	column FimDeSemana = WEEKDAY(dCalendario[Date],2) >= 6
+		dataType: boolean
+		lineageTag: 63235df7-ef5c-44af-a16d-5a3c7cf94503
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	/// TRUE se segunda a sexta-feira.
+	column DiaUtil = WEEKDAY(dCalendario[Date],2) <= 5
+		dataType: boolean
+		lineageTag: 5e7d75a8-a853-4927-89fe-77820ae1ad02
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	/// TRUE se é o primeiro dia do mês.
+	column PrimeiroDiaMes = DAY(dCalendario[Date]) = 1
+		dataType: boolean
+		lineageTag: 6992ef20-4d45-403b-be3d-92aea8475d05
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	/// TRUE se é o último dia do mês.
+	column UltimoDiaMes = dCalendario[Date] = EOMONTH(dCalendario[Date], 0)
+		dataType: boolean
+		lineageTag: 89ad0baf-b0b6-4b83-9682-b9173bba203f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	/// TRUE se a data pertence ao ano corrente.
+	column AnoAtual = YEAR(dCalendario[Date]) = YEAR(TODAY())
+		dataType: boolean
+		lineageTag: 70d85811-5d5f-4175-8483-0888fdf3318f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	/// TRUE se a data está nos últimos 12 meses a partir de hoje.
+	column Ultimos12Meses = dCalendario[Date] >= EDATE(TODAY(),-12) && dCalendario[Date] <= TODAY()
+		dataType: boolean
+		lineageTag: db24b9d9-8881-4004-a2f2-7c1a1d150f45
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	/// TRUE se a data está nos últimos 3 meses (um quadrimestre retroativo).
+	column UltimoQuadrimestre = dCalendario[Date] >= EDATE(TODAY(),-4) && dCalendario[Date] <= TODAY()
+		dataType: boolean
+		lineageTag: 7d0a0e5d-d125-4838-a669-8d5f7bcf903a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Número sequencial de meses desde jan/2024 (mês 1 = jan/2024). Usado em cálculos de tendência e regressão linear no contexto do SGOe.
+	column MesExercicio = IF(YEAR(dCalendario[Date])>=2024, (YEAR(dCalendario[Date])-2024)*12 + MONTH(dCalendario[Date]), BLANK())
+		dataType: int64
+		lineageTag: 0f5d2dfe-2978-4eed-914b-e52d36fd667d
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Número sequencial de quadrimestres desde Q1/2024 (1=Q1/2024, 2=Q2/2024...). Base para comparação entre relatórios de gestão.
+	column QuadriExercicio = IF(YEAR(dCalendario[Date])>=2024, (YEAR(dCalendario[Date])-2024)*3 + SWITCH(TRUE(),MONTH(dCalendario[Date])<=4,1,MONTH(dCalendario[Date])<=8,2,3), BLANK())
+		dataType: int64
+		lineageTag: f51320f1-f15b-4920-a644-957db5dcd366
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Número do dia no ano (1–365/366). Útil para análise de sazonalidade intra-anual.
+	column DiaDoAno = DATEDIFF(DATE(YEAR(dCalendario[Date]),1,1), dCalendario[Date], DAY) + 1
+		dataType: int64
+		lineageTag: 96319fd0-38a5-46ea-ae95-7c102fe48865
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Dia útil do mês (1, 2, 3...). Conta apenas dias úteis (seg-sex). Útil para análise de prazo interno.
+	column DiaUtilDoMes = CALCULATE(COUNTROWS(dCalendario), dCalendario[Date] <= EARLIER(dCalendario[Date]), MONTH(dCalendario[Date]) = MONTH(EARLIER(dCalendario[Date])), YEAR(dCalendario[Date]) = YEAR(EARLIER(dCalendario[Date])), dCalendario[DiaUtil] = TRUE())
+		dataType: int64
+		lineageTag: 0d38238f-22c6-4453-a3d2-abe6f445a434
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Rótulo do trimestre para eixos (ex: T1/2024).
+	column TrimestreLabel = "T" & FORMAT(dCalendario[Trimestre], "0") & "/" & FORMAT(dCalendario[Ano], "0")
+		dataType: string
+		lineageTag: 803f5dcf-dd32-4f85-a4c1-412af04dcdef
+		summarizeBy: none
+		sortByColumn: Trimestre
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Rótulo compacto do quadrimestre para eixos (ex: Q1/2024).
+	column QuadriLabel = SWITCH(TRUE(), MONTH(dCalendario[Date])<=4, "Q1", MONTH(dCalendario[Date])<=8, "Q2", "Q3") & "/" & FORMAT(dCalendario[Ano], "0")
+		dataType: string
+		lineageTag: 2213cbd5-b020-4759-ae07-1dc782ddd85f
+		summarizeBy: none
+		sortByColumn: AnoQuadri
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Rótulo compacto do semestre para eixos (ex: S1/2024).
+	column SemestreLabel = IF(MONTH(dCalendario[Date])<=6, "S1", "S2") & "/" & FORMAT(dCalendario[Ano], "0")
+		dataType: string
+		lineageTag: c0267485-cdbc-4c26-ab47-742d1252771d
+		summarizeBy: none
+		sortByColumn: Semestre
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Rótulo mês/ano para eixos de gráficos (ex: jan/2024).
+	column AnoMesLabel = dCalendario[MesAbrev] & "/" & FORMAT(dCalendario[Ano], "0")
+		dataType: string
+		lineageTag: 3a640870-c5bb-4a15-98b5-dd8332c2ddd6
+		summarizeBy: none
+		sortByColumn: AnoMes
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dCalendario = calculated
+		mode: import
+		source = CALENDAR(DATE(2023,1,1), DATE(2027,12,31))
+

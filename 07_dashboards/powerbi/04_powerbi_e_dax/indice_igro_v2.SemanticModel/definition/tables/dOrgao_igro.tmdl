@@ -1,0 +1,127 @@
+/// [Dimensão] Cadastro analítico de órgãos da rede de ouvidorias para o IGRO. Classifica cada sigla por tipo, grupo e classe, servindo como eixo institucional dos rankings, filtros e comparações.
+table dOrgao_igro
+	lineageTag: 22c4bafd-c6cf-4804-940f-94743964c4a3
+
+	/// [Papel: Atributo] Tipo institucional do órgão na rede de ouvidorias, usado para segmentar rankings e matrizes do IGRO. Exemplos esperados: Setorial, Adjunta, Inativa.
+	column Tipo
+		dataType: string
+		lineageTag: e4d4d6f5-3e35-45d5-a4f9-82a73e939877
+		summarizeBy: none
+		sourceColumn: Tipo
+
+		annotation SummarizationSetBy = Automatic
+
+	/// [Papel: Atributo] Agrupamento temático ou administrativo do órgão, usado para análises comparativas entre blocos institucionais.
+	column Grupo
+		dataType: string
+		lineageTag: a87138d4-1eb1-41ab-a71e-7fdc9bf2043f
+		summarizeBy: none
+		sourceColumn: Grupo
+
+		annotation SummarizationSetBy = Automatic
+
+	/// [Papel: Atributo] Classe analítica do órgão no IGRO, usada para segmentar a matriz por complexidade, volume ou perfil operacional.
+	column Classe
+		dataType: string
+		lineageTag: dd9a4aab-d1f7-47a3-b982-9210ce52e7d9
+		summarizeBy: none
+		sourceColumn: Classe
+
+		annotation SummarizationSetBy = Automatic
+
+	/// [Papel: Chave] Sigla do órgão ou entidade. Chave da dimensão dOrgao_igro e destino do relacionamento ativo com f_relatorio[sigla]. Também é propagada por TREATAS para f_pesquisa e f_insatisfatorias em medidas DAX.
+	column sigla
+		dataType: string
+		lineageTag: 381b0822-aa09-4681-bcd8-b32d7423c2ce
+		summarizeBy: none
+		sourceColumn: sigla
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Marca o grupo G20 para visualizacoes futuras: 15 ouvidorias setoriais mais as 5 adjuntas com maior volume de manifestacoes (AGEHAB, PC, OVG, DGPP e JUCEG).
+	column G20 =
+			IF (
+			    dOrgao_igro[Tipo] = "Setorial"
+			        || dOrgao_igro[sigla] IN { "AGEHAB", "PC", "OVG", "DGPP", "JUCEG" },
+			    "G20",
+			    "Demais"
+			)
+		dataType: string
+		lineageTag: f9160c5d-fcb7-40cb-8e33-1b9168a17606
+		summarizeBy: none
+
+	partition dOrgao_igro = m
+		mode: import
+		queryGroup: 'Transformar Arquivo de powerbi\Consultas Auxiliares'
+		source =
+				let
+				    Fonte = Table.FromRows(
+				        {
+				            {"ABC",              "Adjunta",  "C",   "5"},
+				            {"AGEHAB",           "Adjunta",  "B",   "2"},
+				            {"AGR",              "Setorial", "A",   "2"},
+				            {"AGRODEFESA",       "Adjunta",  "B",   "4"},
+				            {"CBM",              "Adjunta",  "B",   "4"},
+				            {"CEASA",            "Adjunta",  "B",   "4"},
+				            {"CELG GT",          "Inativa",  "N/A", "N/A"},
+				            {"CELGPAR",          "Adjunta",  "C",   "5"},
+				            {"CGE",              "Setorial", "A",   "3"},
+				            {"CODEGO",           "Adjunta",  "C",   "5"},
+				            {"DETRAN",           "Setorial", "A",   "1"},
+				            {"DGPP",             "Adjunta",  "B",   "3"},
+				            {"ECONOMIA",         "Setorial", "A",   "2"},
+				            {"EMATER",           "Adjunta",  "B",   "4"},
+				            {"ENEL",             "Inativa",  "N/A", "N/A"},
+				            {"FAPEG",            "Adjunta",  "B",   "5"},
+				            {"GOIAS TELECOM",    "Adjunta",  "C",   "5"},
+				            {"GOIAS TURISMO",    "Adjunta",  "C",   "5"},
+				            {"GOIÁSFOMENTO",     "Adjunta",  "B",   "5"},
+				            {"GOIASGÁS",         "Adjunta",  "C",   "5"},
+				            {"GOIASPARCERIAS",   "Adjunta",  "C",   "5"},
+				            {"GOIASPREV",        "Adjunta",  "B",   "4"},
+				            {"GOINFRA",          "Setorial", "A",   "3"},
+				            {"IPASGO",           "Inativa",  "N/A", "N/A"},
+				            {"IQUEGO",           "Adjunta",  "C",   "5"},
+				            {"JUCEG",            "Adjunta",  "B",   "4"},
+				            {"METROBUS",         "Adjunta",  "B",   "4"},
+				            {"OUVMULHER",        "Adjunta",  "B",   "3"},
+				            {"OVG",              "Adjunta",  "B",   "3"},
+				            {"PC",               "Adjunta",  "",    "3"},
+				            {"PGE",              "Adjunta",  "B",   "4"},
+				            {"PM",               "Adjunta",  "B",   "4"},
+				            {"PREVCOM-BrC",      "Adjunta",  "C",   "5"},
+				            {"SANEAGO",          "Setorial", "A",   "1"},
+				            {"SEAD",             "Setorial", "A",   "2"},
+				            {"SEAPA",            "Adjunta",  "C",   "5"},
+				            {"SECAMI",           "Adjunta",  "C",   "5"},
+				            {"SECC",             "Adjunta",  "C",   "5"},
+				            {"SECOM",            "Adjunta",  "C",   "5"},
+				            {"SECTI",            "Adjunta",  "B",   "4"},
+				            {"SECULT",           "Setorial", "A",   "4"},
+				            {"SEDF",             "Adjunta",  "C",   "5"},
+				            {"SEDI",             "Inativa",  "N/A", "N/A"},
+				            {"SEDS",             "Setorial", "A",   "3"},
+				            {"SEDUC",            "Setorial", "A",   "1"},
+				            {"SEEL",             "Adjunta",  "C",   "4"},
+				            {"SEGOV",            "Inativa",  "N/A", "N/A"},
+				            {"SEINFRA",          "Setorial", "A",   "5"},
+				            {"SEL",              "Adjunta",  "N/A", "N/A"},
+				            {"SEMAD",            "Setorial", "A",   "2"},
+				            {"SER",              "Adjunta",  "B",   "4"},
+				            {"SERINT",           "Adjunta",  "B",   "4"},
+				            {"SES",              "Setorial", "A",   "2"},
+				            {"SGG/GOVERNADORIA", "Adjunta",  "B",   "4"},
+				            {"SIC",              "Adjunta",  "C",   "5"},
+				            {"SSP",              "Setorial", "A",   "2"},
+				            {"UEG",              "Setorial", "A",   "3"},
+				            {"Vice-Gov",         "Adjunta",  "C",   "5"}
+				        },
+				        type table [sigla = text, Tipo = text, Grupo = text, Classe = text]
+				    )
+				in
+				    Fonte
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

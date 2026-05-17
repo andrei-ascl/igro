@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp_powerbi-modeling-mcp__database_operations",
+      "mcp_powerbi-modeling-mcp__table_operations",
+      "mcp_powerbi-modeling-mcp__measure_operations",
+      "mcp_powerbi-modeling-mcp__relationship_operations",
+      "mcp_powerbi-modeling-mcp__connection_operations",
+      "mcp_powerbi-modeling-mcp__transaction_operations",
+      "Bash(python *)"
+    ]
+  }
+}

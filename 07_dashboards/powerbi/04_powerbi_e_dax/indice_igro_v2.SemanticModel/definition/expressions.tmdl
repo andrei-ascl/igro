@@ -1,0 +1,166 @@
+expression Parâmetro1 = #"Arquivo de Amostra" meta [IsParameterQuery=true, BinaryIdentifier=#"Arquivo de Amostra", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: 762df061-bcdf-4d26-9062-47f7c5b24433
+	queryGroup: 'Transformar Arquivo de powerbi\Consultas Auxiliares'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transformar o Arquivo de Exemplo' =
+		let
+		    Fonte = Parquet.Document(Parâmetro1, [Compression=null, LegacyColumnNameEncoding=false, MaxDepth=null])
+		in
+		    Fonte
+	lineageTag: a6b67276-8cad-40ee-a4e2-ad07623c6072
+	queryGroup: 'Transformar Arquivo de powerbi'
+
+	annotation PBI_ResultType = Table
+
+expression 'Arquivo de Amostra' =
+		let
+		    Fonte = Folder.Files("C:\Users\andre\OneDrive\sgoe-data-raw\data\powerbi"),
+		    Navegação1 = Fonte{0}[Content]
+		in
+		    Navegação1
+	lineageTag: d09d607e-554f-416d-b27e-8a3a7f1e5dc2
+	queryGroup: 'Transformar Arquivo de powerbi\Consultas Auxiliares'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transformar Arquivo' =
+		let
+		    Fonte = (Parâmetro1 as binary) => let
+		    Fonte = Parquet.Document(Parâmetro1, [Compression=null, LegacyColumnNameEncoding=false, MaxDepth=null])
+		in
+		    Fonte
+		in
+		    Fonte
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transformar o Arquivo de Exemplo""}" ]
+	lineageTag: dad69e41-8370-4602-a647-ab890a1e9884
+	queryGroup: 'Transformar Arquivo de powerbi\Consultas Auxiliares'
+
+	annotation PBI_ResultType = Function
+
+expression Parâmetro2 = #"Arquivo de Amostra (2)" meta [IsParameterQuery=true, BinaryIdentifier=#"Arquivo de Amostra (2)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: 8e26e487-aaaa-45ce-b74e-e8f5d9b78a9b
+	queryGroup: 'Transformar Arquivo de f_relatorio\Consultas Auxiliares'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Arquivo de Amostra (2)' =
+		let
+		    Fonte = Folder.Files("C:\Users\andre\OneDrive\sgoe-data-raw\data\powerbi\f_relatorio"),
+		    Navegação1 = Fonte{0}[Content]
+		in
+		    Navegação1
+	lineageTag: 8d343554-0ed7-4a68-bb15-5f027cdb592a
+	queryGroup: 'Transformar Arquivo de f_relatorio\Consultas Auxiliares'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transformar o Arquivo de Exemplo (2)' =
+		let
+		    Fonte = Parquet.Document(Parâmetro2, [Compression=null, LegacyColumnNameEncoding=false, MaxDepth=null])
+		in
+		    Fonte
+	lineageTag: 9a8a0b1b-1c76-4d51-aaac-ac3c532e65c1
+	queryGroup: 'Transformar Arquivo de f_relatorio'
+
+	annotation PBI_ResultType = Table
+
+expression 'Transformar Arquivo (2)' =
+		let
+		    Fonte = (Parâmetro2 as binary) => let
+		    Fonte = Parquet.Document(Parâmetro2, [Compression=null, LegacyColumnNameEncoding=false, MaxDepth=null])
+		in
+		    Fonte
+		in
+		    Fonte
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transformar o Arquivo de Exemplo (2)""}" ]
+	lineageTag: 8df839c2-299a-476f-ad09-846e9e092a39
+	queryGroup: 'Transformar Arquivo de f_relatorio\Consultas Auxiliares'
+
+	annotation PBI_ResultType = Function
+
+expression Parâmetro3 = #"Arquivo de Amostra (3)" meta [IsParameterQuery=true, BinaryIdentifier=#"Arquivo de Amostra (3)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: a84d3fa5-d9bd-490d-94fb-f684416674a5
+	queryGroup: 'Transformar Arquivo de f_pesquisa\Consultas Auxiliares'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transformar o Arquivo de Exemplo (3)' =
+		let
+		    Fonte = Parquet.Document(Parâmetro3, [Compression=null, LegacyColumnNameEncoding=false, MaxDepth=null])
+		in
+		    Fonte
+	lineageTag: 9b14b868-bf0f-4157-878c-637c655fcd25
+	queryGroup: 'Transformar Arquivo de f_pesquisa'
+
+	annotation PBI_ResultType = Table
+
+expression 'Arquivo de Amostra (3)' =
+		let
+		    Fonte = Folder.Files("C:\Users\andre\OneDrive\sgoe-data-raw\data\powerbi\f_pesquisa"),
+		    Navegação1 = Fonte{0}[Content]
+		in
+		    Navegação1
+	lineageTag: 4cf4e4d4-fcef-4322-878b-d265a19b7bd2
+	queryGroup: 'Transformar Arquivo de f_pesquisa\Consultas Auxiliares'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transformar Arquivo (3)' =
+		let
+		    Fonte = (Parâmetro3 as binary) => let
+		    Fonte = Parquet.Document(Parâmetro3, [Compression=null, LegacyColumnNameEncoding=false, MaxDepth=null])
+		in
+		    Fonte
+		in
+		    Fonte
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transformar o Arquivo de Exemplo (3)""}" ]
+	lineageTag: 8fbd46de-b109-4422-8cd7-e148644cb23b
+	queryGroup: 'Transformar Arquivo de f_pesquisa\Consultas Auxiliares'
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Function
+
+expression Parâmetro4 = #"Arquivo de Amostra (4)" meta [IsParameterQuery=true, BinaryIdentifier=#"Arquivo de Amostra (4)", Type="Binary", IsParameterQueryRequired=true]
+	lineageTag: abe31d2b-7998-45e2-87e6-c1cc972475b0
+	queryGroup: 'Transformar Arquivo de f_insatisfatorias\Consultas Auxiliares'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Arquivo de Amostra (4)' =
+		let
+		    Fonte = Folder.Files("C:\Users\andre\OneDrive\sgoe-data-raw\data\powerbi\f_insatisfatorias"),
+		    Navegação1 = Fonte{0}[Content]
+		in
+		    Navegação1
+	lineageTag: fecd1f9f-b40d-44e2-b81e-f3729d2ac822
+	queryGroup: 'Transformar Arquivo de f_insatisfatorias\Consultas Auxiliares'
+
+	annotation PBI_ResultType = Binary
+
+expression 'Transformar o Arquivo de Exemplo (4)' =
+		let
+		    Fonte = Parquet.Document(Parâmetro4, [Compression=null, LegacyColumnNameEncoding=false, MaxDepth=null])
+		in
+		    Fonte
+	lineageTag: 1a5ea31c-327a-4368-a197-fbd0a153d525
+	queryGroup: 'Transformar Arquivo de f_insatisfatorias'
+
+	annotation PBI_ResultType = Table
+
+expression 'Transformar Arquivo (4)' =
+		let
+		    Fonte = (Parâmetro4 as binary) => let
+		    Fonte = Parquet.Document(Parâmetro4, [Compression=null, LegacyColumnNameEncoding=false, MaxDepth=null])
+		in
+		    Fonte
+		in
+		    Fonte
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transformar o Arquivo de Exemplo (4)""}" ]
+	lineageTag: 70b0f73d-d7f7-491b-83e2-47ee92b2ebf3
+	queryGroup: 'Transformar Arquivo de f_insatisfatorias\Consultas Auxiliares'
+
+	annotation PBI_ResultType = Function
+

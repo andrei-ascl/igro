@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "indice_igro_v2"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "79710cab-6cde-46b3-ad6d-adb5bdf5e45f"
+  }
+}

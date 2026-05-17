@@ -1,0 +1,143 @@
+/// [Fato] Respostas da pesquisa de satisfação enviada ao cidadão após a finalização da manifestação. Uma linha por resposta recebida. Base dos indicadores de resolutividade, nota de recomendação, NPS e amostra de pesquisa.
+table f_pesquisa
+	lineageTag: d06eabcf-7571-48f4-9dd1-44575bf506a3
+
+	/// [Papel: Chave estrangeira] Protocolo da manifestação avaliada na pesquisa. Relaciona f_pesquisa à tabela central f_relatorio.
+	column protocolo
+		dataType: string
+		lineageTag: 21c4070b-81a8-409c-a0af-fba9a633fa24
+		summarizeBy: none
+		sourceColumn: protocolo
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Data original de registro da manifestação avaliada. Permite análise temporal da satisfação.
+	column data_manifestacao
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e76302cd-14aa-48df-95ea-de01fd143172
+		summarizeBy: none
+		sourceColumn: data_manifestacao
+
+		variation Variation
+			isDefault
+			relationship: ac1df0a8-6e95-4ebc-9ab5-151a570a6961
+			defaultHierarchy: LocalDateTable_c6d333d1-ec5f-4b92-8fde-71e466729d16.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Sigla do órgão responsável pela manifestação avaliada na pesquisa.
+	column sigla
+		dataType: string
+		lineageTag: 42ecc3c0-b1a8-48b7-9fc5-b52a0a680004
+		summarizeBy: none
+		sourceColumn: sigla
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Nome do cidadão respondente, quando informado. Campo sensível — verificar conformidade com LGPD antes de expor em visuais.
+	column nome
+		dataType: string
+		lineageTag: 7cd081f4-2e04-42c6-bd8a-16663bad0fde
+		summarizeBy: none
+		sourceColumn: nome
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Subdivisão do órgão responsável, permitindo análise de satisfação em nível mais granular.
+	column suborgao
+		dataType: string
+		lineageTag: bbea35dd-196c-4c41-a395-1e2ddd05e71e
+		summarizeBy: none
+		sourceColumn: suborgao
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Tipo da manifestação avaliada, permitindo cruzar satisfação por categoria (Reclamação, Solicitação etc.).
+	column tipo_manifestacao
+		dataType: string
+		lineageTag: e7bc9c82-b0b5-4937-a33a-639647181e08
+		summarizeBy: none
+		sourceColumn: tipo_manifestacao
+
+		annotation SummarizationSetBy = Automatic
+
+	/// [Papel: Métrica categórica] Resposta do cidadão sobre resolução da demanda: Sim, Não ou Parcialmente. Base do cálculo de resolutividade do IGRO.
+	column finalizacao
+		dataType: string
+		lineageTag: 35e45ccc-4456-4b00-baa0-817eb68c31ef
+		summarizeBy: none
+		sourceColumn: finalizacao
+
+		annotation SummarizationSetBy = Automatic
+
+	/// [Papel: Métrica] Nota de 1 a 10 sobre recomendação do serviço de ouvidoria. Base da nota média de recomendação, do NPS e do KRI 5 do IGRO.
+	column recomendaria
+		dataType: int64
+		formatString: 0
+		lineageTag: 228a8134-796d-4663-b6bc-aa2454439fb8
+		summarizeBy: sum
+		sourceColumn: recomendaria
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Justificativa textual fornecida pelo cidadão para a nota atribuída. Campo qualitativo com potencial para análise de NLP.
+	column motivo
+		dataType: string
+		lineageTag: 52c5abd9-4e4b-4556-9506-0931f0ec0b08
+		summarizeBy: none
+		sourceColumn: motivo
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Data em que o cidadão respondeu à pesquisa. Permite calcular o tempo de resposta pós-finalização.
+	column data_resposta_pesquisa
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d007e7e7-a1e5-4f8f-b40e-89b87ea82fd4
+		summarizeBy: none
+		sourceColumn: data_resposta_pesquisa
+
+		variation Variation
+			isDefault
+			relationship: 0d682d85-d05a-49e3-b331-ac8ed2690937
+			defaultHierarchy: LocalDateTable_57787129-2bcd-48d2-807b-2fbedee7bd7d.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition f_pesquisa = m
+		mode: import
+		source =
+				let
+				    Fonte = Folder.Files("C:\\Users\\andre\\OneDrive\\sgoe-data-raw\\data\\powerbi\\f_pesquisa"),
+				    #"Arquivos Ocultos Filtrados1" = Table.SelectRows(Fonte, each [Attributes]?[Hidden]? <> true),
+				    #"Invocar Função Personalizada1" = Table.AddColumn(#"Arquivos Ocultos Filtrados1", "Transformar Arquivo (3)", each #"Transformar Arquivo (3)"([Content])),
+				    #"Colunas Renomeadas1" = Table.RenameColumns(#"Invocar Função Personalizada1", {"Name", "Nome da Origem"}),
+				    #"Outras Colunas Removidas1" = Table.SelectColumns(#"Colunas Renomeadas1", {"Nome da Origem", "Transformar Arquivo (3)"}),
+				    #"Coluna de Tabela Expandida1" = Table.ExpandTableColumn(
+				        #"Outras Colunas Removidas1",
+				        "Transformar Arquivo (3)",
+				        {"protocolo", "data_manifestacao", "sigla", "nome", "suborgao", "tipo_manifestacao", "finalizacao", "recomendaria", "motivo", "data_resposta_pesquisa"},
+				        {"protocolo", "data_manifestacao", "sigla", "nome", "suborgao", "tipo_manifestacao", "finalizacao", "recomendaria", "motivo", "data_resposta_pesquisa"}
+				    ),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Coluna de Tabela Expandida1", {
+				        {"protocolo", type text},
+				        {"data_manifestacao", type datetime},
+				        {"sigla", type text},
+				        {"nome", type text},
+				        {"suborgao", type text},
+				        {"tipo_manifestacao", type text},
+				        {"finalizacao", type text},
+				        {"recomendaria", Int64.Type},
+				        {"motivo", type text},
+				        {"data_resposta_pesquisa", type datetime}
+				    }),
+				    #"Origem Removida" = Table.RemoveColumns(#"Tipo Alterado", {"Nome da Origem"}),
+				    #"Sigla Padronizada" = Table.ReplaceValue(#"Origem Removida", "GT", "GOIAS TELECOM", Replacer.ReplaceValue, {"sigla"})
+				in
+				    #"Sigla Padronizada"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

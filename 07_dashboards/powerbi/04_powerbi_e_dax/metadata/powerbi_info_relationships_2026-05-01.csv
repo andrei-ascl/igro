@@ -1,0 +1,16 @@
+[ID],[ModelID],[Name],[IsActive],[Type],[CrossFilteringBehavior],[JoinOnDateBehavior],[RelyOnReferentialIntegrity],[FromTableID],[FromColumnID],[FromCardinality],[ToTableID],[ToColumnID],[ToCardinality],[State],[RelationshipStorageID],[RelationshipStorage2ID],[ModifiedTime],[RefreshedTime],[SecurityFilteringBehavior]
+4258,1,0d682d85-d05a-49e3-b331-ac8ed2690937,True,1,1,2,False,4252,4275,2,4255,4276,1,1,4434,,29/04/2026 00:57:45,29/04/2026 00:57:45,1
+6316,1,fc9ea7ae-455f-4618-a780-23376c512215,True,1,1,2,False,6304,6328,2,6307,6329,1,1,6737,,29/04/2026 00:57:45,29/04/2026 00:57:45,1
+6317,1,fee769f1-c1b0-4204-b0d9-fb10a002a560,True,1,1,2,False,6304,6336,2,6310,6337,1,1,6739,,29/04/2026 00:57:45,29/04/2026 00:57:45,1
+6318,1,91bf71e0-af8f-4402-8d08-be6f19fcc249,True,1,1,2,False,6304,6344,2,6313,6345,1,1,6741,,29/04/2026 00:57:45,29/04/2026 00:57:45,1
+22747,1,ac1df0a8-6e95-4ebc-9ab5-151a570a6961,True,1,1,2,False,4252,4267,2,22744,22748,1,1,22821,,29/04/2026 00:57:45,29/04/2026 00:57:45,1
+25892,1,f_insatisfatorias_protocolo_f_relatorio_protocolo,True,1,1,1,False,6304,6327,2,2132,2158,1,1,25893,,29/04/2026 00:57:45,29/04/2026 00:57:45,1
+25895,1,f_pesquisa_protocolo_f_relatorio_protocolo,True,1,1,1,False,4252,4266,2,2132,2158,1,1,25896,,29/04/2026 00:57:45,29/04/2026 00:57:45,1
+30122,1,f_relatorio_data_manifestacao_dCalendario_Date,True,1,1,1,False,2132,2159,2,29279,29283,1,1,30123,,20/04/2026 22:05:08,29/04/2026 00:57:44,1
+38950,1,AutoDetected_4030c0dc-a50e-482a-9772-2cf09537617e,True,1,1,1,False,2132,2190,2,31354,35074,1,1,38953,,29/04/2026 00:57:45,29/04/2026 00:57:45,1
+39067,1,2303fc14-1e08-41b3-93cb-8e0755b8e909,True,1,1,2,False,2132,2174,2,39064,39068,1,1,39173,,29/04/2026 00:57:45,29/04/2026 00:57:45,1
+39490,1,a564ad5f-8095-4acf-8fce-8c531c12e79a,True,1,1,2,False,2132,2182,2,39487,39491,1,1,39564,,29/04/2026 00:57:45,29/04/2026 00:57:45,1
+39941,1,f_relatorio_data_finalizacao_dCalendario_Date,False,1,1,1,False,2132,2174,2,29279,29283,1,1,39945,,21/04/2026 22:56:01,29/04/2026 00:57:44,1
+39942,1,f_relatorio_data_revisao_dCalendario_Date,False,1,1,1,False,2132,2182,2,29279,29283,1,1,39947,,21/04/2026 22:56:01,29/04/2026 00:57:44,1
+39943,1,f_pesquisa_data_manifestacao_dCalendario_Date,False,1,1,1,False,4252,4267,2,29279,29283,1,1,39949,,21/04/2026 22:56:01,29/04/2026 00:57:43,1
+39944,1,f_insatisfatorias_data_manifestacao_dCalendario_Date,False,1,1,1,False,6304,6328,2,29279,29283,1,1,39951,,21/04/2026 22:56:01,29/04/2026 00:57:42,1
