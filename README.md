@@ -17,8 +17,8 @@
 
 1. Verifique status atual em `00_admin/controle_versoes/MEMORIA_PROJETO.md`
 2. Abra notebook: `06_notebooks/exploracao/artigo_igro_graficos_tabelas.ipynb`
-3. Verifique dados em `02_dados/processed/`
-4. Exporte resultados para `09_resultados/artigo_igro_figuras_tabelas/`
+3. Verifique dados processados em `02_dados/processed/`
+4. Consulte resultados em `09_resultados/relatorios/` e `09_resultados/tabelas/`
 
 ---
 
@@ -47,13 +47,13 @@ IGRO consolidida **KRIs (Key Risk Indicators)** para monitorar dois riscos princ
 | **Artigo em desenvolvimento** | 📝 Revisão crítica | `10_publicacao/submissao/artigo_igro_v2_critica_aplicada.md` |
 | **Notebook (tabelas/gráficos)** | ✅ Operacional | `06_notebooks/exploracao/artigo_igro_graficos_tabelas.ipynb` |
 | **Dados processados** | ✅ Disponíveis | `02_dados/processed/` |
-| **Power BI (modelo)** | ✅ v2 estável | `07_dashboards/powerbi/indice_igro_v2.pbix` |
+| **Power BI (modelo)** | ✅ v2 estável | `07_dashboards/powerbi/04_powerbi_e_dax/indice_igro_v2.pbix` |
 | **Documentação técnica** | ✅ Consolidada | `07_dashboards/powerbi/04_powerbi_e_dax/documentacao_modelo_semantico_igro.md` |
 
-**⚠️ Observações importantes:**
-- Base processada tem 52 órgãos; artigo menciona 51 (revisar antes de finalizar)
-- Outputs analíticos do notebook → `09_resultados/artigo_igro_figuras_tabelas/`
-- Dados fonte: `02_dados/processed/`
+**ℹ️ Observações importantes:**
+- Artigo validado: consistente em 51 órgãos do Poder Executivo estadual
+- Outputs analíticos do notebook armazenados em `09_resultados/relatorios/` e `09_resultados/tabelas/`
+- Dados fonte processados disponíveis em `02_dados/processed/`
 
 ---
 
@@ -67,10 +67,10 @@ IGRO consolidida **KRIs (Key Risk Indicators)** para monitorar dois riscos princ
 | `02_dados/` | Brutos, processados, amostras, schema, dicionário | ✅ Sim |
 | `03_estudos/` | Pesquisa metodológica, análises, validações de robustez | ✅ Sim |
 | `04_notas_tecnicas/` | Rascunhos, revisões, versões finais | ✅ Sim |
-| `05_scripts/` | Automações, Power Query, utilitários | — |
+| `05_scripts/` | Automações, Power Query, utilitários e scripts de apoio a apresentações | — |
 | `06_notebooks/` | Exploração, modelagem, prototipagem | ✅ Sim |
 | `07_dashboards/powerbi/` | Power BI, DAX, metadata, documentação técnica | ✅ Sim |
-| `08_apresentacoes/` | Slides, roteiros, infográficos | — |
+| `08_apresentacoes/` | Slides, roteiros, infográficos e pacotes de apresentação | — |
 | `09_resultados/relatorios/` | Relatórios finais, artigo, memorandos | ✅ Sim |
 | `10_publicacao/` | Versões finais, anexos, submissão | ✅ Sim |
 | `skills/` | Skills locais (powerbi-codex, goias-data-viz, etc.) | ✅ Sim |
@@ -100,6 +100,10 @@ IGRO consolidida **KRIs (Key Risk Indicators)** para monitorar dois riscos princ
 - 🔧 [Skills para Power BI](skills/README.md) — Documentação, auditoria, DAX
 - 🎯 [Trabalho Principal em Power BI](07_dashboards/powerbi/) — Modelos, metadata, documentação técnica
 
+**Para apresentações:**
+- 🎞️ [Pacote de Apresentação IGRO](08_apresentacoes/entregas/pacote_apresentacao_igro/) — PPTX, notas, resumo executivo e HTML
+- 🛠️ [Scripts de Apresentações](05_scripts/python/apresentacoes/) — scripts Python para gerar e atualizar os arquivos
+
 ---
 
 ## Fluxo Recomendado
@@ -122,10 +126,10 @@ Para consolidar uma release:
 | Artefato | Descrição |
 |----------|-----------|
 | `indice_igro_v2.pbix` | ✅ Modelo atual (stable) |
+| `indice_igro_v2.pbip` | 📦 Projeto Git-first (Power BI Projects) |
 | `indice_igro.pbix` | 📦 Versão anterior (referência) |
 | `documentacao_modelo_semantico_igro.md` | 📋 Especificação de medidas e relacionamentos |
 | `metadata/` | 🗂️ Metadados estruturados |
-| `04_powerbi_e_dax/` | 📑 Guias DAX, snake_case, enterprise patterns |
 
 **Skills auxiliares:**
 - [skills/powerbi-codex-skills/](skills/powerbi-codex-skills/) — Documentação, auditoria e criação de medidas DAX
@@ -144,6 +148,8 @@ Para consolidar uma release:
 | **Referências externas** | `01_referencias/` (PDFs, artigos, guias) |
 | **Skills do projeto** | `skills/` (cópias locais com documentação) |
 | **Documentação operacional** | `AGENTS.md`, `CLAUDE.md`, raiz do repositório |
+| **Pacotes de apresentação** | `08_apresentacoes/entregas/` |
+| **Scripts de apresentação** | `05_scripts/python/apresentacoes/` |
 
 ---
 
@@ -151,16 +157,17 @@ Para consolidar uma release:
 
 | Item | Status | Localização |
 |------|--------|-------------|
-| README (raiz) | ✅ v2.0 (skill templates) | [Aqui](README.md) |
+| README (raiz) | ✅ v2.1 | [Aqui](README.md) |
 | AGENTS | ✅ Operacional | [AGENTS.md](AGENTS.md) |
 | CLAUDE | ✅ Operacional | [CLAUDE.md](CLAUDE.md) |
 | Estrutura de pastas | ✅ Documentada | [Acima](#estrutura-de-pastas) |
 | READMEs de subpastas | 🔄 Em andamento | 02_dados/, 09_resultados/, etc. |
-| llms.txt | ⏳ Planejado | — |
-| CHANGELOG.md | ⏳ Planejado | — |
+| llms.txt | ✅ Disponível | `llms.txt` |
+| CHANGELOG.md | ✅ Disponível | `CHANGELOG.md` |
+| Pacote de apresentação IGRO | ✅ Reorganizado | `08_apresentacoes/entregas/pacote_apresentacao_igro/` |
 
 ---
 
-**Versão:** 2.0 (skill documentation-templates aplicada)  
-**Atualizado:** 2026-05-16  
+**Versão:** 2.2  
+**Atualizado:** 2026-05-26  
 **Mantido por:** Andrei Azevedo de Souza da Cunha Lima

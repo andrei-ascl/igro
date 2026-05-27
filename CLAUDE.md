@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-This file provides operational guidance to Claude Code and similar agents when working in this repository.
+Este arquivo fornece orientação operacional para Claude Code e agentes similares ao trabalhar neste repositório.
 
 ## Sobre Este Repositorio
 
@@ -25,20 +25,25 @@ Ao iniciar uma tarefa, seguir esta prioridade:
 4. este `CLAUDE.md`;
 5. documentos centrais do projeto.
 
-## Estrutura Atual Relevante
+## Estrutura Atual — Consolidada
 
-Usar a estrutura atual do projeto, e nao a estrutura antiga pre-migracao:
+A partir de **2026-05-26**, a estrutura foi consolidada removendo redundâncias. Use APENAS esta estrutura:
 
-- `00_admin/planejamento/` -> desenho tecnico, PRD, mapa de migracao
-- `00_admin/controle_versoes/` -> memoria e registros de validacao
-- `01_referencias/` -> benchmarking, bibliografia e documentos-base
-- `02_dados/` -> raw, processed, external, schema
-- `03_estudos/` -> metodologia, analises e validacao
-- `07_dashboards/powerbi/04_powerbi_e_dax/` -> arquivos Power BI, DAX, metadata e documentacao tecnica
-- `09_resultados/relatorios/` -> relatorios e artigo em desenvolvimento
-- `skills/` -> skills locais do projeto
+- `00_admin/planejamento/` → desenho técnico, PRD, cronograma
+- `00_admin/controle_versoes/` → memória e registros de validação
+- `01_referencias/` → benchmarking, bibliografia, documentos-base
+- `02_dados/` → raw, processed, external, schema
+- `03_estudos/` → metodologia, análises, validação
+- `04_notas_tecnicas/` → rascunhos e versões finais
+- `05_scripts/` → automações, Power Query, utilitários
+- `06_notebooks/` → exploração, modelagem, prototipagem
+- `07_dashboards/powerbi/04_powerbi_e_dax/` → arquivos Power BI, DAX, metadata
+- `08_apresentacoes/` → slides, roteiros, pacotes de apresentação
+- `09_resultados/` → relatórios, artigo, exportações
+- `10_publicacao/` → versão final, anexos, submissão
+- `skills/` → skills locais do projeto
 
-Se encontrar referencias para pastas antigas como `04_powerbi_e_dax/` ou `07_entregaveis/`, tratar isso como legado documental e priorizar os caminhos novos.
+**⚠️ Pastas legadas deletadas:** `04_powerbi_e_dax/`, `06_dados/`, `07_entregaveis/` foram consolidadas em 2026-05-26. Consulte `LEGACY.md` para o mapeamento completo.
 
 ## Documentos Centrais
 
