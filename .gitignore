@@ -1,2 +1,9 @@
 **/.pbi/localSettings.json
 **/.pbi/cache.abf
+
+# Dados brutos
+**/*.parquet
+**/*.csv
+**/*.xlsx
+**/01_brutos/
+**/02_processados/
