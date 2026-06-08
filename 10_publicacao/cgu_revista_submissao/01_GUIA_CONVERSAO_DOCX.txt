@@ -1,0 +1,97 @@
+═══════════════════════════════════════════════════════════════════════
+  GUIA DE CONVERSÃO PARA DOCX - ARTIGO IGRO
+═══════════════════════════════════════════════════════════════════════
+
+MÉTODO 1: Microsoft Word (Recomendado)
+─────────────────────────────────────────────────────────────────────
+
+1. Abra o arquivo artigo_igro_final.md no Microsoft Word
+   (File > Open > Selecione o arquivo .md)
+
+2. Configure as formatações:
+
+   MARGENS (Design/Layout):
+   ├─ Superior: 2.5 cm
+   ├─ Inferior: 2.5 cm
+   ├─ Esquerda: 3.0 cm
+   └─ Direita: 3.0 cm
+
+   FONTE (Home > Font):
+   ├─ Fonte: Garamond
+   ├─ Tamanho: 12pt
+   └─ Cor: Preto
+
+   ESPAÇAMENTO (Home > Paragraph):
+   ├─ Line spacing: 1.5
+   ├─ Space before: 0pt
+   └─ Space after: 0pt
+
+3. Configure numeração de páginas:
+   ├─ Insert > Page Numbers
+   ├─ Position: Top of page (Header)
+   ├─ Alignment: Right
+   └─ Format: "1", "2", "3"... (sem prefixo)
+
+4. Salve como: artigo_igro_final.docx
+
+─────────────────────────────────────────────────────────────────────
+
+MÉTODO 2: LibreOffice Writer
+─────────────────────────────────────────────────────────────────────
+
+1. Abra LibreOffice Writer
+2. File > Open > artigo_igro_final.md
+
+3. Format > Page (Configurar página):
+
+   PÁGINA:
+   ├─ Tamanho: A4 (210 x 297 mm)
+   ├─ Orientation: Portrait
+
+   MARGENS:
+   ├─ Superior: 2.5 cm
+   ├─ Inferior: 2.5 cm
+   ├─ Esquerda: 3.0 cm
+   └─ Direita: 3.0 cm
+
+4. Format > Default Style (ou Ctrl+0):
+
+   FONTE:
+   ├─ Nome: Garamond
+   ├─ Tamanho: 12pt
+
+   ESPAÇAMENTO:
+   ├─ Line spacing: 1.5 linhas
+
+5. Insert > Page Number (Header/Footer):
+   ├─ Position: Cabeçalho, canto direito
+   ├─ Format: 1, 2, 3...
+
+6. File > Save As > Formato: Word 2007-365 (.docx)
+   └─ Nome: artigo_igro_final.docx
+
+─────────────────────────────────────────────────────────────────────
+
+MÉTODO 3: Ferramentas Online
+─────────────────────────────────────────────────────────────────────
+
+1. Acesse: https://cloudconvert.com/
+2. Upload: artigo_igro_final.md
+3. Convert to: DOCX
+4. Download resultado
+5. Abra no Word/LibreOffice e aplique formatações acima
+
+─────────────────────────────────────────────────────────────────────
+
+VALIDAÇÃO FINAL (após conversão)
+─────────────────────────────────────────────────────────────────────
+
+☑ Fonte é Garamond 12pt
+☑ Espaçamento é 1.5
+☑ Margens são 2.5 (sup/inf) e 3.0 (esq/dir)
+☑ Números de página no canto superior direito
+☑ Página configurada como A4
+☑ Tamanho do arquivo ≤ 10MB
+☑ Salvo como .docx (não .md)
+
+═══════════════════════════════════════════════════════════════════════

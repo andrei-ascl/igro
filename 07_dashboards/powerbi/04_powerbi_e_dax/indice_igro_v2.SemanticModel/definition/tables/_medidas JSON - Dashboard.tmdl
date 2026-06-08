@@ -1,0 +1,183 @@
+table '_medidas JSON - Dashboard'
+	isHidden
+	lineageTag: f60930b7-6f51-455a-a8a1-04b177fd7cbc
+
+	/// Visual HTML estatico: evolucao ano a ano do IGRO com tendencia, KRIs e tabela comparativa
+	measure 'HTML IGRO Ano a Ano' =
+			VAR _dados =
+			    ADDCOLUMNS (
+			        FILTER (
+			            SUMMARIZE ( 'dCalendario', 'dCalendario'[Ano] ),
+			            'dCalendario'[Ano] > 2000
+			        ),
+			        "@i", [idx_igro],
+			        "@t", [idx_igro_sub_t],
+			        "@q", [idx_igro_sub_q],
+			        "@m", [ind_media_tempo_resposta],
+			        "@r", [ind_pct_resolutividade],
+			        "@x", [ind_pct_respostas_insatisfatorias],
+			        "@a", [ind_media_nota_recomendacao],
+			        "@n", [base_qtd_manifestacoes]
+			    )
+			VAR _f    = FILTER ( _dados, NOT ISBLANK ( [@i] ) && [@n] > 0 )
+			VAR _mi   = MAXX ( _f, [@i] )
+			VAR _nAno = COUNTROWS ( _f )
+			VAR _y0   = MINX ( _f, 'dCalendario'[Ano] )
+			VAR _y1   = MAXX ( _f, 'dCalendario'[Ano] )
+			
+			VAR _css = "<style>*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',sans-serif}body{background:#0d0d0d;color:#e5e7eb;padding:12px}.hdr{display:flex;align-items:center;gap:8px;margin-bottom:12px}.hdr h1{font-size:13px;font-weight:600;color:#f9fafb}.hdr span{font-size:11px;color:#6b7280;margin-left:auto}.grid-anos{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}.ano-row{display:grid;grid-template-columns:52px 1fr 60px 68px 56px;align-items:center;gap:8px}.ano-lbl{font-size:12px;font-weight:700;color:#f9fafb;text-align:right}.bar-bg{background:#1c1c1e;border-radius:4px;height:20px;position:relative;overflow:hidden}.bar-fill{height:100%;border-radius:4px;position:absolute;top:0;left:0}.bar-pct{position:absolute;left:6px;top:50%;transform:translateY(-50%);font-size:11px;font-weight:700;color:#fff;text-shadow:0 0 4px #0008}.delta{font-size:11px;text-align:right}.cnt{font-size:10px;color:#6b7280;text-align:right}.badge{display:inline-block;padding:2px 7px;border-radius:8px;font-size:10px;font-weight:600}.bg-g{background:#065f46;color:#6ee7b7}.bg-y{background:#78350f;color:#fde68a}.bg-o{background:#7c2d12;color:#fdba74}.bg-r{background:#7f1d1d;color:#fca5a5}.up{color:#34d399}.dn{color:#f87171}.neu{color:#9ca3af}.divider{border:none;border-top:1px solid #1f2937;margin:12px 0}.sec{font-size:10px;color:#6b7280;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}.kri-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:14px}.kri-card{background:#111;border-radius:6px;padding:8px;border:1px solid #1f2937}.kri-lbl{font-size:9px;color:#6b7280;text-transform:uppercase;letter-spacing:.3px;margin-bottom:4px}.kri-row{display:flex;justify-content:space-between;align-items:center;margin-top:2px}.kri-val{font-size:11px;font-weight:600;color:#e5e7eb}.kri-d{font-size:10px}.tbl{width:100%;border-collapse:collapse;font-size:11px;margin-top:4px}thead th{background:#161616;padding:5px 7px;text-align:center;color:#6b7280;font-weight:500;border-bottom:1px solid #1f2937;white-space:nowrap}thead th:first-child{text-align:left}tbody td{padding:4px 7px;border-bottom:1px solid #111;text-align:center;color:#e5e7eb}tbody td:first-child{text-align:left;font-weight:600;color:#f9fafb}tbody tr:hover{background:#161616}</style>"
+			
+			VAR _hdr =
+			    "<div class='hdr'><h1>Evolu&#231;&#227;o &#183; IGRO</h1>"
+			    & "<span>" & _nAno & " anos (" & _y0 & "&#8211;" & _y1 & ")</span></div>"
+			
+			VAR _trend =
+			    CONCATENATEX (
+			        _f,
+			        VAR _a   = 'dCalendario'[Ano]
+			        VAR _v   = [@i]
+			        VAR _w   = IF ( _mi > 0, INT ( _v / _mi * 100 ), 0 )
+			        VAR _pv  = MAXX ( FILTER ( _f, 'dCalendario'[Ano] = _a - 1 ), [@i] )
+			        VAR _d   = IF ( ISBLANK ( _pv ), BLANK (), _v - _pv )
+			        VAR _cls = IF ( ISBLANK ( _d ), "neu", IF ( _d >= 0, "up", "dn" ) )
+			        VAR _ds  = IF ( ISBLANK ( _d ), "&#8212;",
+			            IF ( _d >= 0, "+", "" ) & SUBSTITUTE ( FORMAT ( _d * 100, "0.1" ), ",", "." ) & "%" )
+			        VAR _pct = SUBSTITUTE ( FORMAT ( _v * 100, "0.1" ), ",", "." ) & "%"
+			        VAR _clr = IF ( _v >= 0.9, "#27ae60", IF ( _v >= 0.7, "#f39c12", IF ( _v >= 0.5, "#e67e22", "#e74c3c" ) ) )
+			        VAR _bc  = IF ( _v >= 0.9, "bg-g", IF ( _v >= 0.7, "bg-y", IF ( _v >= 0.5, "bg-o", "bg-r" ) ) )
+			        VAR _bl  = IF ( _v >= 0.9, "Controlado", IF ( _v >= 0.7, "Em aten&#231;&#227;o", IF ( _v >= 0.5, "Elevado", "Cr&#237;tico" ) ) )
+			        RETURN
+			            "<div class='ano-row'><div class='ano-lbl'>" & _a & "</div>"
+			            & "<div class='bar-bg'><div class='bar-fill' style='width:" & _w & "%;background:" & _clr & "'></div>"
+			            & "<span class='bar-pct'>" & _pct & "</span></div>"
+			            & "<div class='delta " & _cls & "'>" & _ds & "</div>"
+			            & "<div class='cnt'>" & FORMAT ( [@n], "#,##0" ) & "</div>"
+			            & "<div><span class='badge " & _bc & "'>" & _bl & "</span></div></div>",
+			        "",
+			        'dCalendario'[Ano], ASC
+			    )
+			
+			VAR _kr1 =
+			    CONCATENATEX ( _f,
+			        VAR _a = 'dCalendario'[Ano]
+			        VAR _v = [@m]
+			        VAR _pv = MAXX ( FILTER ( _f, 'dCalendario'[Ano] = _a - 1 ), [@m] )
+			        VAR _d = IF ( ISBLANK ( _pv ), BLANK (), _v - _pv )
+			        VAR _c = IF ( ISBLANK ( _d ), "neu", IF ( _d <= 0, "up", "dn" ) )
+			        VAR _vf = SUBSTITUTE ( FORMAT ( _v, "0.0" ), ",", "." ) & "d"
+			        VAR _df = IF ( ISBLANK ( _d ), "&#8212;", IF ( _d > 0, "+", "" ) & SUBSTITUTE ( FORMAT ( _d, "0.0" ), ",", "." ) & "d" )
+			        RETURN "<div class='kri-row'><span class='kri-val'>" & _a & " " & _vf & "</span><span class='kri-d " & _c & "'>" & _df & "</span></div>",
+			        "", 'dCalendario'[Ano], ASC )
+			
+			VAR _kr2 =
+			    CONCATENATEX ( _f,
+			        VAR _a = 'dCalendario'[Ano]
+			        VAR _v = [@r]
+			        VAR _pv = MAXX ( FILTER ( _f, 'dCalendario'[Ano] = _a - 1 ), [@r] )
+			        VAR _d = IF ( ISBLANK ( _pv ), BLANK (), _v - _pv )
+			        VAR _c = IF ( ISBLANK ( _d ), "neu", IF ( _d >= 0, "up", "dn" ) )
+			        VAR _vf = SUBSTITUTE ( FORMAT ( _v * 100, "0.1" ), ",", "." ) & "%"
+			        VAR _df = IF ( ISBLANK ( _d ), "&#8212;", IF ( _d > 0, "+", "" ) & SUBSTITUTE ( FORMAT ( _d * 100, "0.1" ), ",", "." ) & "%" )
+			        RETURN "<div class='kri-row'><span class='kri-val'>" & _a & " " & _vf & "</span><span class='kri-d " & _c & "'>" & _df & "</span></div>",
+			        "", 'dCalendario'[Ano], ASC )
+			
+			VAR _kr3 =
+			    CONCATENATEX ( _f,
+			        VAR _a = 'dCalendario'[Ano]
+			        VAR _v = [@x]
+			        VAR _pv = MAXX ( FILTER ( _f, 'dCalendario'[Ano] = _a - 1 ), [@x] )
+			        VAR _d = IF ( ISBLANK ( _pv ), BLANK (), _v - _pv )
+			        VAR _c = IF ( ISBLANK ( _d ), "neu", IF ( _d <= 0, "up", "dn" ) )
+			        VAR _vf = SUBSTITUTE ( FORMAT ( _v * 100, "0.2" ), ",", "." ) & "%"
+			        VAR _df = IF ( ISBLANK ( _d ), "&#8212;", IF ( _d > 0, "+", "" ) & SUBSTITUTE ( FORMAT ( _d * 100, "0.2" ), ",", "." ) & "%" )
+			        RETURN "<div class='kri-row'><span class='kri-val'>" & _a & " " & _vf & "</span><span class='kri-d " & _c & "'>" & _df & "</span></div>",
+			        "", 'dCalendario'[Ano], ASC )
+			
+			VAR _kr4 =
+			    CONCATENATEX ( _f,
+			        VAR _a = 'dCalendario'[Ano]
+			        VAR _v = [@a]
+			        VAR _pv = MAXX ( FILTER ( _f, 'dCalendario'[Ano] = _a - 1 ), [@a] )
+			        VAR _d = IF ( ISBLANK ( _pv ), BLANK (), _v - _pv )
+			        VAR _c = IF ( ISBLANK ( _d ), "neu", IF ( _d >= 0, "up", "dn" ) )
+			        VAR _vf = SUBSTITUTE ( FORMAT ( _v, "0.0" ), ",", "." )
+			        VAR _df = IF ( ISBLANK ( _d ), "&#8212;", IF ( _d > 0, "+", "" ) & SUBSTITUTE ( FORMAT ( _d, "0.0" ), ",", "." ) )
+			        RETURN "<div class='kri-row'><span class='kri-val'>" & _a & " " & _vf & "</span><span class='kri-d " & _c & "'>" & _df & "</span></div>",
+			        "", 'dCalendario'[Ano], ASC )
+			
+			VAR _kr5 =
+			    CONCATENATEX ( _f,
+			        VAR _a = 'dCalendario'[Ano]
+			        VAR _v = [@t]
+			        VAR _pv = MAXX ( FILTER ( _f, 'dCalendario'[Ano] = _a - 1 ), [@t] )
+			        VAR _d = IF ( ISBLANK ( _pv ), BLANK (), _v - _pv )
+			        VAR _c = IF ( ISBLANK ( _d ), "neu", IF ( _d >= 0, "up", "dn" ) )
+			        VAR _vf = SUBSTITUTE ( FORMAT ( _v * 100, "0.1" ), ",", "." ) & "%"
+			        VAR _df = IF ( ISBLANK ( _d ), "&#8212;", IF ( _d > 0, "+", "" ) & SUBSTITUTE ( FORMAT ( _d * 100, "0.1" ), ",", "." ) & "%" )
+			        RETURN "<div class='kri-row'><span class='kri-val'>" & _a & " " & _vf & "</span><span class='kri-d " & _c & "'>" & _df & "</span></div>",
+			        "", 'dCalendario'[Ano], ASC )
+			
+			VAR _kgrid =
+			    "<div class='kri-grid'>"
+			    & "<div class='kri-card'><div class='kri-lbl'>TMR (dias)</div>" & _kr1 & "</div>"
+			    & "<div class='kri-card'><div class='kri-lbl'>Resolut.</div>" & _kr2 & "</div>"
+			    & "<div class='kri-card'><div class='kri-lbl'>Insatisf.</div>" & _kr3 & "</div>"
+			    & "<div class='kri-card'><div class='kri-lbl'>Nota</div>" & _kr4 & "</div>"
+			    & "<div class='kri-card'><div class='kri-lbl'>Sub-T</div>" & _kr5 & "</div>"
+			    & "</div>"
+			
+			VAR _tbRows =
+			    CONCATENATEX (
+			        _f,
+			        VAR _a  = 'dCalendario'[Ano]
+			        VAR _v  = [@i]
+			        VAR _pv = MAXX ( FILTER ( _f, 'dCalendario'[Ano] = _a - 1 ), [@i] )
+			        VAR _d  = IF ( ISBLANK ( _pv ), BLANK (), _v - _pv )
+			        VAR _bc = IF ( _v >= 0.9, "bg-g", IF ( _v >= 0.7, "bg-y", IF ( _v >= 0.5, "bg-o", "bg-r" ) ) )
+			        VAR _ip = SUBSTITUTE ( FORMAT ( _v * 100, "0.1" ), ",", "." ) & "%"
+			        VAR _dd = IF ( ISBLANK ( _d ), "<span class='neu'>&#8212;</span>",
+			            IF ( _d >= 0, "<span class='up'>+", "<span class='dn'>" )
+			            & SUBSTITUTE ( FORMAT ( _d * 100, "0.1" ), ",", "." ) & "%</span>" )
+			        RETURN
+			            "<tr><td>" & _a & "</td>"
+			            & "<td>" & FORMAT ( [@n], "#,##0" ) & "</td>"
+			            & "<td><span class='badge " & _bc & "'>" & _ip & "</span></td>"
+			            & "<td>" & _dd & "</td>"
+			            & "<td>" & SUBSTITUTE ( FORMAT ( [@t] * 100, "0.1" ), ",", "." ) & "%</td>"
+			            & "<td>" & SUBSTITUTE ( FORMAT ( [@q] * 100, "0.1" ), ",", "." ) & "%</td>"
+			            & "<td>" & SUBSTITUTE ( FORMAT ( [@m], "0.1" ), ",", "." ) & "d</td>"
+			            & "<td>" & SUBSTITUTE ( FORMAT ( [@r] * 100, "0.1" ), ",", "." ) & "%</td>"
+			            & "<td>" & SUBSTITUTE ( FORMAT ( [@x] * 100, "0.2" ), ",", "." ) & "%</td>"
+			            & "<td>" & SUBSTITUTE ( FORMAT ( [@a], "0.0" ), ",", "." ) & "</td></tr>",
+			        "",
+			        'dCalendario'[Ano], ASC
+			    )
+			
+			VAR _tbl =
+			    "<table class='tbl'><thead><tr>"
+			    & "<th>Ano</th><th>Manif.</th><th>IGRO</th><th>&#916;</th>"
+			    & "<th>Sub-T</th><th>Sub-Q</th><th>TMR(d)</th>"
+			    & "<th>Resolut.</th><th>Insatisf.</th><th>Nota</th>"
+			    & "</tr></thead><tbody>" & _tbRows & "</tbody></table>"
+			
+			RETURN
+			    _css & _hdr
+			    & "<div class='sec'>Tend&#234;ncia IGRO</div>"
+			    & "<div class='grid-anos'>" & _trend & "</div>"
+			    & "<hr class='divider'>"
+			    & "<div class='sec'>Componentes KRI por Ano</div>"
+			    & _kgrid
+			    & "<hr class='divider'>"
+			    & "<div class='sec'>Tabela Comparativa</div>"
+			    & _tbl
+			    & "<style>body{background:linear-gradient(145deg,#083545,#07313b)!important}.hdr h1{color:#dff8ff!important;letter-spacing:-.2px}.hdr span{color:#9fb9c2!important}.bar-bg{background:#0b292d!important;box-shadow:inset 0 1px 3px rgba(0,0,0,.55)!important}.ano-lbl{color:#dff8ff!important}.cnt{color:#9fb9c2!important}.sec{color:#9fb9c2!important;text-transform:uppercase;letter-spacing:.6px;border-bottom:1px solid #1b4c53;padding-bottom:5px;margin-bottom:10px}.divider{border-color:#1b4c53!important}.kri-card{background:#0b292d!important;border-color:#1b4c53!important;border-radius:10px!important}.kri-lbl{color:#9fb9c2!important}.kri-val{color:#dff8ff!important}.kri-d{font-size:10px}.tbl thead th{background:#071c1f!important;color:#9fb9c2!important;border-color:#1b4c53!important}.tbl tbody td{color:#e2e8f0!important;border-color:#0b292d!important}.tbl tbody td:first-child{color:#dff8ff!important}.tbl tbody tr:hover{background:#0f3337!important}.bg-g{background:rgba(16,185,129,.16)!important;color:#6ee7b7!important;border:1px solid rgba(16,185,129,.35);border-radius:999px}.bg-y{background:rgba(242,201,76,.16)!important;color:#fde68a!important;border:1px solid rgba(242,201,76,.4);border-radius:999px}.bg-o{background:rgba(251,146,60,.16)!important;color:#fdba74!important;border:1px solid rgba(251,146,60,.35);border-radius:999px}.bg-r{background:rgba(239,68,68,.16)!important;color:#fca5a5!important;border:1px solid rgba(239,68,68,.35);border-radius:999px}.up{color:#10b981!important}.dn{color:#ef4444!important}.neu{color:#9fb9c2!important}</style>"
+		lineageTag: bb262b00-3417-40b4-b9a4-ad9896f9e8ac
+
+	column Value
+		lineageTag: 94f210a2-f423-4097-bfba-f05798788e8d
+		isNameInferred
+		sourceColumn: [Value]
+
+	partition '_medidas JSON - Dashboard' = calculated
+		source = {0}
+

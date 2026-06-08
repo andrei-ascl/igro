@@ -47,7 +47,7 @@ expression Parâmetro2 = #"Arquivo de Amostra (2)" meta [IsParameterQuery=true, 
 
 expression 'Arquivo de Amostra (2)' =
 		let
-		    Fonte = Folder.Files("C:\Users\andre\OneDrive\sgoe-data-raw\data\powerbi\f_relatorio"),
+		    Fonte = Folder.Files("C:\Users\andre\OneDrive\sgoe-data-raw\data\powerbi\sgoe_relatorio"),
 		    Navegação1 = Fonte{0}[Content]
 		in
 		    Navegação1
@@ -98,7 +98,7 @@ expression 'Transformar o Arquivo de Exemplo (3)' =
 
 expression 'Arquivo de Amostra (3)' =
 		let
-		    Fonte = Folder.Files("C:\Users\andre\OneDrive\sgoe-data-raw\data\powerbi\f_pesquisa"),
+		    Fonte = Folder.Files("C:\Users\andre\OneDrive\sgoe-data-raw\data\powerbi\sgoe_pesquisa"),
 		    Navegação1 = Fonte{0}[Content]
 		in
 		    Navegação1
@@ -131,7 +131,7 @@ expression Parâmetro4 = #"Arquivo de Amostra (4)" meta [IsParameterQuery=true, 
 
 expression 'Arquivo de Amostra (4)' =
 		let
-		    Fonte = Folder.Files("C:\Users\andre\OneDrive\sgoe-data-raw\data\powerbi\f_insatisfatorias"),
+		    Fonte = Folder.Files("C:\Users\andre\OneDrive\sgoe-data-raw\data\powerbi\sgoe_insatisfatorio"),
 		    Navegação1 = Fonte{0}[Content]
 		in
 		    Navegação1
@@ -161,6 +161,41 @@ expression 'Transformar Arquivo (4)' =
 	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transformar o Arquivo de Exemplo (4)""}" ]
 	lineageTag: 70b0f73d-d7f7-491b-83e2-47ee92b2ebf3
 	queryGroup: 'Transformar Arquivo de f_insatisfatorias\Consultas Auxiliares'
+
+	annotation PBI_ResultType = Function
+
+expression fnCaminhoEntrada =
+		let
+		    Fonte = () as text =>
+		        let
+		            Barra = Character.FromNumber(92),
+		
+		            CaminhosPossiveis = {
+		                "C:" & Barra & "Users" & Barra & "andre" & Barra & "OneDrive" & Barra & "Claude-Work" & Barra & "Projects" & Barra & "painel" & Barra & "dados" & Barra & "entrada",
+		                "C:" & Barra & "Users" & Barra & "andrei.lima" & Barra & "OneDrive" & Barra & "Claude-Work" & Barra & "Projects" & Barra & "painel" & Barra & "dados" & Barra & "entrada"
+		            },
+		
+		            CaminhoExistente =
+		                List.First(
+		                    List.Select(
+		                        CaminhosPossiveis,
+		                        each not (try Folder.Contents(_))[HasError]
+		                    ),
+		                    null
+		                ),
+		
+		            Resultado =
+		                if CaminhoExistente <> null then
+		                    CaminhoExistente
+		                else
+		                    error "Nenhum caminho encontrado: " & Text.Combine(CaminhosPossiveis, " | ")
+		        in
+		            Resultado
+		in
+		    Fonte
+	lineageTag: 626215fc-f715-4e19-9bde-e3fe8794db9f
+
+	annotation PBI_NavigationStepName = Navegação
 
 	annotation PBI_ResultType = Function
 

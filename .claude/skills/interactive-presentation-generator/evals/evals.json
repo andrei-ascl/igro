@@ -1,0 +1,40 @@
+{
+  "skill_name": "interactive-presentation-generator",
+  "evals": [
+    {
+      "id": 1,
+      "name": "corporate-pitch-deck",
+      "prompt": "I need to pitch a new inventory management system to plant managers at our manufacturing facility. We have 15 people, mixed technical backgrounds. The goal is to get buy-in for implementation. I have about 12 minutes for the presentation. We're a corporate manufacturing company, so keep it professional and results-focused. The main points are: (1) current system is costing us rework and delays, (2) our solution is proven in similar companies, (3) the 3-month transition is painless for staff. Please generate an interactive HTML presentation with speaker notes.",
+      "expected_output": "Interactive HTML presentation with approximately 10-12 slides following a Problem-Solution narrative framework, professional corporate design, speaker notes with timing, and visual guidance for each slide.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "cge-go-government-report",
+      "prompt": "Preciso apresentar um novo sistema de alocação de orçamento para agências do SGOe. É para 20 funcionários públicos e diretores de agência. O objetivo é obter aprovação para implementação em todas as agências. Tenho 15 minutos. Use estilo CGE-GO com cores e vocabulário institucional. Os pontos principais: (1) sistema atual é descentralizado e opaco, (2) novo sistema garante LAI compliance e auditoria, (3) reduz tempo de alocação de 6 meses para 2 semanas. Gere apresentação em HTML com notas do apresentador.",
+      "expected_output": "Apresentação HTML com 12-15 slides em estilo CGE-GO (Azul Goiás, Verde Êxito, termos como SGOe, LAI, LGPD), estrutura de Case Study, notas do apresentador em português com timing e direções de entrega.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "startup-pitch-deck",
+      "prompt": "I'm a founder seeking seed funding for my fintech startup. I'm pitching to 8 angel investors. I have 10 minutes. Keep it energetic and vision-driven. Main points: (1) the problem is that small businesses lack access to affordable working capital, (2) our AI-powered platform automates credit decisions in 24 hours, (3) we have initial customers, pilots show 40% improvement in capital access time. Generate a startup-style presentation with bold design and speaker notes that emphasize the founder story and vision.",
+      "expected_output": "Interactive HTML presentation with 8-10 slides in startup design (bold colors, modern fonts), Hero's Journey or Problem-Solution framework, engaging speaker notes with pacing cues, visual guidance for impactful delivery.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "name": "academic-research-presentation",
+      "prompt": "I'm presenting my PhD research on climate impact of crop diversification in the Cerrado region of Brazil at an academic conference. I have 20 minutes. Audience is other researchers, professors, scientists. The structure: (1) research question: can crop diversification reduce emissions without reducing yields? (2) hypothesis and methodology, (3) pilot data from 5 municipalities over 6 months showing 28% emissions reduction with yields maintained, (4) statistical significance and limitations, (5) implications for climate policy, (6) further research needed. Generate a formal academic presentation with detailed speaker notes and citations.",
+      "expected_output": "Academic-style HTML presentation with 15-18 slides, serif fonts, Data Story framework, detailed speaker notes with methodology emphasis, visual guidance for data visualization, reference formatting.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "name": "training-module-chronological",
+      "prompt": "I need a training presentation for new employees about our company's evolution and current business structure. 30 employees, all new hires. Duration: 30 minutes. I want to walk them through: (1) company history (founded 2015, pivoted twice), (2) key milestones (IPO 2020, international expansion 2022), (3) current structure and departments, (4) where they fit in, (5) vision for next 3 years. Use a professional corporate style. Generate presentation with speaker notes that tells the company story.",
+      "expected_output": "HTML presentation with 20-25 slides using Chronological narrative framework, corporate design, engaging speaker notes that tell the company story, visual guidance for photos and timeline graphics.",
+      "files": []
+    }
+  ]
+}

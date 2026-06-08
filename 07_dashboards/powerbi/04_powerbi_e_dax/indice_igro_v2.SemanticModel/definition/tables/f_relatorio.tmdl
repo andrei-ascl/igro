@@ -2,238 +2,204 @@
 table f_relatorio
 	lineageTag: 1ef260cb-def5-48b1-a775-38f30eab2601
 
-	/// Identificador numérico interno gerado pelo sistema. Utilizado como referência técnica complementar ao protocolo.
-	column id_manifestacao
+	column Id_manifestacao
 		dataType: int64
 		formatString: 0
-		lineageTag: 03eb4533-8d74-40ac-aadd-314662a507b2
+		lineageTag: 7625d248-b1d8-47c2-bbd6-053dba681fba
 		summarizeBy: sum
-		sourceColumn: id_manifestacao
+		sourceColumn: Id_manifestacao
 
 		annotation SummarizationSetBy = Automatic
 
-	/// [Papel: Chave] Identificador único de negócio da manifestação no SGOe. Chave primária lógica da tabela f_relatorio e destino dos relacionamentos com f_pesquisa[protocolo] e f_insatisfatorias[protocolo].
-	column protocolo
+	column Protocolo
 		dataType: string
-		lineageTag: e5abad0c-f3ae-4f21-9778-ce1af5d7cb3f
+		lineageTag: 73cc3a36-650c-4e71-959c-1a9cc25f3d9a
 		summarizeBy: none
-		sourceColumn: protocolo
+		sourceColumn: Protocolo
 
 		annotation SummarizationSetBy = Automatic
 
-	/// Data e hora em que a manifestação foi registrada no sistema. Ponto de partida para cálculo do TMR e dias de vida.
-	column data_manifestacao
+	column Data_manifestacao
 		dataType: dateTime
 		formatString: General Date
-		lineageTag: 78a00d6b-61f3-4a9b-965c-f45cc0c11a1d
+		lineageTag: afd0acd6-0533-435c-bb49-4612188e5f92
 		summarizeBy: none
-		sourceColumn: data_manifestacao
+		sourceColumn: Data_manifestacao
 
 		annotation SummarizationSetBy = Automatic
 
-	/// Data e hora em que a manifestação foi encerrada pelo órgão. Usada para determinar manifestações finalizadas.
-	column data_finalizacao
+	column Data_finalizacao
 		dataType: dateTime
 		formatString: General Date
-		lineageTag: 91a81071-d137-4b82-ad64-f34549c2d9bc
+		lineageTag: de9e0f80-5c4f-43ba-8823-779a34cc0bfd
 		summarizeBy: none
-		sourceColumn: data_finalizacao
-
-		variation Variation
-			isDefault
-			relationship: 2303fc14-1e08-41b3-93cb-8e0755b8e909
-			defaultHierarchy: LocalDateTable_c5428810-d49e-4c18-b272-7882a599a119.'Hierarquia de datas'
+		sourceColumn: Data_finalizacao
 
 		annotation SummarizationSetBy = Automatic
 
-	/// Data da última revisão ou atualização de status da manifestação pelo órgão ou pela ouvidoria.
-	column data_revisao
+	column Data_revisao
 		dataType: dateTime
 		formatString: General Date
-		lineageTag: dd2b0adb-e183-4a06-aecf-46e2d8356077
+		lineageTag: c4ddc7f5-d2de-4da0-98ee-16039fa8633d
 		summarizeBy: none
-		sourceColumn: data_revisao
-
-		variation Variation
-			isDefault
-			relationship: a564ad5f-8095-4acf-8fce-8c531c12e79a
-			defaultHierarchy: LocalDateTable_3e180244-5cb5-4814-8de3-11412ceb1457.'Hierarquia de datas'
+		sourceColumn: Data_revisao
 
 		annotation SummarizationSetBy = Automatic
 
-	/// [Papel: Chave/Atributo] Sigla do órgão responsável pelo tratamento da manifestação. Relaciona f_relatorio à dimensão dOrgao_igro e serve como principal eixo institucional do IGRO.
-	column sigla
+	column Sigla
 		dataType: string
-		lineageTag: f7596e7a-ca40-425b-88d5-3d149affd423
+		lineageTag: 44e25663-6211-4bcb-b9da-4119255a59b6
 		summarizeBy: none
-		sourceColumn: sigla
+		sourceColumn: Sigla
 
 		annotation SummarizationSetBy = Automatic
 
-	/// Subdivisão ou unidade interna do órgão à qual a manifestação foi encaminhada.
-	column suborgao
+	column Suborgao
 		dataType: string
-		lineageTag: a573378a-887c-4df4-b08c-3bd3768504b0
+		lineageTag: 12e73efa-61d1-465b-89d4-dd8b3bb7f240
 		summarizeBy: none
-		sourceColumn: suborgao
+		sourceColumn: Suborgao
 
 		annotation SummarizationSetBy = Automatic
 
-	/// Indica se a manifestação possui caráter sigiloso, restringindo a visibilidade de dados ao cidadão e ao público.
-	column sigilo
+	column Sigilo
 		dataType: string
-		lineageTag: 66275ff4-4ae2-4614-89d6-8b47528b7e88
+		lineageTag: bdd3c11d-9142-4b79-944c-a102735e1451
 		summarizeBy: none
-		sourceColumn: sigilo
+		sourceColumn: Sigilo
 
 		annotation SummarizationSetBy = Automatic
 
-	/// Prazo em dias definido internamente pelo órgão para tratamento da manifestação.
-	column prazo_interno
+	column Prazo_interno
 		dataType: int64
 		formatString: 0
-		lineageTag: 672f62a4-c5fe-413d-ad02-01873363c62d
+		lineageTag: 423741b8-ee90-4c3c-a129-1fb651debc64
 		summarizeBy: sum
-		sourceColumn: prazo_interno
+		sourceColumn: Prazo_interno
 
 		annotation SummarizationSetBy = Automatic
 
-	/// Prazo em dias estabelecido pela normativa externa (INs da CGE) para resposta ao cidadão.
-	column prazo_externo
+	column Prazo_externo
 		dataType: int64
 		formatString: 0
-		lineageTag: 15d52d3c-0053-4034-97ac-553f5ce46420
+		lineageTag: bb8d102a-1d1f-4367-9455-0ca4af3d4771
 		summarizeBy: sum
-		sourceColumn: prazo_externo
+		sourceColumn: Prazo_externo
 
 		annotation SummarizationSetBy = Automatic
 
-	/// [Papel: Métrica de linha] Número de dias corridos desde o registro até a finalização ou até a data de extração. Base do TMR e de indicadores de manifestações com mais de 30 dias.
-	column dias_vida
+	column Dias_vida
 		dataType: int64
 		formatString: 0
-		lineageTag: 2e697d72-2643-428f-8016-ffe0b8bbd55f
+		lineageTag: 47187bad-8973-4d5c-a419-2bedefcee755
 		summarizeBy: sum
-		sourceColumn: dias_vida
+		sourceColumn: Dias_vida
 
 		annotation SummarizationSetBy = Automatic
 
-	/// Quantidade de dias decorridos após uma reativação da manifestação pelo cidadão ou pela ouvidoria.
-	column dias_reativacao
+	column Dias_reativacao
 		dataType: int64
 		formatString: 0
-		lineageTag: 2c1fde29-255f-451c-93c2-4e845b44743f
+		lineageTag: d708c1ef-349b-40c8-90d4-daf757f476a3
 		summarizeBy: sum
-		sourceColumn: dias_reativacao
+		sourceColumn: Dias_reativacao
 
 		annotation SummarizationSetBy = Automatic
 
-	/// Indicação de atraso em relação ao prazo definido. Armazenado como texto nesta tabela — diverge do tipo Int64 em f_insatisfatorias.
-	column dias_atraso
+	column Dias_atraso
 		dataType: string
-		lineageTag: 6c7ed44e-ec27-4dfd-8221-c4455c88f88f
+		lineageTag: 99e5634e-4f84-4763-bc71-9dad124f9e88
 		summarizeBy: none
-		sourceColumn: dias_atraso
+		sourceColumn: Dias_atraso
 
 		annotation SummarizationSetBy = Automatic
 
-	/// Classificação da manifestação conforme a Lei 13.460/2017: Reclamação, Denúncia, Solicitação, Sugestão, Elogio, LAI ou LGPD.
-	column tipo_manifestacao
+	column Tipo_manifestacao
 		dataType: string
-		lineageTag: c8982c69-578c-444b-ba2a-a28b458cf3cb
+		lineageTag: 6e267de8-ca78-4919-866c-c6804bdcbd7d
 		summarizeBy: none
-		sourceColumn: tipo_manifestacao
+		sourceColumn: Tipo_manifestacao
 
 		annotation SummarizationSetBy = Automatic
 
-	/// Município de origem da manifestação ou ao qual o objeto da demanda se refere.
-	column municipio
+	column Municipio
 		dataType: string
-		lineageTag: e52d34a0-ef29-49de-a4a3-52e6e8609638
+		lineageTag: 76be0d25-dffa-4942-8253-c98d85792c0b
 		summarizeBy: none
-		sourceColumn: municipio
+		sourceColumn: Municipio
 
 		annotation SummarizationSetBy = Automatic
 
-	/// Assunto principal da manifestação, conforme classificação temática do SGOe. Base para análise de ranking de assuntos.
-	column tipificacao
+	column Tipificacao
 		dataType: string
-		lineageTag: ce01adc4-ce17-4633-9e3e-c593a14de45e
+		lineageTag: a64e37f5-f512-4247-9495-62c98075b67a
 		summarizeBy: none
-		sourceColumn: tipificacao
+		sourceColumn: Tipificacao
 
 		annotation SummarizationSetBy = Automatic
 
-	/// Detalhamento do assunto dentro da tipificação principal. Permite análise de segundo nível dos temas mais recorrentes.
-	column sub_tipificacao
+	column Sub_tipificacao
 		dataType: string
-		lineageTag: fefb7c8d-ba3f-49d4-9fd3-9b4b2cce81df
+		lineageTag: e0d75001-9e68-4be1-be10-082fabd70794
 		summarizeBy: none
-		sourceColumn: sub_tipificacao
+		sourceColumn: Sub_tipificacao
 
 		annotation SummarizationSetBy = Automatic
 
-	/// Área técnica interna do órgão responsável pelo tratamento da demanda encaminhada.
-	column area_tecnica
+	column Area_tecnica
 		dataType: string
-		lineageTag: 7fdcd689-ed4a-4384-9089-af96cf1baef6
+		lineageTag: 3e2beee7-6773-4d2b-bc7d-0cacd12d55c5
 		summarizeBy: none
-		sourceColumn: area_tecnica
+		sourceColumn: Area_tecnica
 
 		annotation SummarizationSetBy = Automatic
 
-	/// Canal de entrada da manifestação: Expresso (web), Webservice, Sistema E-mail, Sistema Telefone ou Sistema Presencial.
-	column registro
+	column Registro
 		dataType: string
-		lineageTag: 75f4c34e-5fb6-4e69-a7e3-93b210cfd960
+		lineageTag: a4e09400-b06f-48f6-a88e-50c4f5591aa9
 		summarizeBy: none
-		sourceColumn: registro
+		sourceColumn: Registro
 
 		annotation SummarizationSetBy = Automatic
 
-	/// Status atual da manifestação no fluxo do SGOe: Aberta, Respondida ou Fechada.
-	column ds_status
+	column Ds_status
 		dataType: string
-		lineageTag: e19cd58f-b4f6-4145-9c38-9119d9cf2229
+		lineageTag: 99ddd69d-b9bc-4073-b4af-46a32edba895
 		summarizeBy: none
-		sourceColumn: ds_status
+		sourceColumn: Ds_status
 
 		annotation SummarizationSetBy = Automatic
 
-	/// Flag numérico indicando se a manifestação foi publicada no portal de transparência (1 = publicada, 0 = não publicada).
-	column publicacao
+	column Publicacao
 		dataType: int64
 		formatString: 0
-		lineageTag: 313b8435-d923-4779-ad48-e0ac2a7a2b86
+		lineageTag: 11de4a0a-a0ff-489a-928d-ca5624f85fff
 		summarizeBy: sum
-		sourceColumn: publicacao
+		sourceColumn: Publicacao
 
 		annotation SummarizationSetBy = Automatic
 
-	/// Resultado da análise de mérito pelo órgão: Sim, Não ou Em análise. Base do indicador ind_pct_procedencia.
-	column procedente
+	column Procedente
 		dataType: string
-		lineageTag: 1370d473-0ac9-4a33-bcd0-e147940f770c
+		lineageTag: 28753f69-d06c-487a-9980-a25e13eb8b0d
 		summarizeBy: none
-		sourceColumn: procedente
+		sourceColumn: Procedente
 
 		annotation SummarizationSetBy = Automatic
 
-	/// Instância de recurso interposto pelo cidadão (1, 2 ou 3). Vazio quando não há recurso. Base do indicador ind_pct_recurso.
-	column recurso
+	column Recurso
 		dataType: string
-		lineageTag: dc41565f-1d1e-4d9d-b0e7-3e0810c0265c
+		lineageTag: 755a02ee-9f2f-4d51-a74f-ec8b57d7d180
 		summarizeBy: none
-		sourceColumn: recurso
+		sourceColumn: Recurso
 
 		annotation SummarizationSetBy = Automatic
 
-	/// Número do processo no sistema SEI vinculado à manifestação, quando houver tramitação documental associada.
-	column nm_sei
+	column Nm_sei
 		dataType: string
-		lineageTag: 6d1a7d1d-e580-4614-afca-1ea31b2f3c9e
+		lineageTag: 21368455-07fd-4813-b7da-c3e0e556de1b
 		summarizeBy: none
-		sourceColumn: nm_sei
+		sourceColumn: Nm_sei
 
 		annotation SummarizationSetBy = Automatic
 
@@ -241,45 +207,57 @@ table f_relatorio
 		mode: import
 		source =
 				let
-				    Fonte = Folder.Files("C:\\Users\\andre\\OneDrive\\sgoe-data-raw\\data\\powerbi\\f_relatorio"),
-				    #"Arquivos Ocultos Filtrados1" = Table.SelectRows(Fonte, each [Attributes]?[Hidden]? <> true),
-				    #"Invocar Função Personalizada1" = Table.AddColumn(#"Arquivos Ocultos Filtrados1", "Transformar Arquivo (2)", each #"Transformar Arquivo (2)"([Content])),
-				    #"Colunas Renomeadas1" = Table.RenameColumns(#"Invocar Função Personalizada1", {"Name", "Nome da Origem"}),
-				    #"Outras Colunas Removidas1" = Table.SelectColumns(#"Colunas Renomeadas1", {"Nome da Origem", "Transformar Arquivo (2)"}),
-				    #"Coluna de Tabela Expandida1" = Table.ExpandTableColumn(
-				        #"Outras Colunas Removidas1",
-				        "Transformar Arquivo (2)",
-				        {"id_manifestacao", "protocolo", "data_manifestacao", "data_finalizacao", "data_revisao", "sigla", "suborgao", "sigilo", "prazo_interno", "prazo_externo", "dias_vida", "dias_reativacao", "dias_atraso", "tipo_manifestacao", "municipio", "tipificacao", "sub_tipificacao", "area_tecnica", "registro", "ds_status", "publicacao", "procedente", "recurso", "nm_sei"},
-				        {"id_manifestacao", "protocolo", "data_manifestacao", "data_finalizacao", "data_revisao", "sigla", "suborgao", "sigilo", "prazo_interno", "prazo_externo", "dias_vida", "dias_reativacao", "dias_atraso", "tipo_manifestacao", "municipio", "tipificacao", "sub_tipificacao", "area_tecnica", "registro", "ds_status", "publicacao", "procedente", "recurso", "nm_sei"}
-				    ),
-				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Coluna de Tabela Expandida1", {
-				        {"id_manifestacao", Int64.Type},
-				        {"protocolo", type text},
-				        {"data_manifestacao", type datetime},
-				        {"data_finalizacao", type datetime},
-				        {"data_revisao", type datetime},
-				        {"sigla", type text},
-				        {"suborgao", type text},
-				        {"sigilo", type text},
-				        {"prazo_interno", Int64.Type},
-				        {"prazo_externo", Int64.Type},
-				        {"dias_vida", Int64.Type},
-				        {"dias_reativacao", Int64.Type},
-				        {"dias_atraso", type text},
-				        {"tipo_manifestacao", type text},
-				        {"municipio", type text},
-				        {"tipificacao", type text},
-				        {"sub_tipificacao", type text},
-				        {"area_tecnica", type text},
-				        {"registro", type text},
-				        {"ds_status", type text},
-				        {"publicacao", Int64.Type},
-				        {"procedente", type text},
-				        {"recurso", type text},
-				        {"nm_sei", type text}
-				    }),
-				    #"Origem Removida" = Table.RemoveColumns(#"Tipo Alterado", {"Nome da Origem"}),
-				    #"Sigla Padronizada" = Table.ReplaceValue(#"Origem Removida", "GT", "GOIAS TELECOM", Replacer.ReplaceValue, {"sigla"})
+				    CaminhoBase = fnCaminhoEntrada(),
+				    CaminhoArquivo =
+				        if Text.EndsWith(CaminhoBase, "\") or Text.EndsWith(CaminhoBase, "/")
+				        then CaminhoBase & "f_relatorio.parquet"
+				        else CaminhoBase & "\f_relatorio.parquet",
+				
+				    Fonte =
+				        Parquet.Document(
+				            File.Contents(CaminhoArquivo)
+				        ),
+				
+				    #"Tipo Alterado" =
+				        Table.TransformColumnTypes(
+				            Fonte,
+				            {
+				                {"Id_manifestacao", Int64.Type},
+				                {"Protocolo", type text},
+				                {"Data_manifestacao", type datetime},
+				                {"Data_finalizacao", type datetime},
+				                {"Data_revisao", type datetime},
+				                {"Sigla", type text},
+				                {"Suborgao", type text},
+				                {"Sigilo", type text},
+				                {"Prazo_interno", Int64.Type},
+				                {"Prazo_externo", Int64.Type},
+				                {"Dias_vida", Int64.Type},
+				                {"Dias_reativacao", Int64.Type},
+				                {"Dias_atraso", type text},
+				                {"Tipo_manifestacao", type text},
+				                {"Municipio", type text},
+				                {"Tipificacao", type text},
+				                {"Sub_tipificacao", type text},
+				                {"Area_tecnica", type text},
+				                {"Registro", type text},
+				                {"Ds_status", type text},
+				                {"Publicacao", Int64.Type},
+				                {"Procedente", type text},
+				                {"Recurso", type text},
+				                {"Nm_sei", type text}
+				            }
+				        ),
+				
+				    #"Sigla Padronizada" =
+				        Table.ReplaceValue(
+				            #"Tipo Alterado",
+				            "GT",
+				            "GOIAS TELECOM",
+				            Replacer.ReplaceValue,
+				            {"Sigla"}
+				        )
+				
 				in
 				    #"Sigla Padronizada"
 

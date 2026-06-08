@@ -1,0 +1,53 @@
+{
+  "skill_name": "goias-data-viz",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Crie um grafico de barras horizontais mostrando o ranking de investimentos nos 5 principais municipios de Goias em 2024. Use o estilo oficial e destaque o primeiro colocado.",
+      "expected_output": "Codigo Python executavel com barras horizontais ordenadas, serie principal em TEAL, primeiro colocado em VERDE, cabecalho, fonte, barra institucional, rodape e eixo monetario formatado.",
+      "files": [],
+      "assertions": [
+        "Usa barras horizontais para ranking.",
+        "Aplica CORES.TEAL como cor principal e CORES.VERDE para o primeiro colocado.",
+        "Inclui cabecalho, fonte e elemento institucional.",
+        "Formata o eixo como valor monetario."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Gere um grafico de execucao orcamentaria por secretaria (Educacao, Saude, Seguranca, Infraestrutura) em porcentagem. Adicione rotulos nas barras e siga acessibilidade.",
+      "expected_output": "Grafico de barras verticais com tema Goias, rotulos percentuais, eixo em %, cores institucionais controladas, contraste adequado e explicacao curta de acessibilidade.",
+      "files": [],
+      "assertions": [
+        "Usa formatacao percentual no eixo ou nos rotulos.",
+        "Inclui rotulos nas barras.",
+        "Evita amarelo como texto em fundo claro.",
+        "Explica ao menos uma decisao de acessibilidade."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Mostre a tendencia de arrecadacao de ICMS nos ultimos 12 meses comparada com a meta. Use o estilo premium com rodape e barra institucional.",
+      "expected_output": "Grafico de linhas com realizado em TEAL, meta em LARANJA tracejado, preenchimento discreto quando realizado supera meta, cabecalho, barra institucional, rodape e eixo em BRL.",
+      "files": [],
+      "assertions": [
+        "Usa linha temporal para tendencia.",
+        "Usa CORES.TEAL para realizado e CORES.LARANJA para meta.",
+        "Inclui barra institucional e rodape.",
+        "Formata valores monetarios em BRL."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Revise este dashboard Power BI de indicadores de ouvidoria: fundo branco, 12 graficos, muitas cores diferentes, alertas em amarelo claro e sem fonte dos dados. O que voce mudaria para ficar no padrao Goias/CGE?",
+      "expected_output": "Revisao priorizada com problemas de carga cognitiva, paleta, acessibilidade e rastreabilidade; recomenda fundo premium ou areas neutras, TEAL como principal, LARANJA para alertas, reducao de visuais, fonte e data de atualizacao.",
+      "files": [],
+      "assertions": [
+        "Prioriza problemas antes de sugestoes esteticas.",
+        "Menciona reducao de carga cognitiva.",
+        "Recomenda LARANJA para alertas em vez de amarelo claro.",
+        "Pede fonte e data de atualizacao."
+      ]
+    }
+  ]
+}

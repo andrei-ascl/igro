@@ -1,0 +1,202 @@
+================================================================================
+  APRESENTACAO IGRO - VERSAO COMPLETA (V2)
+================================================================================
+
+CRIADO: 18 de maio de 2026
+STATUS: ✅ PRONTO PARA APRESENTACAO
+SLIDES: 10 (com Metodologia + Resultados detalhados)
+FORMATOS: PowerPoint + HTML5
+
+================================================================================
+ARQUIVOS PRINCIPAIS
+================================================================================
+
+1. APRESENTACAO_IGRO_v2.pptx (1.15 MB)
+   └─ PowerPoint com 10 slides (com Metodologia e Resultados)
+   └─ Cores CGE-GO oficiais
+   └─ Pronto para projetor/apresentação formal
+
+2. apresentacao_igro.html (60 KB)
+   └─ Versão HTML5 interativa
+   └─ Abra em qualquer navegador
+   └─ Navegação: setas do teclado, espaço, botões
+   └─ Responsivo (desktop, tablet, mobile)
+
+3. RESUMO_EXECUTIVO_IGRO.md
+   └─ 1 página para distribuir 48h antes
+
+4. NOTAS_APRESENTADOR_IGRO.md
+   └─ Scripts detalhados + timing por slide
+   └─ Respostas para 5 perguntas antecipadas
+
+================================================================================
+ESTRUTURA DOS 10 SLIDES (V2)
+================================================================================
+
+Slide 1:  CAPA                          (branding CGE-GO)
+Slide 2:  O PROBLEMA                   (109 mil manifestações)
+Slide 3:  METODOLOGIA                  ⭐ NOVO: eixos, KRIs, fórmula
+Slide 4:  RESULTADOS CONSOLIDADOS      ⭐ NOVO: 4 KPI cards
+Slide 5:  ANALISE DE RESULTADOS        ⭐ NOVO: 4 achados
+Slide 6:  LEI DE GOODHART              (achado crítico)
+Slide 7:  5 FATORES DE SUCESSO         (replicáveis)
+Slide 8:  APLICACOES PRATICAS          (4 usos imediatos)
+Slide 9:  PROXIMOS PASSOS              (3 fases)
+Slide 10: CONCLUSAO                    (chamada para ação)
+
+================================================================================
+COMO USAR
+================================================================================
+
+OPCAO 1: Apresentacao com Projetor (RECOMENDADO)
+  → Abra: APRESENTACAO_IGRO_v2.pptx
+  → Pressione F5 para fullscreen
+  → Use setas ou clique para navegar
+
+OPCAO 2: Apresentacao Online/Navegador
+  → Abra: apresentacao_igro.html em navegador
+  → Pressione F11 para fullscreen
+  → Use setas ou clique para navegar
+
+OPCAO 3: Compartilhamento Digital
+  → Envie: apresentacao_igro.html por email
+  → Destinatário abre em navegador
+  → Sem necessidade de Office instalado
+
+OPCAO 4: Consulta Individual
+  → Abra apresentacao_igro.html no celular
+  → Navegue com setas/toque
+  → Ideal para revisar antes da reunião
+
+================================================================================
+ATALHOS DE TECLADO
+================================================================================
+
+Seta Direita (→)  : Próximo slide
+Seta Esquerda (←) : Slide anterior
+Espaço            : Próximo slide
+F11               : Fullscreen (navegador)
+F5                : Slideshow (PowerPoint)
+
+================================================================================
+MUDANCAS NA V2
+================================================================================
+
+V1 (9 slides):
+  - Faltava: Metodologia detalhada
+  - Faltava: Análise de resultados
+
+V2 (10 slides):
+  + Slide 3: Metodologia com 2 eixos, 5 KRIs, fórmula
+  + Slide 4: Resultados consolidados (4 KPI cards)
+  + Slide 5: Análise com 4 achados principais
+  + HTML: Nova versão web interativa
+  + Timing: ~12:30 min + 5 min perguntas
+
+================================================================================
+CORES CGE-GO OFICIAIS USADAS
+================================================================================
+
+Verde Escuro:  #054222  (fundo, institucionality)
+TEAL:          #00766f  (dados, primária)
+Laranja:       #f7931e  (alerta, metas)
+Verde Oficial: #1fa22e  (positivo)
+Branco:        #ffffff  (fundo)
+Cinza Texto:   #4a4a4a  (corpo)
+
+================================================================================
+PROXIMAS ACOES
+================================================================================
+
+IMEDIATAMENTE:
+  [ ] Revisar PowerPoint + HTML
+  [ ] Testar em projetor
+  [ ] Escolher versão para usar
+  [ ] Backup: tenha ambos
+
+ANTES DA APRESENTACAO:
+  [ ] Presenter pratica com NOTAS_APRESENTADOR_IGRO.md
+  [ ] Imprimir RESUMO_EXECUTIVO_IGRO.md (8-10 cópias)
+  [ ] Testar áudio/vídeo em sala
+  [ ] Revisar respostas para 5 perguntas antecipadas
+
+POS-APRESENTACAO (se aprovada):
+  [ ] FASE 1: Validar metodologia (2 semanas)
+  [ ] FASE 2: Implementar dashboard (3-6 meses)
+  [ ] FASE 3: Evoluir com IA/preditivos (6-12 meses)
+
+================================================================================
+TEMPO TOTAL
+================================================================================
+
+Apresentacao:  12:30 minutos
+Perguntas:      5:00 minutos
+TOTAL:         17:30 minutos
+
+================================================================================
+DUVIDAS FREQUENTES
+================================================================================
+
+P: PowerPoint não abre?
+R: Instale Office 365 ou use LibreOffice Impress (grátis)
+
+P: HTML não funciona?
+R: Abra com Firefox, Chrome, Safari ou Edge
+
+P: Qual versão usar?
+R: Projetor = PowerPoint | Navegador = HTML
+
+P: Posso editar?
+R: Sim! PowerPoint é editável. HTML também (editor de texto).
+
+P: Qual é o timing?
+R: 12:30 min apresentacao + 5 min perguntas = 17:30 minutos
+
+================================================================================
+ARQUIVOS COMPLEMENTARES (OPCIONAIS)
+================================================================================
+
+RESUMO_EXECUTIVO_IGRO.md
+  → Distribuir 48h antes da apresentação
+  → 1 página com contexto, metodologia, resultados
+
+NOTAS_APRESENTADOR_IGRO.md
+  → Scripts detalhados (o que falar em cada slide)
+  → Timing preciso
+  → Respostas para 5 perguntas antecipadas
+
+GUIA_APRESENTACAO_IGRO.md
+  → Linguagem apropriada para alta gestão
+  → Tratamento de objeções
+
+README_PACOTE_APRESENTACAO.md
+  → Manual completo de uso
+  → Elementos visuais explicados
+
+ENTREGA_V2.md
+  → Documentação técnica da V2
+  → Comparação V1 vs V2
+
+================================================================================
+CONFORMIDADE
+================================================================================
+
+✅ Lei de Acesso à Informação (LAI): Dados agregados, sem PII
+✅ LGPD: Sem informações pessoais identificáveis
+✅ WCAG 2.1 AA: Contraste mínimo 4.5:1
+✅ Estilo CGE-GO: Cores, tipografia, branding oficiais
+✅ Acessibilidade: Cores seguras para daltônicos
+
+================================================================================
+INFORMACOES FINAIS
+================================================================================
+
+Criado por:    Equipe de Análise IGRO
+Data:          18 de maio de 2026
+Versão:        2.0
+Status:        ✅ PRONTO PARA PRODUCAO
+Localização:   C:\Users\andrei.lima\OneDrive\Claude-Work\Projects\igro\
+
+================================================================================
+BOM SUCESSO NA APRESENTACAO! 🎯
+================================================================================

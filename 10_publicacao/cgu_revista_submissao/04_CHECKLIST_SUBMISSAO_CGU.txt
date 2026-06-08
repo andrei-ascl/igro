@@ -1,0 +1,195 @@
+═══════════════════════════════════════════════════════════════════════
+              CHECKLIST DE SUBMISSÃO - REVISTA DA CGU
+═══════════════════════════════════════════════════════════════════════
+
+ARTIGO: Índice de Gestão de Riscos de Ouvidoria (IGRO)
+REVISTA: Revista da CGU
+PORTAL: https://revista.cgu.gov.br/Revista_da_CGU/about/submissions
+
+═══════════════════════════════════════════════════════════════════════
+                    FASE 1: PREPARAÇÃO DE ARQUIVOS
+═══════════════════════════════════════════════════════════════════════
+
+☐ ARQUIVO 1: CORPO DO ARTIGO
+   Nome: artigo_igro_final.docx
+
+   Verificações:
+   ☐ Formato: DOCX (não .md, .pdf, .txt)
+   ☐ Tamanho: ≤ 10 MB
+   ☐ Fonte: Garamond 12pt em todo documento
+   ☐ Espaçamento: 1.5 linhas
+   ☐ Margens: 2.5cm (sup/inf), 3.0cm (esq/dir)
+   ☐ Página: A4 (210×297mm)
+   ☐ Numeração: Canto superior direito (começando a 1)
+   ☐ Conteúdo: 6.792 palavras (≤ 7.000)
+   ☐ Resumo PT: ~220 pp + 4 keywords
+   ☐ Abstract EN: ~218 pp + 4 keywords
+   ☐ Resumen ES: ~220 pp + 4 keywords
+   ☐ Referências: APA format, ordem alfabética
+   ☐ Sem nomes de autores no texto
+   ☐ Sem instituições identificáveis
+   ☐ Apêndices: Inclusos (A: Sensibilidade, B: Limitações)
+   ☐ Tabelas/Figuras: Numeradas, descritas, com fontes
+
+─────────────────────────────────────────────────────────────────────
+
+☐ ARQUIVO 2: CAPA ANONIMIZADA
+   Nome: capa_anonimizada.docx
+
+   Verificações:
+   ☐ Arquivo separado (DOC ou DOCX)
+   ☐ Contém: Título + "The submission file has been anonymized..."
+   ☐ SEM numeração de páginas
+   ☐ Formatação igual ao corpo (Garamond, 1.5, margens)
+   ☐ SEM nomes de autores
+   ☐ SEM afiliações
+
+─────────────────────────────────────────────────────────────────────
+
+☐ ARQUIVO 3: INFORMAÇÕES DE AUTORIA
+   Nome: informacoes_autoria.docx (ou .txt)
+
+   Conteúdo para CADA AUTOR:
+   ☐ Nome completo
+   ☐ Afiliação institucional atual
+   ☐ Email de contato
+   ☐ Link CV Lattes
+   ☐ ORCID ID
+
+   Número máximo de autores: 5
+
+═══════════════════════════════════════════════════════════════════════
+                    FASE 2: VERIFICAÇÕES DE CONFORMIDADE
+═══════════════════════════════════════════════════════════════════════
+
+☐ ORIGINALIDADE
+   ☐ Trabalho NUNCA foi publicado antes
+   ☐ NÃO está sob consideração em outro periódico
+   ☐ Todos autores concordam com submissão
+
+☐ CONTEÚDO
+   ☐ Artigo completo com todas as seções
+   ☐ Introdução estabelece relevância
+   ☐ Metodologia descreve abordagem com clareza
+   ☐ Resultados apresentam achados principais
+   ☐ Discussão articula contribuições teóricas
+   ☐ Conclusão sintetiza implicações
+
+☐ RESUMOS (≤ 300 palavras cada)
+   ☐ Português com 4 palavras-chave
+   ☐ Inglês com 4 keywords
+   ☐ Espanhol com 4 palabras clave
+   ☐ Todos abordam: objetivo, método, resultados, conclusão
+
+☐ REFERÊNCIAS
+   ☐ Formato APA (não Harvard, Chicago, etc.)
+   ☐ Ordem alfabética por sobrenome de autor
+   ☐ Espaçamento simples (não duplo)
+   ☐ Indentação de primeira linha: 0.75cm
+   ☐ Todas as citações no texto têm referência
+   ☐ Todas as referências são citadas no texto
+   ☐ Nenhuma referência incompleta
+   ☐ DOIs inclusos quando disponíveis
+
+☐ ANONIMIDADE DUPLA CEGA
+   ☐ Sem nomes de autores no artigo
+   ☐ Sem "meu trabalho anterior..." [self-citations anônimas]
+   ☐ Sem afiliações institucionais identificáveis
+   ☐ Sem nomes de cidades/states específicos [se aplicável]
+   ☐ Capa separada marcada como anonimizada
+
+☐ DADOS E REPLICABILIDADE
+   ☐ Se dados públicos: Link a GitHub/GitLab (se disponível)
+   ☐ Se dados confidenciais: Documentar restrições
+   ☐ Metodologia suficientemente detalhada para replicação
+   ☐ Análise de sensibilidade incluída
+
+☐ TABELAS E FIGURAS
+   ☐ Todas numeradas (Tabela 1, Figura 1, etc.)
+   ☐ Todas com título/descrição clara
+   ☐ Todas com fonte indicada
+   ☐ Nenhuma imagem baixa qualidade ou ilegível
+   ☐ Formatos aceitos: PDF, JPG, PNG para figuras; Excel para tabelas
+
+═══════════════════════════════════════════════════════════════════════
+                    FASE 3: CADASTRO NO PORTAL CGU
+═══════════════════════════════════════════════════════════════════════
+
+☐ CRIAR CONTA (se necessário)
+   Site: https://revista.cgu.gov.br/
+   ☐ Email confirmado
+   ☐ Senha segura
+   ☐ Perfil completo
+
+☐ INICIAR SUBMISSÃO
+   ☐ Clicar em "Submit Manuscript"
+   ☐ Selecionar "Article" como tipo de contribuição
+   ☐ Concordar com termos de submissão
+   ☐ Confirmar originalidade
+
+☐ UPLOAD DE ARQUIVOS
+   1. ☐ Upload: capa_anonimizada.docx (marca como "Cover Letter")
+   2. ☐ Upload: artigo_igro_final.docx (marca como "Main Article")
+   3. ☐ Upload: informacoes_autoria.docx (na seção de autores)
+
+☐ PREENCHER METADADOS
+   ☐ Título: "Índice de Gestão de Riscos de Ouvidoria (IGRO)..."
+   ☐ Resumo: Colar do documento
+   ☐ Keywords: Adicionar 4 palavras-chave
+   ☐ Selecionar seção: "Artigos"
+   ☐ Idioma: Português (Brasil)
+
+☐ INFORMAÇÕES DE AUTORES
+   Para CADA AUTOR:
+   ☐ Nome completo
+   ☐ Email institucional
+   ☐ Afiliação
+   ☐ País
+   ☐ CV Lattes (URL)
+   ☐ ORCID ID
+   ☐ Marcar correspondência com primeiro autor
+
+☐ COMENTÁRIOS ADICIONAIS (opcional)
+   ☐ Indicar se há conflito de interesse (sim/não)
+   ☐ Indicar se há restrições de dados/confidencialidade
+   ☐ Menção de agências de financiamento (se houver)
+
+☐ REVISÃO FINAL
+   ☐ Revisar todos os dados antes de enviar
+   ☐ Verificar se todos os autores concordam
+   ☐ Confirmar não submissão simultânea em outro periódico
+
+☐ ENVIAR SUBMISSÃO
+   ☐ Clicar em "Submit"
+   ☐ Receber confirmação via email
+   ☐ Guardar número de submissão (MS-XXXX-XXXX)
+
+═══════════════════════════════════════════════════════════════════════
+                    FASE 4: PÓS-SUBMISSÃO
+═══════════════════════════════════════════════════════════════════════
+
+☐ Recebimento de confirmação (pode levar 24-48h)
+☐ Monitorar email para desk review (decisão inicial)
+☐ Responder a revisores se solicitado
+☐ Timeline esperado: ~6 meses para decisão final
+
+═══════════════════════════════════════════════════════════════════════
+                    INFORMAÇÕES DE CONTATO CGU
+═══════════════════════════════════════════════════════════════════════
+
+Portal: https://revista.cgu.gov.br/Revista_da_CGU
+Email de suporte: [verificar no site]
+Dúvidas sobre submissão: [verificar no site]
+
+═══════════════════════════════════════════════════════════════════════
+
+Data de preenchimento deste checklist: ______/______/______
+
+Todas as verificações completadas? ☐ SIM    ☐ NÃO
+
+Se NÃO, listar o que falta:
+________________________________________________________________
+________________________________________________________________
+________________________________________________________________
+
+═══════════════════════════════════════════════════════════════════════

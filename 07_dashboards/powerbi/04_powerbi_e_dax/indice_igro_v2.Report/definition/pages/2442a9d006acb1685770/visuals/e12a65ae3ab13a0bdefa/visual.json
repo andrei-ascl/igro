@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "e12a65ae3ab13a0bdefa",
+  "position": {
+    "x": 10.078740157480315,
+    "y": 0,
+    "z": 0,
+    "height": 719.62204724409446,
+    "width": 1269.9212598425197,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "htmlContent443BE3AD55E043BF878BED274D3A6865",
+    "query": {
+      "queryState": {
+        "content": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_medidas JSON - Dashboard"
+                    }
+                  },
+                  "Property": "HTML IGRO Ano a Ano"
+                }
+              },
+              "queryRef": "_medidas JSON - Dashboard.HTML IGRO Ano a Ano",
+              "nativeQueryRef": "HTML IGRO Ano a Ano"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

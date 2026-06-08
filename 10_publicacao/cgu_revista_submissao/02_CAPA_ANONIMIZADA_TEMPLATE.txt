@@ -1,0 +1,60 @@
+═══════════════════════════════════════════════════════════════════════
+                    DOCUMENTO DE CAPA (ANONIMIZADO)
+
+Este arquivo deve ser criado como um documento DOCX SEPARADO,
+sem numeração de páginas.
+
+═══════════════════════════════════════════════════════════════════════
+
+
+                            [ESPAÇO EM BRANCO]
+                            [ESPAÇO EM BRANCO]
+
+
+        Índice de Gestão de Riscos de Ouvidoria (IGRO):
+        Proposição e Aplicação de um Indicador Composto
+        para Monitoramento Estratégico em Redes de
+        Ouvidorias Públicas
+
+
+                            [ESPAÇO EM BRANCO]
+                            [ESPAÇO EM BRANCO]
+                            [ESPAÇO EM BRANCO]
+                            [ESPAÇO EM BRANCO]
+                            [ESPAÇO EM BRANCO]
+                            [ESPAÇO EM BRANCO]
+
+
+The submission file has been anonymized and had its authorship
+information removed.
+
+
+                            [ESPAÇO EM BRANCO]
+                            [ESPAÇO EM BRANCO]
+
+
+                                    2026
+
+
+═══════════════════════════════════════════════════════════════════════
+
+INSTRUÇÕES PARA CRIAÇÃO:
+
+1. Abra Microsoft Word ou LibreOffice Writer
+2. Configure:
+   - Margens: 2.5cm (superior/inferior), 3.0cm (esquerda/direita)
+   - Fonte: Garamond 12pt
+   - Espaçamento: 1.5 linhas
+   - Tamanho página: A4
+
+3. IMPORTANTE: NÃO adicionar numeração de páginas neste documento
+
+4. Digite o conteúdo acima, centralizando título e declaração
+
+5. Salve como: capa_anonimizada.docx
+
+6. Para submissão na CGU, organize os arquivos assim:
+   - Arquivo 1: capa_anonimizada.docx (esta capa)
+   - Arquivo 2: artigo_igro_final.docx (artigo com corpo)
+
+═══════════════════════════════════════════════════════════════════════

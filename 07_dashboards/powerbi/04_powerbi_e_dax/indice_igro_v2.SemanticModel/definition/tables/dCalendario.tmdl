@@ -17,7 +17,7 @@ table dCalendario
 	column Ano = YEAR(dCalendario[Date])
 		dataType: int64
 		lineageTag: 294047d2-dfad-499d-9394-69c35d574861
-		summarizeBy: none
+		summarizeBy: sum
 
 		annotation SummarizationSetBy = Automatic
 
@@ -25,7 +25,7 @@ table dCalendario
 	column Mes = MONTH(dCalendario[Date])
 		dataType: int64
 		lineageTag: 28f27298-d276-40c8-a60e-3c52b5038670
-		summarizeBy: none
+		summarizeBy: sum
 
 		annotation SummarizationSetBy = Automatic
 
@@ -33,7 +33,7 @@ table dCalendario
 	column Dia = DAY(dCalendario[Date])
 		dataType: int64
 		lineageTag: 632005fe-64e5-41e3-b03c-569245ae2762
-		summarizeBy: none
+		summarizeBy: sum
 
 		annotation SummarizationSetBy = Automatic
 
@@ -59,7 +59,7 @@ table dCalendario
 	column AnoMes = YEAR(dCalendario[Date]) * 100 + MONTH(dCalendario[Date])
 		dataType: int64
 		lineageTag: a5042bb3-dee4-4557-be36-a1f12e4a9f9e
-		summarizeBy: none
+		summarizeBy: sum
 
 		annotation SummarizationSetBy = Automatic
 
@@ -67,7 +67,7 @@ table dCalendario
 	column NumDiaSemana = WEEKDAY(dCalendario[Date], 2)
 		dataType: int64
 		lineageTag: d69559c5-811b-499b-86dc-7693948d3402
-		summarizeBy: none
+		summarizeBy: sum
 
 		annotation SummarizationSetBy = Automatic
 
@@ -93,7 +93,7 @@ table dCalendario
 	column NumSemanaAno = WEEKNUM(dCalendario[Date], 2)
 		dataType: int64
 		lineageTag: d484f6ff-e460-48c4-b842-9e44f86bb1b0
-		summarizeBy: none
+		summarizeBy: sum
 
 		annotation SummarizationSetBy = Automatic
 
@@ -101,7 +101,7 @@ table dCalendario
 	column AnoSemana = YEAR(dCalendario[Date]) * 100 + WEEKNUM(dCalendario[Date], 2)
 		dataType: int64
 		lineageTag: c42a415b-7985-40ce-bfe6-a1ba85adfa52
-		summarizeBy: none
+		summarizeBy: sum
 
 		annotation SummarizationSetBy = Automatic
 
@@ -109,7 +109,7 @@ table dCalendario
 	column Trimestre = ROUNDUP(MONTH(dCalendario[Date]) / 3, 0)
 		dataType: int64
 		lineageTag: da414d6a-1fd6-40f5-9c64-a4b11cf06127
-		summarizeBy: none
+		summarizeBy: sum
 
 		annotation SummarizationSetBy = Automatic
 
@@ -117,7 +117,7 @@ table dCalendario
 	column Quadrimestre = SWITCH(TRUE(),MONTH(dCalendario[Date])<=4,1,MONTH(dCalendario[Date])<=8,2,3)
 		dataType: int64
 		lineageTag: 1b24cc27-739b-44d2-8f11-4db6b1cca8d6
-		summarizeBy: none
+		summarizeBy: sum
 
 		annotation SummarizationSetBy = Automatic
 
@@ -134,7 +134,7 @@ table dCalendario
 	column AnoQuadri = YEAR(dCalendario[Date])*10 + SWITCH(TRUE(),MONTH(dCalendario[Date])<=4,1,MONTH(dCalendario[Date])<=8,2,3)
 		dataType: int64
 		lineageTag: 236e9eb1-535f-4b24-83db-305b21743eca
-		summarizeBy: none
+		summarizeBy: sum
 
 		annotation SummarizationSetBy = Automatic
 
@@ -142,7 +142,7 @@ table dCalendario
 	column Semestre = IF(MONTH(dCalendario[Date])<=6,1,2)
 		dataType: int64
 		lineageTag: d128512a-7aef-42e1-bd02-b472e26daa2b
-		summarizeBy: none
+		summarizeBy: sum
 
 		annotation SummarizationSetBy = Automatic
 
@@ -206,7 +206,7 @@ table dCalendario
 	column MesExercicio = IF(YEAR(dCalendario[Date])>=2024, (YEAR(dCalendario[Date])-2024)*12 + MONTH(dCalendario[Date]), BLANK())
 		dataType: int64
 		lineageTag: 0f5d2dfe-2978-4eed-914b-e52d36fd667d
-		summarizeBy: none
+		summarizeBy: sum
 
 		annotation SummarizationSetBy = Automatic
 
@@ -214,7 +214,7 @@ table dCalendario
 	column QuadriExercicio = IF(YEAR(dCalendario[Date])>=2024, (YEAR(dCalendario[Date])-2024)*3 + SWITCH(TRUE(),MONTH(dCalendario[Date])<=4,1,MONTH(dCalendario[Date])<=8,2,3), BLANK())
 		dataType: int64
 		lineageTag: f51320f1-f15b-4920-a644-957db5dcd366
-		summarizeBy: none
+		summarizeBy: sum
 
 		annotation SummarizationSetBy = Automatic
 
@@ -222,7 +222,7 @@ table dCalendario
 	column DiaDoAno = DATEDIFF(DATE(YEAR(dCalendario[Date]),1,1), dCalendario[Date], DAY) + 1
 		dataType: int64
 		lineageTag: 96319fd0-38a5-46ea-ae95-7c102fe48865
-		summarizeBy: none
+		summarizeBy: sum
 
 		annotation SummarizationSetBy = Automatic
 
@@ -230,7 +230,7 @@ table dCalendario
 	column DiaUtilDoMes = CALCULATE(COUNTROWS(dCalendario), dCalendario[Date] <= EARLIER(dCalendario[Date]), MONTH(dCalendario[Date]) = MONTH(EARLIER(dCalendario[Date])), YEAR(dCalendario[Date]) = YEAR(EARLIER(dCalendario[Date])), dCalendario[DiaUtil] = TRUE())
 		dataType: int64
 		lineageTag: 0d38238f-22c6-4453-a3d2-abe6f445a434
-		summarizeBy: none
+		summarizeBy: sum
 
 		annotation SummarizationSetBy = Automatic
 

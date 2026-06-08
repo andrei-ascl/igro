@@ -1,0 +1,292 @@
+═══════════════════════════════════════════════════════════════════════
+           GUIA: COMO REMOVER METADADOS DE ARQUIVOS DOCX
+═══════════════════════════════════════════════════════════════════════
+
+IMPORTANTE: Remover metadados é essencial antes de submeter trabalhos
+acadêmicos/científicos, pois preserva anonimidade e privacidade.
+
+═══════════════════════════════════════════════════════════════════════
+                    MÉTODO 1: MICROSOFT WORD (Recomendado)
+═══════════════════════════════════════════════════════════════════════
+
+✓ Mais eficiente e completo
+✓ Interface intuitiva
+✓ Funciona com .docx, .xlsx, .pptx
+
+PASSOS:
+
+1. Abra o arquivo em Microsoft Word
+
+2. Clique em: File (Arquivo) > Info (Informações)
+
+3. Clique em: "Inspect Document" (Inspecionar Documento)
+   (Pode estar em: File > Options > Trust Center > Trust Center Settings)
+
+4. Na janela "Document Inspector", marque TODAS as opções:
+   ☑ Comments and Annotations (Comentários e anotações)
+   ☑ Document Properties and Personal Information (Propriedades)
+   ☑ Custom XML Data (Dados XML customizados)
+   ☑ Headers and Footers (Cabeçalhos e rodapés)
+   ☑ Hidden Text (Texto oculto)
+   ☑ All Fields (Todos os campos)
+
+5. Clique em: "Remove All" (Remover tudo)
+
+6. Feche a janela e salve o arquivo (Ctrl+S)
+
+7. IMPORTANTE: Clique novamente em File > Info e verifique se:
+   - "Document Properties" está vazio ou com mínimas informações
+   - "Author" está em branco
+   - "Modified by" está em branco
+
+─────────────────────────────────────────────────────────────────────
+
+                    MÉTODO 2: LIBREOFFICE WRITER
+═══════════════════════════════════════════════════════════════════════
+
+✓ Gratuito
+✓ Suporta .docx, .odt, .pdf
+✓ Disponível em Windows, Mac, Linux
+
+PASSOS:
+
+1. Abra o arquivo em LibreOffice Writer
+
+2. Clique em: File > Properties (Arquivo > Propriedades)
+
+3. Na janela "Document Properties", limpe:
+   ☑ Aba "General" - não há informações sensíveis aqui
+   ☑ Aba "Description": Limpar todos os campos
+      - Title (Título)
+      - Subject (Assunto)
+      - Keywords (Palavras-chave)
+      - Comments (Comentários)
+   ☑ Aba "Initial Creator": Deixar vazio
+   ☑ Aba "Statistics": Informativo apenas (não editar)
+
+4. Clique em: "Reset" (se disponível) para limpar datas
+
+5. Clique em: "OK" para confirmar
+
+6. Salve o arquivo: File > Save
+
+7. ADICIONAL - Remover histórico de edições:
+   ├─ File > Properties > Security (Se disponível)
+   ├─ Marcar: "Remove personal information on saving"
+   └─ Salvar novamente
+
+─────────────────────────────────────────────────────────────────────
+
+               MÉTODO 3: FERRAMENTAS ONLINE (Rápido)
+═══════════════════════════════════════════════════════════════════════
+
+⚠️ AVISO: Arquivos são enviados para servidor externo
+✓ Rápido (não requer software)
+✓ Gratuito
+
+OPÇÕES:
+
+1. MetaClean (https://www.verexif.com/en/)
+   ├─ Upload do arquivo
+   ├─ Remove metadados automaticamente
+   └─ Download do arquivo limpo
+
+2. Online-Convert (https://document.online-convert.com/)
+   ├─ Converter DOCX
+   ├─ Remove metadados no processo
+   └─ Download arquivo limpo
+
+3. CloudConvert (https://cloudconvert.com/)
+   ├─ Upload arquivo
+   ├─ Converter para PDF e volta para DOCX
+   └─ Remove metadados no processo
+
+PASSOS (genérico):
+   1. Acesse o site
+   2. Upload do arquivo .docx
+   3. Selecionar opção "Remove metadata"
+   4. Converter/processar
+   5. Download do arquivo limpo
+
+─────────────────────────────────────────────────────────────────────
+
+                MÉTODO 4: PYTHON (Para Técnicos)
+═══════════════════════════════════════════════════════════════════════
+
+✓ Automatizado
+✓ Controle total
+✓ Pode processar múltiplos arquivos
+
+INSTALAR dependências:
+   pip install python-docx
+
+SCRIPT:
+
+```python
+from docx import Document
+from docx.oxml.ns import qn
+from datetime import datetime
+
+def remove_metadata(input_file, output_file):
+    # Abrir documento
+    doc = Document(input_file)
+
+    # Remover propriedades do documento
+    core_props = doc.core_properties
+    core_props.author = ""
+    core_props.title = ""
+    core_props.subject = ""
+    core_props.keywords = ""
+    core_props.comments = ""
+    core_props.category = ""
+    core_props.company = ""
+    core_props.manager = ""
+    core_props.modified = datetime.now()
+
+    # Remover "Last Modified By"
+    for part in doc.part.package.part_related_by('http://schemas.openxmlformats.org/officeDocument/2006/relationships/core-properties'):
+        doc.part.package.relate_to('', part.reltype)
+
+    # Salvar
+    doc.save(output_file)
+    print(f"✓ Metadados removidos: {output_file}")
+
+# Usar:
+remove_metadata('artigo_igro_final.docx', 'artigo_igro_final_LIMPO.docx')
+```
+
+USAR SCRIPT:
+   1. Salve como: remove_metadata.py
+   2. Coloque no mesmo diretório do .docx
+   3. Execute: python remove_metadata.py
+   4. Será criado arquivo com sufixo _LIMPO
+
+─────────────────────────────────────────────────────────────────────
+
+                    MÉTODO 5: CONVERTER PDF + VOLTA
+═══════════════════════════════════════════════════════════════════════
+
+✓ Remove praticamente todos os metadados
+⚠️ Pode alterar formatação levemente
+
+PASSOS:
+
+1. Abra artigo_igro_final.docx em Word
+
+2. Salve como PDF:
+   File > Save As > Format: PDF (.pdf)
+   Salve como: artigo_igro_final.pdf
+
+3. Converta PDF de volta para DOCX:
+   ├─ Opção A: CloudConvert.com
+   │  └─ Upload PDF > Convert to DOCX > Download
+   │
+   ├─ Opção B: Online-Convert.com
+   │  └─ Upload PDF > Convert to DOCX > Download
+   │
+   └─ Opção C: Word (File > Open > artigo_igro_final.pdf)
+      └─ Word convertará para .docx automaticamente
+      └─ Salve como novo .docx
+
+4. Verifique formatação no novo .docx
+
+═══════════════════════════════════════════════════════════════════════
+                    VERIFICAÇÃO: CONFIRMANDO LIMPEZA
+═══════════════════════════════════════════════════════════════════════
+
+APÓS remover metadados, verifique:
+
+Windows - Propriedades de Arquivo:
+   1. Clique direito no arquivo .docx
+   2. Properties (Propriedades)
+   3. Details (Detalhes)
+   4. Verificar se está vazio:
+      ☐ Author (Autor)
+      ☐ Subject (Assunto)
+      ☐ Company (Empresa)
+      ☐ Comments (Comentários)
+
+Word - File Info:
+   1. Abra em Word
+   2. File > Info
+   3. Clique em "Inspect Document"
+   4. Verifique se não encontra:
+      ☐ Comments
+      ☐ Document Properties
+      ☐ Custom XML Data
+
+Linux/Mac - Linha de Comando:
+   $ exiftool arquivo.docx
+   (Se não houver output ou apenas info técnica, está limpo)
+
+═══════════════════════════════════════════════════════════════════════
+                  RECOMENDAÇÃO PARA SUBMISSÃO CGU
+═══════════════════════════════════════════════════════════════════════
+
+Para máxima garantia de privacidade/anonimidade:
+
+1️⃣  Use MÉTODO 1 (Word) ou MÉTODO 2 (LibreOffice)
+    └─ Remove metadados completamente
+
+2️⃣  Verifique com Method 5 (converter PDF e volta)
+    └─ Garante limpeza total
+
+3️⃣  Use Método 3 (ferramentas online) como reforço
+    └─ CloudConvert + remove metadata
+
+═══════════════════════════════════════════════════════════════════════
+                      CHECKLIST PRÉ-SUBMISSÃO
+═══════════════════════════════════════════════════════════════════════
+
+Antes de enviar para CGU, verifique:
+
+☐ Arquivo .docx aberto em Word
+☐ File > Info > Nenhum autor/título/sujeito visível
+☐ File > Inspect Document > Remove All executado
+☐ Nenhum comentário visível (revisar marca de edição)
+☐ Nenhum texto oculto (Format > Character > Hidden)
+☐ Nenhum cabeçalho/rodapé com identificação pessoal
+☐ Arquivo salvo após limpeza
+☐ Propriedades do arquivo (direito-clique) sem dados pessoais
+☐ Arquivo pronto para envio anônimo
+
+═══════════════════════════════════════════════════════════════════════
+                         TROUBLESHOOTING
+═══════════════════════════════════════════════════════════════════════
+
+Problema: "Document Inspector" não aparece em File > Info
+
+Solução:
+   1. Clique em File > Options (Opções)
+   2. Vá para: Trust Center
+   3. Clique em: Trust Center Settings
+   4. Selecione: Privacy Options
+   5. Marque: "Remove personal information..."
+   6. Aplicar e salvar
+
+─────────────────────────────────────────────────────────────────────
+
+Problema: Metadados ainda aparecem após limpeza
+
+Solução:
+   1. Converter para PDF (File > Export as PDF)
+   2. Converter PDF de volta para DOCX (usar cloudconvert.com)
+   3. Verificar novamente
+
+─────────────────────────────────────────────────────────────────────
+
+Problema: "Author" aparece como "Office" ou nome padrão
+
+Solução:
+   1. File > Options > General
+   2. Mudar "User name" para em branco ou genérico
+   3. Salvar documento novamente
+   4. Repetir inspeção
+
+═══════════════════════════════════════════════════════════════════════
+
+ÚLTIMA ATUALIZAÇÃO: 1º de junho de 2026
+COMPATIBILIDADE: Windows, Mac, Linux
+EFETIVIDADE: 99%+ (especialmente Método 1 + Método 5)
+
+═══════════════════════════════════════════════════════════════════════

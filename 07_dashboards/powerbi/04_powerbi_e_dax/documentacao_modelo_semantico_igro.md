@@ -1,6 +1,6 @@
 # Documentacao do modelo semantico IGRO
 
-Atualizado em: 2026-05-14  
+Atualizado em: 2026-05-18  
 Modelo de referencia: `indice_igro_v2` no Power BI Desktop
 
 Esta nota e um mapa funcional enxuto do modelo Power BI do IGRO. A ideia aqui nao e substituir o `.tmdl`, mas facilitar manutencao, auditoria e continuidade.
@@ -11,7 +11,7 @@ Esta nota e um mapa funcional enxuto do modelo Power BI do IGRO. A ideia aqui na
 |---|---:|---|
 | Tabelas totais | 14 | Inclui tabelas automaticas de data do Power BI. |
 | Tabelas de negocio visiveis | 6 | `f_relatorio`, `f_pesquisa`, `f_insatisfatorias`, `dCalendario`, `dOrgao_igro`, `_medidas`. |
-| Medidas DAX | 116 | Inclui medidas tecnicas HTML/JSON usadas no dashboard. |
+| Medidas DAX | 117 | Inclui medidas tecnicas HTML/JSON usadas no dashboard. |
 | Colunas | 165 | Inventario detalhado fica em `metadata/`. |
 | Relacionamentos | 15 | Inclui relacoes ativas e inativas para analises temporais alternativas. |
 
@@ -83,6 +83,10 @@ As medidas DAX da tabela `_medidas` podem ser lidas em tres camadas:
 
 ### Medidas centrais para manutencao
 
+Observacao:
+
+- a pasta visual `12 · JSON · Dashboard` passa a concentrar 12 medidas com a inclusao do painel `HTML Barras 3 Medidas IGRO`.
+
 | Medida | Papel | Observacao |
 |---|---|---|
 | `idx_igro` | Indice principal | Resultado composto do IGRO. |
@@ -94,6 +98,7 @@ As medidas DAX da tabela `_medidas` podem ser lidas em tres camadas:
 | `HTML Dashboard IGRO` | Entregavel visual | Dashboard HTML principal. |
 | `HTML Dashboard Final` | Entregavel visual | Versao visual final do dashboard. |
 | `HTML Infografico IGRO` | Entregavel visual | Infografico executivo com hierarquia `indice composto -> subindices -> KRIs`. |
+| `HTML Barras 3 Medidas IGRO` | Entregavel visual | Painel HTML com tres graficos de barras por `QuadriLabel` para `idx_igro`, `idx_igro_sub_t` e `idx_igro_sub_q`. |
 
 ### Rodada de 2026-05-14
 
@@ -104,6 +109,15 @@ Mudancas registradas nesta rodada:
 - varias iteracoes visuais no modelo conectado para o infografico;
 - criacao do guia `ajuste_manual_subs_html_igro.md` para ajuste manual dos subindices;
 - uso combinado de iteracao no modelo conectado e sincronizacao do `.tmdl` apenas ao fim da sessao.
+
+## Rodada de 2026-05-18
+
+Mudancas registradas nesta rodada:
+
+- criacao da medida `HTML Barras 3 Medidas IGRO`;
+- composicao visual baseada no mesmo padrao premium escuro dos dashboards HTML ja existentes;
+- reaproveitamento das medidas de semaforo e cor metodologica para colorir as barras dinamicamente;
+- ajuste da medida para considerar os valores por quadrimestre, usando o contexto filtrado de `dCalendario[QuadriLabel]`.
 
 ## Colunas principais
 

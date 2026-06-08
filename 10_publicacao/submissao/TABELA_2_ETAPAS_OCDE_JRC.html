@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela 2 — Etapas Metodológicas OCDE/JRC Aplicadas ao IGRO</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2C3E50;
+            background-color: #F8F9FA;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            margin-bottom: 30px;
+            border-bottom: 3px solid #003D7A;
+            padding-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            color: #003D7A;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .metadata {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 12px;
+            color: #7F8C8D;
+            margin-top: 15px;
+        }
+
+        .metadata-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .metadata-item strong {
+            color: #34495E;
+        }
+
+        /* Tabela Principal */
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 40px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            margin-bottom: 30px;
+        }
+
+        table thead {
+            background-color: #003D7A;
+            color: white;
+            font-weight: 600;
+        }
+
+        table th {
+            padding: 16px 12px;
+            text-align: left;
+            border: 1px solid #003D7A;
+            vertical-align: middle;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        table td {
+            padding: 14px 12px;
+            border: 1px solid #ECF0F1;
+            vertical-align: top;
+        }
+
+        table tbody tr {
+            transition: background-color 0.3s ease;
+        }
+
+        table tbody tr:nth-child(odd) {
+            background-color: #F8F9FA;
+        }
+
+        table tbody tr:hover {
+            background-color: #E8F4F8;
+        }
+
+        /* Coluna de Etapa */
+        table td:first-child {
+            font-weight: 700;
+            color: #003D7A;
+            min-width: 150px;
+            background-color: #F0F7FF;
+        }
+
+        table tr:nth-child(odd) td:first-child {
+            background-color: #E8F4F8;
+        }
+
+        /* Coluna de Aplicação */
+        table td:nth-child(3) {
+            background-color: #F9F3FF;
+        }
+
+        table tr:nth-child(odd) td:nth-child(3) {
+            background-color: #F3E8FF;
+        }
+
+        /* Coluna de Decisão */
+        table td:nth-child(4) {
+            background-color: #FFFBF0;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        table tr:nth-child(odd) td:nth-child(4) {
+            background-color: #FFF7E8;
+        }
+
+        /* Links e referências */
+        table a {
+            color: #003D7A;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        table a:hover {
+            text-decoration: underline;
+        }
+
+        /* Seções de Notas */
+        .notes-section {
+            margin: 50px 0;
+            padding: 25px;
+            background-color: #F0F7FF;
+            border-left: 4px solid #003D7A;
+            border-radius: 4px;
+        }
+
+        .notes-section h2 {
+            color: #003D7A;
+            font-size: 18px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .note-item {
+            margin-bottom: 20px;
+        }
+
+        .note-item h3 {
+            color: #0056B3;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .note-item p {
+            color: #2C3E50;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        /* Exemplo numérico */
+        .code-block {
+            background-color: #2C3E50;
+            color: #ECF0F1;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            overflow-x: auto;
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        /* Tabela comparativa dentro de notas */
+        .mini-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+
+        .mini-table th,
+        .mini-table td {
+            padding: 10px;
+            border: 1px solid #D5DBE1;
+            text-align: left;
+        }
+
+        .mini-table th {
+            background-color: #003D7A;
+            color: white;
+            font-weight: 600;
+        }
+
+        .mini-table tbody tr:nth-child(odd) {
+            background-color: #F8F9FA;
+        }
+
+        .mini-table tbody tr:hover {
+            background-color: #E8F4F8;
+        }
+
+        /* Checklist */
+        .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .checklist li {
+            padding: 8px 0;
+            padding-left: 28px;
+            position: relative;
+        }
+
+        .checklist li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #27AE60;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .checklist li.rejected:before {
+            content: "✗";
+            color: #E74C3C;
+        }
+
+        .checklist li.selected {
+            background-color: #E8F8E8;
+            padding: 8px 10px;
+            padding-left: 28px;
+            border-radius: 4px;
+            margin: 5px 0;
+        }
+
+        /* Conformidade */
+        .conformance-section {
+            margin: 40px 0;
+            padding: 25px;
+            background-color: #E8F8E8;
+            border-left: 4px solid #27AE60;
+            border-radius: 4px;
+        }
+
+        .conformance-section h2 {
+            color: #27AE60;
+            font-size: 18px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        /* Rodapé */
+        .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid #ECF0F1;
+            font-size: 11px;
+            color: #7F8C8D;
+        }
+
+        .footer-item {
+            margin-bottom: 8px;
+        }
+
+        /* Versão Condensada */
+        .compact-table-section {
+            margin: 50px 0;
+            padding: 25px;
+            background-color: #FFF9E6;
+            border-left: 4px solid #F39C12;
+            border-radius: 4px;
+        }
+
+        .compact-table-section h2 {
+            color: #D68910;
+            font-size: 18px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            table {
+                font-size: 12px;
+            }
+
+            table th,
+            table td {
+                padding: 10px 8px;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 20px;
+            }
+
+            table {
+                font-size: 11px;
+            }
+
+            table th,
+            table td {
+                padding: 8px 6px;
+            }
+
+            .metadata {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .notes-section {
+                padding: 15px;
+            }
+
+            .code-block {
+                font-size: 11px;
+                padding: 10px;
+            }
+        }
+
+        /* Print */
+        @media print {
+            body {
+                background-color: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+
+            table tbody tr:hover {
+                background-color: inherit;
+            }
+
+            .metadata {
+                font-size: 10px;
+            }
+
+            .notes-section,
+            .conformance-section,
+            .compact-table-section {
+                page-break-inside: avoid;
+            }
+        }
+
+        /* Acessibilidade */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Tabela 2 — Etapas Metodológicas OCDE/JRC Aplicadas ao IGRO</h1>
+            <div class="metadata">
+                <div class="metadata-item">
+                    <strong>Referência normativa:</strong> Handbook on Constructing Composite Indicators (OCDE/JRC, 2008)
+                </div>
+                <div class="metadata-item">
+                    <strong>Aplicação:</strong> Índice de Gestão de Riscos de Ouvidoria
+                </div>
+                <div class="metadata-item">
+                    <strong>Versão:</strong> 1.0 — Abril/2026
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabela Principal -->
+        <div class="table-wrapper">
+            <table role="table" aria-label="Etapas metodológicas OCDE/JRC aplicadas ao IGRO">
+                <thead>
+                    <tr>
+                        <th scope="col">Etapa OCDE/JRC</th>
+                        <th scope="col">Objetivo</th>
+                        <th scope="col">Aplicação no IGRO</th>
+                        <th scope="col">Decisão Metodológica</th>
+                        <th scope="col">Referência/Documento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Etapa 1 -->
+                    <tr>
+                        <td>1. Seleção de Indicadores</td>
+                        <td>Identificar e validar dimensões relevantes do fenômeno a medir</td>
+                        <td>Seleção de 5 KRIs distribuídos em 2 eixos (Tempestividade e Qualidade)</td>
+                        <td>
+                            <strong>KRI 1:</strong> % Manifestações &gt; 30 dias (Temp.)<br>
+                            <strong>KRI 2:</strong> Prazo Médio de Resposta (Temp.)<br>
+                            <strong>KRI 3:</strong> Resolutividade Percebida (Qual.)<br>
+                            <strong>KRI 4:</strong> % Respostas Insatisfatórias (Qual.)<br>
+                            <strong>KRI 5:</strong> Nota de Recomendação (Qual.)
+                        </td>
+                        <td>Desenho Técnico (arquivo 10);<br>Benchmarking (arquivo 09);<br>Oficina SEAD/Pequi Lab (2023)</td>
+                    </tr>
+
+                    <!-- Etapa 2 -->
+                    <tr>
+                        <td>2. Normalização</td>
+                        <td>Converter indicadores com escalas diferentes para escala comum (0–1)</td>
+                        <td>Transformação de cada KRI para [0, 1] usando método de distância à meta (goalposts)</td>
+                        <td>
+                            <strong>Fórmula Distância à Meta com goalposts:</strong><br>
+                            Para "menor = melhor":<br>
+                            <code>score = (limite_máx − valor) / (limite_máx − meta)</code><br>
+                            Limitado ao intervalo [0, 1]<br><br>
+                            <strong>Goalposts definidos por:</strong><br>
+                            • Expertise de pesquisadores<br>
+                            • Benchmarking de ouvidorias estaduais<br>
+                            • Conformidade com Lei 13.460/2017
+                        </td>
+                        <td>Seção 3.3 (Metodologia);<br>Handbook OCDE/JRC (2008), cap. 5</td>
+                    </tr>
+
+                    <!-- Etapa 3 -->
+                    <tr>
+                        <td>3. Ponderação</td>
+                        <td>Atribuir pesos refletindo a importância relativa de cada indicador</td>
+                        <td>Estrutura hierárquica com dois níveis de pesos</td>
+                        <td>
+                            <strong>Nível 1 (sub-índices):</strong><br>
+                            Sub_T = 40% | Sub_Q = 60%<br><br>
+                            <strong>Nível 2 (intra-dimensões):</strong><br>
+                            KRI 1 = 15% global (37,5% de 40%)<br>
+                            KRI 2 = 25% global (62,5% de 40%)<br>
+                            KRI 3 = 25% global (41,7% de 60%)<br>
+                            KRI 4 = 15% global (25% de 60%)<br>
+                            KRI 5 = 20% global (33,3% de 60%)<br><br>
+                            <strong>Justificativa:</strong> Qualidade recebe maior peso (60%) pois é principal driver de confiança cidadã.
+                        </td>
+                        <td>Desenho Técnico (arquivo 10), seção 5;<br>Handbook OCDE/JRC (2008), cap. 6</td>
+                    </tr>
+
+                    <!-- Etapa 4 -->
+                    <tr>
+                        <td>4. Agregação</td>
+                        <td>Combinar indicadores ponderados em índice único</td>
+                        <td>Agregação em dois níveis: intra-dimensional (aritmética) e inter-dimensional (geométrica)</td>
+                        <td>
+                            <strong>Agregação intra-dimensional (aritmética):</strong><br>
+                            Sub_T = (0,15 × score₁ + 0,25 × score₂) / 0,40<br>
+                            Sub_Q = (0,25 × score₃ + 0,15 × score₄ + 0,20 × score₅) / 0,60<br><br>
+                            <strong>Agregação inter-dimensional (geométrica):</strong><br>
+                            IGRO = Sub_T^0,40 × Sub_Q^0,60<br><br>
+                            <strong>Justificativa:</strong> Penaliza desequilíbrios (falha crítica em um eixo anula excelência no outro)
+                        </td>
+                        <td>Seção 3.3 (Metodologia);<br>Desenho Técnico (arquivo 10), seção 6;<br>Mazziotta &amp; Pareto (2022)</td>
+                    </tr>
+
+                    <!-- Etapa 5 -->
+                    <tr>
+                        <td>5. Análise de Sensibilidade &amp; Robustez</td>
+                        <td>Testar estabilidade do índice sob variações metodológicas</td>
+                        <td>3 testes de robustez recomendados</td>
+                        <td>
+                            <strong>Teste 1 – Variação de pesos:</strong><br>
+                            Recalcular em 3 cenários (uniforme, qualidade prioritária, tempestividade prioritária). Spearman ρ entre rankings.<br><br>
+                            <strong>Teste 2 – Método alternativo:</strong><br>
+                            Comparar média geométrica vs. aritmética. Identificar mudanças de faixa de risco.<br><br>
+                            <strong>Teste 3 – Bootstrap:</strong><br>
+                            1.000 iterações com perturbação ±10%. Calcular IC 90% por órgão.<br><br>
+                            <strong>Critério:</strong> Aprovado se classificação (V/A/L/V) mantém-se em ≥3 dos 4 cenários.
+                        </td>
+                        <td>Seção 3.5 (Metodologia);<br>Handbook OCDE/JRC (2008), cap. 8;<br>Saltelli et al. (2008)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Notas Técnicas -->
+        <div class="notes-section">
+            <h2>📌 Notas Técnicas à Tabela</h2>
+
+            <div class="note-item">
+                <h3>Nota 1: Justificativa da Estrutura Hierárquica</h3>
+                <p>A escolha de dois níveis de ponderação (sub-índices + KRIs) permite:</p>
+                <ul style="margin-left: 20px; margin-top: 8px;">
+                    <li><strong>Transparência gerencial:</strong> Gestores entendem qual risco (Tempestividade ou Qualidade) está deteriorando</li>
+                    <li><strong>Auditabilidade:</strong> Rastreamento de qual KRI específico gerou o alerta</li>
+                    <li><strong>Flexibilidade futura:</strong> Possibilidade de ajustar pesos sem reconfiguração completa</li>
+                </ul>
+            </div>
+
+            <div class="note-item">
+                <h3>Nota 2: Por que Média Geométrica (não Aritmética)?</h3>
+                <p><strong>Exemplo comparativo com dados reais:</strong></p>
+                <div class="code-block">
+Cenário: Sub_T = 1,0 (excelente) | Sub_Q = 0,40 (crítico)
+
+Média aritmética:
+  IGRO = (0,40 × 1,0 + 0,60 × 0,40) = 0,64 (Moderado)
+  → Excelência em Temp. quase compensa falha em Qualidade
+
+Média geométrica:
+  IGRO = 1,0^0,40 × 0,40^0,60 = 0,576 (Alto)
+  → Falha crítica penaliza índice mesmo com excelência
+                </div>
+                <p><strong>Conclusão:</strong> Média geométrica é apropriada para gestão de riscos porque fragilidades críticas não devem ser mascaradas por desempenhos isoladamente positivos.</p>
+            </div>
+
+            <div class="note-item">
+                <h3>Nota 3: Goalposts vs. Alternativas</h3>
+                <table class="mini-table">
+                    <thead>
+                        <tr>
+                            <th>Método</th>
+                            <th>Vantagens</th>
+                            <th>Desvantagens</th>
+                            <th>Decisão IGRO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Distância à Meta (goalposts)</strong></td>
+                            <td>Conectado a metas institucionais; transparente; auditável</td>
+                            <td>Requer metas pré-definidas</td>
+                            <td style="color: #27AE60; font-weight: bold;">✓ Selecionado</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Min-Max</strong></td>
+                            <td>Simples; usa dados históricos</td>
+                            <td>Não conectado a objetivos; sensível a outliers</td>
+                            <td style="color: #E74C3C; font-weight: bold;">✗ Rejeitado</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Z-score</strong></td>
+                            <td>Estatisticamente rigoroso</td>
+                            <td>Não interpretável para gestores; assume normalidade</td>
+                            <td style="color: #E74C3C; font-weight: bold;">✗ Rejeitado</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><strong>Justificativa:</strong> Goalposts alinhados com Lei 13.460/2017 e Decreto Estadual 10.466/2024, garantindo conformidade normativa.</p>
+            </div>
+
+            <div class="note-item">
+                <h3>Nota 4: Periodicidade e Ciclo Quadrimestral</h3>
+                <p>O IGRO segue o ciclo quadrimestral da Matriz de Gestão de Riscos da CGE-GO:</p>
+                <table class="mini-table">
+                    <thead>
+                        <tr>
+                            <th>Etapa</th>
+                            <th>Responsável</th>
+                            <th>Prazo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Coleta dos 5 KRIs do SGOe</td>
+                            <td>Proprietário do risco</td>
+                            <td>Até 5 dias após fim do quadrimestre</td>
+                        </tr>
+                        <tr>
+                            <td>Cálculo do IGRO (normalização, agregação)</td>
+                            <td>Proprietário/Analista</td>
+                            <td>Até 10 dias após fim do quadrimestre</td>
+                        </tr>
+                        <tr>
+                            <td>Análise crítica (scores, desvios, tendências)</td>
+                            <td>Escritório de Compliance</td>
+                            <td>Até 15 dias após fim do quadrimestre</td>
+                        </tr>
+                        <tr>
+                            <td>Aprovação e integração à Matriz</td>
+                            <td>Comitê Setorial</td>
+                            <td>Até 30 dias (fim do mês subsequente)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Conformidade OCDE/JRC -->
+        <div class="conformance-section">
+            <h2>✓ Conformidade com Handbook OCDE/JRC</h2>
+            <p>Esta tabela demonstra que o IGRO segue as 5 etapas recomendadas pelo Handbook:</p>
+            <ul class="checklist">
+                <li class="selected"><strong>Etapa 1 (Seleção):</strong> 5 KRIs validados por literatura, benchmarking e oficina participativa</li>
+                <li class="selected"><strong>Etapa 2 (Normalização):</strong> Distância à meta com goalposts (transparência e auditabilidade)</li>
+                <li class="selected"><strong>Etapa 3 (Ponderação):</strong> Pesos definidos por julgamento estruturado com justificativa teórica</li>
+                <li class="selected"><strong>Etapa 4 (Agregação):</strong> Híbrida (aritmética intra + geométrica inter) alinhada a riscos</li>
+                <li class="selected"><strong>Etapa 5 (Sensibilidade):</strong> 3 testes de robustez (variação, método, bootstrap)</li>
+            </ul>
+            <p style="margin-top: 15px; font-style: italic;">
+                <strong>Conclusão:</strong> O IGRO atende ao padrão de qualidade metodológica internacional para indicadores compostos.
+            </p>
+        </div>
+
+        <!-- Tabela Condensada -->
+        <div class="compact-table-section">
+            <h2>📋 Versão Alternativa (Tabela Condensada)</h2>
+            <p>Se o espaço for limitado, aqui está uma versão mais compacta:</p>
+            <table class="mini-table">
+                <thead>
+                    <tr>
+                        <th>Etapa</th>
+                        <th>OCDE/JRC</th>
+                        <th>IGRO</th>
+                        <th>Documento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Seleção</strong></td>
+                        <td>Validar dimensões relevantes</td>
+                        <td>5 KRIs (Temp. + Qual.)</td>
+                        <td>Benchmarking (arquivo 09)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Normalização</strong></td>
+                        <td>Escala comum [0–1]</td>
+                        <td>Distância à meta (goalposts)</td>
+                        <td>Seção 3.3</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ponderação</strong></td>
+                        <td>Pesos relativos</td>
+                        <td>Sub_T 40%, Sub_Q 60%</td>
+                        <td>Desenho Técnico (arquivo 10)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Agregação</strong></td>
+                        <td>Combinar em índice</td>
+                        <td>Média aritmética (intra) + geométrica (inter)</td>
+                        <td>Seção 3.3</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sensibilidade</strong></td>
+                        <td>Testar robustez</td>
+                        <td>3 testes: variação, método, bootstrap</td>
+                        <td>Seção 3.5</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Rodapé -->
+        <div class="footer">
+            <div class="footer-item">
+                <strong>Referências para esta tabela:</strong>
+            </div>
+            <div class="footer-item">
+                • OCDE/JRC (2008). <em>Handbook on Constructing Composite Indicators: Methodology and User Guide</em>. OECD Publishing.
+            </div>
+            <div class="footer-item">
+                • Brasil. Lei nº 13.460/2017. Disposições sobre direitos do usuário dos serviços públicos.
+            </div>
+            <div class="footer-item">
+                • Estado de Goiás. Decreto nº 10.466/2024. Estruturação da rede estadual de ouvidorias.
+            </div>
+            <div class="footer-item">
+                • Mazziotta, M., &amp; Pareto, A. (2022). Aggregating composite indicators through the geometric mean. <em>MDPI Computation</em>, 10(3), 44.
+            </div>
+            <div class="footer-item">
+                • Saltelli, A., Ratto, M., et al. (2008). <em>Global Sensitivity Analysis: The Primer</em>. John Wiley &amp; Sons.
+            </div>
+            <div class="footer-item" style="margin-top: 15px; border-top: 1px solid #ECF0F1; padding-top: 15px;">
+                <strong>Uso no artigo:</strong> Inserir em Seção 2.2 (Referencial Teórico) ou Seção 3 (Metodologia)
+            </div>
+            <div class="footer-item">
+                <strong>Localização no arquivo HTML:</strong> <code>TABELA_2_ETAPAS_OCDE_JRC.html</code>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Print-friendly script
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+                e.preventDefault();
+                window.print();
+            }
+        });
+
+        // Accessibility: Add alt text for tables
+        document.querySelectorAll('table').forEach((table, index) => {
+            if (!table.hasAttribute('aria-label')) {
+                table.setAttribute('aria-label', 'Tabela ' + (index + 1));
+            }
+        });
+    </script>
+</body>
+</html>

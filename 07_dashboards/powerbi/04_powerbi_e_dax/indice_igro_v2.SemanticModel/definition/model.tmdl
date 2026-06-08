@@ -40,7 +40,7 @@ queryGroup 'Transformar Arquivo de f_insatisfatorias\Consultas Auxiliares'
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBI_QueryOrder = ["Arquivo de Amostra","Parâmetro1","Transformar o Arquivo de Exemplo","Transformar Arquivo","f_relatorio","Arquivo de Amostra (2)","Parâmetro2","Transformar o Arquivo de Exemplo (2)","Transformar Arquivo (2)","f_pesquisa","Arquivo de Amostra (3)","Parâmetro3","Transformar o Arquivo de Exemplo (3)","Transformar Arquivo (3)","f_insatisfatorias","Arquivo de Amostra (4)","Parâmetro4","Transformar o Arquivo de Exemplo (4)","Transformar Arquivo (4)","dOrgao_igro"]
+annotation PBI_QueryOrder = ["Arquivo de Amostra","Parâmetro1","Transformar o Arquivo de Exemplo","Transformar Arquivo","f_relatorio","Arquivo de Amostra (2)","Parâmetro2","Transformar o Arquivo de Exemplo (2)","Transformar Arquivo (2)","f_pesquisa","Arquivo de Amostra (3)","Parâmetro3","Transformar o Arquivo de Exemplo (3)","Transformar Arquivo (3)","f_insatisfatorias","Arquivo de Amostra (4)","Parâmetro4","Transformar o Arquivo de Exemplo (4)","Transformar Arquivo (4)","dOrgao_igro","fnCaminhoEntrada"]
 
 annotation PBI_ProTooling = ["MCP-PBIModeling","DevMode"]
 
@@ -49,15 +49,12 @@ ref table DateTableTemplate_f86ca7c4-d759-4563-ab6d-b4d871146920
 ref table f_pesquisa
 ref table LocalDateTable_57787129-2bcd-48d2-807b-2fbedee7bd7d
 ref table f_insatisfatorias
-ref table LocalDateTable_39814db9-3be3-4799-a6e9-766140062061
 ref table LocalDateTable_19139d03-23fa-4bfa-91e8-4fe9100c0b7c
 ref table LocalDateTable_89d62a24-1048-4894-9db0-6307d404f36e
-ref table LocalDateTable_c6d333d1-ec5f-4b92-8fde-71e466729d16
 ref table _medidas
 ref table dCalendario
 ref table dOrgao_igro
-ref table LocalDateTable_c5428810-d49e-4c18-b272-7882a599a119
-ref table LocalDateTable_3e180244-5cb5-4814-8de3-11412ceb1457
+ref table '_medidas JSON - Dashboard'
 
 ref cultureInfo pt-BR
 

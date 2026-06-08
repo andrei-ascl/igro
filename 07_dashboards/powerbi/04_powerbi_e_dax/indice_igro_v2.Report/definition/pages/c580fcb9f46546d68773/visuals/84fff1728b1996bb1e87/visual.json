@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "84fff1728b1996bb1e87",
+  "position": {
+    "x": 9.9748110831234253,
+    "y": 0,
+    "z": 0,
+    "height": 720,
+    "width": 1270.4282115869016,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "htmlContent443BE3AD55E043BF878BED274D3A6865",
+    "query": {
+      "queryState": {
+        "content": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_medidas"
+                    }
+                  },
+                  "Property": "HTML Infografico IGRO"
+                }
+              },
+              "queryRef": "_medidas.HTML Infografico IGRO",
+              "nativeQueryRef": "HTML Infografico IGRO"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

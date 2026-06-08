@@ -84,7 +84,7 @@ table dOrgao_igro
 				            {"IQUEGO",           "Adjunta",  "C",   "5"},
 				            {"JUCEG",            "Adjunta",  "B",   "4"},
 				            {"METROBUS",         "Adjunta",  "B",   "4"},
-				            {"OUVMULHER",        "Adjunta",  "B",   "3"},
+				            {"OUVMULHER",        "Adjunta",  "C",   "5"},
 				            {"OVG",              "Adjunta",  "B",   "3"},
 				            {"PC",               "Adjunta",  "",    "3"},
 				            {"PGE",              "Adjunta",  "B",   "4"},

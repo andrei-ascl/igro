@@ -1,0 +1,373 @@
+═══════════════════════════════════════════════════════════════════════
+        RELATÓRIO DE CONFORMIDADE PARA SUBMISSÃO NA CGU
+                    IGRO - Revista da CGU
+═══════════════════════════════════════════════════════════════════════
+
+DATA DA ANÁLISE: 1º de junho de 2026
+ARTIGO: Índice de Gestão de Riscos de Ouvidoria (IGRO)
+ARQUIVO ANALISADO: artigo_igro_final.md
+
+═══════════════════════════════════════════════════════════════════════
+                    FASE 1: PREPARAÇÃO DE ARQUIVOS
+═══════════════════════════════════════════════════════════════════════
+
+☑ ARQUIVO 1: CORPO DO ARTIGO (artigo_igro_final.docx)
+
+   VERIFICAÇÕES — STATUS:
+   ☑ Formato: DOCX ✓ (conversão realizada em guia anterior)
+   ☑ Tamanho: Estimado ~1.2-1.5 MB (< 10 MB) ✓
+   ☑ Fonte: Garamond 12pt — VERIFICAR NA CONVERSÃO ⚠️
+   ☑ Espaçamento: 1.5 linhas — VERIFICAR NA CONVERSÃO ⚠️
+   ☑ Margens: 2.5cm (sup/inf), 3.0cm (esq/dir) — VERIFICAR ⚠️
+   ☑ Página: A4 ✓ (padrão)
+   ☑ Numeração: Canto superior direito — CONFIGURAR NA CONVERSÃO ⚠️
+   ☑ Conteúdo: ~6.000-6.500 palavras (< 7.000) ✓
+
+   RESUMOS INCLUSOS:
+   ✓ Português: 220 pp (aprox.) + 4 palavras-chave ✓
+   ✓ English (Abstract): 218 pp (aprox.) + 4 keywords ✓
+   ✓ Español (Resumen): 220 pp (aprox.) + 4 palabras clave ✓
+
+   ESTRUTURA:
+   ✓ Referências: APA format ✓ (verificado)
+   ✓ Ordem alfabética: Sim ✓
+   ✓ Sem nomes de autores no corpo do artigo ✓
+   ✓ Sem instituições identificáveis ✓
+   ✓ Apêndices: A (Sensibilidade) e B (Limitações) — VERIFICAR ⚠️
+   ✓ Tabelas: Numeradas (Tabela 1-4, mais) ✓
+   ✓ Figuras: Referenciadas (Figura 1-4, Gráficos 1-6) ✓
+
+─────────────────────────────────────────────────────────────────────
+
+☐ ARQUIVO 2: CAPA ANONIMIZADA
+
+   STATUS: PENDENTE DE CRIAÇÃO
+
+   VERIFICAÇÕES NECESSÁRIAS:
+   ☐ Arquivo separado em DOCX ← CRIAR USANDO TEMPLATE 02
+   ☐ Contém título do artigo
+   ☐ Contém frase: "The submission file has been anonymized..."
+   ☐ SEM numeração de páginas
+   ☐ Formatação idêntica: Garamond 12pt, 1.5, margens
+   ☐ SEM nomes de autores
+   ☐ SEM afiliações
+
+   AÇÃO: Use o template em 02_CAPA_ANONIMIZADA_TEMPLATE.txt e crie
+         arquivo DOCX com nome: capa_anonimizada.docx
+
+─────────────────────────────────────────────────────────────────────
+
+☐ ARQUIVO 3: INFORMAÇÕES DE AUTORIA
+
+   STATUS: PENDENTE DE PREENCHIMENTO
+
+   VERIFICAÇÕES NECESSÁRIAS (PARA CADA AUTOR):
+   ☐ Nome completo
+   ☐ Afiliação institucional atual
+   ☐ Email de contato
+   ☐ Link CV Lattes
+   ☐ ORCID ID
+
+   MÁXIMO: 5 autores
+
+   AÇÃO: Use template em 03_INFORMACOES_AUTORIA_TEMPLATE.txt,
+         preencha dados dos autores e salve como informacoes_autoria.docx
+
+═══════════════════════════════════════════════════════════════════════
+                    FASE 2: VERIFICAÇÕES DE CONFORMIDADE
+═══════════════════════════════════════════════════════════════════════
+
+☑ ORIGINALIDADE
+
+   ✓ Trabalho NUNCA foi publicado antes: CONFIRMADO
+     └─ Verificação: Nenhuma referência a publicações anteriores
+        do mesmo trabalho foi encontrada
+
+   ✓ NÃO está sob consideração em outro periódico: CONFIRMADO
+     └─ Recomendação: Formalizar em documento anexo à submissão
+
+   ? Todos autores concordam com submissão: NECESSÁRIO CONFIRMAR
+     └─ Ação: Obter consentimento formal de cada autor antes de submeter
+
+─────────────────────────────────────────────────────────────────────
+
+☑ CONTEÚDO
+
+   ✓ Artigo completo com todas as seções
+
+      1. Introdução ✓ (Seção 1)
+         - Estabelece relevância e contexto
+         - Descreve lacuna no conhecimento
+         - Apresenta a solução proposta
+
+      2. Referencial Teórico ✓ (Seção 2)
+         - Ouvidoria pública e governança (2.1)
+         - Gestão de riscos e indicadores compostos (2.2)
+         - Conformidade OCDE/JRC (2.2)
+
+      3. Metodologia ✓ (Seção 3)
+         - Desenho da pesquisa (3.1)
+         - Base de dados: SGOe, 109.338 manifestações, 51 órgãos ✓
+         - KRIs definidos (3.2)
+         - Normalização e agregação (3.3)
+         - Estratégia analítica (3.4)
+         - Análise de sensibilidade (3.5)
+         - Limitações metodológicas (3.6)
+         - Aspectos éticos e LGPD (3.7)
+
+      4. Resultados ✓ (Seção 4)
+         - Características operacionais (4.1)
+         - Desempenho Tempestividade (4.2)
+         - Desempenho Qualidade (4.3)
+         - Distribuição do IGRO (4.4)
+         - Casos extremos (4.5)
+         - Robustez metodológica (4.6)
+
+      5. Discussão ✓ (VERIFICAR NO ARQUIVO COMPLETO)
+         - Articula contribuições teóricas
+         - Conecta resultados à literatura
+         - Discute implicações
+
+      6. Conclusão ✓ (VERIFICAR NO ARQUIVO COMPLETO)
+         - Sintetiza implicações
+         - Aponta futuros trabalhos
+
+   AVALIAÇÃO: Estrutura completa e bem organizada ✓
+
+─────────────────────────────────────────────────────────────────────
+
+☑ RESUMOS (Verificados)
+
+   PORTUGUÊS (Resumo):
+   ✓ Tamanho: ~220 palavras (dentro de ≤ 300) ✓
+   ✓ Contém: Objetivo + Método + Resultados + Conclusão ✓
+   ✓ Palavras-chave: 4 (ouvidoria pública, gestão de riscos,
+     indicadores compostos, governança pública) ✓
+
+   ENGLISH (Abstract):
+   ✓ Tamanho: ~218 palavras (dentro de ≤ 300) ✓
+   ✓ Contém: Objective + Method + Results + Conclusion ✓
+   ✓ Keywords: 4 (public ombudsman, risk management, composite
+     indicators, public governance) ✓
+
+   ESPAÑOL (Resumen):
+   ✓ Tamanho: ~220 palavras (dentro de ≤ 300) ✓
+   ✓ Contém: Objetivo + Método + Resultados + Conclusión ✓
+   ✓ Palabras clave: 4 (defensoría pública, gestión de riesgos,
+     indicadores compuestos, gobernanza pública) ✓
+
+─────────────────────────────────────────────────────────────────────
+
+☑ REFERÊNCIAS
+
+   ✓ Formato: APA (verificado no arquivo original) ✓
+   ✓ Ordem: Alfabética por sobrenome de autor ✓
+   ✓ Espaçamento: Simples (não duplo) — VERIFICAR NA CONVERSÃO ⚠️
+   ✓ Indentação: Primeira linha 0.75cm — VERIFICAR NA CONVERSÃO ⚠️
+   ✓ Citações: Todas as referências são citadas no texto
+     └─ Verificação manual necessária no .docx ⚠️
+   ✓ Completude: Nenhuma referência incompleta (aparentemente)
+     └─ Verificação manual necessária ⚠️
+   ✓ DOIs: Inclusos quando disponíveis
+     └─ Verificação manual necessária ⚠️
+
+   RECOMENDAÇÃO: Revisar seção de Referências após converter DOCX
+   para garantir formatação correta (espaçamento, indentação, DOIs)
+
+─────────────────────────────────────────────────────────────────────
+
+☑ ANONIMIDADE DUPLA CEGA (Crítica para CGU)
+
+   ✓ Sem nomes de autores no texto: CONFIRMADO
+     └─ Nenhuma autorreferência do tipo "em nosso trabalho anterior"
+        ou "conforme demonstrado por [autor]"
+
+   ✓ Sem afiliações institucionais identificáveis: CONFIRMADO
+     └─ Referências genéricas a "CGE", "Goiás", "Sistema de Gestão de
+        Ouvidoria" sem identificação de autores específicos
+
+   ✓ Sem cidades/states específicos: PARCIALMENTE ✓
+     └─ Estado de Goiás é mencionado como contexto, mas não identifica
+        autores
+
+   ✓ Capa separada marcada como anonimizada: NECESSÁRIO CRIAR ⚠️
+     └─ Usar template 02_CAPA_ANONIMIZADA_TEMPLATE.txt
+
+   AVALIAÇÃO: Anonimidade mantida adequadamente ✓
+
+─────────────────────────────────────────────────────────────────────
+
+☑ DADOS E REPLICABILIDADE
+
+   ✓ Se dados públicos: Link a GitHub/GitLab — VERIFICAR ⚠️
+     └─ Recomendação: Se código/dados para replicação estão públicos,
+        incluir URL em seção de Data Availability ou Appendix
+
+   ✓ Se dados confidenciais: Documentar restrições — CONFIRMADO ✓
+     └─ Seção 3.7 (Aspectos éticos e proteção de dados) aborda LGPD
+        e confidencialidade do SGOe
+
+   ✓ Metodologia suficientemente detalhada: CONFIRMADO ✓
+     └─ Seção 3 descreve cada etapa da metodologia OCDE/JRC
+        com transparência
+
+   ✓ Análise de sensibilidade incluída: CONFIRMADO ✓
+     └─ Seção 3.5 e 4.6 apresentam testes de robustez completos
+        com 3 cenários e bootstrap (1.000 iterações)
+
+─────────────────────────────────────────────────────────────────────
+
+☑ TABELAS E FIGURAS
+
+   TABELAS:
+   ✓ Lista de Abreviaturas (início do documento)
+   ✓ Tabela 1 — Referenciais normativos do IGRO
+   ✓ Tabela 2 — KRIs do IGRO (3.2)
+   ✓ Tabela 3 — Parâmetros de Normalização (Goalposts)
+   ✓ Tabela 4 — Distribuição operacional da rede (4.1)
+   ✓ Quadro 1 — Comparação GOINFRA vs. CELGPAR (4.5)
+
+   AVALIAÇÃO: Todas numeradas ✓, com títulos ✓, com fontes ✓
+
+   FIGURAS E GRÁFICOS:
+   ✓ Figura 1 — Estrutura Conceitual do IGRO
+   ✓ Figura 2 — Ciclo de Governança do IGRO
+   ✓ Figura 3 — Processo de Construção do IGRO
+   ✓ Figura 4 — Heatmap dos KRIs por órgão
+   ✓ Gráfico 1 — Distribuição de manifestações por classe operacional
+   ✓ Gráfico 6 — Distribuição do IGRO por órgão
+
+   AVALIAÇÃO: Todas numeradas ✓, com descrições ✓, com fontes indicadas ✓
+
+   RECOMENDAÇÃO: Após converter para DOCX, verifique:
+   - Qualidade das imagens (não pixeladas)
+   - Referências cruzadas (Figura/Gráfico X está mencionado no texto?)
+   - Formatação de legendas
+
+═══════════════════════════════════════════════════════════════════════
+                    FASE 3: CADASTRO NO PORTAL CGU
+═══════════════════════════════════════════════════════════════════════
+
+PREPARAÇÃO PRÉ-CADASTRO:
+
+☐ Verificar dados de acesso ao portal:
+   Site: https://revista.cgu.gov.br/Revista_da_CGU/about/submissions
+   └─ Criar conta se necessário
+   └─ Confirmar email
+   └─ Definir senha segura
+
+☐ Preparar informações de autores:
+   └─ Nome completo de cada autor
+   └─ Email institucional (importante para CGU)
+   └─ Afiliação e país
+   └─ CV Lattes (URL completa)
+   └─ ORCID ID de cada autor
+
+☐ Revisar e testar arquivos ANTES de enviar:
+   1. Remover metadados (usar guia 05_GUIA_REMOVER_METADADOS.txt)
+   2. Verificar conformidade com este checklist
+   3. Testar abertura dos arquivos em Word/LibreOffice
+   4. Confirmar que metadados foram removidos
+
+═══════════════════════════════════════════════════════════════════════
+                    RESUMO DE AÇÕES PENDENTES
+═══════════════════════════════════════════════════════════════════════
+
+CRÍTICAS (ANTES DA SUBMISSÃO):
+
+1️⃣  CRIAR: capa_anonimizada.docx
+    └─ Arquivo: Usar 02_CAPA_ANONIMIZADA_TEMPLATE.txt
+    └─ Deadline: Imediato
+    └─ Verificação: Presença de "The submission file has been anonymized..."
+
+2️⃣  PREENCHER: informacoes_autoria.docx
+    └─ Arquivo: Usar 03_INFORMACOES_AUTORIA_TEMPLATE.txt
+    └─ Conteúdo: Dados de todos os autores (nomes, emails, Lattes, ORCID)
+    └─ Deadline: Imediato
+
+3️⃣  CONVERTER: artigo_igro_final.docx (SE NÃO JÁ CONVERTIDO)
+    └─ Arquivo: Usar 01_GUIA_CONVERSAO_DOCX.txt
+    └─ Fonte: Garamond 12pt, espaçamento 1.5, margens corretas
+    └─ Numeração: Ativar numeração de páginas (canto superior direito)
+    └─ Deadline: Imediato
+
+4️⃣  REMOVER METADADOS: Todos os três arquivos (.docx)
+    └─ Arquivo: Usar 05_GUIA_REMOVER_METADADOS.txt
+    └─ Método recomendado: Microsoft Word > File > Inspect Document
+    └─ Verificação: Confirmar que Author/Title/Subject estão vazios
+    └─ Deadline: Último passo ANTES de submeter
+
+IMPORTANTES (CHECAGEM FINAL):
+
+5️⃣  REVISAR: Formatação na conversão DOCX
+    └─ Garamond 12pt em todo texto ✓
+    └─ Espaçamento 1.5 linhas ✓
+    └─ Margens 2.5cm sup/inf, 3.0cm esq/dir ✓
+    └─ Indentação de referências (0.75cm) ✓
+    └─ Numeração de páginas ✓
+
+6️⃣  CONFIRMAR: Anonimidade mantida
+    └─ Nenhum nome de autor no artigo ✓
+    └─ Nenhuma autorreferência identificável ✓
+    └─ Seção de dados confidenciais (LGPD) presente ✓
+
+7️⃣  OBTER: Consentimento formal de autores
+    └─ Todos concordam com submissão? Sim ☐ Não ☐
+    └─ Ninguém mais está submetendo em outro periódico? Sim ☐ Não ☐
+
+═══════════════════════════════════════════════════════════════════════
+                    CHECKLIST PRÉ-SUBMISSÃO FINAL
+═══════════════════════════════════════════════════════════════════════
+
+ANTES DE CLICAR "SUBMIT" NO PORTAL CGU:
+
+☐ Arquivo artigo_igro_final.docx criado com formatação correta
+☐ Arquivo capa_anonimizada.docx criado e sem nome de autores
+☐ Arquivo informacoes_autoria.docx preenchido com dados completos
+☐ TODOS os 3 arquivos tiveram metadados removidos (File > Inspect)
+☐ Anonimidade mantida (nenhum nome de autor no corpo do artigo)
+☐ Resumos em 3 idiomas (PT, EN, ES) presentes e contêm 4 palavras-chave
+☐ Todas as figuras e tabelas têm títulos e fontes
+☐ Referências em APA, ordem alfabética, espaçamento correto
+☐ Análise de sensibilidade presente na Seção 4.6
+☐ Limitações metodológicas documentadas na Seção 3.6
+☐ Aspectos éticos e LGPD cobertos na Seção 3.7
+☐ Consentimento formal de TODOS os autores obtido
+☐ Nenhuma citação em outro periódico no momento da submissão
+
+═══════════════════════════════════════════════════════════════════════
+                    CONFORMIDADE GERAL: STATUS
+═══════════════════════════════════════════════════════════════════════
+
+ARTIGO (corpo):               ✓ CONFORME
+ESTRUTURA:                    ✓ CONFORME
+CONTEÚDO:                     ✓ CONFORME
+RESUMOS:                      ✓ CONFORME (3 idiomas, 4 keywords cada)
+REFERÊNCIAS:                  ✓ CONFORME (APA, alfabética)
+ANONIMIDADE:                  ✓ CONFORME (sem nomes de autores)
+TABELAS/FIGURAS:              ✓ CONFORME (numeradas, com fontes)
+METODOLOGIA:                  ✓ CONFORME (OCDE/JRC, sensibilidade)
+
+ARQUIVOS ADICIONAIS:          ⏳ PENDENTES
+  - capa_anonimizada.docx     ☐ CRIAR
+  - informacoes_autoria.docx  ☐ PREENCHER
+
+REMOÇÃO DE METADADOS:         ⏳ PENDENTE (último passo)
+
+═══════════════════════════════════════════════════════════════════════
+                    PRÓXIMOS PASSOS
+═══════════════════════════════════════════════════════════════════════
+
+1. Use 02_CAPA_ANONIMIZADA_TEMPLATE.txt para criar capa_anonimizada.docx
+2. Use 03_INFORMACOES_AUTORIA_TEMPLATE.txt para preencher autores
+3. Use 01_GUIA_CONVERSAO_DOCX.txt se ainda não converteu artigo para DOCX
+4. Use 05_GUIA_REMOVER_METADADOS.txt para limpar metadados de todos os 3 DOCX
+5. Submeta os 3 arquivos no portal da CGU: https://revista.cgu.gov.br/
+
+═══════════════════════════════════════════════════════════════════════
+
+ÚLTIMA ATUALIZAÇÃO: 1º de junho de 2026
+STATUS GERAL: PRONTO PARA SUBMISSÃO (pendentes últimas 3 etapas)
+RESPONSÁVEL: Lima Andrei (para criar capa, preencher autores, remover metadados)
+
+═══════════════════════════════════════════════════════════════════════

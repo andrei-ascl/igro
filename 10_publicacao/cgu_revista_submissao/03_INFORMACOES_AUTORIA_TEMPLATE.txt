@@ -1,0 +1,150 @@
+═══════════════════════════════════════════════════════════════════════
+         INFORMAÇÕES DE AUTORIA - PARA SUBMISSÃO NA CGU
+
+Preencha este documento com as informações de TODOS os autores.
+Isto NÃO será incluído no artigo (que é anonimizado),
+mas é OBRIGATÓRIO para a submissão no portal da CGU.
+
+═══════════════════════════════════════════════════════════════════════
+
+AUTOR 1
+──────
+
+Nome completo: ___________________________________________________
+
+Afiliação institucional atual: ___________________________________
+
+Email para contato: ______________________________________________
+
+Telefone (opcional): _______________________________________________
+
+CV Lattes (link completo):
+   http://lattes.cnpq.br/________________________________________
+
+ORCID ID: ________________________________________________________
+   (Pode obter em: https://orcid.org/)
+
+
+AUTOR 2
+──────
+
+Nome completo: ___________________________________________________
+
+Afiliação institucional atual: ___________________________________
+
+Email para contato: ______________________________________________
+
+Telefone (opcional): _______________________________________________
+
+CV Lattes (link completo):
+   http://lattes.cnpq.br/________________________________________
+
+ORCID ID: ________________________________________________________
+
+
+AUTOR 3
+──────
+
+Nome completo: ___________________________________________________
+
+Afiliação institucional atual: ___________________________________
+
+Email para contato: ______________________________________________
+
+Telefone (opcional): _______________________________________________
+
+CV Lattes (link completo):
+   http://lattes.cnpq.br/________________________________________
+
+ORCID ID: ________________________________________________________
+
+
+AUTOR 4
+──────
+
+Nome completo: ___________________________________________________
+
+Afiliação institucional atual: ___________________________________
+
+Email para contato: ______________________________________________
+
+Telefone (opcional): _______________________________________________
+
+CV Lattes (link completo):
+   http://lattes.cnpq.br/________________________________________
+
+ORCID ID: ________________________________________________________
+
+
+AUTOR 5 (se aplicável)
+──────
+
+Nome completo: ___________________________________________________
+
+Afiliação institucional atual: ___________________________________
+
+Email para contato: ______________________________________________
+
+Telefone (opcional): _______________________________________________
+
+CV Lattes (link completo):
+   http://lattes.cnpq.br/________________________________________
+
+ORCID ID: ________________________________________________________
+
+
+═══════════════════════════════════════════════════════════════════════
+                    DECLARAÇÕES OBRIGATÓRIAS
+═══════════════════════════════════════════════════════════════════════
+
+☐ Este é trabalho original, nunca publicado anteriormente
+   em periódicos, livros ou anais de conferência.
+
+☐ O trabalho NÃO está sob consideração para publicação
+   em outro periódico no momento da submissão.
+
+☐ TODOS os autores concordam com a submissão e autorizam
+   a publicação conforme os termos da revista CGU.
+
+☐ TODOS os autores forneceram informações completas
+   de identificação acima.
+
+☐ O trabalho foi revisto quanto a plágio e é original.
+
+☐ Se o trabalho envolve dados confidenciais (como dados do SGOe),
+   reconhecemos as restrições de sigilo e apropriamos como:
+
+   Restrições de dados: ___________________________________________
+
+   (Exemplo: "Dados do SGOe são confidenciais. Metodologia
+    é replicável com dados públicos de ouvidorias estaduais.")
+
+
+═══════════════════════════════════════════════════════════════════════
+                    INFORMAÇÕES DE REPLICABILIDADE
+═══════════════════════════════════════════════════════════════════════
+
+Disponibilidade de código/dados:
+
+☐ Código disponível em GitHub: _________________________________
+
+☐ Código disponível em GitLab: _________________________________
+
+☐ Dados disponíveis em: __________________________________________
+
+☐ Dados parcialmente disponíveis (confidenciais):
+   Descrição: ____________________________________________________
+   _______________________________________________________________
+
+☐ Dados completamente confidenciais:
+   Motivo: _______________________________________________________
+   _______________________________________________________________
+
+
+═══════════════════════════════════════════════════════════════════════
+
+Número total de autores: ____
+
+Data de conclusão do preenchimento: ______/______/______
+
+═══════════════════════════════════════════════════════════════════════

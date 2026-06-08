@@ -1,8 +1,8 @@
-﻿/// [Tabela tÃ©cnica] ContÃªiner organizacional das medidas DAX do modelo. NÃ£o representa entidade de negÃ³cio e nÃ£o deve ser usada como dimensÃ£o ou fato em visuais.
+/// [Tabela técnica] Contêiner organizacional das medidas DAX do modelo. Não representa entidade de negócio e não deve ser usada como dimensão ou fato em visuais.
 table _medidas
 	lineageTag: 0e831e77-6aee-4c26-8ba6-8b41deee12c6
 
-	/// ManifestaÃ§Ãµes com status Aberta no SGOe.
+	/// Manifestações com status Aberta no SGOe.
 	measure base_qtd_manifestacoes_em_aberto =
 			VAR resultado =
 			    CALCULATE (
@@ -12,30 +12,30 @@ table _medidas
 			RETURN
 			    COALESCE ( resultado, 0 )
 		formatString: #,0
-		displayFolder: 01 Â· Volume
+		displayFolder: 01 · Volume
 		lineageTag: 5f2eeeae-bff5-4c4c-a984-b2f25aad547f
 
-	/// Total de manifestaÃ§Ãµes registradas no perÃ­odo, independente do status.
+	/// Total de manifestações registradas no período, independente do status.
 	measure base_qtd_manifestacoes =
 			VAR resultado =
 			    COUNTROWS ( f_relatorio )
 			RETURN
 			    COALESCE ( resultado, 0 )
 		formatString: #,0
-		displayFolder: 01 Â· Volume
+		displayFolder: 01 · Volume
 		lineageTag: fe78aa7a-330c-4678-b47a-2b2243afa9d9
 
-	/// ManifestaÃ§Ãµes com status Fechada ou Respondida no SGOe.
+	/// Manifestações com status Fechada ou Respondida no SGOe.
 	measure base_qtd_manifestacoes_finalizadas =
 			VAR total_manifestacoes = [base_qtd_manifestacoes]
 			VAR em_aberto = [base_qtd_manifestacoes_em_aberto]
 			RETURN
 			    total_manifestacoes - em_aberto
 		formatString: #,0
-		displayFolder: 01 Â· Volume
+		displayFolder: 01 · Volume
 		lineageTag: 425e950f-2831-4bf4-9221-201f3129671f
 
-	/// ManifestaÃ§Ãµes com mais de 30 dias de vida (dias_vida > 30). Numerador do KRI 1.
+	/// Manifestações com mais de 30 dias de vida (dias_vida > 30). Numerador do KRI 1.
 	measure base_qtd_mais_30_dias =
 			VAR resultado =
 			    CALCULATE (
@@ -45,10 +45,10 @@ table _medidas
 			RETURN
 			    COALESCE ( resultado, 0 )
 		formatString: #,0
-		displayFolder: 04 Â· Tempo
+		displayFolder: 04 · Tempo
 		lineageTag: 78e83e66-7486-4a48-a34c-82ffbe02c5cc
 
-	/// ManifestaÃ§Ãµes do tipo LAI (Lei de Acesso Ã  InformaÃ§Ã£o), excluÃ­das de alguns indicadores.
+	/// Manifestações do tipo LAI (Lei de Acesso à Informação), excluídas de alguns indicadores.
 	measure base_qtd_lai =
 			VAR resultado =
 			    CALCULATE (
@@ -58,20 +58,20 @@ table _medidas
 			RETURN
 			    COALESCE ( resultado, 0 )
 		formatString: #,0
-		displayFolder: 01 Â· Volume
+		displayFolder: 01 · Volume
 		lineageTag: b4557b7b-a852-4ab9-957b-302ee7ea22cb
 
-	/// ManifestaÃ§Ãµes finalizadas descontando as LAI. Denominador base para KRI 3 e KRI 4.
+	/// Manifestações finalizadas descontando as LAI. Denominador base para KRI 3 e KRI 4.
 	measure base_manifestacoes_elegiveis =
 			VAR finalizadas = [base_qtd_manifestacoes_finalizadas]
 			VAR lai = [base_qtd_lai]
 			RETURN
 			    finalizadas - lai
 		formatString: #,0
-		displayFolder: 01 Â· Volume
+		displayFolder: 01 · Volume
 		lineageTag: bf32aec7-2830-4ea1-ac88-0aa505d6aa8f
 
-	/// Total de respostas recebidas na pesquisa de satisfaÃ§Ã£o (linhas em f_pesquisa). TREATAS propaga filtro de dOrgao_igro[sigla].
+	/// Total de respostas recebidas na pesquisa de satisfação (linhas em f_pesquisa). TREATAS propaga filtro de dOrgao_igro[sigla].
 	measure base_qtd_pesquisa =
 			VAR _siglas = VALUES(dOrgao_igro[sigla])
 			VAR resultado =
@@ -82,10 +82,10 @@ table _medidas
 			RETURN
 			    COALESCE(resultado, 0)
 		formatString: #,0
-		displayFolder: 02 Â· Pesquisa de SatisfaÃ§Ã£o
+		displayFolder: 02 · Pesquisa de Satisfação
 		lineageTag: 8141db78-3d35-4b75-94bc-5e214047cd07
 
-	/// Pesquisas em que o cidadÃ£o respondeu que a demanda foi resolvida totalmente (finalizacao = 'Sim'). TREATAS propaga filtro de dOrgao_igro[sigla].
+	/// Pesquisas em que o cidadão respondeu que a demanda foi resolvida totalmente (finalizacao = 'Sim'). TREATAS propaga filtro de dOrgao_igro[sigla].
 	measure base_qtd_sim =
 			VAR _siglas = VALUES(dOrgao_igro[sigla])
 			VAR resultado =
@@ -97,10 +97,10 @@ table _medidas
 			RETURN
 			    COALESCE(resultado, 0)
 		formatString: #,0
-		displayFolder: 02 Â· Pesquisa de SatisfaÃ§Ã£o
+		displayFolder: 02 · Pesquisa de Satisfação
 		lineageTag: baad3e69-1f61-4a1f-b6e9-809498bf23e0
 
-	/// Pesquisas em que o cidadÃ£o respondeu que a demanda foi resolvida parcialmente (finalizacao = 'Parcialmente'). TREATAS propaga filtro de dOrgao_igro[sigla].
+	/// Pesquisas em que o cidadão respondeu que a demanda foi resolvida parcialmente (finalizacao = 'Parcialmente'). TREATAS propaga filtro de dOrgao_igro[sigla].
 	measure base_qtd_parcialmente =
 			VAR _siglas = VALUES(dOrgao_igro[sigla])
 			VAR resultado =
@@ -112,10 +112,10 @@ table _medidas
 			RETURN
 			    COALESCE(resultado, 0)
 		formatString: #,0
-		displayFolder: 02 Â· Pesquisa de SatisfaÃ§Ã£o
+		displayFolder: 02 · Pesquisa de Satisfação
 		lineageTag: 1adcbde3-6785-4dbe-b38a-93170f3d6fc7
 
-	/// Total de linhas em f_insatisfatorias. Respostas reprovadas na revisÃ£o de qualidade. TREATAS propaga filtro de dOrgao_igro[sigla].
+	/// Total de linhas em f_insatisfatorias. Respostas reprovadas na revisão de qualidade. TREATAS propaga filtro de dOrgao_igro[sigla].
 	measure base_qtd_respostas_insatisfatorias =
 			VAR _siglas = VALUES(dOrgao_igro[sigla])
 			VAR resultado =
@@ -126,30 +126,30 @@ table _medidas
 			RETURN
 			    COALESCE(resultado, 0)
 		formatString: #,0
-		displayFolder: 03 Â· Qualidade
+		displayFolder: 03 · Qualidade
 		lineageTag: 008b465b-ee14-4fb4-a3f2-b710878fd9d9
 
-	/// CombinaÃ§Ã£o ponderada de respostas: base_qtd_sim + 0,5 Ã— base_qtd_parcialmente. Numerador da resolutividade.
+	/// Combinação ponderada de respostas: base_qtd_sim + 0,5 × base_qtd_parcialmente. Numerador da resolutividade.
 	measure base_qtd_resolvidas =
 			VAR qtd_total_sim = [base_qtd_sim]
 			VAR qtd_parcial = [base_qtd_parcialmente]
 			RETURN
 			    qtd_total_sim + 0.5 * qtd_parcial
 		formatString: #,0.0
-		displayFolder: 02 Â· Pesquisa de SatisfaÃ§Ã£o
+		displayFolder: 02 · Pesquisa de Satisfação
 		lineageTag: fc28baee-89e7-47e4-bf3a-050a30c10c51
 
-	/// MÃ©dia de dias_vida das manifestaÃ§Ãµes. Tempo MÃ©dio de Resposta (TMR). Numerador do KRI 2.
+	/// Média de dias_vida das manifestações. Tempo Médio de Resposta (TMR). Numerador do KRI 2.
 	measure ind_media_tempo_resposta =
 			VAR resultado =
 			    AVERAGE ( f_relatorio[dias_vida] )
 			RETURN
 			    COALESCE ( resultado, 0 )
 		formatString: #,0.0
-		displayFolder: 04 Â· Tempo
+		displayFolder: 04 · Tempo
 		lineageTag: eb7aedf0-1024-4ca9-b851-965e2b917cbb
 
-	/// MÃ©dia das notas de recomendaÃ§Ã£o (1â€“10) nas pesquisas respondidas. Numerador do KRI 5. TREATAS propaga filtro de dOrgao_igro[sigla].
+	/// Média das notas de recomendação (1–10) nas pesquisas respondidas. Numerador do KRI 5. TREATAS propaga filtro de dOrgao_igro[sigla].
 	measure ind_media_nota_recomendacao =
 			VAR _siglas = VALUES(dOrgao_igro[sigla])
 			VAR resultado =
@@ -160,97 +160,97 @@ table _medidas
 			RETURN
 			    COALESCE(resultado, 0)
 		formatString: #,0.0
-		displayFolder: 02 Â· Pesquisa de SatisfaÃ§Ã£o
+		displayFolder: 02 · Pesquisa de Satisfação
 		lineageTag: 10300ee4-14dd-45de-a0a3-9221ec7a5ab9
 
-	/// Percentual de manifestaÃ§Ãµes com mais de 30 dias de vida sobre o total. Indicador do KRI 1.
+	/// Percentual de manifestações com mais de 30 dias de vida sobre o total. Indicador do KRI 1.
 	measure ind_pct_mais_30_dias =
 			VAR numerador = [base_qtd_mais_30_dias]
 			VAR denominador = [base_qtd_manifestacoes]
 			RETURN
 			    DIVIDE ( numerador, denominador, 0 )
 		formatString: 0.00%
-		displayFolder: 04 Â· Tempo
+		displayFolder: 04 · Tempo
 		lineageTag: 810e0edd-4e8f-4a3d-8751-58c8152aaa73
 
-	/// Percentual de resoluÃ§Ã£o: (sim + 0,5 Ã— parcialmente) / total de pesquisas. Indicador do KRI 3.
+	/// Percentual de resolução: (sim + 0,5 × parcialmente) / total de pesquisas. Indicador do KRI 3.
 	measure ind_pct_resolutividade =
 			VAR numerador = [base_qtd_resolvidas]
 			VAR denominador = [base_qtd_pesquisa]
 			RETURN
 			    DIVIDE ( numerador, denominador, 0 )
 		formatString: 0.00%
-		displayFolder: 02 Â· Pesquisa de SatisfaÃ§Ã£o
+		displayFolder: 02 · Pesquisa de Satisfação
 		lineageTag: 472e89f2-6acd-41d1-b5bd-535315facd0c
 
-	/// Percentual de respostas insatisfatÃ³rias sobre as manifestaÃ§Ãµes elegÃ­veis. Indicador do KRI 4.
+	/// Percentual de respostas insatisfatórias sobre as manifestações elegíveis. Indicador do KRI 4.
 	measure ind_pct_respostas_insatisfatorias =
 			VAR numerador = [base_qtd_respostas_insatisfatorias]
 			VAR denominador = [base_manifestacoes_elegiveis]
 			RETURN
 			    DIVIDE ( numerador, denominador, 0 )
 		formatString: 0.00%
-		displayFolder: 03 Â· Qualidade
+		displayFolder: 03 · Qualidade
 		lineageTag: 469688c8-7e98-458e-9896-8446bc626975
 
-	/// Meta do KRI 1 (% RDP): mÃ¡ximo de 1,0% de manifestaÃ§Ãµes com mais de 30 dias. Valor 1 quando RDP <= 1,0%.
+	/// Meta do KRI 1 (% RDP): máximo de 1,0% de manifestações com mais de 30 dias. Valor 1 quando RDP <= 1,0%.
 	measure meta_igro_kri1 = 0.01
 		formatString: 0.00%
-		displayFolder: 05 Â· IGRO Â· Metas e Goalposts
+		displayFolder: 05 · IGRO · Metas e Goalposts
 		lineageTag: 7f490f54-d6b1-4361-ac88-4c9efcd15d40
 
 	/// Goalpost do KRI 1 (% RDP): 2,0% como limite de aceitabilidade. Valor 0 quando RDP >= 2,0%.
 	measure goal_igro_kri1 = 0.02
 		formatString: 0.00%
-		displayFolder: 05 Â· IGRO Â· Metas e Goalposts
+		displayFolder: 05 · IGRO · Metas e Goalposts
 		lineageTag: d77e1621-0491-459e-86d6-8f6f6fdec6a8
 
-	/// Meta do KRI 2 (TMR): 5 dias ou menos como excelÃªncia esperada. Valor 1 quando TMR <= 5 dias.
+	/// Meta do KRI 2 (TMR): 5 dias ou menos como excelência esperada. Valor 1 quando TMR <= 5 dias.
 	measure meta_igro_kri2 = 5.0
 		formatString: #,0.0
-		displayFolder: 05 Â· IGRO Â· Metas e Goalposts
+		displayFolder: 05 · IGRO · Metas e Goalposts
 		lineageTag: 04b4dce2-2dbd-4b78-be1c-544cbd64b038
 
 	/// Goalpost do KRI 2 (TMR): 10 dias como limite de aceitabilidade. Valor 0 quando TMR >= 10 dias.
 	measure goal_igro_kri2 = 10.0
 		formatString: #,0.0
-		displayFolder: 05 Â· IGRO Â· Metas e Goalposts
+		displayFolder: 05 · IGRO · Metas e Goalposts
 		lineageTag: 6a9854ff-4b9f-4735-ac1a-20322aa6fd5b
 
 	/// Meta do KRI 3 (TR - Resolutividade): 70% ou mais como resolutividade esperada. Valor 1 quando TR >= 70%.
 	measure meta_igro_kri3 = 0.70
 		formatString: 0.00%
-		displayFolder: 05 Â· IGRO Â· Metas e Goalposts
+		displayFolder: 05 · IGRO · Metas e Goalposts
 		lineageTag: aaa437a5-fbca-4eb2-be6f-dc8e3b4f032b
 
-	/// Goalpost do KRI 3 (TR - Resolutividade): 50% como piso aceitÃ¡vel. Valor 0 quando TR <= 50%.
+	/// Goalpost do KRI 3 (TR - Resolutividade): 50% como piso aceitável. Valor 0 quando TR <= 50%.
 	measure goal_igro_kri3 = 0.50
 		formatString: 0.00%
-		displayFolder: 05 Â· IGRO Â· Metas e Goalposts
+		displayFolder: 05 · IGRO · Metas e Goalposts
 		lineageTag: 505b63dc-e3c6-4eb0-b743-fb5990d61d33
 
-	/// Meta do KRI 4 (% RI): 2,5% ou inferior como baixÃ­ssima insatisfaÃ§Ã£o. Valor 1 quando RI <= 2,5%.
+	/// Meta do KRI 4 (% RI): 2,5% ou inferior como baixíssima insatisfação. Valor 1 quando RI <= 2,5%.
 	measure meta_igro_kri4 = 0.025
 		formatString: 0.00%
-		displayFolder: 05 Â· IGRO Â· Metas e Goalposts
+		displayFolder: 05 · IGRO · Metas e Goalposts
 		lineageTag: d1dc6923-a176-427a-8758-0112bd9a83a9
 
-	/// Goalpost do KRI 4 (% RI): 3,5% como piso aceitÃ¡vel de insatisfaÃ§Ã£o. Valor 0 quando RI >= 3,5%.
+	/// Goalpost do KRI 4 (% RI): 3,5% como piso aceitável de insatisfação. Valor 0 quando RI >= 3,5%.
 	measure goal_igro_kri4 = 0.035
 		formatString: 0.00%
-		displayFolder: 05 Â· IGRO Â· Metas e Goalposts
+		displayFolder: 05 · IGRO · Metas e Goalposts
 		lineageTag: 6562e9ec-716f-4901-9525-661b3c47d8e6
 
-	/// Meta do KRI 5 (Nota de RecomendaÃ§Ã£o): 8,0 ou mais como excelente recomendaÃ§Ã£o. Valor 1 quando NR >= 8,0.
+	/// Meta do KRI 5 (Nota de Recomendação): 8,0 ou mais como excelente recomendação. Valor 1 quando NR >= 8,0.
 	measure meta_igro_kri5 = 8.0
 		formatString: #,0.0
-		displayFolder: 05 Â· IGRO Â· Metas e Goalposts
+		displayFolder: 05 · IGRO · Metas e Goalposts
 		lineageTag: 1bdba1d2-1459-49d6-8801-e8b7da9cf2ff
 
-	/// Goalpost do KRI 5 (Nota de RecomendaÃ§Ã£o): 6,0 como recomendaÃ§Ã£o aceitÃ¡vel. Valor 0 quando NR <= 6,0.
+	/// Goalpost do KRI 5 (Nota de Recomendação): 6,0 como recomendação aceitável. Valor 0 quando NR <= 6,0.
 	measure goal_igro_kri5 = 6.0
 		formatString: #,0.0
-		displayFolder: 05 Â· IGRO Â· Metas e Goalposts
+		displayFolder: 05 · IGRO · Metas e Goalposts
 		lineageTag: b02f6ab5-ff35-4b49-88ee-f52353787259
 
 	/// Score normalizado de 0 a 1 para o KRI 1 (% RDP): valor 1 quando RDP <= 1,0%; valor 0 quando RDP >= 2,0%.
@@ -262,7 +262,7 @@ table _medidas
 			RETURN
 			    MIN ( MAX ( score, 0 ), 1 )
 		formatString: 0.00%
-		displayFolder: 06 Â· IGRO Â· Scores KRI
+		displayFolder: 06 · IGRO · Scores KRI
 		lineageTag: 0734e67c-bf1e-4d4d-9fa0-b37835dedd68
 
 	/// Score normalizado de 0 a 1 para o KRI 2 (TMR): valor 1 quando TMR <= 5 dias; valor 0 quando TMR >= 10 dias.
@@ -274,7 +274,7 @@ table _medidas
 			RETURN
 			    MIN ( MAX ( score, 0 ), 1 )
 		formatString: 0.00%
-		displayFolder: 06 Â· IGRO Â· Scores KRI
+		displayFolder: 06 · IGRO · Scores KRI
 		lineageTag: 9cdcf00e-d9d4-48cc-8384-f01c541ca3be
 
 	/// Score normalizado de 0 a 1 para o KRI 3 (TR): valor 1 quando TR >= 70%; valor 0 quando TR <= 50%.
@@ -286,7 +286,7 @@ table _medidas
 			RETURN
 			    MIN ( MAX ( score, 0 ), 1 )
 		formatString: 0.00%
-		displayFolder: 06 Â· IGRO Â· Scores KRI
+		displayFolder: 06 · IGRO · Scores KRI
 		lineageTag: ecceac50-8a49-4114-90ef-3ee2726d116c
 
 	/// Score normalizado de 0 a 1 para o KRI 4 (% RI): valor 1 quando RI <= 2,5%; valor 0 quando RI >= 3,5%.
@@ -298,10 +298,10 @@ table _medidas
 			RETURN
 			    MIN ( MAX ( score, 0 ), 1 )
 		formatString: 0.00%
-		displayFolder: 06 Â· IGRO Â· Scores KRI
+		displayFolder: 06 · IGRO · Scores KRI
 		lineageTag: 071b7b0c-c66f-4ae2-b4cf-eeb5e547098c
 
-	/// Score normalizado de 0 a 1 para o KRI 5 (Nota de RecomendaÃ§Ã£o): valor 1 quando NR >= 8,0; valor 0 quando NR <= 6,0.
+	/// Score normalizado de 0 a 1 para o KRI 5 (Nota de Recomendação): valor 1 quando NR >= 8,0; valor 0 quando NR <= 6,0.
 	measure idx_score_igro_kri5 =
 			VAR valor = [ind_media_nota_recomendacao]
 			VAR meta = [meta_igro_kri5]
@@ -310,10 +310,10 @@ table _medidas
 			RETURN
 			    MIN ( MAX ( score, 0 ), 1 )
 		formatString: 0.00%
-		displayFolder: 06 Â· IGRO Â· Scores KRI
+		displayFolder: 06 · IGRO · Scores KRI
 		lineageTag: cf6f6142-eb5e-44ba-b6cc-6d482a132b16
 
-	/// SubÃ­ndice de Tempestividade (IT): mÃ©dia ponderada TMR=60% e % RDP=40%.
+	/// Subíndice de Tempestividade (IT): média ponderada TMR=60% e % RDP=40%.
 	measure idx_igro_sub_t =
 			VAR numerador =
 			    0.60 * [idx_score_igro_kri2]
@@ -321,10 +321,10 @@ table _medidas
 			RETURN
 			    MIN ( MAX ( numerador, 0 ), 1 )
 		formatString: 0.00%
-		displayFolder: 07 Â· IGRO Â· Ãndice
+		displayFolder: 07 · IGRO · Índice
 		lineageTag: d85c5173-22df-4cf3-bd30-dd19df55f04f
 
-	/// SubÃ­ndice de Qualidade (IQ): mÃ©dia ponderada TR=40%, % RI=30% e Nota de RecomendaÃ§Ã£o=30%.
+	/// Subíndice de Qualidade (IQ): média ponderada TR=40%, % RI=30% e Nota de Recomendação=30%.
 	measure idx_igro_sub_q =
 			VAR numerador =
 			    0.40 * [idx_score_igro_kri3]
@@ -333,10 +333,10 @@ table _medidas
 			RETURN
 			    MIN ( MAX ( numerador, 0 ), 1 )
 		formatString: 0.00%
-		displayFolder: 07 Â· IGRO Â· Ãndice
+		displayFolder: 07 · IGRO · Índice
 		lineageTag: 2a762a4d-37bc-41f8-ad98-b8e9ce7e0562
 
-	/// Ãndice de GestÃ£o de Riscos de Ouvidorias. MÃ©dia geomÃ©trica simples: âˆš(IT Ã— IQ). Conforme metodologia IGRO â€” artigo CGU.
+	/// Índice de Gestão de Riscos de Ouvidorias. Média geométrica simples: √(IT × IQ). Conforme metodologia IGRO — artigo CGU.
 	measure idx_igro =
 			VAR sub_t = [idx_igro_sub_t]
 			VAR sub_q = [idx_igro_sub_q]
@@ -349,10 +349,10 @@ table _medidas
 			RETURN
 			    MIN ( MAX ( resultado, 0 ), 1 )
 		formatString: 0.00%
-		displayFolder: 07 Â· IGRO Â· Ãndice
+		displayFolder: 07 · IGRO · Índice
 		lineageTag: d1caa2e1-e5e7-4b81-be19-b467db94f3ce
 
-	/// Respostas de pesquisa com nota de recomendaÃ§Ã£o entre 9 e 10. Numerador do NPS. TREATAS propaga filtro de dOrgao_igro[sigla].
+	/// Respostas de pesquisa com nota de recomendação entre 9 e 10. Numerador do NPS. TREATAS propaga filtro de dOrgao_igro[sigla].
 	measure base_qtd_promotores =
 			VAR _siglas = VALUES(dOrgao_igro[sigla])
 			VAR resultado =
@@ -364,10 +364,10 @@ table _medidas
 			RETURN
 			    COALESCE(resultado, 0)
 		formatString: #,0
-		displayFolder: 02 Â· Pesquisa de SatisfaÃ§Ã£o
+		displayFolder: 02 · Pesquisa de Satisfação
 		lineageTag: db86ed60-40e9-4294-a6f3-68496b6a9765
 
-	/// Respostas de pesquisa com nota de recomendaÃ§Ã£o entre 7 e 8. NÃ£o entram no cÃ¡lculo do NPS. TREATAS propaga filtro de dOrgao_igro[sigla].
+	/// Respostas de pesquisa com nota de recomendação entre 7 e 8. Não entram no cálculo do NPS. TREATAS propaga filtro de dOrgao_igro[sigla].
 	measure base_qtd_neutros =
 			VAR _siglas = VALUES(dOrgao_igro[sigla])
 			VAR resultado =
@@ -380,10 +380,10 @@ table _medidas
 			RETURN
 			    COALESCE(resultado, 0)
 		formatString: #,0
-		displayFolder: 02 Â· Pesquisa de SatisfaÃ§Ã£o
+		displayFolder: 02 · Pesquisa de Satisfação
 		lineageTag: eb5cf571-1b50-4e29-8add-2d33915584a8
 
-	/// Respostas de pesquisa com nota de recomendaÃ§Ã£o entre 1 e 6. SubtraÃ­das no cÃ¡lculo do NPS. TREATAS propaga filtro de dOrgao_igro[sigla].
+	/// Respostas de pesquisa com nota de recomendação entre 1 e 6. Subtraídas no cálculo do NPS. TREATAS propaga filtro de dOrgao_igro[sigla].
 	measure base_qtd_detratores =
 			VAR _siglas = VALUES(dOrgao_igro[sigla])
 			VAR resultado =
@@ -395,10 +395,10 @@ table _medidas
 			RETURN
 			    COALESCE(resultado, 0)
 		formatString: #,0
-		displayFolder: 02 Â· Pesquisa de SatisfaÃ§Ã£o
+		displayFolder: 02 · Pesquisa de Satisfação
 		lineageTag: fa960ddd-974d-4aa5-bd3d-07b66f9e50a7
 
-	/// ManifestaÃ§Ãµes finalizadas com procedente = 'Sim'.
+	/// Manifestações finalizadas com procedente = 'Sim'.
 	measure base_qtd_procedente =
 			VAR resultado =
 			    CALCULATE(
@@ -408,10 +408,10 @@ table _medidas
 			RETURN
 			    COALESCE(resultado, 0)
 		formatString: #,0
-		displayFolder: 03 Â· Qualidade
+		displayFolder: 03 · Qualidade
 		lineageTag: c1466d02-66e8-4f11-a921-fdf60a974247
 
-	/// ManifestaÃ§Ãµes finalizadas que geraram ao menos um recurso (campo recurso preenchido).
+	/// Manifestações finalizadas que geraram ao menos um recurso (campo recurso preenchido).
 	measure base_qtd_com_recurso =
 			VAR resultado =
 			    CALCULATE(
@@ -421,79 +421,79 @@ table _medidas
 			RETURN
 			    COALESCE(resultado, 0)
 		formatString: #,0
-		displayFolder: 03 Â· Qualidade
+		displayFolder: 03 · Qualidade
 		lineageTag: 22e4b70e-fa14-4633-9381-7f407d2fa33f
 
-	/// NPS calculado: (% promotores âˆ’ % detratores) Ã— 100. Escala de âˆ’90 a +100.
+	/// NPS calculado: (% promotores − % detratores) × 100. Escala de −90 a +100.
 	measure ind_nps =
 			VAR promotores = DIVIDE([base_qtd_promotores], [base_qtd_pesquisa], 0)
 			VAR detratores = DIVIDE([base_qtd_detratores], [base_qtd_pesquisa], 0)
 			RETURN
 			    (promotores - detratores) * 100
 		formatString: #,0.0
-		displayFolder: 02 Â· Pesquisa de SatisfaÃ§Ã£o
+		displayFolder: 02 · Pesquisa de Satisfação
 		lineageTag: 20fe0102-c058-4ed9-b7c8-aece7c510a77
 
-	/// Percentual de promotores (nota 9â€“10) sobre o total de pesquisas respondidas.
+	/// Percentual de promotores (nota 9–10) sobre o total de pesquisas respondidas.
 	measure ind_pct_promotores = DIVIDE([base_qtd_promotores], [base_qtd_pesquisa], 0)
 		formatString: 0.0%
-		displayFolder: 02 Â· Pesquisa de SatisfaÃ§Ã£o
+		displayFolder: 02 · Pesquisa de Satisfação
 		lineageTag: fa7f4990-224c-4d48-b0e3-02a1aab060eb
 
-	/// Percentual de neutros (nota 7â€“8) sobre o total de pesquisas respondidas.
+	/// Percentual de neutros (nota 7–8) sobre o total de pesquisas respondidas.
 	measure ind_pct_neutros = DIVIDE([base_qtd_neutros], [base_qtd_pesquisa], 0)
 		formatString: 0.0%
-		displayFolder: 02 Â· Pesquisa de SatisfaÃ§Ã£o
+		displayFolder: 02 · Pesquisa de Satisfação
 		lineageTag: ffb950b9-e3ac-4dd8-8f54-04b1056f804c
 
-	/// Percentual de detratores (nota 1â€“6) sobre o total de pesquisas respondidas.
+	/// Percentual de detratores (nota 1–6) sobre o total de pesquisas respondidas.
 	measure ind_pct_detratores = DIVIDE([base_qtd_detratores], [base_qtd_pesquisa], 0)
 		formatString: 0.0%
-		displayFolder: 02 Â· Pesquisa de SatisfaÃ§Ã£o
+		displayFolder: 02 · Pesquisa de Satisfação
 		lineageTag: 85bae63e-9412-42fa-98b9-7702b03f4317
 
-	/// Percentual de manifestaÃ§Ãµes com anÃ¡lise procedente sobre o total de finalizadas.
+	/// Percentual de manifestações com análise procedente sobre o total de finalizadas.
 	measure ind_pct_procedencia = DIVIDE([base_qtd_procedente], [base_qtd_manifestacoes_finalizadas], 0)
 		formatString: 0.00%
-		displayFolder: 03 Â· Qualidade
+		displayFolder: 03 · Qualidade
 		lineageTag: 722036ee-5707-4ecf-9447-929ba7a37995
 
-	/// Percentual de manifestaÃ§Ãµes que geraram recurso sobre o total de finalizadas. Indicador de retrabalho.
+	/// Percentual de manifestações que geraram recurso sobre o total de finalizadas. Indicador de retrabalho.
 	measure ind_pct_recurso = DIVIDE([base_qtd_com_recurso], [base_qtd_manifestacoes_finalizadas], 0)
 		formatString: 0.00%
-		displayFolder: 03 Â· Qualidade
+		displayFolder: 03 · Qualidade
 		lineageTag: b0ed9538-de04-4105-b096-ed8480bbd638
 
-	/// Percentual de ReclamaÃ§Ãµes finalizadas que receberam resposta na pesquisa de satisfaÃ§Ã£o.
+	/// Percentual de Reclamações finalizadas que receberam resposta na pesquisa de satisfação.
 	measure ind_pct_cobertura_reclamacao =
 			VAR pesquisas =
 			    CALCULATE(
 			        [base_qtd_pesquisa],
-			        KEEPFILTERS(f_relatorio[tipo_manifestacao] = "ReclamaÃ§Ã£o")
+			        KEEPFILTERS(f_relatorio[tipo_manifestacao] = "Reclamação")
 			    )
 			VAR demandas =
 			    CALCULATE(
 			        [base_qtd_manifestacoes_finalizadas],
-			        KEEPFILTERS(f_relatorio[tipo_manifestacao] = "ReclamaÃ§Ã£o")
+			        KEEPFILTERS(f_relatorio[tipo_manifestacao] = "Reclamação")
 			    )
 			RETURN
 			    DIVIDE(pesquisas, demandas, 0)
 		formatString: 0.00%
-		displayFolder: 03 Â· Qualidade
+		displayFolder: 03 · Qualidade
 		lineageTag: da27caa0-eed2-4f5c-86aa-68a9fac56eba
 
-	/// RÃ³tulo de semÃ¡foro para o NPS: Verde (â‰¥50), Amarelo (0â€“49), Laranja (-49 a -1), Vermelho (<-50).
+	/// Rótulo de semáforo para o NPS: Verde (≥50), Amarelo (0–49), Laranja (-49 a -1), Vermelho (<-50).
 	measure fmt_semaforo_nps =
 			VAR v = [ind_nps]
 			RETURN
 			    SWITCH(
 			        TRUE(),
-			        v >= 50,  "Verde â€” Excelente",
-			        v >= 0,   "Amarelo â€” RazonÃ¡vel",
-			        v >= -50, "Laranja â€” Ruim",
-			        "Vermelho â€” CrÃ­tico"
+			        v >= 50,  "Verde — Excelente",
+			        v >= 0,   "Amarelo — Razonável",
+			        v >= -50, "Laranja — Ruim",
+			        "Vermelho — Crítico"
 			    )
-		displayFolder: 08 Â· FormataÃ§Ã£o
+		displayFolder: 08 · Formatação
 		lineageTag: 01084952-ce16-4e3e-aee8-001c5ed82bcf
 
 	/// Cor de fundo hexadecimal para o NPS conforme faixa.
@@ -507,7 +507,7 @@ table _medidas
 			        v >= -50, "#FAECE7",
 			        "#FCEBEB"
 			    )
-		displayFolder: 08 Â· FormataÃ§Ã£o
+		displayFolder: 08 · Formatação
 		lineageTag: 657f6e9b-817b-4f50-b83a-3f656955d94e
 
 	/// Cor de fonte hexadecimal para o NPS conforme faixa.
@@ -521,74 +521,74 @@ table _medidas
 			        v >= -50, "#712B13",
 			        "#791F1F"
 			    )
-		displayFolder: 08 Â· FormataÃ§Ã£o
+		displayFolder: 08 · Formatação
 		lineageTag: 526c2c00-31d3-4190-b722-89cbfed0aa68
 
-	/// RÃ³tulo de semÃ¡foro para ind_pct_procedencia: Verde (â‰¥60%), Amarelo (40â€“59%), Laranja (20â€“39%), Vermelho (<20%).
+	/// Rótulo de semáforo para ind_pct_procedencia: Verde (≥60%), Amarelo (40–59%), Laranja (20–39%), Vermelho (<20%).
 	measure fmt_semaforo_procedencia =
 			VAR v = [ind_pct_procedencia]
 			RETURN
 			    SWITCH(
 			        TRUE(),
-			        v >= 0.60, "Verde â€” Alta",
-			        v >= 0.40, "Amarelo â€” MÃ©dia",
-			        v >= 0.20, "Laranja â€” Baixa",
-			        "Vermelho â€” Muito baixa"
+			        v >= 0.60, "Verde — Alta",
+			        v >= 0.40, "Amarelo — Média",
+			        v >= 0.20, "Laranja — Baixa",
+			        "Vermelho — Muito baixa"
 			    )
-		displayFolder: 08 Â· FormataÃ§Ã£o
+		displayFolder: 08 · Formatação
 		lineageTag: fc5308ac-44d9-45de-8ccb-5869d872be05
 
-	/// RÃ³tulo de semÃ¡foro para ind_pct_recurso: Verde (â‰¤1%), Amarelo (1â€“3%), Laranja (3â€“5%), Vermelho (>5%).
+	/// Rótulo de semáforo para ind_pct_recurso: Verde (≤1%), Amarelo (1–3%), Laranja (3–5%), Vermelho (>5%).
 	measure fmt_semaforo_recurso =
 			VAR v = [ind_pct_recurso]
 			RETURN
 			    SWITCH(
 			        TRUE(),
-			        v <= 0.01, "Verde â€” Baixo",
-			        v <= 0.03, "Amarelo â€” Moderado",
-			        v <= 0.05, "Laranja â€” Alto",
-			        "Vermelho â€” CrÃ­tico"
+			        v <= 0.01, "Verde — Baixo",
+			        v <= 0.03, "Amarelo — Moderado",
+			        v <= 0.05, "Laranja — Alto",
+			        "Vermelho — Crítico"
 			    )
-		displayFolder: 08 Â· FormataÃ§Ã£o
+		displayFolder: 08 · Formatação
 		lineageTag: 2df1fd16-7df0-49ba-b844-70373e07b949
 
-	/// RÃ³tulo de semÃ¡foro para o IGRO conforme faixas da metodologia (artigo CGU): Verde â‰¥90%, Amarelo 70â€“89%, Laranja 50â€“69%, Vermelho <50%.
+	/// Rótulo de semáforo para o IGRO conforme faixas da metodologia (artigo CGU): Verde ≥90%, Amarelo 70–89%, Laranja 50–69%, Vermelho <50%.
 	measure fmt_semaforo_igro =
 			VAR v = [idx_igro]
 			RETURN
 			    IF ( ISBLANK(v), BLANK(),
 			    IF ( v >= 0.90, "Controlado",
-			    IF ( v >= 0.70, "Em atenÃ§Ã£o",
-			    IF ( v >= 0.50, "Elevado", "CrÃ­tico" ))))
+			    IF ( v >= 0.70, "Em atenção",
+			    IF ( v >= 0.50, "Elevado", "Crítico" ))))
 		formatString: @
-		displayFolder: 08 Â· FormataÃ§Ã£o
+		displayFolder: 08 · Formatação
 		lineageTag: 6860be8f-63fc-4b93-abee-253522d4a169
 
-	/// RÃ³tulo de semÃ¡foro para o Sub-T com faixas da metodologia IGRO (artigo CGU).
+	/// Rótulo de semáforo para o Sub-T com faixas da metodologia IGRO (artigo CGU).
 	measure fmt_semaforo_igro_sub_t =
 			VAR v = [idx_igro_sub_t]
 			RETURN
 			    IF ( ISBLANK(v), BLANK(),
 			    IF ( v >= 0.90, "Controlado",
-			    IF ( v >= 0.70, "Em atenÃ§Ã£o",
-			    IF ( v >= 0.50, "Elevado", "CrÃ­tico" ))))
+			    IF ( v >= 0.70, "Em atenção",
+			    IF ( v >= 0.50, "Elevado", "Crítico" ))))
 		formatString: @
-		displayFolder: 08 Â· FormataÃ§Ã£o
+		displayFolder: 08 · Formatação
 		lineageTag: 4a69399b-ef67-466e-95a6-4228e1b57f43
 
-	/// RÃ³tulo de semÃ¡foro para o Sub-Q com faixas da metodologia IGRO (artigo CGU).
+	/// Rótulo de semáforo para o Sub-Q com faixas da metodologia IGRO (artigo CGU).
 	measure fmt_semaforo_igro_sub_q =
 			VAR v = [idx_igro_sub_q]
 			RETURN
 			    IF ( ISBLANK(v), BLANK(),
 			    IF ( v >= 0.90, "Controlado",
-			    IF ( v >= 0.70, "Em atenÃ§Ã£o",
-			    IF ( v >= 0.50, "Elevado", "CrÃ­tico" ))))
+			    IF ( v >= 0.70, "Em atenção",
+			    IF ( v >= 0.50, "Elevado", "Crítico" ))))
 		formatString: @
-		displayFolder: 08 Â· FormataÃ§Ã£o
+		displayFolder: 08 · Formatação
 		lineageTag: 56f64d9e-34f3-4319-86fa-6ab695773a02
 
-	/// Cor de fundo hexadecimal para o IGRO conforme faixas da metodologia (artigo CGU). Controlado=#27AE60, Em atenÃ§Ã£o=#F39C12, Elevado=#E67E22, CrÃ­tico=#E74C3C.
+	/// Cor de fundo hexadecimal para o IGRO conforme faixas da metodologia (artigo CGU). Controlado=#27AE60, Em atenção=#F39C12, Elevado=#E67E22, Crítico=#E74C3C.
 	measure fmt_cor_fundo_igro =
 			VAR v = [idx_igro]
 			RETURN
@@ -597,14 +597,14 @@ table _medidas
 			    IF ( v >= 0.70, "#F39C12",
 			    IF ( v >= 0.50, "#E67E22", "#E74C3C" ))))
 		formatString: @
-		displayFolder: 08 Â· FormataÃ§Ã£o
+		displayFolder: 08 · Formatação
 		lineageTag: 1dec7bbd-250b-4eb8-899d-130a7c7ed774
 
-	/// Cor de fonte hexadecimal para o IGRO conforme faixa de risco. Usar em formataÃ§Ã£o condicional de cor de fonte.
+	/// Cor de fonte hexadecimal para o IGRO conforme faixa de risco. Usar em formatação condicional de cor de fonte.
 	measure fmt_cor_fonte_igro =
 			VAR v = [idx_igro]
 			RETURN SWITCH(TRUE(), v >= 0.80, "#27500A", v >= 0.60, "#633806", v >= 0.40, "#712B13", "#791F1F")
-		displayFolder: 08 Â· FormataÃ§Ã£o
+		displayFolder: 08 · Formatação
 		lineageTag: 4e725663-f21f-420a-9898-47f4bae8ed62
 
 	/// Cor de fundo hexadecimal para o Sub-T conforme faixas da metodologia IGRO (artigo CGU).
@@ -616,7 +616,7 @@ table _medidas
 			    IF ( v >= 0.70, "#F39C12",
 			    IF ( v >= 0.50, "#E67E22", "#E74C3C" ))))
 		formatString: @
-		displayFolder: 08 Â· FormataÃ§Ã£o
+		displayFolder: 08 · Formatação
 		lineageTag: 6a203f84-d1a7-40ac-9f69-2e1586660121
 
 	/// Cor de fundo hexadecimal para o Sub-Q conforme faixas da metodologia IGRO (artigo CGU).
@@ -628,37 +628,37 @@ table _medidas
 			    IF ( v >= 0.70, "#F39C12",
 			    IF ( v >= 0.50, "#E67E22", "#E74C3C" ))))
 		formatString: @
-		displayFolder: 08 Â· FormataÃ§Ã£o
+		displayFolder: 08 · Formatação
 		lineageTag: ca8b383d-be2f-4f1f-9603-35f68cd5ff5e
 
-	/// VariaÃ§Ã£o absoluta do TMR vs. perÃ­odo anterior. Negativo = melhora (menos dias).
+	/// Variação absoluta do TMR vs. período anterior. Negativo = melhora (menos dias).
 	measure var_tmr =
 			VAR atual = [ind_media_tempo_resposta]
 			VAR anterior = CALCULATE([ind_media_tempo_resposta], PREVIOUSYEAR(f_relatorio[data_manifestacao]))
 			RETURN IF(ISBLANK(anterior), BLANK(), atual - anterior)
 		formatString: #,0.0
-		displayFolder: 09 Â· VariaÃ§Ã£o
+		displayFolder: 09 · Variação
 		lineageTag: c891f02d-bffa-4640-8345-3762fc18db73
 
-	/// VariaÃ§Ã£o absoluta do % de manifestaÃ§Ãµes com mais de 30 dias vs. perÃ­odo anterior. Negativo = melhora.
+	/// Variação absoluta do % de manifestações com mais de 30 dias vs. período anterior. Negativo = melhora.
 	measure var_pct_mais_30_dias =
 			VAR atual = [ind_pct_mais_30_dias]
 			VAR anterior = CALCULATE([ind_pct_mais_30_dias], PREVIOUSYEAR(f_relatorio[data_manifestacao]))
 			RETURN IF(ISBLANK(anterior), BLANK(), atual - anterior)
 		formatString: 0.00%
-		displayFolder: 09 Â· VariaÃ§Ã£o
+		displayFolder: 09 · Variação
 		lineageTag: 1c56bc1d-87f3-466a-95cc-4978c96104b6
 
-	/// VariaÃ§Ã£o absoluta da resolutividade vs. perÃ­odo anterior. Positivo = melhora.
+	/// Variação absoluta da resolutividade vs. período anterior. Positivo = melhora.
 	measure var_resolutividade =
 			VAR atual = [ind_pct_resolutividade]
 			VAR anterior = CALCULATE([ind_pct_resolutividade], PREVIOUSYEAR(f_pesquisa[data_manifestacao]))
 			RETURN IF(ISBLANK(anterior), BLANK(), atual - anterior)
 		formatString: 0.00%
-		displayFolder: 09 Â· VariaÃ§Ã£o
+		displayFolder: 09 · Variação
 		lineageTag: ae83fded-e868-45a8-a90e-29f348761814
 
-	/// VariaÃ§Ã£o absoluta do % de respostas insatisfatÃ³rias vs. perÃ­odo anterior. Negativo = melhora. Eixo temporal via dCalendario (corrigido).
+	/// Variação absoluta do % de respostas insatisfatórias vs. período anterior. Negativo = melhora. Eixo temporal via dCalendario (corrigido).
 	measure var_insatisfatorias =
 			VAR atual = [ind_pct_respostas_insatisfatorias]
 			VAR _min_data = MIN(dCalendario[Date])
@@ -675,227 +675,227 @@ table _medidas
 			RETURN
 			    IF(ISBLANK(anterior), BLANK(), atual - anterior)
 		formatString: 0.00%
-		displayFolder: 09 Â· VariaÃ§Ã£o
+		displayFolder: 09 · Variação
 		lineageTag: d463df8c-6c69-4dc6-be03-71fbb93504b0
 
-	/// VariaÃ§Ã£o absoluta da nota mÃ©dia de recomendaÃ§Ã£o vs. perÃ­odo anterior. Positivo = melhora.
+	/// Variação absoluta da nota média de recomendação vs. período anterior. Positivo = melhora.
 	measure var_nota =
 			VAR atual = [ind_media_nota_recomendacao]
 			VAR anterior = CALCULATE([ind_media_nota_recomendacao], PREVIOUSYEAR(f_pesquisa[data_manifestacao]))
 			RETURN IF(ISBLANK(anterior), BLANK(), atual - anterior)
 		formatString: #,0.0
-		displayFolder: 09 Â· VariaÃ§Ã£o
+		displayFolder: 09 · Variação
 		lineageTag: bc6ff1d6-873c-47fb-bfb9-903664125972
 
-	/// VariaÃ§Ã£o absoluta do NPS vs. perÃ­odo anterior. Positivo = melhora.
+	/// Variação absoluta do NPS vs. período anterior. Positivo = melhora.
 	measure var_nps =
 			VAR atual = [ind_nps]
 			VAR anterior = CALCULATE([ind_nps], PREVIOUSYEAR(f_pesquisa[data_manifestacao]))
 			RETURN IF(ISBLANK(anterior), BLANK(), atual - anterior)
 		formatString: #,0.0
-		displayFolder: 09 Â· VariaÃ§Ã£o
+		displayFolder: 09 · Variação
 		lineageTag: 55fff64a-8391-4d98-b56d-11a0fc2c31eb
 
-	/// VariaÃ§Ã£o absoluta do IGRO vs. perÃ­odo anterior. Positivo = melhora.
+	/// Variação absoluta do IGRO vs. período anterior. Positivo = melhora.
 	measure var_igro =
 			VAR atual = [idx_igro]
 			VAR anterior = CALCULATE([idx_igro], PREVIOUSYEAR(f_relatorio[data_manifestacao]))
 			RETURN IF(ISBLANK(anterior), BLANK(), atual - anterior)
 		formatString: 0.00%
-		displayFolder: 09 Â· VariaÃ§Ã£o
+		displayFolder: 09 · Variação
 		lineageTag: 30a0f1e2-af13-467e-b2a8-f3cacdaccce6
 
-	/// VariaÃ§Ã£o absoluta do Sub-T vs. perÃ­odo anterior. Positivo = melhora.
+	/// Variação absoluta do Sub-T vs. período anterior. Positivo = melhora.
 	measure var_igro_sub_t =
 			VAR atual = [idx_igro_sub_t]
 			VAR anterior = CALCULATE([idx_igro_sub_t], PREVIOUSYEAR(f_relatorio[data_manifestacao]))
 			RETURN IF(ISBLANK(anterior), BLANK(), atual - anterior)
 		formatString: 0.00%
-		displayFolder: 09 Â· VariaÃ§Ã£o
+		displayFolder: 09 · Variação
 		lineageTag: cabbc732-f217-4be7-b519-dd1a0103c4cb
 
-	/// VariaÃ§Ã£o absoluta do Sub-Q vs. perÃ­odo anterior. Positivo = melhora.
+	/// Variação absoluta do Sub-Q vs. período anterior. Positivo = melhora.
 	measure var_igro_sub_q =
 			VAR atual = [idx_igro_sub_q]
 			VAR anterior = CALCULATE([idx_igro_sub_q], PREVIOUSYEAR(f_relatorio[data_manifestacao]))
 			RETURN IF(ISBLANK(anterior), BLANK(), atual - anterior)
 		formatString: 0.00%
-		displayFolder: 09 Â· VariaÃ§Ã£o
+		displayFolder: 09 · Variação
 		lineageTag: 6f206bea-0cc4-4ae6-a044-14222b20c04d
 
-	/// VariaÃ§Ã£o absoluta do % de recurso vs. perÃ­odo anterior. Negativo = melhora.
+	/// Variação absoluta do % de recurso vs. período anterior. Negativo = melhora.
 	measure var_recurso =
 			VAR atual = [ind_pct_recurso]
 			VAR anterior = CALCULATE([ind_pct_recurso], PREVIOUSYEAR(f_relatorio[data_manifestacao]))
 			RETURN IF(ISBLANK(anterior), BLANK(), atual - anterior)
 		formatString: 0.00%
-		displayFolder: 09 Â· VariaÃ§Ã£o
+		displayFolder: 09 · Variação
 		lineageTag: 80fc97b5-2ca1-403d-bb73-5a843e213b4a
 
-	/// VariaÃ§Ã£o absoluta da cobertura de pesquisa em ReclamaÃ§Ãµes vs. perÃ­odo anterior. Positivo = melhora.
+	/// Variação absoluta da cobertura de pesquisa em Reclamações vs. período anterior. Positivo = melhora.
 	measure var_cobertura_reclamacao =
 			VAR atual = [ind_pct_cobertura_reclamacao]
 			VAR anterior = CALCULATE([ind_pct_cobertura_reclamacao], PREVIOUSYEAR(f_pesquisa[data_manifestacao]))
 			RETURN IF(ISBLANK(anterior), BLANK(), atual - anterior)
 		formatString: 0.00%
-		displayFolder: 09 Â· VariaÃ§Ã£o
+		displayFolder: 09 · Variação
 		lineageTag: 30843bb0-3fe9-4477-85d9-a079066f494b
 
-	/// SemÃ¡foro do TMR com polaridade negativa: ðŸŸ¢ quando cai (melhora), ðŸ”´ quando sobe (piora). Neutro quando variaÃ§Ã£o = 0 ou BLANK.
+	/// Semáforo do TMR com polaridade negativa: 🟢 quando cai (melhora), 🔴 quando sobe (piora). Neutro quando variação = 0 ou BLANK.
 	measure sem_tmr =
 			VAR delta = [var_tmr]
 			VAR polaridade = -1
 			RETURN
 			    IF(
-			        ISBLANK(delta), "â¸ï¸",
-			        IF(delta = 0, "â¹ï¸",
-			            IF(delta * polaridade > 0, "ðŸŸ¢", "ðŸ”´")
+			        ISBLANK(delta), "⏸️",
+			        IF(delta = 0, "⏹️",
+			            IF(delta * polaridade > 0, "🟢", "🔴")
 			        )
 			    )
-		displayFolder: 10 Â· SemÃ¡foro Â· VariaÃ§Ã£o
+		displayFolder: 10 · Semáforo · Variação
 		lineageTag: 0d03c048-4523-4cb4-99bc-8394c627d64e
 
-	/// SemÃ¡foro do % +30 dias com polaridade negativa: ðŸŸ¢ quando cai.
+	/// Semáforo do % +30 dias com polaridade negativa: 🟢 quando cai.
 	measure sem_pct_mais_30_dias =
 			VAR delta = [var_pct_mais_30_dias]
 			VAR polaridade = -1
 			RETURN
 			    IF(
-			        ISBLANK(delta), "â¸ï¸",
-			        IF(delta = 0, "â¹ï¸",
-			            IF(delta * polaridade > 0, "ðŸŸ¢", "ðŸ”´")
+			        ISBLANK(delta), "⏸️",
+			        IF(delta = 0, "⏹️",
+			            IF(delta * polaridade > 0, "🟢", "🔴")
 			        )
 			    )
-		displayFolder: 10 Â· SemÃ¡foro Â· VariaÃ§Ã£o
+		displayFolder: 10 · Semáforo · Variação
 		lineageTag: 8fa49dd7-8c53-4ac2-a90b-4a178599028f
 
-	/// SemÃ¡foro da resolutividade com polaridade positiva: ðŸŸ¢ quando sobe.
+	/// Semáforo da resolutividade com polaridade positiva: 🟢 quando sobe.
 	measure sem_resolutividade =
 			VAR delta = [var_resolutividade]
 			VAR polaridade = 1
 			RETURN
 			    IF(
-			        ISBLANK(delta), "â¸ï¸",
-			        IF(delta = 0, "â¹ï¸",
-			            IF(delta * polaridade > 0, "ðŸŸ¢", "ðŸ”´")
+			        ISBLANK(delta), "⏸️",
+			        IF(delta = 0, "⏹️",
+			            IF(delta * polaridade > 0, "🟢", "🔴")
 			        )
 			    )
-		displayFolder: 10 Â· SemÃ¡foro Â· VariaÃ§Ã£o
+		displayFolder: 10 · Semáforo · Variação
 		lineageTag: f9a14ac1-73b9-4dd5-937a-989ef6eeef70
 
-	/// SemÃ¡foro das respostas insatisfatÃ³rias com polaridade negativa: ðŸŸ¢ quando cai.
+	/// Semáforo das respostas insatisfatórias com polaridade negativa: 🟢 quando cai.
 	measure sem_insatisfatorias =
 			VAR delta = [var_insatisfatorias]
 			VAR polaridade = -1
 			RETURN
 			    IF(
-			        ISBLANK(delta), "â¸ï¸",
-			        IF(delta = 0, "â¹ï¸",
-			            IF(delta * polaridade > 0, "ðŸŸ¢", "ðŸ”´")
+			        ISBLANK(delta), "⏸️",
+			        IF(delta = 0, "⏹️",
+			            IF(delta * polaridade > 0, "🟢", "🔴")
 			        )
 			    )
-		displayFolder: 10 Â· SemÃ¡foro Â· VariaÃ§Ã£o
+		displayFolder: 10 · Semáforo · Variação
 		lineageTag: a6ef1de8-24a3-4d7c-aabc-c86d4eedb002
 
-	/// SemÃ¡foro da nota mÃ©dia com polaridade positiva: ðŸŸ¢ quando sobe.
+	/// Semáforo da nota média com polaridade positiva: 🟢 quando sobe.
 	measure sem_nota =
 			VAR delta = [var_nota]
 			VAR polaridade = 1
 			RETURN
 			    IF(
-			        ISBLANK(delta), "â¸ï¸",
-			        IF(delta = 0, "â¹ï¸",
-			            IF(delta * polaridade > 0, "ðŸŸ¢", "ðŸ”´")
+			        ISBLANK(delta), "⏸️",
+			        IF(delta = 0, "⏹️",
+			            IF(delta * polaridade > 0, "🟢", "🔴")
 			        )
 			    )
-		displayFolder: 10 Â· SemÃ¡foro Â· VariaÃ§Ã£o
+		displayFolder: 10 · Semáforo · Variação
 		lineageTag: 511c3bbd-9d99-4182-bda6-e143e6a678f8
 
-	/// SemÃ¡foro do NPS com polaridade positiva: ðŸŸ¢ quando sobe.
+	/// Semáforo do NPS com polaridade positiva: 🟢 quando sobe.
 	measure sem_nps =
 			VAR delta = [var_nps]
 			VAR polaridade = 1
 			RETURN
 			    IF(
-			        ISBLANK(delta), "â¸ï¸",
-			        IF(delta = 0, "â¹ï¸",
-			            IF(delta * polaridade > 0, "ðŸŸ¢", "ðŸ”´")
+			        ISBLANK(delta), "⏸️",
+			        IF(delta = 0, "⏹️",
+			            IF(delta * polaridade > 0, "🟢", "🔴")
 			        )
 			    )
-		displayFolder: 10 Â· SemÃ¡foro Â· VariaÃ§Ã£o
+		displayFolder: 10 · Semáforo · Variação
 		lineageTag: 24edf33f-c9e1-4068-888d-f3035fe86317
 
-	/// SemÃ¡foro do IGRO com polaridade positiva: ðŸŸ¢ quando sobe.
+	/// Semáforo do IGRO com polaridade positiva: 🟢 quando sobe.
 	measure sem_igro =
 			VAR delta = [var_igro]
 			VAR polaridade = 1
 			RETURN
 			    IF(
-			        ISBLANK(delta), "â¸ï¸",
-			        IF(delta = 0, "â¹ï¸",
-			            IF(delta * polaridade > 0, "ðŸŸ¢", "ðŸ”´")
+			        ISBLANK(delta), "⏸️",
+			        IF(delta = 0, "⏹️",
+			            IF(delta * polaridade > 0, "🟢", "🔴")
 			        )
 			    )
-		displayFolder: 10 Â· SemÃ¡foro Â· VariaÃ§Ã£o
+		displayFolder: 10 · Semáforo · Variação
 		lineageTag: cf2d831f-a6e3-49b9-87f0-94330255cca8
 
-	/// SemÃ¡foro do Sub-T com polaridade positiva.
+	/// Semáforo do Sub-T com polaridade positiva.
 	measure sem_igro_sub_t =
 			VAR delta = [var_igro_sub_t]
 			VAR polaridade = 1
 			RETURN
 			    IF(
-			        ISBLANK(delta), "â¸ï¸",
-			        IF(delta = 0, "â¹ï¸",
-			            IF(delta * polaridade > 0, "ðŸŸ¢", "ðŸ”´")
+			        ISBLANK(delta), "⏸️",
+			        IF(delta = 0, "⏹️",
+			            IF(delta * polaridade > 0, "🟢", "🔴")
 			        )
 			    )
-		displayFolder: 10 Â· SemÃ¡foro Â· VariaÃ§Ã£o
+		displayFolder: 10 · Semáforo · Variação
 		lineageTag: 73afc378-86cf-42b0-9d15-1e67ff7b324f
 
-	/// SemÃ¡foro do Sub-Q com polaridade positiva.
+	/// Semáforo do Sub-Q com polaridade positiva.
 	measure sem_igro_sub_q =
 			VAR delta = [var_igro_sub_q]
 			VAR polaridade = 1
 			RETURN
 			    IF(
-			        ISBLANK(delta), "â¸ï¸",
-			        IF(delta = 0, "â¹ï¸",
-			            IF(delta * polaridade > 0, "ðŸŸ¢", "ðŸ”´")
+			        ISBLANK(delta), "⏸️",
+			        IF(delta = 0, "⏹️",
+			            IF(delta * polaridade > 0, "🟢", "🔴")
 			        )
 			    )
-		displayFolder: 10 Â· SemÃ¡foro Â· VariaÃ§Ã£o
+		displayFolder: 10 · Semáforo · Variação
 		lineageTag: 971657e4-ea14-46d3-ab2c-0f42e890bb11
 
-	/// SemÃ¡foro do % de recurso com polaridade negativa: ðŸŸ¢ quando cai.
+	/// Semáforo do % de recurso com polaridade negativa: 🟢 quando cai.
 	measure sem_recurso =
 			VAR delta = [var_recurso]
 			VAR polaridade = -1
 			RETURN
 			    IF(
-			        ISBLANK(delta), "â¸ï¸",
-			        IF(delta = 0, "â¹ï¸",
-			            IF(delta * polaridade > 0, "ðŸŸ¢", "ðŸ”´")
+			        ISBLANK(delta), "⏸️",
+			        IF(delta = 0, "⏹️",
+			            IF(delta * polaridade > 0, "🟢", "🔴")
 			        )
 			    )
-		displayFolder: 10 Â· SemÃ¡foro Â· VariaÃ§Ã£o
+		displayFolder: 10 · Semáforo · Variação
 		lineageTag: fe1b818f-88ba-4feb-8621-249352bd2580
 
-	/// SemÃ¡foro da cobertura de pesquisa em ReclamaÃ§Ãµes com polaridade positiva: ðŸŸ¢ quando sobe.
+	/// Semáforo da cobertura de pesquisa em Reclamações com polaridade positiva: 🟢 quando sobe.
 	measure sem_cobertura_reclamacao =
 			VAR delta = [var_cobertura_reclamacao]
 			VAR polaridade = 1
 			RETURN
 			    IF(
-			        ISBLANK(delta), "â¸ï¸",
-			        IF(delta = 0, "â¹ï¸",
-			            IF(delta * polaridade > 0, "ðŸŸ¢", "ðŸ”´")
+			        ISBLANK(delta), "⏸️",
+			        IF(delta = 0, "⏹️",
+			            IF(delta * polaridade > 0, "🟢", "🔴")
 			        )
 			    )
-		displayFolder: 10 Â· SemÃ¡foro Â· VariaÃ§Ã£o
+		displayFolder: 10 · Semáforo · Variação
 		lineageTag: 3822630e-317f-4859-a729-3a5824b299a1
 
-	/// RÃ³tulo completo para cartÃ£o do TMR: valor atual + semÃ¡foro + delta formatado.
+	/// Rótulo completo para cartão do TMR: valor atual + semáforo + delta formatado.
 	measure lbl_tmr =
 			VAR valor = [ind_media_tempo_resposta]
 			VAR delta = [var_tmr]
@@ -904,10 +904,10 @@ table _medidas
 			VAR delta_fmt = IF(ISBLANK(delta), "", " (" & sinal & FORMAT(delta, "0.0") & "d)")
 			RETURN
 			    emoji & " " & FORMAT(valor, "0.0") & "d" & delta_fmt
-		displayFolder: 11 Â· RÃ³tulo Â· CartÃ£o
+		displayFolder: 11 · Rótulo · Cartão
 		lineageTag: 9e653968-7a64-4c95-a12a-1455179208f1
 
-	/// RÃ³tulo completo para cartÃ£o do % +30 dias.
+	/// Rótulo completo para cartão do % +30 dias.
 	measure lbl_pct_mais_30_dias =
 			VAR valor = [ind_pct_mais_30_dias]
 			VAR delta = [var_pct_mais_30_dias]
@@ -916,10 +916,10 @@ table _medidas
 			VAR delta_fmt = IF(ISBLANK(delta), "", " (" & sinal & FORMAT(delta, "0.0%") & ")")
 			RETURN
 			    emoji & " " & FORMAT(valor, "0.0%") & delta_fmt
-		displayFolder: 11 Â· RÃ³tulo Â· CartÃ£o
+		displayFolder: 11 · Rótulo · Cartão
 		lineageTag: 4c35ddc7-15f2-4a58-99e7-e800c6797482
 
-	/// RÃ³tulo completo para cartÃ£o da resolutividade.
+	/// Rótulo completo para cartão da resolutividade.
 	measure lbl_resolutividade =
 			VAR valor = [ind_pct_resolutividade]
 			VAR delta = [var_resolutividade]
@@ -928,10 +928,10 @@ table _medidas
 			VAR delta_fmt = IF(ISBLANK(delta), "", " (" & sinal & FORMAT(delta, "0.0%") & ")")
 			RETURN
 			    emoji & " " & FORMAT(valor, "0.0%") & delta_fmt
-		displayFolder: 11 Â· RÃ³tulo Â· CartÃ£o
+		displayFolder: 11 · Rótulo · Cartão
 		lineageTag: 6121b299-4e03-4dd7-844c-cf440ff12f79
 
-	/// RÃ³tulo completo para cartÃ£o das respostas insatisfatÃ³rias.
+	/// Rótulo completo para cartão das respostas insatisfatórias.
 	measure lbl_insatisfatorias =
 			VAR valor = [ind_pct_respostas_insatisfatorias]
 			VAR delta = [var_insatisfatorias]
@@ -940,10 +940,10 @@ table _medidas
 			VAR delta_fmt = IF(ISBLANK(delta), "", " (" & sinal & FORMAT(delta, "0.0%") & ")")
 			RETURN
 			    emoji & " " & FORMAT(valor, "0.0%") & delta_fmt
-		displayFolder: 11 Â· RÃ³tulo Â· CartÃ£o
+		displayFolder: 11 · Rótulo · Cartão
 		lineageTag: a0f4d72c-906b-428d-a35c-e74136cfc4f7
 
-	/// RÃ³tulo completo para cartÃ£o da nota mÃ©dia.
+	/// Rótulo completo para cartão da nota média.
 	measure lbl_nota =
 			VAR valor = [ind_media_nota_recomendacao]
 			VAR delta = [var_nota]
@@ -952,10 +952,10 @@ table _medidas
 			VAR delta_fmt = IF(ISBLANK(delta), "", " (" & sinal & FORMAT(delta, "0.0") & ")")
 			RETURN
 			    emoji & " " & FORMAT(valor, "0.0") & delta_fmt
-		displayFolder: 11 Â· RÃ³tulo Â· CartÃ£o
+		displayFolder: 11 · Rótulo · Cartão
 		lineageTag: 02723518-6d57-45ef-8828-edfe35f7a4be
 
-	/// RÃ³tulo completo para cartÃ£o do NPS.
+	/// Rótulo completo para cartão do NPS.
 	measure lbl_nps =
 			VAR valor = [ind_nps]
 			VAR delta = [var_nps]
@@ -965,10 +965,10 @@ table _medidas
 			VAR sinal_valor = IF(valor > 0, "+", "")
 			RETURN
 			    emoji & " " & sinal_valor & FORMAT(valor, "0.0") & delta_fmt
-		displayFolder: 11 Â· RÃ³tulo Â· CartÃ£o
+		displayFolder: 11 · Rótulo · Cartão
 		lineageTag: 6fbaf6f9-6daf-4d87-b199-0678bc041b37
 
-	/// RÃ³tulo completo para cartÃ£o do IGRO.
+	/// Rótulo completo para cartão do IGRO.
 	measure lbl_igro =
 			VAR valor = [idx_igro]
 			VAR delta = [var_igro]
@@ -977,10 +977,10 @@ table _medidas
 			VAR delta_fmt = IF(ISBLANK(delta), "", " (" & sinal & FORMAT(delta, "0.0%") & ")")
 			RETURN
 			    emoji & " " & FORMAT(valor, "0.0%") & delta_fmt
-		displayFolder: 11 Â· RÃ³tulo Â· CartÃ£o
+		displayFolder: 11 · Rótulo · Cartão
 		lineageTag: 021a2387-90c5-421b-8a5d-3befd76eb459
 
-	/// RÃ³tulo completo para cartÃ£o do Sub-T.
+	/// Rótulo completo para cartão do Sub-T.
 	measure lbl_igro_sub_t =
 			VAR valor = [idx_igro_sub_t]
 			VAR delta = [var_igro_sub_t]
@@ -989,10 +989,10 @@ table _medidas
 			VAR delta_fmt = IF(ISBLANK(delta), "", " (" & sinal & FORMAT(delta, "0.0%") & ")")
 			RETURN
 			    emoji & " " & FORMAT(valor, "0.0%") & delta_fmt
-		displayFolder: 11 Â· RÃ³tulo Â· CartÃ£o
+		displayFolder: 11 · Rótulo · Cartão
 		lineageTag: f5ac9652-9840-4c40-a1ca-4845032c0e24
 
-	/// RÃ³tulo completo para cartÃ£o do Sub-Q.
+	/// Rótulo completo para cartão do Sub-Q.
 	measure lbl_igro_sub_q =
 			VAR valor = [idx_igro_sub_q]
 			VAR delta = [var_igro_sub_q]
@@ -1001,10 +1001,10 @@ table _medidas
 			VAR delta_fmt = IF(ISBLANK(delta), "", " (" & sinal & FORMAT(delta, "0.0%") & ")")
 			RETURN
 			    emoji & " " & FORMAT(valor, "0.0%") & delta_fmt
-		displayFolder: 11 Â· RÃ³tulo Â· CartÃ£o
+		displayFolder: 11 · Rótulo · Cartão
 		lineageTag: c66152c9-9530-4a73-a115-fc2f5d1dee6b
 
-	/// Array JSON com IGRO e KRIs por Ã³rgÃ£o, ordenado por IGRO desc. Usa SUMMARIZE com colunas calculadas.
+	/// Array JSON com IGRO e KRIs por órgão, ordenado por IGRO desc. Usa SUMMARIZE com colunas calculadas.
 	measure '_JSON Orgaos' =
 			VAR _t =
 			    ADDCOLUMNS(
@@ -1051,10 +1051,10 @@ table _medidas
 			        [_igro], DESC
 			    ) &
 			    "]"
-		displayFolder: 12 Â· JSON Â· Dashboard
+		displayFolder: 12 · JSON · Dashboard
 		lineageTag: 99c13910-be70-4f4c-b7c2-02b371a23229
 
-	/// Array JSON com distribuiÃ§Ã£o por tipo de manifestaÃ§Ã£o.
+	/// Array JSON com distribuição por tipo de manifestação.
 	measure '_JSON Tipos' =
 			VAR _tot = [base_qtd_manifestacoes]
 			VAR _t =
@@ -1081,10 +1081,10 @@ table _medidas
 			        [_qtd], DESC
 			    ) &
 			    "]"
-		displayFolder: 12 Â· JSON Â· Dashboard
+		displayFolder: 12 · JSON · Dashboard
 		lineageTag: 8f442eb8-9404-4b40-ac53-aa467be49210
 
-	/// Array JSON com KPIs globais da rede para injeÃ§Ã£o direta nos cards do dashboard.
+	/// Array JSON com KPIs globais da rede para injeção direta nos cards do dashboard.
 	measure '_JSON KPIs' =
 			VAR _igro  = SUBSTITUTE(FORMAT([idx_igro], "0.0000"), ",", ".")
 			VAR _sub_t = SUBSTITUTE(FORMAT([idx_igro_sub_t], "0.0000"), ",", ".")
@@ -1115,10 +1115,10 @@ table _medidas
 			    """proc"": "    & _prc   & "," &
 			    """recurso"": " & _rec   &
 			    "}"
-		displayFolder: 12 Â· JSON Â· Dashboard
+		displayFolder: 12 · JSON · Dashboard
 		lineageTag: 6a73408b-e0c3-4c77-9b7e-aec6c577bb1e
 
-	/// Dashboard HTML interativo do IGRO. Tema dark, cards KPI, ranking de Ã³rgÃ£os, distribuiÃ§Ã£o por tipo, tabela com busca e export CSV.
+	/// Dashboard HTML interativo do IGRO. Tema dark, cards KPI, ranking de órgãos, distribuição por tipo, tabela com busca e export CSV.
 	measure 'HTML Dashboard IGRO' =
 			VAR _sc = "scr" & "ipt"
 			VAR _scx = "/scr" & "ipt"
@@ -1167,8 +1167,8 @@ table _medidas
 			
 			VAR _body =
 			"<div class='topbar'>" &
-			"<h1>&#128202; IGRO &mdash; Ãndice de GestÃ£o e Risco Operacional das Ouvidorias</h1>" &
-			"<select id='dsv' onchange='applyF()'><option value=''>Todos os Ã³rgÃ£os</option></select>" &
+			"<h1>&#128202; IGRO &mdash; Índice de Gestão e Risco Operacional das Ouvidorias</h1>" &
+			"<select id='dsv' onchange='applyF()'><option value=''>Todos os órgãos</option></select>" &
 			"<button onclick='resetF()'>&#8635; Reset</button>" &
 			"</div>" &
 			"<div class='ticker-wrap'><div class='ticker-run' id='tkr'></div></div>" &
@@ -1176,27 +1176,27 @@ table _medidas
 			"<div class='card'><div class='card-lbl'>IGRO Rede</div><div class='card-val' id='k_igro'>--</div><div class='card-sub' id='b_igro'></div></div>" &
 			"<div class='card'><div class='card-lbl'>Sub-T Tempo</div><div class='card-val' id='k_subt'>--</div><div class='card-sub' id='b_subt'></div></div>" &
 			"<div class='card'><div class='card-lbl'>Sub-Q Qualidade</div><div class='card-val' id='k_subq'>--</div><div class='card-sub' id='b_subq'></div></div>" &
-			"<div class='card'><div class='card-lbl'>TMR MÃ©dio</div><div class='card-val' id='k_tmr'>--</div><div class='card-sub' id='b_tmr'></div></div>" &
+			"<div class='card'><div class='card-lbl'>TMR Médio</div><div class='card-val' id='k_tmr'>--</div><div class='card-sub' id='b_tmr'></div></div>" &
 			"<div class='card'><div class='card-lbl'>Resolutividade</div><div class='card-val' id='k_res'>--</div><div class='card-sub' id='b_res'></div></div>" &
-			"<div class='card'><div class='card-lbl'>Nota MÃ©dia</div><div class='card-val' id='k_nota'>--</div><div class='card-sub' id='b_nota'></div></div>" &
+			"<div class='card'><div class='card-lbl'>Nota Média</div><div class='card-val' id='k_nota'>--</div><div class='card-sub' id='b_nota'></div></div>" &
 			"<div class='card'><div class='card-lbl'>NPS</div><div class='card-val' id='k_nps'>--</div><div class='card-sub' id='b_nps'></div></div>" &
-			"<div class='card'><div class='card-lbl'>InsatisfatÃ³rias</div><div class='card-val' id='k_ins'>--</div><div class='card-sub' id='b_ins'></div></div>" &
+			"<div class='card'><div class='card-lbl'>Insatisfatórias</div><div class='card-val' id='k_ins'>--</div><div class='card-sub' id='b_ins'></div></div>" &
 			"</div>" &
 			"<div class='charts'>" &
-			"<div class='cbox'><h3>Ranking IGRO por Ã³rgÃ£o (top 20)</h3><div class='bar-wrap' id='rank_wrap'></div></div>" &
-			"<div class='cbox'><h3>DistribuiÃ§Ã£o por tipo</h3><div class='bar-wrap' id='tipo_wrap'></div></div>" &
+			"<div class='cbox'><h3>Ranking IGRO por órgão (top 20)</h3><div class='bar-wrap' id='rank_wrap'></div></div>" &
+			"<div class='cbox'><h3>Distribuição por tipo</h3><div class='bar-wrap' id='tipo_wrap'></div></div>" &
 			"</div>" &
 			"<div class='tbl-wrap'>" &
 			"<div class='tc'>" &
-			"<input type='text' id='bsc' placeholder='Buscar Ã³rgÃ£o...' oninput='rn()'>" &
+			"<input type='text' id='bsc' placeholder='Buscar órgão...' oninput='rn()'>" &
 			"<button onclick='xcsv()'>&#11015; CSV</button>" &
 			"<span id='pag_info' style='margin-left:auto;font-size:11px;color:#6b7280'></span>" &
 			"</div>" &
 			"<table><thead><tr>" &
-			"<th>Ã“rgÃ£o</th><th>Manif.</th><th>IGRO</th><th>Sub-T</th><th>Sub-Q</th>" &
+			"<th>Órgão</th><th>Manif.</th><th>IGRO</th><th>Sub-T</th><th>Sub-Q</th>" &
 			"<th>TMR</th><th>Resolut.</th><th>Nota</th><th>Insatisf.</th><th>NPS</th><th>Risco</th>" &
 			"</tr></thead><tbody id='tb'></tbody></table>" &
-			"<div class='pag'><button onclick='gp(-1)'>&#9664;</button><span id='pag_lbl'>PÃ¡g 1</span><button onclick='gp(1)'>&#9654;</button></div>" &
+			"<div class='pag'><button onclick='gp(-1)'>&#9664;</button><span id='pag_lbl'>Pág 1</span><button onclick='gp(1)'>&#9654;</button></div>" &
 			"</div>"
 			
 			VAR _js1 =
@@ -1299,10 +1299,10 @@ table _medidas
 			"<" & _scx & ">"
 			
 			RETURN _css & _body & _js1 & _js2
-		displayFolder: 12 Â· JSON Â· Dashboard
+		displayFolder: 12 · JSON · Dashboard
 		lineageTag: 63ab91b7-f926-428b-a6e5-e3d1bcd9966e
 
-	/// Volume de manifestaÃ§Ãµes no mesmo perÃ­odo do ano anterior. Funciona com qualquer granularidade de dCalendario (dia, mÃªs, quadrimestre).
+	/// Volume de manifestações no mesmo período do ano anterior. Funciona com qualquer granularidade de dCalendario (dia, mês, quadrimestre).
 	measure base_qtd_manifestacoes_aa =
 			VAR _min_data = MIN(dCalendario[Date])
 			VAR _max_data = MAX(dCalendario[Date])
@@ -1316,10 +1316,10 @@ table _medidas
 			        )
 			    )
 		formatString: #,0
-		displayFolder: 04 Â· Tempo
+		displayFolder: 04 · Tempo
 		lineageTag: b34cda72-a7fc-45ac-94c1-14185c3daf4d
 
-	/// TMR mÃ©dio no mesmo perÃ­odo do ano anterior. Funciona com qualquer granularidade de dCalendario.
+	/// TMR médio no mesmo período do ano anterior. Funciona com qualquer granularidade de dCalendario.
 	measure ind_tmr_aa =
 			VAR _min_data = MIN(dCalendario[Date])
 			VAR _max_data = MAX(dCalendario[Date])
@@ -1333,19 +1333,19 @@ table _medidas
 			        )
 			    )
 		formatString: #,0.0
-		displayFolder: 04 Â· Tempo
+		displayFolder: 04 · Tempo
 		lineageTag: 53df5b50-231c-4799-a501-ee737d1e3fdb
 
-	/// VariaÃ§Ã£o percentual do volume de manifestaÃ§Ãµes em relaÃ§Ã£o ao mesmo perÃ­odo do ano anterior.
+	/// Variação percentual do volume de manifestações em relação ao mesmo período do ano anterior.
 	measure ind_var_pct_volume_aa =
 			VAR atual = [base_qtd_manifestacoes]
 			VAR anterior = [base_qtd_manifestacoes_aa]
 			RETURN DIVIDE(atual - anterior, anterior, BLANK())
 		formatString: +0.0%;-0.0%;0.0%
-		displayFolder: 04 Â· Tempo
+		displayFolder: 04 · Tempo
 		lineageTag: f4a29ec9-ceb8-434c-be7c-b48a559a20f2
 
-	/// Volume de manifestaÃ§Ãµes no quadrimestre anterior ao perÃ­odo selecionado.
+	/// Volume de manifestações no quadrimestre anterior ao período selecionado.
 	measure base_qtd_manifestacoes_quadri_anterior =
 			VAR _quadri_atual =
 			    SELECTEDVALUE(dCalendario[AnoQuadri])
@@ -1363,29 +1363,29 @@ table _medidas
 			        )
 			    )
 		formatString: #,0
-		displayFolder: 04 Â· Tempo
+		displayFolder: 04 · Tempo
 		lineageTag: 8c28da89-13dc-4461-b58d-3f8627de79bf
 
-	/// VariaÃ§Ã£o percentual do volume em relaÃ§Ã£o ao quadrimestre anterior.
+	/// Variação percentual do volume em relação ao quadrimestre anterior.
 	measure ind_var_pct_volume_quadri =
 			VAR atual = [base_qtd_manifestacoes]
 			VAR anterior = [base_qtd_manifestacoes_quadri_anterior]
 			RETURN DIVIDE(atual - anterior, anterior, BLANK())
 		formatString: +0.0%;-0.0%;0.0%
-		displayFolder: 04 Â· Tempo
+		displayFolder: 04 · Tempo
 		lineageTag: 1189bb66-ab76-4ada-86a4-82401bea53a1
 
-	/// Acumulado de manifestaÃ§Ãµes no ano atÃ© a data mÃ¡xima do contexto (YTD).
+	/// Acumulado de manifestações no ano até a data máxima do contexto (YTD).
 	measure base_qtd_manifestacoes_ytd =
 			CALCULATE(
 			    [base_qtd_manifestacoes],
 			    DATESYTD(dCalendario[Date])
 			)
 		formatString: #,0
-		displayFolder: 04 Â· Tempo
+		displayFolder: 04 · Tempo
 		lineageTag: 586a418d-3ce6-496f-a3ae-7dc1d9e0c886
 
-	/// Volume mÃ©dio diÃ¡rio de manifestaÃ§Ãµes no perÃ­odo selecionado. Ãštil para comparar perÃ­odos de tamanhos diferentes.
+	/// Volume médio diário de manifestações no período selecionado. Útil para comparar períodos de tamanhos diferentes.
 	measure ind_media_diaria_manifestacoes =
 			VAR _dias =
 			    COUNTROWS(
@@ -1396,10 +1396,10 @@ table _medidas
 			    )
 			RETURN DIVIDE([base_qtd_manifestacoes], _dias, 0)
 		formatString: #,0.0
-		displayFolder: 04 Â· Tempo
+		displayFolder: 04 · Tempo
 		lineageTag: 247d4be6-0e73-440e-a378-fe4e08854ce6
 
-	/// Indica se o mÃªs estÃ¡ acima ou abaixo da mÃ©dia mensal do ano. 1.0 = mÃ©dia, >1.0 = pico sazonal, <1.0 = vale. Requer contexto mensal no visual.
+	/// Indica se o mês está acima ou abaixo da média mensal do ano. 1.0 = média, >1.0 = pico sazonal, <1.0 = vale. Requer contexto mensal no visual.
 	measure ind_indice_sazonalidade =
 			VAR _ano_ctx    = MAX(dCalendario[Ano])
 			VAR _vol_mes    = [base_qtd_manifestacoes]
@@ -1407,30 +1407,30 @@ table _medidas
 			VAR _media_mes  = DIVIDE(_soma_ano, 12, 1)
 			RETURN DIVIDE(_vol_mes, _media_mes, 1)
 		formatString: #,0.00
-		displayFolder: 04 Â· Tempo
+		displayFolder: 04 · Tempo
 		lineageTag: 4b5a6850-fc2d-4443-8b9e-009247c5b4e2
 
-	/// ManifestaÃ§Ãµes registradas em dias Ãºteis (segunda a sexta).
+	/// Manifestações registradas em dias úteis (segunda a sexta).
 	measure base_qtd_manifestacoes_dias_uteis =
 			CALCULATE(
 			    [base_qtd_manifestacoes],
 			    dCalendario[DiaUtil] = TRUE()
 			)
 		formatString: #,0
-		displayFolder: 04 Â· Tempo
+		displayFolder: 04 · Tempo
 		lineageTag: a67d58ca-1896-4bfd-a005-a0a6a452f863
 
-	/// ManifestaÃ§Ãµes registradas em fins de semana (sÃ¡bado e domingo).
+	/// Manifestações registradas em fins de semana (sábado e domingo).
 	measure base_qtd_manifestacoes_fim_semana =
 			CALCULATE(
 			    [base_qtd_manifestacoes],
 			    dCalendario[FimDeSemana] = TRUE()
 			)
 		formatString: #,0
-		displayFolder: 04 Â· Tempo
+		displayFolder: 04 · Tempo
 		lineageTag: 220b3c6d-00aa-4de9-98bd-f9a3b5a62c01
 
-	/// Percentual do volume registrado fora de dias Ãºteis. Indica pressÃ£o sobre canais digitais (Expresso/Webservice) no final de semana.
+	/// Percentual do volume registrado fora de dias úteis. Indica pressão sobre canais digitais (Expresso/Webservice) no final de semana.
 	measure ind_pct_fim_semana =
 			DIVIDE(
 			    [base_qtd_manifestacoes_fim_semana],
@@ -1438,10 +1438,10 @@ table _medidas
 			    0
 			)
 		formatString: 0.0%
-		displayFolder: 04 Â· Tempo
+		displayFolder: 04 · Tempo
 		lineageTag: e7cba012-3291-4b64-afe9-46120aa97c3d
 
-	/// MÃ©dia mÃ³vel de 3 meses do volume de manifestaÃ§Ãµes. Usa janela deslizante de AnoMes. Requer contexto mensal no visual.
+	/// Média móvel de 3 meses do volume de manifestações. Usa janela deslizante de AnoMes. Requer contexto mensal no visual.
 	measure ind_media_movel_3m =
 			VAR _anoMes_max = MAX(dCalendario[AnoMes])
 			VAR _ano_max    = INT(_anoMes_max / 100)
@@ -1461,19 +1461,19 @@ table _medidas
 			VAR _vol2 = CALCULATE([base_qtd_manifestacoes], FILTER(ALL(dCalendario), dCalendario[AnoMes] = _anoMes_m2))
 			RETURN DIVIDE(_vol0 + _vol1 + _vol2, 3, BLANK())
 		formatString: #,0.0
-		displayFolder: 04 Â· Tempo
+		displayFolder: 04 · Tempo
 		lineageTag: ba4721e9-2eb5-4624-8e47-3d62894acb5d
 
-	/// Compara o volume do mÃªs atual com a mÃ©dia mÃ³vel de 3 meses. Positivo = acima da tendÃªncia, negativo = abaixo.
+	/// Compara o volume do mês atual com a média móvel de 3 meses. Positivo = acima da tendência, negativo = abaixo.
 	measure ind_var_vs_media_movel =
 			VAR _atual = [base_qtd_manifestacoes]
 			VAR _mm3   = [ind_media_movel_3m]
 			RETURN DIVIDE(_atual - _mm3, _mm3, BLANK())
 		formatString: +0.0%;-0.0%;0.0%
-		displayFolder: 04 Â· Tempo
+		displayFolder: 04 · Tempo
 		lineageTag: e58cc3db-a559-4d5d-9459-634c82adc768
 
-	/// Volume de manifestaÃ§Ãµes usando a data de finalizaÃ§Ã£o como eixo temporal. Requer USERELATIONSHIP com dCalendario[Date] via relacionamento inativo.
+	/// Volume de manifestações usando a data de finalização como eixo temporal. Requer USERELATIONSHIP com dCalendario[Date] via relacionamento inativo.
 	measure base_qtd_finalizadas_por_data_fin =
 			CALCULATE(
 			    [base_qtd_manifestacoes_finalizadas],
@@ -1483,10 +1483,10 @@ table _medidas
 			    )
 			)
 		formatString: #,0
-		displayFolder: 04 Â· Tempo
+		displayFolder: 04 · Tempo
 		lineageTag: 3468df99-d373-4295-ac1f-77530c8e22fe
 
-	/// Dashboard HTML IGROÂ·NPS v3 â€” corrige JSON invÃ¡lido (ano nulo) e filtra anos sem dados.
+	/// Dashboard HTML IGRO·NPS v3 — corrige JSON inválido (ano nulo) e filtra anos sem dados.
 	measure 'HTML Dashboard Final Base' =
 			VAR _F4 = "0.0000"
 			VAR _F2 = "0.00"
@@ -1679,7 +1679,7 @@ table _medidas
 			
 			RETURN
 			    _head & _body & _js & "</body></html>"
-		displayFolder: 12 Â· JSON Â· Dashboard
+		displayFolder: 12 · JSON · Dashboard
 		lineageTag: 509bb4a2-1511-42c3-9182-3b8d3fd7e195
 
 	/// Matriz HTML por Classe IGRO v8 - texto da tabela em branco para melhor contraste.
@@ -1775,8 +1775,8 @@ table _medidas
 			        [Classe], ASC
 			    )
 			RETURN
-			"<!DOCTYPE html><html lang='pt-BR'><head><meta charset='UTF-8'>" & _CSS & "</head><body><div class='w'><h1>Matriz de Orgaos por Classe Â· IGRO</h1><p class='sub'>Rede estadual de ouvidorias Â· Goias</p><p class='note'>Renderizacao estatica para compatibilidade com o visual HTML do Power BI.</p>" & _summary & IF(_total = 0, "<div class='empty'>Nenhum resultado.</div>", _matrix) & "</div></body></html>"
-		displayFolder: 12 Â· JSON Â· Dashboard
+			"<!DOCTYPE html><html lang='pt-BR'><head><meta charset='UTF-8'>" & _CSS & "</head><body><div class='w'><h1>Matriz de Orgaos por Classe · IGRO</h1><p class='sub'>Rede estadual de ouvidorias · Goias</p><p class='note'>Renderizacao estatica para compatibilidade com o visual HTML do Power BI.</p>" & _summary & IF(_total = 0, "<div class='empty'>Nenhum resultado.</div>", _matrix) & "</div></body></html>"
+		displayFolder: 12 · JSON · Dashboard
 		lineageTag: fc109f05-9661-4963-8f69-ef78a29d5774
 
 	/// Flag de amostra insuficiente para KRIs de pesquisa (v3 FPC corrigido). Denominador exclui manifestacoes anonimas, que nao podem gerar pesquisa de satisfacao. Flag=1 quando n_obs < 30 E taxa < 5% das finalizadas identificadas.
@@ -1791,7 +1791,7 @@ table _medidas
 			        1
 			    )
 		formatString: 0
-		displayFolder: 05 Â· IGRO Â· Metas e Goalposts
+		displayFolder: 05 · IGRO · Metas e Goalposts
 		lineageTag: 2f707517-a3fb-4704-a49d-2bfe0e122b6a
 
 	/// Base de manifestacoes finalizadas identificadas (exclui Anonimo). Denominador correto para taxa de cobertura da pesquisa de satisfacao.
@@ -1801,10 +1801,10 @@ table _medidas
 			    f_relatorio[sigilo] <> "An" & UNICHAR(244) & "nimo"
 			)
 		formatString: #,0
-		displayFolder: 01 Â· Volume
+		displayFolder: 01 · Volume
 		lineageTag: dc4da54f-2c73-462f-85b7-e3502208975b
 
-	/// VersÃ£o do Dashboard Final com override de CSS para fonte branca em textos que apareciam pretos.
+	/// Versão do Dashboard Final com override de CSS para fonte branca em textos que apareciam pretos.
 	measure 'HTML Dashboard Final Fonte Branca' =
 			[HTML Dashboard Final Base]
 			    & "<style>"
@@ -1812,10 +1812,10 @@ table _medidas
 			    & ".card .sub,.ksub,.lbl,.fbar label{color:#b8cad1!important;}"
 			    & ".bar-label span[id],#bar-p,#bar-n,#bar-d,#nota-v,#lg-p,#lg-n,#lg-d,#qtd-t,#tot-v{color:#ffffff!important;}"
 			    & "</style>"
-		displayFolder: 12 Â· JSON Â· Dashboard
+		displayFolder: 12 · JSON · Dashboard
 		lineageTag: e3c2a577-62a1-4e83-a59f-eb371c73fc92
 
-	/// Dashboard HTML IGROÂ·NPS com badge dinamica de classificacao no cartao IGRO, filtros preservados, gauge NPS e distribuicao premium.
+	/// Dashboard HTML IGRO·NPS com badge dinamica de classificacao no cartao IGRO, filtros preservados, gauge NPS e distribuicao premium.
 	measure 'HTML Dashboard Final' =
 			VAR _html0 = [HTML Dashboard Final Base]
 			VAR _oldIg = "<div class='ig-main'><div class='lbl'>IGRO</div><div class='ig-val' id='ig-val'>--</div><div class='ig-bar'><div class='ig-fill' id='ig-bl' style='width:0'></div></div></div>"
@@ -1850,10 +1850,10 @@ table _medidas
 			        & ".radar-card{display:grid!important;grid-template-columns:300px 1fr;gap:22px;align-items:center}.radar-wrap{display:flex;justify-content:center}.radar-grid{fill:none;stroke:#2b5960;stroke-width:1}.radar-axis{stroke:#21484e;stroke-width:1}.radar-poly{fill:rgba(242,201,76,.24);stroke:#f2c94c;stroke-width:3}.radar-dot{fill:#06d6a0;stroke:#071b1d;stroke-width:2}.radar-label{font-size:10px;fill:#dff8ff;font-weight:700}.kr-list{display:grid;grid-template-columns:1fr 1fr;gap:12px}.kr{background:#0b292d;border:1px solid #1b4c53;border-radius:10px;padding:12px}.kr-name{font-size:12px;color:#dff8ff!important;text-transform:uppercase;letter-spacing:.5px}.kr-score{font-family:'Montserrat',sans-serif;font-size:22px;font-weight:800;color:#f2c94c!important;margin:4px 0}.kr-real{font-size:11px;color:#cbd5e1!important}"
 			        & "@media(max-width:760px){.nps-alt,.dist-premium,.radar-card,.kr-list{grid-template-columns:1fr!important}}"
 			        & "</style>"
-		displayFolder: 12 Â· JSON Â· Dashboard
+		displayFolder: 12 · JSON · Dashboard
 		lineageTag: 019a64f5-04af-4764-8a84-f50a34f1714a
 
-	/// Tabela/matriz HTML com dados em literal JS, filtros e exportaÃ§Ã£o CSV dos resultados calculados por Ã³rgÃ£o.
+	/// Tabela/matriz HTML com dados em literal JS, filtros e exportação CSV dos resultados calculados por órgão.
 	measure 'HTML Tabela Resultados IGRO CSV' =
 			VAR _q = "'"
 			VAR _tbl =
@@ -1931,14 +1931,64 @@ table _medidas
 			VAR _css =
 			"<style>*{box-sizing:border-box}body{margin:0;background:#061f20;color:#e2e8f0;font-family:Segoe UI,Arial,sans-serif;padding:14px}.wrap{max-width:1280px;margin:0 auto}h1{font-size:18px;color:#f2c94c;margin:0 0 4px;font-weight:800}.sub{font-size:11px;color:#9fb4bc;margin-bottom:12px}.toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:#0d3436;border:1px solid #1f5559;border-radius:8px;padding:10px;margin-bottom:10px}input,select,button{background:#092b2d;color:#e2e8f0;border:1px solid #1f5559;border-radius:6px;padding:6px 9px;font-size:12px}button{cursor:pointer;color:#fff;font-weight:700}.count{margin-left:auto;font-size:11px;color:#b8cad1}.tablebox{border:1px solid #1f5559;border-radius:8px;overflow:auto;max-height:620px}table{width:100%;border-collapse:collapse;font-size:11px;min-width:1500px}th{position:sticky;top:0;background:#0a292b;color:#b8cad1;text-align:left;text-transform:uppercase;font-size:9px;padding:8px;border-bottom:1px solid #1f5559;white-space:nowrap}td{color:#e2e8f0;padding:7px 8px;border-bottom:1px solid #0c2b2d;white-space:nowrap;text-align:right}td:first-child,td:nth-child(2),td:nth-child(3),td:nth-child(4){text-align:left}tr:hover td{background:#0d3436;color:#fff}.foot{font-size:10px;color:#78909a;margin-top:8px}</style>"
 			VAR _html =
-			"<!DOCTYPE html><html lang='pt-BR'><head><meta charset='UTF-8'>" & _css & "</head><body><div class='wrap'><h1>Tabela de Resultados Calculados Â· IGRO</h1><div class='sub'>Resultados por orgao com exportacao CSV</div><div class='toolbar'><input id='q' placeholder='Buscar orgao...'><select id='cl'><option value='all'>Todas as classes</option><option value='1'>Classe 1</option><option value='2'>Classe 2</option><option value='3'>Classe 3</option><option value='4'>Classe 4</option><option value='5'>Classe 5</option></select><select id='tp'><option value='all'>Todos os tipos</option><option value='Setorial'>Setorial</option><option value='Adjunta'>Adjunta</option></select><button id='csv'>Exportar CSV</button><span class='count' id='count'></span></div><div class='tablebox'><table><thead id='thead'></thead><tbody id='tbody'></tbody></table></div><div class='foot'>Campos percentuais exportados no mesmo formato exibido na tabela.</div></div>"
+			"<!DOCTYPE html><html lang='pt-BR'><head><meta charset='UTF-8'>" & _css & "</head><body><div class='wrap'><h1>Tabela de Resultados Calculados · IGRO</h1><div class='sub'>Resultados por orgao com exportacao CSV</div><div class='toolbar'><input id='q' placeholder='Buscar orgao...'><select id='cl'><option value='all'>Todas as classes</option><option value='1'>Classe 1</option><option value='2'>Classe 2</option><option value='3'>Classe 3</option><option value='4'>Classe 4</option><option value='5'>Classe 5</option></select><select id='tp'><option value='all'>Todos os tipos</option><option value='Setorial'>Setorial</option><option value='Adjunta'>Adjunta</option></select><button id='csv'>Exportar CSV</button><span class='count' id='count'></span></div><div class='tablebox'><table><thead id='thead'></thead><tbody id='tbody'></tbody></table></div><div class='foot'>Campos percentuais exportados no mesmo formato exibido na tabela.</div></div>"
 			VAR _js =
 			"<script>const D=" & _data & ";const cols=[['sigla','Orgao'],['tipo','Tipo'],['grupo','Grupo'],['classe','Classe'],['manifestacoes','Manif.'],['finalizadas','Finalizadas'],['abertas','Abertas'],['pesquisas','Pesq.'],['tmr','TMR'],['rdp','% RDP'],['tr','TR'],['ri','% RI'],['nota','Nota'],['nps','NPS'],['promotores','% Prom.'],['neutros','% Neut.'],['detratores','% Detr.'],['score_rdp','Score RDP'],['score_tmr','Score TMR'],['score_tr','Score TR'],['score_ri','Score RI'],['score_nr','Score NR'],['sub_t','Sub-T'],['sub_q','Sub-Q'],['igro','IGRO'],['flag_amostra','Amostra insuf.']];function pct(v){return (Number(v)*100).toFixed(1)+'%'}function n2(v){return Number(v).toLocaleString('pt-BR',{maximumFractionDigits:2})}function fmt(k,v){if(['rdp','tr','ri','promotores','neutros','detratores','score_rdp','score_tmr','score_tr','score_ri','score_nr','sub_t','sub_q','igro'].includes(k))return pct(v);if(['tmr','nota','nps'].includes(k))return n2(v);if(k==='flag_amostra')return v==1?'Sim':'Nao';return v}function rows(){const q=(document.getElementById('q').value||'').toLowerCase();const cl=document.getElementById('cl').value;const tp=document.getElementById('tp').value;return D.filter(r=>(!q||r.sigla.toLowerCase().includes(q))&&(cl==='all'||r.classe===cl)&&(tp==='all'||r.tipo===tp));}function render(){const R=rows();document.getElementById('count').textContent=R.length+' orgaos';document.getElementById('thead').innerHTML='<tr>'+cols.map(c=>'<th>'+c[1]+'</th>').join('')+'</tr>';document.getElementById('tbody').innerHTML=R.map(r=>'<tr>'+cols.map(c=>'<td>'+fmt(c[0],r[c[0]])+'</td>').join('')+'</tr>').join('')}function csv(){const R=rows();const head=cols.map(c=>c[1]).join(';');const lines=R.map(r=>cols.map(c=>String(fmt(c[0],r[c[0]]))).join(';'));const blob=new Blob(['\ufeff'+[head].concat(lines).join('\n')],{type:'text/csv;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='resultados_igro.csv';a.click();URL.revokeObjectURL(a.href)}document.getElementById('q').addEventListener('input',render);document.getElementById('cl').addEventListener('change',render);document.getElementById('tp').addEventListener('change',render);document.getElementById('csv').addEventListener('click',csv);render();</script></body></html>"
 			RETURN _html & _js
-		displayFolder: 12 Â· JSON Â· Dashboard
+		displayFolder: 12 · JSON · Dashboard
 		lineageTag: 5e7bfcac-9f44-41be-9944-0cdeeec93ca4
 
-	/// Infografico HTML do IGRO com indice central, subindices laterais e cinco cards executivos para os KRIs.
+	/// Backup estatico da medida HTML Dashboard Final antes da substituicao do card NPS mantendo filtros.
+	measure 'HTML Dashboard Final Backup' =
+			[HTML Dashboard Final Base]
+			    & "<style>"
+			    & "body,.dash,.card,.card span,.card b,.donut-leg,.donut-leg span,.donut-leg b,.leg-item,.bar-label,.bar-label span,.sub b,.ctx-badge{color:#e2e8f0!important;}"
+			    & ".card .sub,.ksub,.lbl,.fbar label{color:#b8cad1!important;}"
+			    & ".bar-label span[id],#bar-p,#bar-n,#bar-d,#nota-v,#lg-p,#lg-n,#lg-d,#qtd-t,#tot-v{color:#ffffff!important;}"
+			    & "</style>"
+		displayFolder: 12 · JSON · Dashboard
+		lineageTag: b2877836-724b-409b-adf0-199b5f0f7f5a
+
+	/// JSON array com dados IGRO por ano para uso no visual HTML
+	measure '_JSON IGRO Anos' =
+			VAR _dados =
+			    ADDCOLUMNS (
+			        FILTER (
+			            SUMMARIZE ( 'dCalendario', 'dCalendario'[Ano] ),
+			            'dCalendario'[Ano] > 2000
+			        ),
+			        "@i", [idx_igro],
+			        "@t", [idx_igro_sub_t],
+			        "@q", [idx_igro_sub_q],
+			        "@m", [ind_media_tempo_resposta],
+			        "@r", [ind_pct_resolutividade],
+			        "@x", [ind_pct_respostas_insatisfatorias],
+			        "@a", [ind_media_nota_recomendacao],
+			        "@n", [base_qtd_manifestacoes]
+			    )
+			VAR _filtrado =
+			    FILTER ( _dados, NOT ISBLANK ( [@i] ) && [@n] > 0 )
+			VAR _json =
+			    CONCATENATEX (
+			        _filtrado,
+			        "{""ano"":" & 'dCalendario'[Ano]
+			            & ",""i"":"  & SUBSTITUTE ( FORMAT ( [@i], "0.0000" ), ",", "." )
+			            & ",""t"":"  & SUBSTITUTE ( FORMAT ( [@t], "0.0000" ), ",", "." )
+			            & ",""q"":"  & SUBSTITUTE ( FORMAT ( [@q], "0.0000" ), ",", "." )
+			            & ",""m"":"  & SUBSTITUTE ( FORMAT ( [@m], "0.00"   ), ",", "." )
+			            & ",""r"":"  & SUBSTITUTE ( FORMAT ( [@r], "0.0000" ), ",", "." )
+			            & ",""x"":"  & SUBSTITUTE ( FORMAT ( [@x], "0.0000" ), ",", "." )
+			            & ",""a"":"  & SUBSTITUTE ( FORMAT ( [@a], "0.00"   ), ",", "." )
+			            & ",""n"":"  & [@n] & "}",
+			        ",",
+			        'dCalendario'[Ano], ASC
+			    )
+			RETURN
+			    "[" & _json & "]"
+		isHidden
+		lineageTag: 5c331581-da37-4c12-bed0-f8b2fba348f5
+
+	/// Infografico HTML do IGRO com composicao central do indice, subindices e cinco cards laterais para os KRIs.
 	measure 'HTML Infografico IGRO' =
 			VAR _igro = COALESCE([idx_igro], 0)
 			VAR _subT = COALESCE([idx_igro_sub_t], 0)
@@ -1954,8 +2004,6 @@ table _medidas
 			VAR _s4 = COALESCE([idx_score_igro_kri4], 0)
 			VAR _s5 = COALESCE([idx_score_igro_kri5], 0)
 			VAR _igroColor = COALESCE([fmt_cor_fundo_igro], "#27AE60")
-			VAR _subTColor = COALESCE([fmt_cor_fundo_igro_sub_t], "#1F8A70")
-			VAR _subQColor = COALESCE([fmt_cor_fundo_igro_sub_q], "#1F8A70")
 			VAR _p1 = SUBSTITUTE(FORMAT(_s1 * 100, "0.0"), ",", ".")
 			VAR _p2 = SUBSTITUTE(FORMAT(_s2 * 100, "0.0"), ",", ".")
 			VAR _p3 = SUBSTITUTE(FORMAT(_s3 * 100, "0.0"), ",", ".")
@@ -1969,37 +2017,67 @@ table _medidas
 			VAR _chip5 = IF(_s5 >= 0.85, "#1f9d6b", IF(_s5 >= 0.65, "#d97706", "#c2410c"))
 			VAR _html =
 			    "<!DOCTYPE html><html lang='pt-BR'><head><meta charset='UTF-8'><style>" &
-			    "*{box-sizing:border-box}body{margin:0;padding:0;background:#f4f1ed;font-family:Segoe UI,Arial,sans-serif;color:#122026}.wrap{width:1100px;height:640px;margin:0 auto;position:relative;background:radial-gradient(circle at 18% 28%,rgba(255,255,255,.95),rgba(255,255,255,.6) 26%,transparent 52%),linear-gradient(135deg,#faf7f2 0%,#f1ece6 100%);overflow:hidden}.title{position:absolute;top:26px;left:0;right:0;text-align:center;font-size:14px;letter-spacing:3px;text-transform:uppercase;color:#5b646a}.title b{font-size:34px;letter-spacing:1px;color:#101517}.title span{font-size:11px;letter-spacing:6px;color:#59727b}.ring-box{position:absolute;left:48px;top:118px;width:370px;height:370px}.ring-label{position:absolute;left:107px;top:107px;width:154px;height:154px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#fff;border:8px solid rgba(18,32,38,.05);box-shadow:0 12px 30px rgba(0,0,0,.10)}.ring-label .k{font-size:10px;letter-spacing:3.2px;text-transform:uppercase;color:#6a767d;line-height:1.45;margin-bottom:8px;text-align:center}.ring-label .m{font-size:18px;font-weight:900;letter-spacing:2px;color:#132026;line-height:1;text-transform:uppercase}.ring-label .v{font-size:40px;font-weight:900;color:#132026;line-height:.95;margin-top:10px}.ring-label .s{margin-top:10px;padding:6px 14px;border-radius:999px;color:#fff;font-size:11px;font-weight:700;letter-spacing:.5px}.center-copy{position:absolute;left:64px;top:494px;width:255px;text-align:left}.center-copy .eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#637179;margin-bottom:8px}.center-copy .sub{font-size:13px;color:#4e5b62;line-height:1.35}.center-copy .sub strong{color:#132026}.rail{position:absolute;left:332px;top:95px;width:230px;height:460px}.cards{position:absolute;left:516px;top:88px;width:525px;display:flex;flex-direction:column;gap:12px}.subcard{position:relative;height:56px;border-radius:20px;padding:11px 18px 11px 82px;display:flex;align-items:center;justify-content:space-between;color:#fff;box-shadow:0 10px 22px rgba(0,0,0,.11)}.subcard .node{width:48px;height:48px;font-size:10px;border-width:4px}.subtxt .t{font-size:11px;letter-spacing:1.3px;text-transform:uppercase;font-weight:800;line-height:1}.subtxt .v{font-size:30px;font-weight:900;line-height:1;margin-top:4px}.submeta{text-align:right}.submeta .l{font-size:11px;font-weight:700;opacity:.96}.card{position:relative;height:66px;border-radius:33px;padding:10px 22px 10px 88px;display:flex;align-items:center;justify-content:space-between;color:#fff;box-shadow:0 10px 22px rgba(0,0,0,.13)}.node{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;background:#263238;border:5px solid #f4f1ed;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;letter-spacing:.6px}.txt .t{font-size:13px;font-weight:700;line-height:1.12}.txt .v{font-size:34px;font-weight:900;line-height:.95;margin-top:4px}.meta{text-align:right;min-width:126px}.chip{display:inline-block;padding:6px 11px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.4px;color:#fff}.bar{margin-top:10px;width:130px;height:9px;background:rgba(255,255,255,.18);border-radius:999px;overflow:hidden}.fill{height:100%;background:#fff;border-radius:999px;box-shadow:0 0 10px rgba(255,255,255,.25)}.sub1{background:linear-gradient(135deg,#f0aa27,#ef9808)}.sub2{background:linear-gradient(135deg,#e9861d,#d97508)}.k1{background:linear-gradient(135deg,#6fb6bb,#5aa0a7)}.k2{background:linear-gradient(135deg,#0d7c91,#09657a)}.k3{background:linear-gradient(135deg,#8bc4c5,#75b0b4)}.k4{background:linear-gradient(135deg,#0b8aa4,#086d84)}.k5{background:linear-gradient(135deg,#83bcc0,#6ca5ab)}.legend{position:absolute;right:58px;bottom:20px;font-size:11px;color:#657179;letter-spacing:.35px}.legend b{color:#0d1720}</style></head><body><div class='wrap'>" &
+			    "*{box-sizing:border-box}body{margin:0;padding:0;background:#f4f1ed;font-family:Segoe UI,Arial,sans-serif;color:#122026}.wrap{width:1100px;height:640px;margin:0 auto;position:relative;background:radial-gradient(circle at 18% 28%,rgba(255,255,255,.95),rgba(255,255,255,.6) 26%,transparent 52%),linear-gradient(135deg,#faf7f2 0%,#f1ece6 100%);overflow:hidden}.title{position:absolute;top:24px;left:0;right:0;text-align:center;font-size:14px;letter-spacing:3px;text-transform:uppercase;color:#5b646a}.title b{font-size:36px;letter-spacing:1px;color:#101517}.title span{font-size:11px;letter-spacing:5px;color:#59727b}.ring-box{position:absolute;left:34px;top:126px;width:320px;height:320px}.ring-label{position:absolute;left:92px;top:92px;width:138px;height:138px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#fff;border:8px solid rgba(18,32,38,.05);box-shadow:0 12px 30px rgba(0,0,0,.10)}.ring-label .k{font-size:10px;letter-spacing:3.1px;text-transform:uppercase;color:#6a767d;line-height:1.45;margin-bottom:8px;text-align:center}.ring-label .m{font-size:18px;font-weight:900;letter-spacing:2px;color:#132026;line-height:1;text-transform:uppercase}.ring-label .v{font-size:40px;font-weight:900;color:#132026;line-height:.95;margin-top:10px}.ring-label .s{margin-top:10px;padding:6px 14px;border-radius:999px;color:#fff;font-size:11px;font-weight:700;letter-spacing:.5px}.center-copy{position:absolute;left:38px;top:500px;width:270px;text-align:left}.center-copy .eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#637179;margin-bottom:8px}.center-copy .sub{font-size:13px;color:#4e5b62;line-height:1.35}.center-copy .sub strong{color:#132026}.map{position:absolute;left:276px;top:104px;width:760px;height:440px}.subs{position:absolute;left:388px;top:92px;width:274px;display:flex;flex-direction:column;gap:88px}.subcard{position:relative;height:88px;border-radius:24px;padding:14px 86px 14px 84px;color:#fff;display:flex;flex-direction:column;justify-content:center;box-shadow:0 12px 24px rgba(0,0,0,.12)}.subcard .node{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:50px;height:50px;border-radius:50%;background:#263238;border:5px solid #f4f1ed;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;letter-spacing:.6px}.subcard .t{font-size:11px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;line-height:1}.subcard .v{font-size:36px;font-weight:900;line-height:1;margin-top:8px}.subcard .l{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:11px;font-weight:700;text-align:right;max-width:64px;line-height:1.15}.subTempo{background:linear-gradient(135deg,#f4ae1a,#ef9808)}.subQual{background:linear-gradient(135deg,#ea8a18,#dc7606)}.groups{position:absolute;left:706px;top:110px;width:330px}.group{position:absolute;left:0;width:330px}.group.g1{top:0}.group.g2{top:228px}.glabel{margin:0 0 12px 12px;font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:#617078}.cards{display:flex;flex-direction:column;gap:14px}.card{position:relative;height:64px;border-radius:32px;padding:10px 18px 10px 82px;display:flex;align-items:center;justify-content:space-between;color:#fff;box-shadow:0 10px 22px rgba(0,0,0,.13)}.card .node{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;background:#263238;border:5px solid #f4f1ed;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;letter-spacing:.6px}.txt{max-width:138px}.txt .t{font-size:10px;font-weight:700;line-height:1.16}.txt .v{font-size:24px;font-weight:900;line-height:.95;margin-top:4px}.meta{text-align:right;min-width:108px}.chip{display:inline-block;padding:6px 10px;border-radius:999px;font-size:10px;font-weight:800;letter-spacing:.35px;color:#fff}.bar{margin-top:8px;width:108px;height:8px;background:rgba(255,255,255,.18);border-radius:999px;overflow:hidden}.fill{height:100%;background:#fff;border-radius:999px;box-shadow:0 0 10px rgba(255,255,255,.25)}.k1{background:linear-gradient(135deg,#6fb6bb,#5aa0a7)}.k2{background:linear-gradient(135deg,#0d7c91,#09657a)}.k3{background:linear-gradient(135deg,#8bc4c5,#75b0b4)}.k4{background:linear-gradient(135deg,#0b8aa4,#086d84)}.k5{background:linear-gradient(135deg,#83bcc0,#6ca5ab)}.legend{position:absolute;left:454px;bottom:14px;font-size:11px;color:#657179;letter-spacing:.3px;max-width:520px;text-align:left}</style></head><body><div class='wrap'>" &
 			    "<div class='title'><b>IGRO</b> <span>VIS&Atilde;O EXECUTIVA</span></div>" &
-			    "<div class='ring-box'><svg viewBox='0 0 370 370' width='370' height='370'><circle cx='185' cy='185' r='100' fill='none' stroke='rgba(19,32,38,.09)' stroke-width='20'/><circle cx='185' cy='185' r='100' fill='none' stroke='" & _igroColor & "' stroke-width='20' stroke-linecap='round' stroke-dasharray='" & _ring & " 999' transform='rotate(-90 185 185)'/><path d='M 286 80 C 325 102 344 144 344 185 C 344 234 320 277 280 304' fill='none' stroke='#1a1f22' stroke-width='3'/><circle cx='286' cy='80' r='10' fill='#111'/><circle cx='280' cy='304' r='10' fill='#111'/></svg><div class='ring-label'><div class='k'>&Iacute;NDICE<br/>COMPOSTO</div><div class='m'>IGRO</div><div class='v'>" & FORMAT(_igro, "0.0%") & "</div><div class='s' style='background:" & _igroColor & "'>" & COALESCE([fmt_semaforo_igro], "Sem faixa") & "</div></div></div>" &
-			    "<div class='center-copy'><div class='eyebrow'>Leitura do painel</div><div class='sub'><strong>IGRO</strong> sintetiza o risco da ouvidoria. Ao lado, os sub&iacute;ndices e KRIs mostram rapidamente onde est&aacute; a press&atilde;o do modelo.</div></div>" &
-			    "<div class='rail'><svg viewBox='0 0 230 460' width='230' height='460'><path d='M 24 35 C 106 48 126 82 126 118 C 126 150 111 171 105 196 C 98 224 109 248 119 272 C 129 296 134 323 128 350 C 122 381 98 407 32 438' fill='none' stroke='#1b1f22' stroke-width='2.5'/><line x1='111' y1='54' x2='188' y2='54' stroke='#1b1f22' stroke-width='2.5'/><line x1='126' y1='120' x2='188' y2='120' stroke='#1b1f22' stroke-width='2.5'/><line x1='108' y1='186' x2='188' y2='186' stroke='#1b1f22' stroke-width='2.5'/><line x1='112' y1='262' x2='188' y2='262' stroke='#1b1f22' stroke-width='2.5'/><line x1='126' y1='340' x2='188' y2='340' stroke='#1b1f22' stroke-width='2.5'/><line x1='110' y1='408' x2='188' y2='408' stroke='#1b1f22' stroke-width='2.5'/><circle cx='111' cy='54' r='10' fill='#f0aa27' stroke='#111' stroke-width='4'/><circle cx='126' cy='120' r='10' fill='#e9861d' stroke='#111' stroke-width='4'/><circle cx='108' cy='186' r='10' fill='#89d4d5' stroke='#111' stroke-width='4'/><circle cx='112' cy='262' r='10' fill='#0690aa' stroke='#111' stroke-width='4'/><circle cx='126' cy='340' r='10' fill='#89d4d5' stroke='#111' stroke-width='4'/><circle cx='110' cy='408' r='10' fill='#0690aa' stroke='#111' stroke-width='4'/><circle cx='98' cy='446' r='10' fill='#89d4d5' stroke='#111' stroke-width='4'/></svg></div>" &
-			    "<div class='cards'>" &
-			        "<div class='subcard sub1'><div class='node'>SUB T</div><div class='subtxt'><div class='t'>Sub-Tempo</div><div class='v'>" & FORMAT(_subT, "0.0%") & "</div></div><div class='submeta'><div class='l'>" & COALESCE([fmt_semaforo_igro_sub_t], "Sem faixa") & "</div></div></div>" &
-			        "<div class='subcard sub2'><div class='node'>SUB Q</div><div class='subtxt'><div class='t'>Sub-Qualidade</div><div class='v'>" & FORMAT(_subQ, "0.0%") & "</div></div><div class='submeta'><div class='l'>" & COALESCE([fmt_semaforo_igro_sub_q], "Sem faixa") & "</div></div></div>" &
-			        "<div class='card k1'><div class='node'>KRI 1</div><div class='txt'><div class='t'>% acima de 30 dias</div><div class='v'>" & FORMAT(_kri1, "0.0%") & "</div></div><div class='meta'><div class='chip' style='background:" & _chip1 & "'>Score " & FORMAT(_s1, "0%") & "</div><div class='bar'><div class='fill' style='width:" & _p1 & "%'></div></div></div></div>" &
-			        "<div class='card k2'><div class='node'>KRI 2</div><div class='txt'><div class='t'>Tempo m&eacute;dio de resposta</div><div class='v'>" & FORMAT(_kri2, "0.0") & " dias</div></div><div class='meta'><div class='chip' style='background:" & _chip2 & "'>Score " & FORMAT(_s2, "0%") & "</div><div class='bar'><div class='fill' style='width:" & _p2 & "%'></div></div></div></div>" &
-			        "<div class='card k3'><div class='node'>KRI 3</div><div class='txt'><div class='t'>Resolutividade</div><div class='v'>" & FORMAT(_kri3, "0.0%") & "</div></div><div class='meta'><div class='chip' style='background:" & _chip3 & "'>Score " & FORMAT(_s3, "0%") & "</div><div class='bar'><div class='fill' style='width:" & _p3 & "%'></div></div></div></div>" &
-			        "<div class='card k4'><div class='node'>KRI 4</div><div class='txt'><div class='t'>Respostas insatisfat&oacute;rias</div><div class='v'>" & FORMAT(_kri4, "0.0%") & "</div></div><div class='meta'><div class='chip' style='background:" & _chip4 & "'>Score " & FORMAT(_s4, "0%") & "</div><div class='bar'><div class='fill' style='width:" & _p4 & "%'></div></div></div></div>" &
-			        "<div class='card k5'><div class='node'>KRI 5</div><div class='txt'><div class='t'>Nota de recomenda&ccedil;&atilde;o</div><div class='v'>" & FORMAT(_kri5, "0.0") & "</div></div><div class='meta'><div class='chip' style='background:" & _chip5 & "'>Score " & FORMAT(_s5, "0%") & "</div><div class='bar'><div class='fill' style='width:" & _p5 & "%'></div></div></div></div>" &
-			    "</div>" &
+			    "<div class='ring-box'><svg viewBox='0 0 320 320' width='320' height='320'><circle cx='160' cy='160' r='96' fill='none' stroke='rgba(19,32,38,.09)' stroke-width='20'/><circle cx='160' cy='160' r='96' fill='none' stroke='" & _igroColor & "' stroke-width='20' stroke-linecap='round' stroke-dasharray='" & _ring & " 999' transform='rotate(-90 160 160)'/><path d='M 258 88 C 294 112 308 148 308 186 C 308 224 294 260 258 292' fill='none' stroke='#1a1f22' stroke-width='3'/><circle cx='260' cy='88' r='10' fill='#111'/><circle cx='256' cy='292' r='10' fill='#111'/></svg><div class='ring-label'><div class='k'>&Iacute;NDICE<br/>COMPOSTO</div><div class='m'>IGRO</div><div class='v'>" & FORMAT(_igro, "0.0%") & "</div><div class='s' style='background:" & _igroColor & "'>" & COALESCE([fmt_semaforo_igro], "Sem faixa") & "</div></div></div>" &
+			    "<div class='center-copy'><div class='eyebrow'>Leitura do painel</div><div class='sub'><strong>IGRO</strong> sintetiza o risco da ouvidoria. O painel separa a leitura em tr&ecirc;s n&iacute;veis: &iacute;ndice composto, sub&iacute;ndices e KRIs.</div></div>" &
+			    "<div class='map'><svg viewBox='0 0 780 456' width='780' height='456'><path d='M 60 128 C 120 136 156 154 182 178 C 198 194 206 212 206 224' fill='none' stroke='#1b1f22' stroke-width='3'/><path d='M 60 350 C 120 326 156 304 182 280 C 198 264 206 246 206 234' fill='none' stroke='#1b1f22' stroke-width='3'/><line x1='206' y1='180' x2='278' y2='180' stroke='#1b1f22' stroke-width='3'/><line x1='206' y1='328' x2='278' y2='328' stroke='#1b1f22' stroke-width='3'/><line x1='278' y1='180' x2='388' y2='180' stroke='#1b1f22' stroke-width='2.5'/><line x1='278' y1='328' x2='388' y2='328' stroke='#1b1f22' stroke-width='2.5'/><line x1='388' y1='180' x2='454' y2='180' stroke='#1b1f22' stroke-width='2.5'/><line x1='388' y1='328' x2='454' y2='328' stroke='#1b1f22' stroke-width='2.5'/><line x1='454' y1='144' x2='520' y2='144' stroke='#1b1f22' stroke-width='2.5'/><line x1='454' y1='222' x2='520' y2='222' stroke='#1b1f22' stroke-width='2.5'/><line x1='454' y1='376' x2='520' y2='376' stroke='#1b1f22' stroke-width='2.5'/><line x1='454' y1='454' x2='520' y2='454' stroke='#1b1f22' stroke-width='2.5'/><line x1='454' y1='532' x2='520' y2='532' stroke='#1b1f22' stroke-width='2.5'/><circle cx='278' cy='180' r='11' fill='#f0aa27' stroke='#111' stroke-width='4'/><circle cx='278' cy='328' r='11' fill='#e9861d' stroke='#111' stroke-width='4'/><circle cx='388' cy='180' r='10' fill='#f0aa27' stroke='#111' stroke-width='4'/><circle cx='388' cy='328' r='10' fill='#e9861d' stroke='#111' stroke-width='4'/><circle cx='454' cy='180' r='10' fill='#f0aa27' stroke='#111' stroke-width='4'/><circle cx='454' cy='328' r='10' fill='#e9861d' stroke='#111' stroke-width='4'/><circle cx='520' cy='144' r='9' fill='#89d4d5' stroke='#111' stroke-width='4'/><circle cx='520' cy='222' r='9' fill='#0690aa' stroke='#111' stroke-width='4'/><circle cx='520' cy='376' r='9' fill='#89d4d5' stroke='#111' stroke-width='4'/><circle cx='520' cy='454' r='9' fill='#0690aa' stroke='#111' stroke-width='4'/><circle cx='520' cy='532' r='9' fill='#89d4d5' stroke='#111' stroke-width='4'/></svg></div>" &
+			    "<div class='subs'><div class='subcard subTempo'><div class='node'>SUB T</div><div class='t'>Sub-Tempo</div><div class='v'>" & FORMAT(_subT, "0.0%") & "</div><div class='l'>" & COALESCE([fmt_semaforo_igro_sub_t], "Sem faixa") & "</div></div><div class='subcard subQual'><div class='node'>SUB Q</div><div class='t'>Sub-Qualidade</div><div class='v'>" & FORMAT(_subQ, "0.0%") & "</div><div class='l'>" & COALESCE([fmt_semaforo_igro_sub_q], "Sem faixa") & "</div></div></div>" &
+			    "<div class='groups'><div class='group g1'><div class='glabel'>KRIs de tempo</div><div class='cards'><div class='card k1'><div class='node'>KRI 1</div><div class='txt'><div class='t'>% acima de 30 dias</div><div class='v'>" & FORMAT(_kri1, "0.0%") & "</div></div><div class='meta'><div class='chip' style='background:" & _chip1 & "'>Score " & FORMAT(_s1, "0%") & "</div><div class='bar'><div class='fill' style='width:" & _p1 & "%'></div></div></div></div><div class='card k2'><div class='node'>KRI 2</div><div class='txt'><div class='t'>Tempo m&eacute;dio de resposta</div><div class='v'>" & FORMAT(_kri2, "0.0") & " dias</div></div><div class='meta'><div class='chip' style='background:" & _chip2 & "'>Score " & FORMAT(_s2, "0%") & "</div><div class='bar'><div class='fill' style='width:" & _p2 & "%'></div></div></div></div></div></div><div class='group g2'><div class='glabel'>KRIs de qualidade</div><div class='cards'><div class='card k3'><div class='node'>KRI 3</div><div class='txt'><div class='t'>Resolutividade</div><div class='v'>" & FORMAT(_kri3, "0.0%") & "</div></div><div class='meta'><div class='chip' style='background:" & _chip3 & "'>Score " & FORMAT(_s3, "0%") & "</div><div class='bar'><div class='fill' style='width:" & _p3 & "%'></div></div></div></div><div class='card k4'><div class='node'>KRI 4</div><div class='txt'><div class='t'>Respostas insatisfat&oacute;rias</div><div class='v'>" & FORMAT(_kri4, "0.0%") & "</div></div><div class='meta'><div class='chip' style='background:" & _chip4 & "'>Score " & FORMAT(_s4, "0%") & "</div><div class='bar'><div class='fill' style='width:" & _p4 & "%'></div></div></div></div><div class='card k5'><div class='node'>KRI 5</div><div class='txt'><div class='t'>Nota de recomenda&ccedil;&atilde;o</div><div class='v'>" & FORMAT(_kri5, "0.0") & "</div></div><div class='meta'><div class='chip' style='background:" & _chip5 & "'>Score " & FORMAT(_s5, "0%") & "</div><div class='bar'><div class='fill' style='width:" & _p5 & "%'></div></div></div></div></div></div></div>" &
 			    "<div class='legend'>Chips verdes indicam melhor ader&ecirc;ncia. Chips &acirc;mbar e laranja mostram onde o modelo est&aacute; pedindo aten&ccedil;&atilde;o.</div>" &
 			    "</div></body></html>"
 			RETURN
 			    _html
 		displayFolder: 12 · JSON · Dashboard
-	/// Backup estatico da medida HTML Dashboard Final antes da substituicao do card NPS mantendo filtros.
-	measure 'HTML Dashboard Final Backup' =
-			[HTML Dashboard Final Base]
-			    & "<style>"
-			    & "body,.dash,.card,.card span,.card b,.donut-leg,.donut-leg span,.donut-leg b,.leg-item,.bar-label,.bar-label span,.sub b,.ctx-badge{color:#e2e8f0!important;}"
-			    & ".card .sub,.ksub,.lbl,.fbar label{color:#b8cad1!important;}"
-			    & ".bar-label span[id],#bar-p,#bar-n,#bar-d,#nota-v,#lg-p,#lg-n,#lg-d,#qtd-t,#tot-v{color:#ffffff!important;}"
-			    & "</style>"
-		displayFolder: 12 Â· JSON Â· Dashboard
-		lineageTag: b2877836-724b-409b-adf0-199b5f0f7f5a
+		lineageTag: e5a4491c-bba0-4ea0-a7d1-d43538bdb13e
 
-	/// [Papel: TÃ©cnico] Coluna dummy criada para viabilizar a tabela calculada _medidas. NÃ£o possui significado analÃ­tico e nÃ£o deve ser usada em visuais.
+	/// [Papel: Técnico] Coluna dummy criada para viabilizar a tabela calculada _medidas. Não possui significado analítico e não deve ser usada em visuais.
+	measure 'HTML Infografico IGRO Simplificado' =
+			VAR _igro = COALESCE([idx_igro], 0)
+			VAR _subT = COALESCE([idx_igro_sub_t], 0)
+			VAR _subQ = COALESCE([idx_igro_sub_q], 0)
+			VAR _kri1 = COALESCE([ind_pct_mais_30_dias], 0)
+			VAR _kri2 = COALESCE([ind_media_tempo_resposta], 0)
+			VAR _kri3 = COALESCE([ind_pct_resolutividade], 0)
+			VAR _kri4 = COALESCE([ind_pct_respostas_insatisfatorias], 0)
+			VAR _kri5 = COALESCE([ind_media_nota_recomendacao], 0)
+			VAR _s1 = COALESCE([idx_score_igro_kri1], 0)
+			VAR _s2 = COALESCE([idx_score_igro_kri2], 0)
+			VAR _s3 = COALESCE([idx_score_igro_kri3], 0)
+			VAR _s4 = COALESCE([idx_score_igro_kri4], 0)
+			VAR _s5 = COALESCE([idx_score_igro_kri5], 0)
+			VAR _igroColor = COALESCE([fmt_cor_fundo_igro], "#27AE60")
+			VAR _chip1 = IF(_s1 >= 0.85, "#1f9d6b", IF(_s1 >= 0.65, "#d97706", "#c2410c"))
+			VAR _chip2 = IF(_s2 >= 0.85, "#1f9d6b", IF(_s2 >= 0.65, "#d97706", "#c2410c"))
+			VAR _chip3 = IF(_s3 >= 0.85, "#1f9d6b", IF(_s3 >= 0.65, "#d97706", "#c2410c"))
+			VAR _chip4 = IF(_s4 >= 0.85, "#1f9d6b", IF(_s4 >= 0.65, "#d97706", "#c2410c"))
+			VAR _chip5 = IF(_s5 >= 0.85, "#1f9d6b", IF(_s5 >= 0.65, "#d97706", "#c2410c"))
+			VAR _w1 = SUBSTITUTE(FORMAT(_s1 * 100, "0.0"), ",", ".")
+			VAR _w2 = SUBSTITUTE(FORMAT(_s2 * 100, "0.0"), ",", ".")
+			VAR _w3 = SUBSTITUTE(FORMAT(_s3 * 100, "0.0"), ",", ".")
+			VAR _w4 = SUBSTITUTE(FORMAT(_s4 * 100, "0.0"), ",", ".")
+			VAR _w5 = SUBSTITUTE(FORMAT(_s5 * 100, "0.0"), ",", ".")
+			VAR _html =
+			    "<!DOCTYPE html><html lang='pt-BR'><head><meta charset='UTF-8'><style>"
+			    & "*{box-sizing:border-box}body{margin:0;padding:0;background:#f5f1ea;font-family:Segoe UI,Arial,sans-serif;color:#102028}.wrap{width:1100px;height:640px;margin:0 auto;padding:26px 32px 34px;background:linear-gradient(135deg,#fbf8f3 0%,#f2ece5 100%);position:relative;overflow:hidden}.wrap:before{content:'';position:absolute;inset:18px;border:1px solid rgba(16,32,40,.08);border-radius:26px;pointer-events:none}.header{display:flex;align-items:flex-end;justify-content:space-between;position:relative;z-index:1}.title{font-size:18px;letter-spacing:4px;text-transform:uppercase;color:#61727b}.title b{display:block;font-size:38px;letter-spacing:1px;color:#0f1720;margin-bottom:2px}.hero{margin-top:16px;display:grid;grid-template-columns:324px 1fr;gap:18px;align-items:stretch;position:relative;z-index:1}.panel{background:rgba(255,255,255,.72);border:1px solid rgba(16,32,40,.08);border-radius:28px;box-shadow:0 18px 38px rgba(34,39,45,.08)}.igro-main{padding:24px 26px;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(180deg,rgba(255,255,255,.94),rgba(255,255,255,.78))}.eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#6b7b84}.igro-main .label{font-size:13px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;color:#102028;margin-top:8px}.igro-main .value{font-size:64px;line-height:.92;font-weight:900;color:#102028;margin:14px 0 8px}.badge{display:inline-flex;align-items:center;justify-content:center;padding:7px 13px;border-radius:999px;font-size:11px;font-weight:800;color:#fff;letter-spacing:.3px}.hero-copy{font-size:13px;line-height:1.42;color:#4e5c64;max-width:232px}.side{display:grid;grid-template-rows:1fr 1fr;gap:16px}.subcard{padding:18px 22px;border-radius:24px;color:#fff;display:flex;flex-direction:column;justify-content:space-between;min-height:114px;box-shadow:0 18px 34px rgba(40,38,32,.12)}.subcard .k{font-size:10px;font-weight:900;letter-spacing:2px;text-transform:uppercase;opacity:.92}.subcard .v{font-size:42px;line-height:.92;font-weight:900}.subcard .foot{display:flex;align-items:center;justify-content:space-between;font-size:11px;font-weight:700}.subTempo{background:linear-gradient(135deg,#f5b11f,#ef9808)}.subQual{background:linear-gradient(135deg,#e99020,#db7410)}.section{margin-top:16px;position:relative;z-index:1}.section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}.section-title{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#60717a}.kri-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.kri{padding:14px 14px 12px;border-radius:24px;color:#fff;min-height:154px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 14px 28px rgba(35,42,48,.12)}.kri .top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}.kri .tag{display:inline-flex;align-items:center;justify-content:center;min-width:54px;height:28px;padding:0 10px;border-radius:999px;background:rgba(21,35,42,.82);font-size:10px;font-weight:900;letter-spacing:.45px}.kri .score{display:inline-flex;align-items:center;justify-content:center;padding:6px 9px;border-radius:999px;font-size:10px;font-weight:900;letter-spacing:.25px;color:#fff}.kri .name{font-size:10px;font-weight:800;line-height:1.2;min-height:26px;opacity:.96}.kri .value{font-size:28px;line-height:.92;font-weight:900;margin:6px 0 4px}.kri .metric{font-size:10px;letter-spacing:1.4px;text-transform:uppercase;opacity:.9}.track{margin-top:8px;height:7px;border-radius:999px;background:rgba(255,255,255,.22);overflow:hidden}.fill{height:100%;background:#fff;border-radius:999px}.kri1{background:linear-gradient(135deg,#79bcc0,#5fa5ab)}.kri2{background:linear-gradient(135deg,#167f95,#0b677d)}.kri3{background:linear-gradient(135deg,#94cbca,#75b2b6)}.kri4{background:linear-gradient(135deg,#138ca4,#0a7087)}.kri5{background:linear-gradient(135deg,#8dc2c6,#70a9b0)}.note{margin-top:10px;font-size:10px;line-height:1.35;color:#5c6a72;max-width:700px;padding-left:2px}.note strong{color:#102028}</style></head><body><div class='wrap'>"
+			    & "<div class='header'><div class='title'><b>IGRO</b>Vis&atilde;o Executiva</div></div>"
+			    & "<div class='hero'>"
+			    & "<div class='panel igro-main'><div><div class='eyebrow'>&Iacute;ndice composto</div><div class='label'>IGRO consolidado</div><div class='value'>" & FORMAT(_igro, "0.0%") & "</div><div class='badge' style='background:" & _igroColor & "'>" & COALESCE([fmt_semaforo_igro], "Sem faixa") & "</div></div><div class='hero-copy'><strong>Leitura do painel.</strong> O IGRO sintetiza o risco da ouvidoria em um valor executivo e separa a leitura entre resultado geral, sub&iacute;ndices e KRIs.</div></div>"
+			    & "<div class='side'><div class='subcard subTempo'><div class='k'>Sub-Tempo</div><div class='v'>" & FORMAT(_subT, "0.0%") & "</div><div class='foot'><span>Tempestividade</span><span>" & COALESCE([fmt_semaforo_igro_sub_t], "Sem faixa") & "</span></div></div><div class='subcard subQual'><div class='k'>Sub-Qualidade</div><div class='v'>" & FORMAT(_subQ, "0.0%") & "</div><div class='foot'><span>Qualidade percebida</span><span>" & COALESCE([fmt_semaforo_igro_sub_q], "Sem faixa") & "</span></div></div></div>"
+			    & "</div>"
+			    & "<div class='section'><div class='section-head'><div class='section-title'>KRIs do modelo</div></div><div class='kri-grid'>"
+			    & "<div class='kri kri1'><div><div class='top'><span class='tag'>KRI 1</span><span class='score' style='background:" & _chip1 & "'>Score " & FORMAT(_s1, "0%") & "</span></div><div class='name'>% acima de 30 dias</div><div class='value'>" & FORMAT(_kri1, "0.0%") & "</div><div class='metric'>Tempo</div></div><div><div class='track'><div class='fill' style='width:" & _w1 & "%'></div></div></div></div>"
+			    & "<div class='kri kri2'><div><div class='top'><span class='tag'>KRI 2</span><span class='score' style='background:" & _chip2 & "'>Score " & FORMAT(_s2, "0%") & "</span></div><div class='name'>Tempo m&eacute;dio de resposta</div><div class='value'>" & FORMAT(_kri2, "0.0") & " dias</div><div class='metric'>Tempo</div></div><div><div class='track'><div class='fill' style='width:" & _w2 & "%'></div></div></div></div>"
+			    & "<div class='kri kri3'><div><div class='top'><span class='tag'>KRI 3</span><span class='score' style='background:" & _chip3 & "'>Score " & FORMAT(_s3, "0%") & "</span></div><div class='name'>Resolutividade</div><div class='value'>" & FORMAT(_kri3, "0.0%") & "</div><div class='metric'>Qualidade</div></div><div><div class='track'><div class='fill' style='width:" & _w3 & "%'></div></div></div></div>"
+			    & "<div class='kri kri4'><div><div class='top'><span class='tag'>KRI 4</span><span class='score' style='background:" & _chip4 & "'>Score " & FORMAT(_s4, "0%") & "</span></div><div class='name'>Respostas insatisfat&oacute;rias</div><div class='value'>" & FORMAT(_kri4, "0.0%") & "</div><div class='metric'>Qualidade</div></div><div><div class='track'><div class='fill' style='width:" & _w4 & "%'></div></div></div></div>"
+			    & "<div class='kri kri5'><div><div class='top'><span class='tag'>KRI 5</span><span class='score' style='background:" & _chip5 & "'>Score " & FORMAT(_s5, "0%") & "</span></div><div class='name'>Nota de recomenda&ccedil;&atilde;o</div><div class='value'>" & FORMAT(_kri5, "0.0") & "</div><div class='metric'>Qualidade</div></div><div><div class='track'><div class='fill' style='width:" & _w5 & "%'></div></div></div></div>"
+			    & "</div><div class='note'><strong>Leitura r&aacute;pida:</strong> chips verdes indicam melhor ader&ecirc;ncia ao modelo. Chips &acirc;mbar e laranja sinalizam os KRIs que mais pedem aten&ccedil;&atilde;o na composi&ccedil;&atilde;o do IGRO.</div></div>"
+			    & "</div></body></html>"
+			RETURN
+			    _html
+		displayFolder: 12 Â· JSON Â· Dashboard
+		lineageTag: 2fce6528-b296-49b7-b499-76f20f351d20
+
 	column Value
 		lineageTag: 6041b9ee-9a33-41f6-b9e2-e5271bf9b28c
 		isNameInferred

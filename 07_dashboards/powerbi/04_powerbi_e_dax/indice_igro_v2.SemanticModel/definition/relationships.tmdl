@@ -3,11 +3,6 @@ relationship 0d682d85-d05a-49e3-b331-ac8ed2690937
 	fromColumn: f_pesquisa.data_resposta_pesquisa
 	toColumn: LocalDateTable_57787129-2bcd-48d2-807b-2fbedee7bd7d.Date
 
-relationship fc9ea7ae-455f-4618-a780-23376c512215
-	joinOnDateBehavior: datePartOnly
-	fromColumn: f_insatisfatorias.data_manifestacao
-	toColumn: LocalDateTable_39814db9-3be3-4799-a6e9-766140062061.Date
-
 relationship fee769f1-c1b0-4204-b0d9-fb10a002a560
 	joinOnDateBehavior: datePartOnly
 	fromColumn: f_insatisfatorias.data_finalizacao
@@ -18,54 +13,37 @@ relationship 91bf71e0-af8f-4402-8d08-be6f19fcc249
 	fromColumn: f_insatisfatorias.data_revisao
 	toColumn: LocalDateTable_89d62a24-1048-4894-9db0-6307d404f36e.Date
 
-relationship ac1df0a8-6e95-4ebc-9ab5-151a570a6961
-	joinOnDateBehavior: datePartOnly
-	fromColumn: f_pesquisa.data_manifestacao
-	toColumn: LocalDateTable_c6d333d1-ec5f-4b92-8fde-71e466729d16.Date
-
-relationship f_insatisfatorias_protocolo_f_relatorio_protocolo
-	fromColumn: f_insatisfatorias.protocolo
-	toColumn: f_relatorio.protocolo
-
-relationship f_pesquisa_protocolo_f_relatorio_protocolo
-	fromColumn: f_pesquisa.protocolo
-	toColumn: f_relatorio.protocolo
-
-relationship f_relatorio_data_manifestacao_dCalendario_Date
-	fromColumn: f_relatorio.data_manifestacao
-	toColumn: dCalendario.Date
-
-relationship AutoDetected_4030c0dc-a50e-482a-9772-2cf09537617e
-	fromColumn: f_relatorio.sigla
-	toColumn: dOrgao_igro.sigla
-
-relationship 2303fc14-1e08-41b3-93cb-8e0755b8e909
-	joinOnDateBehavior: datePartOnly
-	fromColumn: f_relatorio.data_finalizacao
-	toColumn: LocalDateTable_c5428810-d49e-4c18-b272-7882a599a119.Date
-
-relationship a564ad5f-8095-4acf-8fce-8c531c12e79a
-	joinOnDateBehavior: datePartOnly
-	fromColumn: f_relatorio.data_revisao
-	toColumn: LocalDateTable_3e180244-5cb5-4814-8de3-11412ceb1457.Date
-
-relationship f_relatorio_data_finalizacao_dCalendario_Date
-	isActive: false
-	fromColumn: f_relatorio.data_finalizacao
-	toColumn: dCalendario.Date
-
-relationship f_relatorio_data_revisao_dCalendario_Date
-	isActive: false
-	fromColumn: f_relatorio.data_revisao
-	toColumn: dCalendario.Date
-
 relationship f_pesquisa_data_manifestacao_dCalendario_Date
-	isActive: false
 	fromColumn: f_pesquisa.data_manifestacao
 	toColumn: dCalendario.Date
 
 relationship f_insatisfatorias_data_manifestacao_dCalendario_Date
-	isActive: false
 	fromColumn: f_insatisfatorias.data_manifestacao
 	toColumn: dCalendario.Date
+
+relationship Relação
+	fromColumn: f_relatorio.Data_manifestacao
+	toColumn: dCalendario.Date
+
+relationship 'Relação 1'
+	isActive: false
+	fromColumn: f_relatorio.Data_finalizacao
+	toColumn: dCalendario.Date
+
+relationship 'Relação 2'
+	isActive: false
+	fromColumn: f_relatorio.Data_revisao
+	toColumn: dCalendario.Date
+
+relationship 'Relação 3'
+	fromColumn: f_insatisfatorias.sigla
+	toColumn: dOrgao_igro.sigla
+
+relationship 'Relação 4'
+	fromColumn: f_pesquisa.sigla
+	toColumn: dOrgao_igro.sigla
+
+relationship 'Relação 5'
+	fromColumn: f_relatorio.Sigla
+	toColumn: dOrgao_igro.sigla
 

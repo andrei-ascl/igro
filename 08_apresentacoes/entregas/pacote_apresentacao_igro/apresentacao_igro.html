@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IGRO - Índice de Gestão de Riscos de Ouvidoria</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --verde-escuro: #054222;
+            --teal: #00766f;
+            --laranja: #f7931e;
+            --laranja-escuro: #d56f24;
+            --verde-oficial: #1fa22e;
+            --amarelo-quente: #fbb03b;
+            --amarelo-oficial: #ffdd00;
+            --branco: #ffffff;
+            --cinza-claro: #f5f5f5;
+            --cinza-texto: #4a4a4a;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f0f0f0;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            display: none;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        .slide.titulo-slide {
+            background: var(--verde-escuro);
+            color: white;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .slide.titulo-slide::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 80px;
+            height: 100%;
+            background: var(--amarelo-oficial);
+        }
+
+        .slide.conteudo-slide {
+            background: white;
+            color: var(--cinza-texto);
+        }
+
+        .slide.conteudo-slide::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 8px;
+            height: 100%;
+            background: var(--verde-escuro);
+        }
+
+        .slide-content {
+            flex: 1;
+            padding: 40px 50px;
+            display: flex;
+            flex-direction: column;
+            z-index: 10;
+        }
+
+        .titulo-slide .slide-content {
+            text-align: center;
+            padding: 0 50px;
+        }
+
+        .slide-title {
+            font-size: 3.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: var(--verde-escuro);
+        }
+
+        .slide.conteudo-slide .slide-title {
+            border-bottom: 3px solid var(--teal);
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+
+        .slide.titulo-slide .slide-title {
+            color: white;
+            font-size: 3.8em;
+            margin-bottom: 30px;
+        }
+
+        .slide.titulo-slide .subtitle {
+            font-size: 1.4em;
+            color: var(--amarelo-quente);
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .slide.titulo-slide .info-footer {
+            font-size: 0.9em;
+            color: white;
+            position: absolute;
+            bottom: 30px;
+        }
+
+        .kpi-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .kpi-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .kpi-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .kpi-label {
+            font-size: 0.85em;
+            color: var(--cinza-texto);
+        }
+
+        .kpi-value.critico { color: var(--laranja-escuro); }
+        .kpi-value.teal { color: var(--teal); }
+        .kpi-value.laranja { color: var(--laranja); }
+        .kpi-value.verde { color: var(--verde-oficial); }
+
+        .box-metodologia {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .box-eixo {
+            border: 2px solid var(--teal);
+            border-radius: 8px;
+            padding: 20px;
+            background: var(--cinza-claro);
+        }
+
+        .box-eixo.qualidade {
+            border-color: var(--verde-oficial);
+        }
+
+        .box-eixo-title {
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .box-eixo.temporalidade .box-eixo-title {
+            color: var(--teal);
+        }
+
+        .box-eixo.qualidade .box-eixo-title {
+            color: var(--verde-oficial);
+        }
+
+        .box-eixo ul {
+            list-style: none;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .box-eixo li {
+            margin-bottom: 8px;
+        }
+
+        .box-eixo li::before {
+            content: '• ';
+            font-weight: bold;
+            color: var(--teal);
+        }
+
+        .referencial {
+            background: var(--cinza-claro);
+            border-left: 4px solid var(--teal);
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+            color: var(--teal);
+        }
+
+        .aggregacao {
+            background: var(--cinza-claro);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 0.95em;
+        }
+
+        .aggregacao-title {
+            font-weight: bold;
+            color: var(--verde-escuro);
+            margin-bottom: 8px;
+        }
+
+        .aggregacao-formula {
+            font-family: 'Courier New', monospace;
+            color: var(--cinza-texto);
+            margin-bottom: 8px;
+        }
+
+        .interpretacao {
+            margin: 20px 0;
+            font-size: 0.95em;
+            line-height: 1.7;
+        }
+
+        .interpretacao-item {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .interpretacao-item::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--teal);
+            font-weight: bold;
+        }
+
+        .analise-item {
+            margin-bottom: 18px;
+        }
+
+        .analise-titulo {
+            font-weight: bold;
+            color: var(--teal);
+            margin-bottom: 5px;
+        }
+
+        .analise-desc {
+            margin-left: 20px;
+            color: var(--cinza-texto);
+            font-size: 0.95em;
+        }
+
+        .fatores-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .fator-card {
+            background: var(--cinza-claro);
+            border-left: 4px solid var(--teal);
+            padding: 15px;
+            border-radius: 4px;
+        }
+
+        .fator-titulo {
+            font-weight: bold;
+            color: var(--teal);
+            margin-bottom: 5px;
+        }
+
+        .fator-desc {
+            font-size: 0.9em;
+            color: var(--cinza-texto);
+            line-height: 1.5;
+        }
+
+        .fator-replicavel {
+            background: var(--cinza-claro);
+            border-left: 4px solid var(--verde-escuro);
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 4px;
+            font-weight: 500;
+            color: var(--verde-escuro);
+        }
+
+        .aplicacoes-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .aplicacao-item {
+            background: var(--cinza-claro);
+            border-left: 4px solid var(--verde-oficial);
+            padding: 15px;
+            border-radius: 4px;
+        }
+
+        .aplicacao-titulo {
+            font-weight: bold;
+            color: var(--verde-oficial);
+            margin-bottom: 5px;
+        }
+
+        .aplicacao-desc {
+            font-size: 0.9em;
+            color: var(--cinza-texto);
+            line-height: 1.5;
+        }
+
+        .fases-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .fase-card {
+            border: 2px solid;
+            border-radius: 8px;
+            padding: 20px;
+            background: var(--cinza-claro);
+        }
+
+        .fase-card.fase1 { border-color: var(--laranja); }
+        .fase-card.fase2 { border-color: var(--amarelo-quente); }
+        .fase-card.fase3 { border-color: var(--verde-oficial); }
+
+        .fase-titulo {
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 1em;
+        }
+
+        .fase-card.fase1 .fase-titulo { color: var(--laranja); }
+        .fase-card.fase2 .fase-titulo { color: var(--amarelo-quente); }
+        .fase-card.fase3 .fase-titulo { color: var(--verde-oficial); }
+
+        .fase-items {
+            list-style: none;
+        }
+
+        .fase-items li {
+            margin-bottom: 10px;
+            font-size: 0.9em;
+            color: var(--cinza-texto);
+        }
+
+        .fase-items li::before {
+            content: '✓ ';
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .citacao {
+            background: var(--cinza-claro);
+            border-left: 4px solid var(--laranja);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+            text-align: center;
+            font-style: italic;
+            font-size: 1.3em;
+            color: var(--laranja);
+            font-weight: 500;
+        }
+
+        .goodhart-section {
+            margin: 20px 0;
+        }
+
+        .goodhart-section .titulo {
+            color: var(--verde-escuro);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .conclusao-checks {
+            margin: 30px 0;
+        }
+
+        .check-item {
+            margin: 12px 0;
+            font-size: 1em;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+
+        .check-item::before {
+            content: '✓';
+            margin-right: 15px;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        .slide.titulo-slide .conclusao-checks .check-item {
+            color: white;
+            font-size: 0.95em;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--cinza-claro);
+            padding: 15px;
+            font-size: 0.8em;
+            color: var(--cinza-texto);
+            text-align: left;
+            z-index: 5;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+            background: var(--branco);
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-btn {
+            background: var(--verde-escuro);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            background: var(--teal);
+            transform: scale(1.05);
+        }
+
+        .nav-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: scale(1);
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--verde-escuro);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+            z-index: 100;
+        }
+
+        @media (max-width: 1024px) {
+            .slide-content {
+                padding: 30px 40px;
+            }
+
+            .slide-title {
+                font-size: 2.5em;
+            }
+
+            .kpi-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .fases-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .slide-content {
+                padding: 20px 30px;
+            }
+
+            .slide-title {
+                font-size: 2em;
+            }
+
+            .navigation {
+                bottom: 10px;
+                padding: 8px 15px;
+            }
+
+            .nav-btn {
+                padding: 8px 15px;
+                font-size: 0.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- SLIDE 1: CAPA -->
+        <div class="slide titulo-slide active">
+            <div class="slide-content">
+                <div class="slide-title">Índice de Gestão de Riscos de Ouvidoria</div>
+                <div class="subtitle">IGRO — Metodologia para Monitoramento Estratégico</div>
+            </div>
+            <div class="info-footer">Maio de 2026 | Alta Gestão</div>
+        </div>
+
+        <!-- SLIDE 2: O PROBLEMA -->
+        <div class="slide conteudo-slide">
+            <div class="slide-content">
+                <h2 class="slide-title">O PROBLEMA</h2>
+                <div style="margin-top: 30px; font-size: 1em; line-height: 1.8;">
+                    <div style="margin-bottom: 15px; color: var(--verde-escuro); font-weight: bold;">109.338 manifestações cidadãs (2024-2025)</div>
+                    <div style="margin-bottom: 20px;">Dados operacionais <span style="color: var(--verde-escuro); font-weight: bold;">FRAGMENTADOS</span> em múltiplos indicadores</div>
+                    <div style="margin-bottom: 20px;">
+                        <div style="color: var(--verde-escuro); font-weight: bold;">Sinais CONFLITANTES entre dimensões</div>
+                        <div style="margin-left: 20px; margin-top: 8px;">• Órgão rápido ≠ órgão efetivo</div>
+                        <div style="margin-left: 20px;">• Falta visão estratégica unificada</div>
+                    </div>
+                    <div style="color: var(--verde-escuro); font-weight: bold;">HETEROGENEIDADE extrema entre 51 órgãos</div>
+                </div>
+            </div>
+            <div class="footer">IGRO — Controladoria-Geral do Estado de Goiás | Maio de 2026</div>
+        </div>
+
+        <!-- SLIDE 3: METODOLOGIA -->
+        <div class="slide conteudo-slide">
+            <div class="slide-content">
+                <h2 class="slide-title">METODOLOGIA</h2>
+                <div class="referencial">Referencial: OCDE/JRC Handbook | ISO 31000:2018 | COSO</div>
+
+                <div class="box-metodologia">
+                    <div class="box-eixo temporalidade">
+                        <div class="box-eixo-title">⚡ EIXO 1: TEMPESTIVIDADE</div>
+                        <ul>
+                            <li>TMR: Tempo Médio de Resposta<br><span style="font-size: 0.9em;">Meta: ≤ 5 dias (excelência)</span></li>
+                            <li>PMA: Manifestações em Atraso<br><span style="font-size: 0.9em;">Meta: ≤ 1% (conformidade)</span></li>
+                        </ul>
+                    </div>
+                    <div class="box-eixo qualidade">
+                        <div class="box-eixo-title">✅ EIXO 2: QUALIDADE</div>
+                        <ul>
+                            <li>RP: Resolutividade Percebida</li>
+                            <li>NR: Nota de Recomendação</li>
+                            <li>%RI: Respostas Insatisfatórias</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="aggregacao">
+                    <div class="aggregacao-title">AGREGAÇÃO: Média Geométrica Ponderada</div>
+                    <div class="aggregacao-formula">IGRO = (KRI₁ × KRI₂ × KRI₃ × KRI₄ × KRI₅)^(1/5)</div>
+                    <div style="font-size: 0.9em; color: var(--cinza-texto);">
+                        Benefício: Penaliza fragilidades extremas; força equilíbrio entre velocidade e qualidade
+                    </div>
+                </div>
+            </div>
+            <div class="footer">IGRO — Controladoria-Geral do Estado de Goiás | Maio de 2026</div>
+        </div>
+
+        <!-- SLIDE 4: RESULTADOS CONSOLIDADOS -->
+        <div class="slide conteudo-slide">
+            <div class="slide-content">
+                <h2 class="slide-title">RESULTADOS CONSOLIDADOS</h2>
+
+                <div class="kpi-container">
+                    <div class="kpi-card">
+                        <div class="kpi-value critico">52,9%</div>
+                        <div class="kpi-label">IGRO<br>(Crítico)</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-value teal">6,8 dias</div>
+                        <div class="kpi-label">TMR</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-value laranja">2,3%</div>
+                        <div class="kpi-label">PMA<br>(Atraso)</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-value verde">61,5%</div>
+                        <div class="kpi-label">Resolutividade</div>
+                    </div>
+                </div>
+
+                <div class="interpretacao">
+                    <div style="color: var(--verde-escuro); font-weight: bold; margin-bottom: 12px;">Diagnóstico:</div>
+                    <div class="interpretacao-item">IGRO 52,9% = NÍVEL CRÍTICO (média rede opera com risco elevado)</div>
+                    <div class="interpretacao-item">TMR 6,8 dias = Abaixo prazo legal (bom), mas HETEROGÊNEO entre órgãos</div>
+                    <div class="interpretacao-item">PMA 2,3% = Não conformidade parcial (alguns órgãos descumprem prazo)</div>
+                    <div class="interpretacao-item">Resolutividade 61,5% = Moderada (4 em 10 cidadãos com dúvida/insatisfação)</div>
+                </div>
+            </div>
+            <div class="footer">IGRO — Controladoria-Geral do Estado de Goiás | Maio de 2026</div>
+        </div>
+
+        <!-- SLIDE 5: ANÁLISE DE RESULTADOS -->
+        <div class="slide conteudo-slide">
+            <div class="slide-content">
+                <h2 class="slide-title">ANÁLISE DE RESULTADOS</h2>
+
+                <div style="margin-top: 20px;">
+                    <div class="analise-item">
+                        <div class="analise-titulo">HETEROGENEIDADE EXTREMA</div>
+                        <div class="analise-desc">GOINFRA (100%) vs SECAMI (~30%) — não é variação normal, é diferença estrutural</div>
+                    </div>
+
+                    <div class="analise-item">
+                        <div class="analise-titulo">ÓRGÃOS CRÍTICOS = MAIS VOLUME</div>
+                        <div class="analise-desc">39% dos órgãos em nível crítico; justamente ali há MAIS manifestações cidadãs</div>
+                    </div>
+
+                    <div class="analise-item">
+                        <div class="analise-titulo">TAMANHO NÃO EXPLICA DESEMPENHO</div>
+                        <div class="analise-desc">Órgãos pequenos não são sempre ruins; órgãos grandes não são sempre bons</div>
+                    </div>
+
+                    <div class="analise-item">
+                        <div class="analise-titulo">DISSOCIAÇÃO TMR vs RESOLUTIVIDADE</div>
+                        <div class="analise-desc">Alguns órgãos rápidos têm baixa resolutividade; outros lentos mas efetivos</div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">IGRO — Controladoria-Geral do Estado de Goiás | Maio de 2026</div>
+        </div>
+
+        <!-- SLIDE 6: LEI DE GOODHART -->
+        <div class="slide conteudo-slide">
+            <div class="slide-content">
+                <h2 class="slide-title">ACHADO CRÍTICO: Lei de Goodhart</h2>
+
+                <div class="citacao">
+                    "Quando uma medida se torna uma meta, ela deixa de ser uma boa medida."
+                </div>
+
+                <div style="margin: 20px 0; color: var(--verde-escuro); font-weight: bold;">
+                    Observação nos dados: Órgãos com TMR baixo nem sempre tiveram Resolutividade alta
+                </div>
+
+                <div class="goodhart-section">
+                    <div class="titulo">RISCO: Otimização exclusiva de velocidade</div>
+                    <div style="margin-left: 20px; color: var(--cinza-texto); margin-top: 8px;">→ Órgão responde rápido mas superficial</div>
+                </div>
+
+                <div class="goodhart-section">
+                    <div class="titulo">SOLUÇÃO: Indicador composto (IGRO)</div>
+                    <div style="margin-left: 20px; color: var(--cinza-texto); margin-top: 8px;">
+                        <div>→ Força equilíbrio entre velocidade E qualidade</div>
+                        <div>→ Impossível compensar fragilidade em uma dimensão</div>
+                        <div>→ Mitiga comportamentos disfuncionais</div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">IGRO — Controladoria-Geral do Estado de Goiás | Maio de 2026</div>
+        </div>
+
+        <!-- SLIDE 7: 5 FATORES DE SUCESSO -->
+        <div class="slide conteudo-slide">
+            <div class="slide-content">
+                <h2 class="slide-title">5 FATORES DE SUCESSO</h2>
+
+                <div class="fatores-grid">
+                    <div class="fator-card">
+                        <div class="fator-titulo">Integração Tecnológica</div>
+                        <div class="fator-desc">Sistemas modernos = resposta rápida + estabilidade</div>
+                    </div>
+                    <div class="fator-card">
+                        <div class="fator-titulo">Capacidade Técnica Dedicada</div>
+                        <div class="fator-desc">Equipes especializadas = consistência nos KPIs</div>
+                    </div>
+                    <div class="fator-card">
+                        <div class="fator-titulo">Comunicação Estruturada</div>
+                        <div class="fator-desc">Linguagem clara = percepção cidadã positiva</div>
+                    </div>
+                    <div class="fator-card">
+                        <div class="fator-titulo">Conformidade Normativa</div>
+                        <div class="fator-desc">Processos padronizados = reduz surpresas</div>
+                    </div>
+                </div>
+
+                <div class="fator-replicavel">
+                    ✓ REPLICÁVEL: São escolhas de gestão, não destino. Órgãos críticos podem adotar esses 5 fatores.
+                </div>
+            </div>
+            <div class="footer">IGRO — Controladoria-Geral do Estado de Goiás | Maio de 2026</div>
+        </div>
+
+        <!-- SLIDE 8: APLICAÇÕES PRÁTICAS -->
+        <div class="slide conteudo-slide">
+            <div class="slide-content">
+                <h2 class="slide-title">APLICAÇÕES PRÁTICAS</h2>
+
+                <div class="aplicacoes-grid">
+                    <div class="aplicacao-item">
+                        <div class="aplicacao-titulo">Monitoramento Estratégico</div>
+                        <div class="aplicacao-desc">Dashboard executivo, IGRO atualizado mensal/trimestral</div>
+                    </div>
+                    <div class="aplicacao-item">
+                        <div class="aplicacao-titulo">Avaliação Comparativa</div>
+                        <div class="aplicacao-desc">Benchmarking entre órgãos, replicação de boas práticas</div>
+                    </div>
+                    <div class="aplicacao-item">
+                        <div class="aplicacao-titulo">Priorização de Ações</div>
+                        <div class="aplicacao-desc">Recursos direcionados para órgãos críticos</div>
+                    </div>
+                    <div class="aplicacao-item">
+                        <div class="aplicacao-titulo">Governança por Risco</div>
+                        <div class="aplicacao-desc">Integração com Matriz de Riscos da CGE</div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">IGRO — Controladoria-Geral do Estado de Goiás | Maio de 2026</div>
+        </div>
+
+        <!-- SLIDE 9: PRÓXIMOS PASSOS -->
+        <div class="slide conteudo-slide">
+            <div class="slide-content">
+                <h2 class="slide-title">PRÓXIMOS PASSOS</h2>
+
+                <div class="fases-container">
+                    <div class="fase-card fase1">
+                        <div class="fase-titulo">FASE 1 — Imediato</div>
+                        <ul class="fase-items">
+                            <li>Validar metodologia</li>
+                            <li>Comunicar rede</li>
+                            <li>Estruturar dashboard</li>
+                        </ul>
+                    </div>
+
+                    <div class="fase-card fase2">
+                        <div class="fase-titulo">FASE 2 — 3-6 meses</div>
+                        <ul class="fase-items">
+                            <li>Implementar cálculos</li>
+                            <li>Capacitar gestores</li>
+                            <li>Planos de melhoria</li>
+                        </ul>
+                    </div>
+
+                    <div class="fase-card fase3">
+                        <div class="fase-titulo">FASE 3 — 6-12 meses</div>
+                        <ul class="fase-items">
+                            <li>Novos indicadores</li>
+                            <li>Modelos preditivos</li>
+                            <li>Validação longitudinal</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">IGRO — Controladoria-Geral do Estado de Goiás | Maio de 2026</div>
+        </div>
+
+        <!-- SLIDE 10: CONCLUSÃO -->
+        <div class="slide titulo-slide">
+            <div class="slide-content">
+                <div class="slide-title">IGRO: De Dados a Decisão Estratégica</div>
+
+                <div class="conclusao-checks">
+                    <div class="check-item">Sintetiza 5 métricas em 1 número estratégico</div>
+                    <div class="check-item">Força equilíbrio entre velocidade e qualidade</div>
+                    <div class="check-item">Identifica heterogeneidade e oportunidades</div>
+                    <div class="check-item">Reduz comportamentos disfuncionais</div>
+                    <div class="check-item">Pronto para adoção imediata</div>
+                </div>
+
+                <div style="margin-top: 40px; font-size: 1.3em; font-weight: bold; color: var(--amarelo-oficial);">
+                    Vocês aprovam a validação e implementação da FASE 1?
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTROLES DE NAVEGAÇÃO -->
+    <div class="slide-counter">
+        <span id="slide-number">1</span> / 10
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" id="prev-btn" onclick="previousSlide()">← Anterior</button>
+        <button class="nav-btn" id="next-btn" onclick="nextSlide()">Próximo →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            // Remover classe active de todos os slides
+            slides.forEach(slide => slide.classList.remove('active'));
+
+            // Adicionar classe active ao slide atual
+            slides[n].classList.add('active');
+
+            // Atualizar counter
+            document.getElementById('slide-number').textContent = n + 1;
+
+            // Atualizar estado dos botões
+            document.getElementById('prev-btn').disabled = n === 0;
+            document.getElementById('next-btn').disabled = n === totalSlides - 1;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+
+        // Navegação por teclado
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') previousSlide();
+            if (e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            }
+        });
+
+        // Inicializar
+        showSlide(0);
+    </script>
+</body>
+</html>

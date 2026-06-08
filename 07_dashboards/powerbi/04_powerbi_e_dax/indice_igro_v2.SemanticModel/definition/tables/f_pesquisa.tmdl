@@ -19,11 +19,6 @@ table f_pesquisa
 		summarizeBy: none
 		sourceColumn: data_manifestacao
 
-		variation Variation
-			isDefault
-			relationship: ac1df0a8-6e95-4ebc-9ab5-151a570a6961
-			defaultHierarchy: LocalDateTable_c6d333d1-ec5f-4b92-8fde-71e466729d16.'Hierarquia de datas'
-
 		annotation SummarizationSetBy = Automatic
 
 	/// Sigla do órgão responsável pela manifestação avaliada na pesquisa.
@@ -109,33 +104,103 @@ table f_pesquisa
 		mode: import
 		source =
 				let
-				    Fonte = Folder.Files("C:\\Users\\andre\\OneDrive\\sgoe-data-raw\\data\\powerbi\\f_pesquisa"),
-				    #"Arquivos Ocultos Filtrados1" = Table.SelectRows(Fonte, each [Attributes]?[Hidden]? <> true),
-				    #"Invocar Função Personalizada1" = Table.AddColumn(#"Arquivos Ocultos Filtrados1", "Transformar Arquivo (3)", each #"Transformar Arquivo (3)"([Content])),
-				    #"Colunas Renomeadas1" = Table.RenameColumns(#"Invocar Função Personalizada1", {"Name", "Nome da Origem"}),
-				    #"Outras Colunas Removidas1" = Table.SelectColumns(#"Colunas Renomeadas1", {"Nome da Origem", "Transformar Arquivo (3)"}),
-				    #"Coluna de Tabela Expandida1" = Table.ExpandTableColumn(
-				        #"Outras Colunas Removidas1",
-				        "Transformar Arquivo (3)",
-				        {"protocolo", "data_manifestacao", "sigla", "nome", "suborgao", "tipo_manifestacao", "finalizacao", "recomendaria", "motivo", "data_resposta_pesquisa"},
-				        {"protocolo", "data_manifestacao", "sigla", "nome", "suborgao", "tipo_manifestacao", "finalizacao", "recomendaria", "motivo", "data_resposta_pesquisa"}
-				    ),
-				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Coluna de Tabela Expandida1", {
-				        {"protocolo", type text},
-				        {"data_manifestacao", type datetime},
-				        {"sigla", type text},
-				        {"nome", type text},
-				        {"suborgao", type text},
-				        {"tipo_manifestacao", type text},
-				        {"finalizacao", type text},
-				        {"recomendaria", Int64.Type},
-				        {"motivo", type text},
-				        {"data_resposta_pesquisa", type datetime}
-				    }),
-				    #"Origem Removida" = Table.RemoveColumns(#"Tipo Alterado", {"Nome da Origem"}),
-				    #"Sigla Padronizada" = Table.ReplaceValue(#"Origem Removida", "GT", "GOIAS TELECOM", Replacer.ReplaceValue, {"sigla"})
+				    // =========================================================
+				    // 1. Caminho da pasta
+				    // Usa a função fnCaminhoEntrada para localizar a pasta base.
+				    // =========================================================
+				    CaminhoPasta =
+				        fnCaminhoEntrada(),
+				
+				    // =========================================================
+				    // 2. Caminho completo do arquivo
+				    // Monta o caminho corretamente com ou sem "\" no final.
+				    // =========================================================
+				    CaminhoArquivo =
+				        if Text.EndsWith(CaminhoPasta, "\") or Text.EndsWith(CaminhoPasta, "/")
+				        then CaminhoPasta & "f_pesquisa.parquet"
+				        else CaminhoPasta & "\f_pesquisa.parquet",
+				
+				    // =========================================================
+				    // 3. Leitura do arquivo Parquet
+				    // Carrega os dados diretamente do arquivo.
+				    // =========================================================
+				    Fonte =
+				        Parquet.Document(
+				            File.Contents(CaminhoArquivo)
+				        ),
+				
+				    // =========================================================
+				    // 4. Remover colunas vazias ou sem utilidade
+				    // Mantido como estava no script atual.
+				    // =========================================================
+				    ColunasRemovidas =
+				        Table.RemoveColumns(
+				            Fonte,
+				            {
+				                "Column10",
+				                "Column11",
+				                "Column12",
+				                "Column13",
+				                "Column14"
+				            },
+				            MissingField.Ignore
+				        ),
+				
+				    // =========================================================
+				    // 5. Renomear colunas
+				    // f_pesquisa já sai com nomes canônicos; aqui voltamos
+				    // para o padrão minúsculo esperado no modelo.
+				    // =========================================================
+				    ColunasRenomeadas =
+				        Table.RenameColumns(
+				            ColunasRemovidas,
+				            {
+				                {"Protocolo", "protocolo"},
+				                {"Data_manifestacao", "data_manifestacao"},
+				                {"Sigla", "sigla"},
+				                {"Nome", "nome"},
+				                {"Tipo_manifestacao", "tipo_manifestacao"},
+				                {"Finalizacao", "finalizacao"},
+				                {"Recomendaria", "recomendaria"},
+				                {"Motivo", "motivo"},
+				                {"Column9", "data_resposta_pesquisa"}
+				            },
+				            MissingField.Ignore
+				        ),
+				
+				    // =========================================================
+				    // 6. Definir tipos de dados
+				    // =========================================================
+				    TiposDefinidos =
+				        Table.TransformColumnTypes(
+				            ColunasRenomeadas,
+				            {
+				                {"protocolo", type text},
+				                {"data_manifestacao", type datetime},
+				                {"sigla", type text},
+				                {"nome", type text},
+				                {"tipo_manifestacao", type text},
+				                {"finalizacao", type text},
+				                {"recomendaria", Int64.Type},
+				                {"motivo", type text},
+				                {"data_resposta_pesquisa", type datetime}
+				            }
+				        ),
+				
+				    // =========================================================
+				    // 7. Padronizar sigla
+				    // =========================================================
+				    SiglaPadronizada =
+				        Table.ReplaceValue(
+				            TiposDefinidos,
+				            "GT",
+				            "GOIAS TELECOM",
+				            Replacer.ReplaceValue,
+				            {"sigla"}
+				        )
+				
 				in
-				    #"Sigla Padronizada"
+				    SiglaPadronizada
 
 	annotation PBI_NavigationStepName = Navegação
 

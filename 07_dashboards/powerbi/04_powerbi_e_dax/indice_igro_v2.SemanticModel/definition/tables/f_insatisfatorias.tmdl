@@ -2,16 +2,6 @@
 table f_insatisfatorias
 	lineageTag: 04ca9373-3d14-478c-8274-88ed004c9eab
 
-	/// Identificador numérico interno da manifestação. Espelha o campo equivalente em f_relatorio.
-	column id_manifestacao
-		dataType: int64
-		formatString: 0
-		lineageTag: 13d28d38-4cb5-4a83-933d-94e1d1ef36d8
-		summarizeBy: sum
-		sourceColumn: id_manifestacao
-
-		annotation SummarizationSetBy = Automatic
-
 	/// [Papel: Chave estrangeira] Protocolo da manifestação cuja resposta foi avaliada como insatisfatória. Relaciona f_insatisfatorias à tabela central f_relatorio.
 	column protocolo
 		dataType: string
@@ -28,11 +18,6 @@ table f_insatisfatorias
 		lineageTag: 9931e0e0-6f16-473e-937e-b05764b4ff06
 		summarizeBy: none
 		sourceColumn: data_manifestacao
-
-		variation Variation
-			isDefault
-			relationship: fc9ea7ae-455f-4618-a780-23376c512215
-			defaultHierarchy: LocalDateTable_39814db9-3be3-4799-a6e9-766140062061.'Hierarquia de datas'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -75,41 +60,12 @@ table f_insatisfatorias
 
 		annotation SummarizationSetBy = Automatic
 
-	/// Subdivisão do órgão responsável, permitindo identificar unidades com maior incidência de respostas inadequadas.
-	column suborgao
-		dataType: string
-		lineageTag: 64e752f4-5fdc-4124-9614-52264d18113e
-		summarizeBy: none
-		sourceColumn: suborgao
-
-		annotation SummarizationSetBy = Automatic
-
 	/// Indicação de sigilo da manifestação com resposta reprovada.
 	column sigilo
 		dataType: string
 		lineageTag: cfbcaba4-7849-43a2-a1a0-2c694d54a28f
 		summarizeBy: none
 		sourceColumn: sigilo
-
-		annotation SummarizationSetBy = Automatic
-
-	/// Prazo interno do órgão para a manifestação com resposta reprovada.
-	column prazo_interno
-		dataType: int64
-		formatString: 0
-		lineageTag: 27d3c615-a541-40fe-995b-901c1bffe1ce
-		summarizeBy: sum
-		sourceColumn: prazo_interno
-
-		annotation SummarizationSetBy = Automatic
-
-	/// Prazo externo normativo aplicável à manifestação com resposta inadequada.
-	column prazo_externo
-		dataType: int64
-		formatString: 0
-		lineageTag: 48928d7d-c7eb-41ef-9657-7307e8b39660
-		summarizeBy: sum
-		sourceColumn: prazo_externo
 
 		annotation SummarizationSetBy = Automatic
 
@@ -179,67 +135,91 @@ table f_insatisfatorias
 
 		annotation SummarizationSetBy = Automatic
 
-	/// Área interna do órgão responsável pela resposta inadequada.
-	column area_tecnica
+	column Id_manifestacao
 		dataType: string
-		lineageTag: c7de1f6b-aa4c-455a-95ca-ead890c1c3a8
+		lineageTag: 8f129138-c430-4e31-ac89-a76d13c0cc86
 		summarizeBy: none
-		sourceColumn: area_tecnica
+		sourceColumn: Id_manifestacao
 
 		annotation SummarizationSetBy = Automatic
 
-	/// Canal de entrada da manifestação avaliada como insatisfatória.
-	column registro
+	column Suborgao
 		dataType: string
-		lineageTag: da776c63-3288-470f-a936-38366a7ca094
+		lineageTag: ef189ecb-8609-4b14-b0ab-5e087d1b84df
 		summarizeBy: none
-		sourceColumn: registro
+		sourceColumn: Suborgao
 
 		annotation SummarizationSetBy = Automatic
 
-	/// Status da manifestação no momento da avaliação de qualidade.
-	column ds_status
+	column Prazo_interno
 		dataType: string
-		lineageTag: 0591c13d-ba69-4467-a811-35764a61c8a3
+		lineageTag: 6857c056-73b4-4cb5-aa51-99cb32fdf6e4
 		summarizeBy: none
-		sourceColumn: ds_status
+		sourceColumn: Prazo_interno
 
 		annotation SummarizationSetBy = Automatic
 
-	/// Flag de publicação no portal de transparência.
-	column publicacao
-		dataType: int64
-		formatString: 0
-		lineageTag: d6618d57-5ffc-4111-a695-366dc25c26fc
-		summarizeBy: sum
-		sourceColumn: publicacao
+	column Prazo_externo
+		dataType: string
+		lineageTag: 29382688-179c-4815-a911-177fd1dd2080
+		summarizeBy: none
+		sourceColumn: Prazo_externo
 
 		annotation SummarizationSetBy = Automatic
 
-	/// Resultado da análise de mérito da manifestação com resposta insatisfatória.
-	column procedente
+	column Area_tecnica
 		dataType: string
-		lineageTag: 37de2095-dcb9-4263-82e3-c24f055369f0
+		lineageTag: 8b037a1f-0393-4be8-8d41-ca42faa7b1be
 		summarizeBy: none
-		sourceColumn: procedente
+		sourceColumn: Area_tecnica
 
 		annotation SummarizationSetBy = Automatic
 
-	/// Instância de recurso associada, se houver.
-	column recurso
+	column Registro
 		dataType: string
-		lineageTag: 65a9fc21-1d0e-49f3-a13c-48c3908a00d9
+		lineageTag: 88cb6f59-94dd-4089-84f8-c141ff95ff35
 		summarizeBy: none
-		sourceColumn: recurso
+		sourceColumn: Registro
 
 		annotation SummarizationSetBy = Automatic
 
-	/// Número SEI vinculado à manifestação com resposta insatisfatória.
-	column nm_sei
+	column Ds_status
 		dataType: string
-		lineageTag: 9f4a7d90-cd33-4089-b369-f5274ec9c338
+		lineageTag: 54b35ac3-cfb4-4b9e-957b-a13078a54fc1
 		summarizeBy: none
-		sourceColumn: nm_sei
+		sourceColumn: Ds_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Publicacao
+		dataType: string
+		lineageTag: f6d3d5d1-67bc-4a46-b7b5-26c3093ab9b5
+		summarizeBy: none
+		sourceColumn: Publicacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column Procedente
+		dataType: string
+		lineageTag: c777ad79-510d-4d92-8bf4-3406ae887c0a
+		summarizeBy: none
+		sourceColumn: Procedente
+
+		annotation SummarizationSetBy = Automatic
+
+	column Recurso
+		dataType: string
+		lineageTag: 6740f178-b485-4d14-8990-481d2d6350f7
+		summarizeBy: none
+		sourceColumn: Recurso
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nm_sei
+		dataType: string
+		lineageTag: 72751c10-23d2-428c-bed6-81af13041c40
+		summarizeBy: none
+		sourceColumn: Nm_sei
 
 		annotation SummarizationSetBy = Automatic
 
@@ -247,47 +227,78 @@ table f_insatisfatorias
 		mode: import
 		source =
 				let
-				    Fonte = Folder.Files("C:\\Users\\andre\\OneDrive\\sgoe-data-raw\\data\\powerbi\\f_insatisfatorias"),
-				    #"Arquivos Ocultos Filtrados1" = Table.SelectRows(Fonte, each [Attributes]?[Hidden]? <> true),
-				    #"Invocar Função Personalizada1" = Table.AddColumn(#"Arquivos Ocultos Filtrados1", "Transformar Arquivo (4)", each #"Transformar Arquivo (4)"([Content])),
-				    #"Colunas Renomeadas1" = Table.RenameColumns(#"Invocar Função Personalizada1", {"Name", "Nome da Origem"}),
-				    #"Outras Colunas Removidas1" = Table.SelectColumns(#"Colunas Renomeadas1", {"Nome da Origem", "Transformar Arquivo (4)"}),
-				    #"Coluna de Tabela Expandida1" = Table.ExpandTableColumn(
-				        #"Outras Colunas Removidas1",
-				        "Transformar Arquivo (4)",
-				        {"id_manifestacao", "protocolo", "data_manifestacao", "data_finalizacao", "data_revisao", "sigla", "suborgao", "sigilo", "prazo_interno", "prazo_externo", "dias_vida", "dias_reativacao", "dias_atraso", "tipo_manifestacao", "municipio", "tipificacao", "sub_tipificacao", "area_tecnica", "registro", "ds_status", "publicacao", "procedente", "recurso", "nm_sei"},
-				        {"id_manifestacao", "protocolo", "data_manifestacao", "data_finalizacao", "data_revisao", "sigla", "suborgao", "sigilo", "prazo_interno", "prazo_externo", "dias_vida", "dias_reativacao", "dias_atraso", "tipo_manifestacao", "municipio", "tipificacao", "sub_tipificacao", "area_tecnica", "registro", "ds_status", "publicacao", "procedente", "recurso", "nm_sei"}
-				    ),
-				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Coluna de Tabela Expandida1", {
-				        {"id_manifestacao", Int64.Type},
-				        {"protocolo", type text},
-				        {"data_manifestacao", type datetime},
-				        {"data_finalizacao", type datetime},
-				        {"data_revisao", type datetime},
-				        {"sigla", type text},
-				        {"suborgao", type text},
-				        {"sigilo", type text},
-				        {"prazo_interno", Int64.Type},
-				        {"prazo_externo", Int64.Type},
-				        {"dias_vida", Int64.Type},
-				        {"dias_reativacao", Int64.Type},
-				        {"dias_atraso", Int64.Type},
-				        {"tipo_manifestacao", type text},
-				        {"municipio", type text},
-				        {"tipificacao", type text},
-				        {"sub_tipificacao", type text},
-				        {"area_tecnica", type text},
-				        {"registro", type text},
-				        {"ds_status", type text},
-				        {"publicacao", Int64.Type},
-				        {"procedente", type text},
-				        {"recurso", type text},
-				        {"nm_sei", type text}
-				    }),
-				    #"Origem Removida" = Table.RemoveColumns(#"Tipo Alterado", {"Nome da Origem"}),
-				    #"Sigla Padronizada" = Table.ReplaceValue(#"Origem Removida", "GT", "GOIAS TELECOM", Replacer.ReplaceValue, {"sigla"})
+				    // Caminho da pasta de entrada
+				    CaminhoPasta =
+				        fnCaminhoEntrada(),
+				
+				    // Caminho completo do arquivo
+				    CaminhoArquivo =
+				        if Text.EndsWith(CaminhoPasta, "\") or Text.EndsWith(CaminhoPasta, "/")
+				        then CaminhoPasta & "f_insatisfatorias.parquet"
+				        else CaminhoPasta & "\f_insatisfatorias.parquet",
+				
+				    // Carregar arquivo Parquet
+				    Fonte =
+				        Parquet.Document(
+				            File.Contents(CaminhoArquivo)
+				        ),
+				
+				    // Renomear colunas para padrão minúsculo
+				    ColunasRenomeadas =
+				        Table.RenameColumns(
+				            Fonte,
+				            {
+				                {"Protocolo", "protocolo"},
+				                {"Data_manifestacao", "data_manifestacao"},
+				                {"Data_finalizacao", "data_finalizacao"},
+				                {"Data_revisao", "data_revisao"},
+				                {"Sigla", "sigla"},
+				                {"Sigilo", "sigilo"},
+				                {"Dias_vida", "dias_vida"},
+				                {"Dias_reativacao", "dias_reativacao"},
+				                {"Dias_atraso", "dias_atraso"},
+				                {"Tipo_manifestacao", "tipo_manifestacao"},
+				                {"Municipio", "municipio"},
+				                {"Tipificacao", "tipificacao"},
+				                {"Sub_tipificacao", "sub_tipificacao"}
+				            },
+				            MissingField.Ignore
+				        ),
+				
+				    // Definir tipos de dados
+				    TiposDefinidos =
+				        Table.TransformColumnTypes(
+				            ColunasRenomeadas,
+				            {
+				                {"protocolo", type text},
+				                {"data_manifestacao", type datetime},
+				                {"data_finalizacao", type datetime},
+				                {"data_revisao", type datetime},
+				                {"sigla", type text},
+				                {"sigilo", type text},
+				                {"dias_vida", Int64.Type},
+				                {"dias_reativacao", Int64.Type},
+				                {"dias_atraso", Int64.Type},
+				                {"tipo_manifestacao", type text},
+				                {"municipio", type text},
+				                {"tipificacao", type text},
+				                {"sub_tipificacao", type text}
+				            },
+				            "pt-BR"
+				        ),
+				
+				    // Padronizar sigla
+				    SiglaPadronizada =
+				        Table.ReplaceValue(
+				            TiposDefinidos,
+				            "GT",
+				            "GOIAS TELECOM",
+				            Replacer.ReplaceValue,
+				            {"sigla"}
+				        )
+				
 				in
-				    #"Sigla Padronizada"
+				    SiglaPadronizada
 
 	annotation PBI_NavigationStepName = Navegação
 

@@ -1,5 +1,7 @@
 # CLAUDE.md
 
+> **Contexto central:** identidade, voz, regras e marca vivem em `C:\Users\andre\OneDrive\_contexto-ia\` — leia antes de tarefas estratégicas ou de conteúdo.
+
 Este arquivo fornece orientação operacional para Claude Code e agentes similares ao trabalhar neste repositório.
 
 ## Sobre Este Repositorio
