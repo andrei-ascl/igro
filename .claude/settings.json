@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git rm *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(git remote *)",
+      "Bash(python -c ' *)",
+      "Bash(awk '{print $NF, $5}')",
+      "Bash(python 05_scripts/python/gerar_tabela_suplementar_excel.py)",
+      "Bash(mkdir -p figuras tabelas)",
+      "Bash(mv figura_*.png grafico_*.png extra_*.png figuras/)",
+      "Bash(mv *.csv *.xlsx tabelas/)",
+      "Read(//c/Users/andrei.lima/OneDrive/Skills/doc-coauthoring/**)"
+    ]
+  }
+}
