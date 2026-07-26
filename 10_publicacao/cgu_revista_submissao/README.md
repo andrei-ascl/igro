@@ -2,7 +2,11 @@
 
 ## 📋 Sobre Esta Pasta
 
-Esta pasta contém todos os arquivos necessários para submissão do artigo **"Índice de Gestão de Riscos de Ouvidoria (IGRO)"** para a Revista da CGU.
+Esta pasta registra o pacote preparado para submissão do artigo **"Índice de Gestão de Riscos de Ouvidoria (IGRO)"** para a Revista da CGU.
+
+**Status atual:** submissão realizada em **08/06/2026** e registrada em **16/07/2026** como **não aceita**. O número/status detalhado da submissão não está registrado localmente.
+
+Esta pasta fica como evidência histórica do preparo editorial. Para o próximo ciclo, use `../versao_final/` como base para o resumo executivo/apresentação e para adaptação a novo periódico.
 
 ## 📁 Estrutura de Arquivos
 
@@ -13,10 +17,15 @@ cgu_revista_submissao/
 ├─ 03_INFORMACOES_AUTORIA_TEMPLATE.txt # Formulário com dados dos autores
 ├─ 04_CHECKLIST_SUBMISSAO_CGU.txt     # Lista de verificação (4 fases)
 ├─ artigo_igro_final.md               # Artigo original em Markdown
-├─ artigo_igro_final.docx             # [A criar] Artigo convertido para DOCX
-├─ capa_anonimizada.docx              # [A criar] Capa separada
+├─ igro_monitoramento_estrategico_em_redes_de_ouvidorias_publicas.pdf
 └─ README.md                           # Este arquivo
 ```
+
+Os arquivos DOCX finais da submissão ficaram em `../submissao/`:
+
+- `artigo_igro_final.docx`
+- `capa_anonimizada.docx`
+- `informacoes_autoria.docx`
 
 ## ✅ Status de Preparação
 
@@ -27,47 +36,13 @@ cgu_revista_submissao/
 | Template de capa | ✅ Pronto | Usar 02_CAPA_ANONIMIZADA_TEMPLATE.txt |
 | Formulário de autoria | ✅ Pronto | Preencher 03_INFORMACOES_AUTORIA_TEMPLATE.txt |
 | Checklist | ✅ Pronto | Verificar com 04_CHECKLIST_SUBMISSAO_CGU.txt |
-| **Conversão DOCX** | ⏳ Pendente | Você faz seguindo o guia |
-| **Informações autores** | ⏳ Pendente | Você preenche no template |
-| **Submissão** | ⏳ Pendente | Você envia no portal CGU |
+| **Conversão DOCX** | ✅ Realizada | Preservada em `../submissao/` |
+| **Informações autores** | ✅ Preenchidas | Preservadas em `../submissao/` |
+| **Submissão** | Encerrada | Resultado: não aceito |
 
 ## 🚀 Como Usar Esta Pasta
 
-### 1. Converter artigo para DOCX (15-20 min)
-```bash
-→ Abra: artigo_igro_final.md
-→ Siga: 01_GUIA_CONVERSAO_DOCX.txt
-→ Salve como: artigo_igro_final.docx
-```
-
-### 2. Criar capa anonimizada (5-10 min)
-```bash
-→ Novo documento em Word/LibreOffice
-→ Use: 02_CAPA_ANONIMIZADA_TEMPLATE.txt
-→ Salve como: capa_anonimizada.docx
-```
-
-### 3. Preencher informações de autoria (10 min)
-```bash
-→ Copie: 03_INFORMACOES_AUTORIA_TEMPLATE.txt
-→ Preencha com dados dos autores
-→ Salve como: informacoes_autoria.docx
-```
-
-### 4. Verificar conformidade (15 min)
-```bash
-→ Use: 04_CHECKLIST_SUBMISSAO_CGU.txt
-→ Marque cada item conforme completar
-→ Se OK, prossiga para submissão
-```
-
-### 5. Submeter no portal CGU
-```bash
-→ https://revista.cgu.gov.br/Revista_da_CGU/about/submissions
-→ Upload de: capa_anonimizada.docx + artigo_igro_final.docx
-→ Preencher metadados
-→ Submeter
-```
+Use esta pasta para consultar como o pacote da CGU foi preparado. Os guias e checklists permanecem como referência caso o próximo periódico tenha exigências semelhantes de anonimização, DOCX separado, metadados e autoria.
 
 ## 📊 Informações do Artigo
 
@@ -90,17 +65,15 @@ cgu_revista_submissao/
 
 **Portal da revista**: https://revista.cgu.gov.br/Revista_da_CGU/
 
-**Tempo esperado para decisão**: ~6 meses
+**Resultado da submissão CGU**: não aceito
 
 ## 📝 Notas Importantes
 
-✓ Guarde o número de submissão (MS-XXXX-XXXX) após enviar
-✓ Confirme que TODOS os autores concordam
-✓ Use email institucional para autores (não Gmail/hotmail)
-✓ Monitore email para desk review (2-4 semanas)
-✓ Faça backup de todos os arquivos antes de submeter
+✓ Para nova submissão, registrar número de submissão e status editorial assim que houver confirmação.
+✓ Reaproveitar checagens de anonimização, metadados e autoria antes de enviar a novo periódico.
+✓ Guardar parecer ou justificativa da Revista da CGU caso esteja disponível fora do repositório.
 
 ---
 
-**Última atualização**: 1º de junho de 2026  
-**Status**: Pronto para conversão e submissão
+**Última atualização**: 16 de julho de 2026  
+**Status**: Submissão CGU encerrada — não aceita

@@ -2,15 +2,38 @@
 
 Versão final do artigo, anexos, materiais de submissão e documentação para publicação.
 
+## Estado Atual
+
+O artigo foi submetido à Revista da CGU em **08/06/2026** e o resultado foi registrado em **16/07/2026** como **não aceito**.
+
+Próximo ciclo:
+
+1. Preparar resumo executivo/apresentação para alta gestão.
+2. Pesquisar novo periódico compatível para uma nova submissão.
+3. Adaptar o artigo às diretrizes do periódico escolhido.
+
+Número/status detalhado da submissão: **não registrado localmente**.
+
 ## Estrutura
 
 ### `submissao/`
-Artefatos prontos para submissão:
-- `artigo_igro_v2_critica_aplicada.md` — Versão final do artigo em Markdown
+Artefatos usados no preparo da submissão:
+- `artigo_igro_final.docx` — corpo do artigo usado no pacote de submissão
+- `capa_anonimizada.docx` — capa separada para avaliação duplo-cega
+- `informacoes_autoria.docx` — dados de autoria
+- `artigo_igro_v2_critica_aplicada.md` — versão intermediária do artigo em Markdown
   - 51 órgãos do Poder Executivo estadual
   - 109.338 manifestações (2024-2025)
   - Metodologia OCDE/JRC + ISO 31000
-  - Análise de sensibilidade (em progresso — seções **[INSERIR DADOS]**)
+
+### `versao_final/`
+
+Pacote consolidado para reaproveitamento executivo e futuras submissões:
+
+- `artigo_igro_cgu_revisado_final.docx`
+- `igro_monitoramento_estrategico_em_redes_de_ouvidorias_publicas.pdf`
+- `IGRO_Strategic_Risk_Intelligence.pdf`
+- `Metodologia_IGRO_de_Gestão_Riscos.png`
 
 ## Objetivo
 
@@ -18,22 +41,22 @@ Consolidar e gerenciar a versão de publicação do artigo, anexos técnicos, me
 
 ## Status
 
-**Versão:** v2 — Crítica Aplicada  
-**Fase:** Revisão crítica com dados finais em consolidação  
+**Versão:** pós-submissão CGU  
+**Fase:** Reaproveitamento executivo e preparação para nova submissão  
 **Próximos passos:**
-1. Completar análise de sensibilidade (3 testes metodológicos)
-2. Validar goalposts dos indicadores de qualidade (RP, %RI, NR)
-3. Inserir visualizações (gráficos, tabelas de resultados)
-4. Submissão pós-Prêmio Ouvidoria 2026 (após 2026-05-23)
+1. Preparar resumo executivo/apresentação para alta gestão.
+2. Registrar aprendizados da submissão à Revista da CGU, se houver parecer ou justificativa disponível.
+3. Pesquisar novo periódico compatível.
+4. Adaptar artigo e anexos às novas diretrizes editoriais.
 
 ## Conformidade
 
 - ✅ Metodologia alinhada a referências internacionais (OCDE, ISO 31000)
 - ✅ Ética e LGPD validadas (dados agregados, anonimizados)
-- ⏳ Análise de sensibilidade em progresso
-- ⏳ Resultados finais aguardando dados consolidados
+- ✅ Análise de sensibilidade consolidada no pacote final
+- ✅ Resultados finais consolidados no pacote final
 
 ---
 
 **Mantido em:** Estudos do IGRO  
-**Última atualização:** 2026-05-26
+**Última atualização:** 2026-07-16
