@@ -154,3 +154,4 @@ Se uma decisão envolver trade-off relevante, o agente deve explicitar a escolha
 - Preservar conteúdo e rastreabilidade.
 - Favorecer a estrutura atual do projeto.
 - Perguntar ao usuário apenas quando a decisão puder causar perda, ambiguidade forte ou retrabalho relevante.
+
