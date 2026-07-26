@@ -1,6 +1,6 @@
 # Memoria do Projeto IGRO
 
-Atualizado em: 2026-06-08
+Atualizado em: 2026-07-25
 
 Este arquivo registra o estado operacional do projeto para continuidade entre sessoes.
 
@@ -96,6 +96,10 @@ Artigo submetido em **08 de junho de 2026** para a Revista da CGU.
 - Checklist e guias de submissao: `10_publicacao/cgu_revista_submissao/`
 - Status esperado: revisao por pares; prazo estimado ~6 meses para decisao
 
+**Atualizacao (2026-07-16):** resultado registrado — submissao **nao aceita**. Ver `memory.md` (raiz) e `README.md` para o status atual e proximos passos (resumo executivo + novo periodico).
+
+**Atualizacao (2026-07-25):** na reorganizacao pos-rejeicao, `artigo_igro_cgu_revisado_final.docx` foi movido de `10_publicacao/submissao/` para `10_publicacao/versao_final/`, junto com os PDFs finais. `10_publicacao/submissao/` mantem os demais arquivos originais da submissao (capa anonimizada, checklist, notas de preparacao).
+
 ## Artigo e resultados
 
 O material do artigo e dos artefatos publicaveis passou a se concentrar principalmente em:
@@ -115,7 +119,7 @@ Estado operacional registrado em 2026-05-13:
 
 Observacoes metodologicas relevantes para continuidade:
 
-- a base processada atual indica `52` orgaos, enquanto o texto do artigo menciona `51`; essa divergencia precisa ser resolvida editorial ou metodologicamente antes da versao final;
+- a base processada atual indica `52` orgaos, enquanto o texto do artigo menciona `51`; essa divergencia precisa ser resolvida editorial ou metodologicamente antes da versao final; **RESOLVIDO em 2026-05-26** — validado que o artigo menciona 51 orgaos consistentemente (linhas 37, 212); ver `memory.md`;
 - o notebook assume, de forma explicita, que `rdp` corresponde ao indicador editorial tratado como `PMA`; essa equivalencia deve ser confirmada na revisao;
 - as figuras e tabelas finais ainda dependem da execucao do notebook e da validacao visual/analitica dos resultados exportados.
 
