@@ -91,7 +91,8 @@ IGRO consolidida **KRIs (Key Risk Indicators)** para monitorar dois riscos princ
 - 📚 [Bibliografia Completa](01_referencias/livros/05_fontes_e_bibliografia/08_Bibliografia_Links.md) — Fontes, OCDE/JRC, artigos
 
 **Para acompanhamento:**
-- 📝 [Memória do Projeto](00_admin/controle_versoes/MEMORIA_PROJETO.md) — Status, decisões, próximos passos
+- 📌 [memory.md](memory.md) — Status estruturado e sincronizável (raiz do repositório, convenção fixa — nunca mover para subpasta)
+- 📝 [Memória do Projeto](00_admin/controle_versoes/MEMORIA_PROJETO.md) — Histórico narrativo, decisões, próximos passos
 - 🗺️ [Mapa de Migração](00_admin/planejamento/MAPA_MIGRACAO_ESTRUTURA_2026-05-06.md) — Estrutura antiga vs. nova
 
 **Para trabalhar com dados:**
@@ -159,7 +160,7 @@ Para consolidar uma release:
 
 | Item | Status | Localização |
 |------|--------|-------------|
-| README (raiz) | ✅ v2.1 | [Aqui](README.md) |
+| README (raiz) | ✅ v2.5 | [Aqui](README.md) |
 | AGENTS | ✅ Operacional | [AGENTS.md](AGENTS.md) |
 | CLAUDE | ✅ Operacional | [CLAUDE.md](CLAUDE.md) |
 | Estrutura de pastas | ✅ Documentada | [Acima](#estrutura-de-pastas) |
@@ -170,6 +171,6 @@ Para consolidar uma release:
 
 ---
 
-**Versão:** 2.4  
-**Atualizado:** 2026-07-16  
+**Versão:** 2.5  
+**Atualizado:** 2026-07-25  
 **Mantido por:** Andrei Azevedo de Souza da Cunha Lima

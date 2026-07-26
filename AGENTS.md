@@ -32,6 +32,15 @@ Antes de editar, usar esta ordem de referência:
 
 Se houver conflito entre documentos antigos e a estrutura atual, priorizar a estrutura descrita no `README.md` e no mapa de migração.
 
+## Memória do projeto
+
+Existem dois arquivos de memória, com papéis distintos e complementares:
+
+- **`memory.md`** (raiz do repositório) — status estruturado e sincronizável (frontmatter `board_sync`), no padrão do hub `Claude-Work`. **Convenção fixa: sempre na raiz do projeto, nunca mover para subpasta.**
+- **`00_admin/controle_versoes/MEMORIA_PROJETO.md`** — histórico narrativo detalhado: decisões, contexto de sessões passadas, checkpoints. Complementa `memory.md`, não o substitui.
+
+Ao atualizar o estado do projeto (fase, progresso, próxima ação), atualizar os dois quando a mudança afetar o status geral.
+
 ## Estrutura do projeto
 
 Usar a estrutura atual como padrão:

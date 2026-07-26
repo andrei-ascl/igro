@@ -7,6 +7,7 @@ Utilitários Python e Power Query para processamento de dados, geração de arte
 ### `python/`
 Scripts executáveis em Python:
 - `main.py` — Ponto de entrada principal
+- `gerar_tabela_suplementar_excel.py` — Gera `tabela_suplementar_igro_51_orgaos.xlsx` (ranking completo dos 51 órgãos), saída em `09_resultados/artigo_igro_figuras_tabelas/tabelas/`
 - `apresentacoes/` — Scripts para geração e manutenção de apresentações
   - `criar_apresentacao_igro.py` — Gerador de apresentação v1
   - `criar_apresentacao_igro_v2.py` — Gerador de apresentação v2
@@ -33,4 +34,4 @@ Especificadas em arquivo de requisitos (se existente na raiz do projeto ou em `r
 ---
 
 **Mantido em:** Estudos do IGRO  
-**Última atualização:** 2026-05-26
+**Última atualização:** 2026-07-25

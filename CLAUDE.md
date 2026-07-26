@@ -54,7 +54,8 @@ A partir de **2026-05-26**, a estrutura foi consolidada removendo redundâncias.
 - `07_dashboards/powerbi/04_powerbi_e_dax/documentacao_modelo_semantico_igro.md`
 - `01_referencias/artigos/02_benchmarking_e_referencias_brasileiras/09_Benchmarking_KRIs_Ouvidorias_Estaduais.md`
 - `01_referencias/livros/05_fontes_e_bibliografia/08_Bibliografia_Links.md`
-- `00_admin/controle_versoes/MEMORIA_PROJETO.md`
+- `memory.md` (raiz) — status estruturado e sincronizavel (`board_sync`); **sempre na raiz, nunca mover para subpasta**
+- `00_admin/controle_versoes/MEMORIA_PROJETO.md` — historico narrativo detalhado; complementa `memory.md`, nao substitui
 
 ## Convencoes de Trabalho
 

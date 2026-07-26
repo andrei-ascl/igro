@@ -8,20 +8,25 @@ Formato: [Keep a Changelog](https://keepachangelog.com/)
 ## [Unreleased]
 
 ### Added
-- `llms.txt` — Índice amigável para IA (Core Objective, Critical Files, Key Concepts, Quick Start)
-- `CHANGELOG.md` — Rastreamento de versões (Keep a Changelog format)
-- READMEs atualizados com skill documentation-templates (00_admin/, 01_referencias/, 02_dados/, 03_estudos/, 06_notebooks/, 07_dashboards/, 09_resultados/)
-- Status de documentação consolidado em README.md
+- `05_scripts/python/gerar_tabela_suplementar_excel.py` — gera `tabela_suplementar_igro_51_orgaos.xlsx` (ranking completo dos 51 órgãos)
+- `09_resultados/exportacoes/` — análise de sensibilidade dos pesos do IGRO e gráficos por quadrimestre (KRI4)
+- `10_publicacao/versao_final/` — pasta consolidada de entregáveis finais (docx, PDFs, tabela suplementar)
+- `AGENTS.md`/`CLAUDE.md` — seção "Memória do projeto" documentando o papel de `memory.md` (raiz) vs `00_admin/controle_versoes/MEMORIA_PROJETO.md`
 
 ### Changed
-- `README.md` — Reformulado com Quick Start, O que é o IGRO, Estrutura de Pastas, Navegação Rápida, Fluxo Recomendado
-- Convenções documentadas em cada pasta README
-- Troncos de subpastas agora linkados ao README principal
+- `09_resultados/artigo_igro_figuras_tabelas/` reorganizado em subpastas `figuras/` e `tabelas/`
+- `README.md`, `memory.md`, `MEMORIA_PROJETO.md`: artigo submetido à Revista da CGU em 08/06/2026 **não foi aceito** (resultado em 16/07/2026); projeto em fase de reposicionamento (resumo executivo + novo periódico)
+- `.gitignore`: adicionado `**/.reversa/` para evitar recorrência de estado transitório versionado
+
+### Removed
+- BMad Method (`.bmad-core/`, `.bmad-creative-writing/`, slash commands em `.claude/`/`.gemini/`, `web-bundles/`) e o bloco auto-gerado correspondente em `AGENTS.md`
+- Estado transitório `.reversa/` (108 arquivos) sob `.claude/.agents/skills/` e `skills/`
+- Lixo residual: CSVs duplicados em `09_resultados/artigo_igro_figuras_tabelas/`, lock file `~$pa_anonimizada.docx`, `memory.bak.md`
 
 ### Planned
-- Artigo final em 10_publicacao/submissao/ (após revisão crítica)
-- Validação de órgãos (52 vs. 51 mencionado)
-- Entrega pós-Prêmio das Ouvidorias (2026-05-23)
+- Resumo executivo/apresentação do IGRO para alta gestão
+- Pesquisa de novo periódico compatível para submissão
+- Adaptação do artigo às diretrizes do periódico escolhido
 
 ---
 
@@ -138,4 +143,4 @@ Mantenha em sincronia (revisar juntos na próxima atualização de documentaçã
 
 **Mantido por:** Andrei Azevedo de Souza da Cunha Lima  
 **Política:** Atualizar a cada mudança estrutural ou versão nova  
-**Última atualização:** 2026-05-16
+**Última atualização:** 2026-07-25
