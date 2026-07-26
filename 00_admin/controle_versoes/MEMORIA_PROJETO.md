@@ -1,6 +1,6 @@
 # Memoria do Projeto IGRO
 
-Atualizado em: 2026-05-14
+Atualizado em: 2026-06-08
 
 Este arquivo registra o estado operacional do projeto para continuidade entre sessoes.
 
@@ -84,6 +84,18 @@ Estado atual dos documentos principais:
 - `01_referencias/artigos/02_benchmarking_e_referencias_brasileiras/09_Benchmarking_KRIs_Ouvidorias_Estaduais.md` -> benchmarking e metas de referencia
 - `01_referencias/livros/05_fontes_e_bibliografia/08_Bibliografia_Links.md` -> bibliografia principal
 
+## Submissao do artigo
+
+Artigo submetido em **08 de junho de 2026** para a Revista da CGU.
+
+- Portal de acompanhamento: https://revista.cgu.gov.br/
+- Arquivos submetidos: `10_publicacao/submissao/`
+  - `artigo_igro_cgu_revisado_final.docx` — corpo do texto
+  - `capa_anonimizada.docx` — folha de rosto
+  - `tabela_suplementar_igro_51_orgaos.xlsx` — arquivo suplementar (ranking 51 orgaos)
+- Checklist e guias de submissao: `10_publicacao/cgu_revista_submissao/`
+- Status esperado: revisao por pares; prazo estimado ~6 meses para decisao
+
 ## Artigo e resultados
 
 O material do artigo e dos artefatos publicaveis passou a se concentrar principalmente em:
@@ -153,8 +165,7 @@ Status ainda relevante:
 
 ## Proximo checkpoint recomendado
 
-- rodar `06_notebooks/exploracao/artigo_igro_graficos_tabelas.ipynb`;
-- revisar coerencia entre os dados processados e o texto do artigo;
-- decidir a regra para `51` versus `52` orgaos;
-- validar os graficos exportados em `09_resultados/artigo_igro_figuras_tabelas/`;
-- iniciar a segunda rodada de refinamento do artigo com base nas evidencias geradas.
+- acompanhar decisao editorial em https://revista.cgu.gov.br/ (prazo ~6 meses);
+- responder prontamente a eventuais solicitacoes de revisao pelos pares;
+- manter `09_resultados/artigo_igro_figuras_tabelas/` com os arquivos finais para referencia;
+- explorar expansao do IGRO para ciclos quadrimestrais (notebook `igro_graficos_quadrimestres.ipynb` disponivel).

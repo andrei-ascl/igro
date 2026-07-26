@@ -40,20 +40,22 @@ IGRO consolidida **KRIs (Key Risk Indicators)** para monitorar dois riscos princ
 
 ## Estado Atual
 
-**Ponto de trabalho principal:** Artigo científico
-
 | Item | Status | Localização |
 |------|--------|-------------|
-| **Artigo em desenvolvimento** | 📝 Revisão crítica | `10_publicacao/submissao/artigo_igro_v2_critica_aplicada.md` |
+| **Artigo científico** | Pós-submissão: não aceito pela Revista da CGU | `10_publicacao/versao_final/artigo_igro_cgu_revisado_final.docx` |
 | **Notebook (tabelas/gráficos)** | ✅ Operacional | `06_notebooks/exploracao/artigo_igro_graficos_tabelas.ipynb` |
+| **Tabela suplementar** | ✅ Gerada | `09_resultados/artigo_igro_figuras_tabelas/tabelas/tabela_suplementar_igro_51_orgaos.xlsx` |
 | **Dados processados** | ✅ Disponíveis | `02_dados/processed/` |
 | **Power BI (modelo)** | ✅ v2 estável | `07_dashboards/powerbi/04_powerbi_e_dax/indice_igro_v2.pbix` |
 | **Documentação técnica** | ✅ Consolidada | `07_dashboards/powerbi/04_powerbi_e_dax/documentacao_modelo_semantico_igro.md` |
 
-**ℹ️ Observações importantes:**
-- Artigo validado: consistente em 51 órgãos do Poder Executivo estadual
-- Outputs analíticos do notebook armazenados em `09_resultados/relatorios/` e `09_resultados/tabelas/`
-- Dados fonte processados disponíveis em `02_dados/processed/`
+**Submissão — Revista da CGU**
+- Submetido em: **08 de junho de 2026**
+- Resultado registrado em: **16 de julho de 2026**
+- Status: **não aceito**
+- Número/status detalhado da submissão: não registrado localmente
+- Próximo ciclo: preparar resumo executivo/apresentação para alta gestão; depois pesquisar novo periódico para submissão.
+- Arquivos de submissão e versão final: `10_publicacao/submissao/`, `10_publicacao/cgu_revista_submissao/` e `10_publicacao/versao_final/`
 
 ---
 
@@ -168,6 +170,6 @@ Para consolidar uma release:
 
 ---
 
-**Versão:** 2.2  
-**Atualizado:** 2026-05-26  
+**Versão:** 2.4  
+**Atualizado:** 2026-07-16  
 **Mantido por:** Andrei Azevedo de Souza da Cunha Lima
