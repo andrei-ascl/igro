@@ -7,3 +7,6 @@
 **/*.xlsx
 **/01_brutos/
 **/02_processados/
+
+# Estado transitorio da skill reversa (config/plan/state de execucao local)
+**/.reversa/
