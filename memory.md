@@ -8,12 +8,12 @@ next_action: "Preparar resumo executivo/apresentação para alta gestão; depois
 deadline: null
 progress: 85
 meta: "Artigo submetido e não aceito; preparar briefing executivo e nova estratégia de submissão"
-updated: "2026-07-16"
+updated: "2026-08-02"
 ---
 
 # Memory — igro
 
-**Última atualização:** 2026-07-16
+**Última atualização:** 2026-08-02
 
 ---
 
@@ -42,6 +42,7 @@ updated: "2026-07-16"
 ## Contexto e Notas
 
 ### Atividade Recente
+- **2026-07-25:** base analítica expandida como preparação para o resumo executivo — análise de sensibilidade e gráficos por quadrimestre exportados, tabela suplementar (ranking completo dos 51 órgãos) gerada. `10_publicacao/` reorganizada pós-rejeição: `artigo_igro_cgu_revisado_final.docx` movido de `submissao/` para `versao_final/`. Removido scaffolding do BMad Method e estado transitório `.reversa/`. Documentação do projeto auditada; contradições corrigidas em `00_admin/controle_versoes/MEMORIA_PROJETO.md`. `README.md` (raiz) atualizado no mesmo lote.
 - **2026-07-16:** registrado que o artigo submetido à Revista da CGU não foi aceito. Próximo ciclo: preparar resumo executivo/apresentação para alta gestão e, depois, pesquisar novo periódico para submissão.
 - **2026-07-16:** pendências documentais menores revisadas: README raiz, `10_publicacao/README.md` e `10_publicacao/cgu_revista_submissao/README.md` atualizados para refletir o pós-submissão e o status "não aceito".
 - **2026-06-08:** artigo submetido à Revista da CGU, conforme README atualizado.
@@ -86,6 +87,7 @@ updated: "2026-07-16"
 
 | Data | Status | Progresso | Nota |
 |------|--------|-----------|------|
+| 2026-07-25 | Em andamento | 85% | Base analítica expandida (sensibilidade, quadrimestres, tabela suplementar) como preparação para o resumo executivo; publicação reorganizada pós-rejeição; documentação auditada |
 | 2026-07-16 | Em andamento | 85% | Artigo submetido à Revista da CGU não foi aceito; próximo ciclo é briefing executivo/apresentação para alta gestão e busca de novo periódico |
 | 2026-06-08 | Em andamento | 85% | Artigo submetido à Revista da CGU |
 | 2026-05-26 | Em andamento | 80% | **Fase P Documentação Concluída** — P2/P3/P4/P6 implementadas; READMEs criadas; paths validadas; artigo 51 órgãos confirmado |

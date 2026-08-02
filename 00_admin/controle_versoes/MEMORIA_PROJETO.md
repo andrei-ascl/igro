@@ -169,7 +169,7 @@ Status ainda relevante:
 
 ## Proximo checkpoint recomendado
 
-- acompanhar decisao editorial em https://revista.cgu.gov.br/ (prazo ~6 meses);
-- responder prontamente a eventuais solicitacoes de revisao pelos pares;
-- manter `09_resultados/artigo_igro_figuras_tabelas/` com os arquivos finais para referencia;
-- explorar expansao do IGRO para ciclos quadrimestrais (notebook `igro_graficos_quadrimestres.ipynb` disponivel).
+- submissao a Revista da CGU **rejeitada em 2026-07-16** (ver secao "Submissao do artigo" acima) — nao ha mais decisao editorial pendente a acompanhar nesse veiculo;
+- proximo ciclo (ver `memory.md`, raiz): preparar resumo executivo/apresentacao para alta gestao e pesquisar novo periodico para submissao;
+- base analitica ja expandida em 2026-07-25 como preparacao (analise de sensibilidade, graficos por quadrimestre, tabela suplementar com ranking completo dos 51 orgaos — notebook `igro_graficos_quadrimestres.ipynb` executado);
+- manter `09_resultados/artigo_igro_figuras_tabelas/` com os arquivos finais para referencia.
