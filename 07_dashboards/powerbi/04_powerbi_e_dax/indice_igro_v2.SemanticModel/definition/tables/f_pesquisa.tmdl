@@ -105,24 +105,22 @@ table f_pesquisa
 				let
 				    // =========================================================
 				    // 1. Caminho da pasta
-				    // Usa a função fnCaminhoEntrada para localizar a pasta base.
+				    // Usa a função fnRodadaComum para localizar uma rodada íntegra.
 				    // =========================================================
-				    CaminhoPasta =
-				        fnCaminhoEntrada(),
+				    Rodada = fnRodadaComum(),
 				
 				    // =========================================================
 				    // 2. Caminho completo do arquivo
 				    // Monta o caminho corretamente com ou sem "\" no final.
 				    // =========================================================
-				    Arquivos = Folder.Files(CaminhoPasta),
-				    ArquivosParquet = Table.SelectRows(Arquivos, each [Extension] = ".parquet" and Text.StartsWith([Name], "pesquisa_")),
-				    ArquivosOrdenados = Table.Sort(ArquivosParquet, {{"Date modified", Order.Descending}, {"Name", Order.Descending}}),
+				    Arquivos = Folder.Files(Rodada[Caminho]),
+				    ArquivoSelecionado = Table.SelectRows(Arquivos, each [Name] = "pesquisa_" & Rodada[Id] & ".parquet"),
 				
 				    Fonte =
-				        if Table.RowCount(ArquivosOrdenados) = 0 then
-				            error "Nenhum arquivo Parquet compatível encontrado em: " & CaminhoPasta
+				        if Table.RowCount(ArquivoSelecionado) <> 1 then
+				            error "Arquivo pesquisa da rodada comum não encontrado: " & Rodada[Id] & " em " & Rodada[Caminho]
 				        else
-				            Parquet.Document(ArquivosOrdenados{0}[Content]),
+				            Parquet.Document(ArquivoSelecionado{0}[Content]),
 				
 				    // =========================================================
 				    // 4. Remover colunas vazias ou sem utilidade

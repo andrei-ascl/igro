@@ -207,16 +207,15 @@ table f_relatorio
 		mode: import
 		source =
 				let
-				    CaminhoBase = fnCaminhoEntrada(),
-				    Arquivos = Folder.Files(CaminhoBase),
-				    ArquivosParquet = Table.SelectRows(Arquivos, each [Extension] = ".parquet" and Text.StartsWith([Name], "relatorio_")),
-				    ArquivosOrdenados = Table.Sort(ArquivosParquet, {{"Date modified", Order.Descending}, {"Name", Order.Descending}}),
+				    Rodada = fnRodadaComum(),
+				    Arquivos = Folder.Files(Rodada[Caminho]),
+				    ArquivoSelecionado = Table.SelectRows(Arquivos, each [Name] = "relatorio_" & Rodada[Id] & ".parquet"),
 				
 				    Fonte =
-				        if Table.RowCount(ArquivosOrdenados) = 0 then
-				            error "Nenhum arquivo Parquet compatível encontrado em: " & CaminhoBase
+				        if Table.RowCount(ArquivoSelecionado) <> 1 then
+				            error "Arquivo relatorio da rodada comum não encontrado: " & Rodada[Id] & " em " & Rodada[Caminho]
 				        else
-				            Parquet.Document(ArquivosOrdenados{0}[Content]),
+				            Parquet.Document(ArquivoSelecionado{0}[Content]),
 				
 				    #"Tipo Alterado" =
 				        Table.TransformColumnTypes(

@@ -40,7 +40,7 @@ queryGroup 'Transformar Arquivo de f_insatisfatorias\Consultas Auxiliares'
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBI_QueryOrder = ["Arquivo de Amostra","Parâmetro1","Transformar o Arquivo de Exemplo","Transformar Arquivo","f_relatorio","Arquivo de Amostra (2)","Parâmetro2","Transformar o Arquivo de Exemplo (2)","Transformar Arquivo (2)","f_pesquisa","Arquivo de Amostra (3)","Parâmetro3","Transformar o Arquivo de Exemplo (3)","Transformar Arquivo (3)","f_insatisfatorias","Arquivo de Amostra (4)","Parâmetro4","Transformar o Arquivo de Exemplo (4)","Transformar Arquivo (4)","dOrgao_igro","fnCaminhoEntrada"]
+annotation PBI_QueryOrder = ["Arquivo de Amostra","Parâmetro1","Transformar o Arquivo de Exemplo","Transformar Arquivo","f_relatorio","Arquivo de Amostra (2)","Parâmetro2","Transformar o Arquivo de Exemplo (2)","Transformar Arquivo (2)","f_pesquisa","Arquivo de Amostra (3)","Parâmetro3","Transformar o Arquivo de Exemplo (3)","Transformar Arquivo (3)","f_insatisfatorias","Arquivo de Amostra (4)","Parâmetro4","Transformar o Arquivo de Exemplo (4)","Transformar Arquivo (4)","dOrgao_igro","fnCaminhoEntrada","fnRodadaComum"]
 
 annotation PBI_ProTooling = ["MCP-PBIModeling","DevMode"]
 

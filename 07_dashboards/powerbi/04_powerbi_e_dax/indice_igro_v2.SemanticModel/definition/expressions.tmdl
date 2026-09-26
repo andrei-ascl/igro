@@ -166,38 +166,75 @@ expression 'Transformar Arquivo (4)' =
 
 expression fnCaminhoEntrada =
 		let
-		    Fonte = () as text =>
+		    Fonte = () as text => fnRodadaComum()[Caminho]
+		in
+		    Fonte
+	lineageTag: 626215fc-f715-4e19-9bde-e3fe8794db9f
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Function
+
+expression fnRodadaComum =
+		let
+		    Fonte = () as record =>
 		        let
 		            Barra = Character.FromNumber(92),
 		
 		            CaminhosPossiveis = {
-		                // Fase 1 (2026-09-26): Adicionar sgoe_hub/data/processed como primeira candidata (fonte canônica)
+		                // Fonte canônica, por ordem de preferência dos perfis locais.
 		                "C:" & Barra & "Users" & Barra & "andre" & Barra & "OneDrive" & Barra & "Claude-Work" & Barra & "Projects" & Barra & "sgoe_hub" & Barra & "data" & Barra & "processed",
 		                "C:" & Barra & "Users" & Barra & "andrei.lima" & Barra & "OneDrive" & Barra & "Claude-Work" & Barra & "Projects" & Barra & "sgoe_hub" & Barra & "data" & Barra & "processed",
-		                // Fallback legado (06_dados/01_brutos)
+		                // Fallback legado (06_dados/01_brutos), na mesma ordem de perfis.
 		                "C:" & Barra & "Users" & Barra & "andre" & Barra & "OneDrive" & Barra & "Claude-Work" & Barra & "Projects" & Barra & "igro" & Barra & "06_dados" & Barra & "01_brutos",
 		                "C:" & Barra & "Users" & Barra & "andrei.lima" & Barra & "OneDrive" & Barra & "Claude-Work" & Barra & "Projects" & Barra & "igro" & Barra & "06_dados" & Barra & "01_brutos"
 		            },
 		
-		            CaminhoExistente =
-		                List.First(
-		                    List.Select(
-		                        CaminhosPossiveis,
-		                        each not (try Folder.Contents(_))[HasError]
-		                    ),
-		                    null
-		                ),
+		            RodadaDaPasta = (CaminhoPasta as text) as nullable record =>
+		                let
+		                    TentativaArquivos = try Folder.Files(CaminhoPasta),
+		                    Arquivos =
+		                        if TentativaArquivos[HasError] then
+		                            #table({"Name", "Extension"}, {})
+		                        else
+		                            TentativaArquivos[Value],
+		                    ArquivosParquet = Table.SelectRows(Arquivos, each [Extension] = ".parquet"),
+		                    ExtrairIds = (Prefixo as text) as list =>
+		                        List.Transform(
+		                            Table.Column(
+		                                Table.SelectRows(
+		                                    ArquivosParquet,
+		                                    each Text.StartsWith([Name], Prefixo) and Text.Length([Name]) > Text.Length(Prefixo) + Text.Length(".parquet")
+		                                ),
+		                                "Name"
+		                            ),
+		                            each Text.Range(_, Text.Length(Prefixo), Text.Length(_) - Text.Length(Prefixo) - Text.Length(".parquet"))
+		                        ),
+		                    IdsComuns =
+		                        List.Sort(
+		                            List.Intersect({
+		                                ExtrairIds("relatorio_"),
+		                                ExtrairIds("pesquisa_"),
+		                                ExtrairIds("insatisfatorio_")
+		                            }),
+		                            Order.Descending
+		                        ),
+		                    IdRodada = if List.IsEmpty(IdsComuns) then null else IdsComuns{0}
+		                in
+		                    if IdRodada = null then null else [Caminho = CaminhoPasta, Id = IdRodada],
 		
+		            RodadasDisponiveis = List.RemoveNulls(List.Transform(CaminhosPossiveis, each RodadaDaPasta(_))),
+		            RodadaSelecionada = if List.IsEmpty(RodadasDisponiveis) then null else RodadasDisponiveis{0},
 		            Resultado =
-		                if CaminhoExistente <> null then
-		                    CaminhoExistente
+		                if RodadaSelecionada = null then
+		                    error "Nenhuma rodada comum encontrada. É necessário haver relatorio_<id>.parquet, pesquisa_<id>.parquet e insatisfatorio_<id>.parquet com o mesmo ID em uma pasta candidata: " & Text.Combine(CaminhosPossiveis, " | ")
 		                else
-		                    error "Nenhum caminho encontrado: " & Text.Combine(CaminhosPossiveis, " | ")
+		                    RodadaSelecionada
 		        in
 		            Resultado
 		in
 		    Fonte
-	lineageTag: 626215fc-f715-4e19-9bde-e3fe8794db9f
+	lineageTag: a16e2d14-49de-4e79-82ce-4e9d50c1e2f3
 
 	annotation PBI_NavigationStepName = Navegação
 

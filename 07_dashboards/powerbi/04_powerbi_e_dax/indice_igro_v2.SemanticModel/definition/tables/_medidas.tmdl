@@ -1023,11 +1023,11 @@ table _medidas
 		displayFolder: 11 · Rótulo · Cartão
 		lineageTag: c66152c9-9530-4a73-a115-fc2f5d1dee6b
 
-	/// Array JSON com IGRO e KRIs por órgão, ordenado por IGRO desc. Usa SUMMARIZE com colunas calculadas.
+	/// Array JSON com IGRO e KRIs por órgão, ordenado por IGRO desc. Itera a dimensão de órgãos para preservar o contexto nas três fatos; amostras insuficientes são serializadas como null.
 	measure '_JSON Orgaos' =
 			VAR _t =
 			    ADDCOLUMNS(
-			        SUMMARIZE(f_relatorio, f_relatorio[sigla]),
+			        SUMMARIZE(dOrgao_igro, dOrgao_igro[sigla]),
 			        "_qtd",   [base_qtd_manifestacoes],
 			        "_igro",  [idx_igro],
 			        "_sub_t", [idx_igro_sub_t],
@@ -1043,31 +1043,38 @@ table _medidas
 			        "_k4",    [idx_score_igro_kri4],
 			        "_k5",    [idx_score_igro_kri5]
 			    )
-			VAR _s = TOPN(60, _t, [_igro], DESC)
+			VAR _s =
+			    TOPN(
+			        60,
+			        FILTER(_t, [_qtd] > 0),
+			        [_igro], DESC,
+			        dOrgao_igro[sigla], ASC
+			    )
 			RETURN
 			    "[" &
 			    CONCATENATEX(
 			        _s,
 			        "{" &
 			            """s"":"""
-			                & SUBSTITUTE(f_relatorio[sigla], """", "'") & """," &
+			            & SUBSTITUTE(dOrgao_igro[sigla], """", "'") & """," &
 			            """n"":" & SUBSTITUTE(FORMAT([_qtd],  "0"),      ",", ".") & "," &
-			            """i"":" & SUBSTITUTE(FORMAT([_igro], "0.0000"), ",", ".") & "," &
+			            """i"":" & IF(ISBLANK([_igro]), "null", SUBSTITUTE(FORMAT([_igro], "0.0000"), ",", ".")) & "," &
 			            """t"":" & SUBSTITUTE(FORMAT([_sub_t],"0.0000"), ",", ".") & "," &
-			            """q"":" & SUBSTITUTE(FORMAT([_sub_q],"0.0000"), ",", ".") & "," &
+			            """q"":" & IF(ISBLANK([_sub_q]), "null", SUBSTITUTE(FORMAT([_sub_q],"0.0000"), ",", ".")) & "," &
 			            """m"":" & SUBSTITUTE(FORMAT([_tmr],  "0.00"),   ",", ".") & "," &
 			            """r"":" & SUBSTITUTE(FORMAT([_res],  "0.0000"), ",", ".") & "," &
 			            """a"":" & SUBSTITUTE(FORMAT([_nota], "0.00"),   ",", ".") & "," &
 			            """x"":" & SUBSTITUTE(FORMAT([_ins],  "0.0000"), ",", ".") & "," &
 			            """p"":" & SUBSTITUTE(FORMAT([_nps],  "0.00"),   ",", ".") & "," &
-			            """k1"":"& SUBSTITUTE(FORMAT([_k1],  "0.0000"), ",", ".") & "," &
-			            """k2"":"& SUBSTITUTE(FORMAT([_k2],  "0.0000"), ",", ".") & "," &
-			            """k3"":"& SUBSTITUTE(FORMAT([_k3],  "0.0000"), ",", ".") & "," &
-			            """k4"":"& SUBSTITUTE(FORMAT([_k4],  "0.0000"), ",", ".") & "," &
-			            """k5"":"& SUBSTITUTE(FORMAT([_k5],  "0.0000"), ",", ".") &
+			            """k1"":" & SUBSTITUTE(FORMAT([_k1], "0.0000"), ",", ".") & "," &
+			            """k2"":" & SUBSTITUTE(FORMAT([_k2], "0.0000"), ",", ".") & "," &
+			            """k3"":" & IF(ISBLANK([_k3]), "null", SUBSTITUTE(FORMAT([_k3], "0.0000"), ",", ".")) & "," &
+			            """k4"":" & SUBSTITUTE(FORMAT([_k4], "0.0000"), ",", ".") & "," &
+			            """k5"":" & IF(ISBLANK([_k5]), "null", SUBSTITUTE(FORMAT([_k5], "0.0000"), ",", ".")) &
 			        "}",
 			        ",",
-			        [_igro], DESC
+			        [_igro], DESC,
+			        dOrgao_igro[sigla], ASC
 			    ) &
 			    "]"
 		displayFolder: 12 · JSON · Dashboard
@@ -1105,9 +1112,9 @@ table _medidas
 
 	/// Array JSON com KPIs globais da rede para injeção direta nos cards do dashboard.
 	measure '_JSON KPIs' =
-			VAR _igro  = SUBSTITUTE(FORMAT([idx_igro], "0.0000"), ",", ".")
+			VAR _igro  = IF(ISBLANK([idx_igro]), "null", SUBSTITUTE(FORMAT([idx_igro], "0.0000"), ",", "."))
 			VAR _sub_t = SUBSTITUTE(FORMAT([idx_igro_sub_t], "0.0000"), ",", ".")
-			VAR _sub_q = SUBSTITUTE(FORMAT([idx_igro_sub_q], "0.0000"), ",", ".")
+			VAR _sub_q = IF(ISBLANK([idx_igro_sub_q]), "null", SUBSTITUTE(FORMAT([idx_igro_sub_q], "0.0000"), ",", "."))
 			VAR _tmr   = SUBSTITUTE(FORMAT([ind_media_tempo_resposta], "0.00"), ",", ".")
 			VAR _res   = SUBSTITUTE(FORMAT([ind_pct_resolutividade], "0.0000"), ",", ".")
 			VAR _nota  = SUBSTITUTE(FORMAT([ind_media_nota_recomendacao], "0.00"), ",", ".")
@@ -1141,6 +1148,7 @@ table _medidas
 	measure 'HTML Dashboard IGRO' =
 			VAR _sc = "scr" & "ipt"
 			VAR _scx = "/scr" & "ipt"
+			VAR _net = [_JSON KPIs]
 			
 			VAR _css =
 			"<style>" &
@@ -1172,7 +1180,7 @@ table _medidas
 			".bval{font-size:10px;color:#e5e7eb;min-width:38px;text-align:right}" &
 			".badge{display:inline-block;padding:1px 6px;border-radius:9px;font-size:10px;font-weight:600}" &
 			".bg-g{background:#065f46;color:#6ee7b7}.bg-y{background:#78350f;color:#fde68a}" &
-			".bg-o{background:#7c2d12;color:#fdba74}.bg-r{background:#7f1d1d;color:#fca5a5}" &
+			".bg-o{background:#7c2d12;color:#fdba74}.bg-r{background:#7f1d1d;color:#fca5a5}.bg-na{background:#27272a;color:#a1a1aa}" &
 			".tbl-wrap{background:#111;border-radius:8px;border:1px solid #1f2937;overflow:hidden}" &
 			".tc{display:flex;gap:8px;padding:9px;border-bottom:1px solid #1f2937;flex-wrap:wrap;align-items:center}" &
 			".tc input{background:#1c1c1e;color:#e5e7eb;border:1px solid #333;border-radius:5px;padding:4px 9px;font-size:11px;flex:1;min-width:150px}" &
@@ -1221,13 +1229,14 @@ table _medidas
 			VAR _js1 =
 			"<" & _sc & ">" &
 			"const ORG=" & [_JSON Orgaos] & ";" &
+			"const NET=" & _net & ";" &
 			"const TIP=" & [_JSON Tipos] & ";" &
 			"let fd=ORG,pg=1,pp=20;" &
-			"function pct(v){return(v*100).toFixed(1)+'%'}" &
-			"function cor(v){return v>=0.8?'bg-g':v>=0.6?'bg-y':v>=0.4?'bg-o':'bg-r'}" &
-			"function lbl(v){return v>=0.8?'Baixo':v>=0.6?'Moderado':v>=0.4?'Alto':'Cr\u00edtico'}" &
+			"function pct(v){return v==null?'—':(v*100).toFixed(1)+'%'}" &
+			"function cor(v){return v==null?'bg-na':v>=0.8?'bg-g':v>=0.6?'bg-y':v>=0.4?'bg-o':'bg-r'}" &
+			"function lbl(v){return v==null?'Sem c\u00e1lculo':v>=0.8?'Baixo':v>=0.6?'Moderado':v>=0.4?'Alto':'Cr\u00edtico'}" &
 			"function buildTicker(){" &
-			"  const it=ORG.slice(0,20).map(o=>'<span class=\'tk-item\'>'+o.s+' <b>'+pct(+o.i)+'</b></span>').join('');" &
+			"  const it=ORG.filter(o=>o.i!=null).slice(0,20).map(o=>'<span class=\'tk-item\'>'+o.s+' <b>'+pct(o.i)+'</b></span>').join('');" &
 			"  document.getElementById('tkr').innerHTML=it.repeat(2);}" &
 			"function buildSelects(){" &
 			"  const sv=document.getElementById('dsv');" &
@@ -1236,18 +1245,12 @@ table _medidas
 			"  document.getElementById(id).textContent=val;" &
 			"  document.getElementById(subId).innerHTML=subHtml;}" &
 			"function renderKPIs(){" &
-			"  const tot=fd.reduce((a,o)=>a+ +o.n,0)||1;" &
-			"  const wi=fd.reduce((a,o)=>a+ +o.i* +o.n,0)/tot;" &
-			"  const wt=fd.reduce((a,o)=>a+ +o.t* +o.n,0)/tot;" &
-			"  const wq=fd.reduce((a,o)=>a+ +o.q* +o.n,0)/tot;" &
-			"  const tm=fd.reduce((a,o)=>a+ +o.m* +o.n,0)/tot;" &
-			"  const re=fd.reduce((a,o)=>a+ +o.r* +o.n,0)/tot;" &
-			"  const nt=fd.reduce((a,o)=>a+ +o.a* +o.n,0)/tot;" &
-			"  const np=fd.reduce((a,o)=>a+ +o.p* +o.n,0)/tot;" &
-			"  const ix=fd.reduce((a,o)=>a+ +o.x* +o.n,0)/tot;" &
-			"  setCard('k_igro',pct(wi),'b_igro','<span class=\'badge '+cor(wi)+'\'>'+lbl(wi)+'</span>');" &
-			"  setCard('k_subt',pct(wt),'b_subt','<span class=\'badge '+cor(wt)+'\'>'+lbl(wt)+'</span>');" &
-			"  setCard('k_subq',pct(wq),'b_subq','<span class=\'badge '+cor(wq)+'\'>'+lbl(wq)+'</span>');" &
+			"  const sel=document.getElementById('dsv').value;" &
+			"  const k=sel?{igro:fd[0].i,sub_t:fd[0].t,sub_q:fd[0].q,tmr:fd[0].m,res:fd[0].r,nota:fd[0].a,nps:fd[0].p,ins:fd[0].x}:NET;" &
+			"  const ig=k.igro,st=k.sub_t,sq=k.sub_q,tm=Number(k.tmr)||0,re=Number(k.res)||0,nt=Number(k.nota)||0,np=Number(k.nps)||0,ix=Number(k.ins)||0;" &
+			"  setCard('k_igro',pct(ig),'b_igro','<span class=\'badge '+cor(ig)+'\'>'+lbl(ig)+'</span>');" &
+			"  setCard('k_subt',pct(st),'b_subt','<span class=\'badge '+cor(st)+'\'>'+lbl(st)+'</span>');" &
+			"  setCard('k_subq',pct(sq),'b_subq','<span class=\'badge '+cor(sq)+'\'>'+lbl(sq)+'</span>');" &
 			"  setCard('k_tmr',tm.toFixed(1)+'d','b_tmr',tm<=10?'<span class=\'up\'>&#10003; meta 10d</span>':'<span class=\'dn\'>&#9888; acima 10d</span>');" &
 			"  setCard('k_res',pct(re),'b_res',re>=0.7?'<span class=\'up\'>&#10003; meta 70%</span>':'<span class=\'dn\'>&#9888; abaixo 70%</span>');" &
 			"  setCard('k_nota',nt.toFixed(1),'b_nota',nt>=7.5?'<span class=\'up\'>&#10003; meta 7,5</span>':'<span class=\'dn\'>&#9888; abaixo 7,5</span>');" &
@@ -1256,9 +1259,10 @@ table _medidas
 			
 			VAR _js2 =
 			"function buildRanking(){" &
-			"  const mx=Math.max(...fd.map(o=> +o.i))||1;" &
+			"  const ranked=fd.filter(o=>o.i!=null);" &
+			"  const mx=Math.max(...ranked.map(o=> +o.i),0)||1;" &
 			"  const cl=['#34d399','#fbbf24','#f97316','#f87171'];" &
-			"  const html=fd.slice(0,20).map(o=>{" &
+			"  const html=ranked.slice(0,20).map(o=>{" &
 			"    const v= +o.i;const w=Math.round(v/mx*100);" &
 			"    const c=v>=0.8?cl[0]:v>=0.6?cl[1]:v>=0.4?cl[2]:cl[3];" &
 			"    return '<div class=\'brow\'><div class=\'blbl\' title=\''+o.s+'\'>'+o.s+'</div>'" &
@@ -1283,18 +1287,18 @@ table _medidas
 			"  document.getElementById('pag_info').textContent=tot+' \u00f3rg\u00e3os';" &
 			"  const sl=rows.slice((pg-1)*pp,pg*pp);" &
 			"  const html=sl.map(o=>{" &
-			"    const v= +o.i;const c=cor(v);" &
+			"    const v=o.i;const c=cor(v);" &
 			"    return '<tr>'" &
 			"      +'<td><b>'+o.s+'</b></td>'" &
 			"      +'<td>'+(+ o.n).toLocaleString('pt-BR')+'</td>'" &
 			"      +'<td><span class=\'badge '+c+'\'>'+pct(v)+'</span></td>'" &
-			"      +'<td>'+pct(+o.t)+'</td>'" &
-			"      +'<td>'+pct(+o.q)+'</td>'" &
+			"      +'<td>'+pct(o.t)+'</td>'" &
+			"      +'<td>'+pct(o.q)+'</td>'" &
 			"      +'<td>'+(+o.m).toFixed(1)+'d</td>'" &
-			"      +'<td>'+pct(+o.r)+'</td>'" &
+			"      +'<td>'+pct(o.r)+'</td>'" &
 			"      +'<td>'+(+o.a).toFixed(1)+'</td>'" &
-			"      +'<td>'+pct(+o.x)+'</td>'" &
-			"      +'<td>'+((+o.p)>=0?'+':'')+(+o.p).toFixed(1)+'</td>'" &
+			"      +'<td>'+pct(o.x)+'</td>'" &
+			"      +'<td>'+(o.p==null?'—':((+o.p)>=0?'+':'')+(+o.p).toFixed(1))+'</td>'" &
 			"      +'<td><span class=\'badge '+c+'\'>'+lbl(v)+'</span></td>'" &
 			"      +'</tr>';}).join('');" &
 			"  document.getElementById('tb').innerHTML=html;}" &

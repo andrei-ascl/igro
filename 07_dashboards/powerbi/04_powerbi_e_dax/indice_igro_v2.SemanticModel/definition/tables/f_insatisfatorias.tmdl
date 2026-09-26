@@ -230,19 +230,17 @@ table f_insatisfatorias
 		source =
 				let
 				    // Caminho da pasta de entrada
-				    CaminhoPasta =
-				        fnCaminhoEntrada(),
+				    Rodada = fnRodadaComum(),
 				
 				    // Caminho completo do arquivo
-				    Arquivos = Folder.Files(CaminhoPasta),
-				    ArquivosParquet = Table.SelectRows(Arquivos, each [Extension] = ".parquet" and Text.StartsWith([Name], "insatisfatorio_")),
-				    ArquivosOrdenados = Table.Sort(ArquivosParquet, {{"Date modified", Order.Descending}, {"Name", Order.Descending}}),
+				    Arquivos = Folder.Files(Rodada[Caminho]),
+				    ArquivoSelecionado = Table.SelectRows(Arquivos, each [Name] = "insatisfatorio_" & Rodada[Id] & ".parquet"),
 				
 				    Fonte =
-				        if Table.RowCount(ArquivosOrdenados) = 0 then
-				            error "Nenhum arquivo Parquet compatível encontrado em: " & CaminhoPasta
+				        if Table.RowCount(ArquivoSelecionado) <> 1 then
+				            error "Arquivo insatisfatorio da rodada comum não encontrado: " & Rodada[Id] & " em " & Rodada[Caminho]
 				        else
-				            Parquet.Document(ArquivosOrdenados{0}[Content]),
+				            Parquet.Document(ArquivoSelecionado{0}[Content]),
 				
 				    // Renomear colunas para padrão minúsculo
 				    ColunasRenomeadas =
