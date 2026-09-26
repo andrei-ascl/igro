@@ -3,11 +3,11 @@ board_sync: true
 board_item: "IGRO"
 hub: "CGE"
 state: "active"
-phase: "pós-submissão — baseline canônico alinhado; mockup da análise setorial aprovado; implementação pendente"
-next_action: "Implementar os filtros temporais e o painel Análise Setorial no PBIP em 07_dashboards/powerbi/"
+phase: "pós-submissão — fonte comum TMDL e correção do painel IGRO validadas no Desktop; mockup da Análise Setorial aprovado"
+next_action: "Implementar filtros temporais e a Análise Setorial no PBIP; depois recalcular resultados históricos e obter as validações institucionais pendentes"
 deadline: null
 progress: 87
-meta: "Artigo não aceito; PBIP/TMDL alinhado e refresh validado; implementação, recálculo histórico e validação institucional pendentes"
+meta: "Artigo não aceito; as três tabelas fato selecionam uma rodada comum priorizando o Hub; usuário confirmou o refresh após o reapontamento e verificou o painel IGRO corrigido no Desktop em 2026-09-26; implementação da Análise Setorial, recálculo histórico e validação institucional pendentes"
 updated: "2026-09-26"
 ---
 
@@ -42,6 +42,9 @@ updated: "2026-09-26"
 ## Contexto e Notas
 
 ### Atividade Recente
+- **2026-09-26 (painel IGRO):** `_JSON Orgaos` passou a iterar a dimensão institucional; os cartões da rede usam as medidas canônicas; amostras insuficientes permanecem como `null`/“Sem cálculo” e não entram no ranking. A revisão estática não encontrou bloqueadores e o usuário abriu o PBIP no Desktop e confirmou que o painel estava correto. A confirmação visual não registrou o ID carregado nem as contagens das três tabelas.
+- **2026-09-26 (fonte TMDL):** `f_relatorio`, `f_pesquisa` e `f_insatisfatorias` selecionam um único ID comum, priorizando `sgoe_hub/data/processed/` e mantendo o fallback local. O usuário confirmou o refresh após o reapontamento; o Hub não emitirá novas cópias de compatibilidade do IGRO.
+- **2026-09-26 (checagem pré-refresh, checkpoint superado):** não foi identificado processo de ETL e os Parquets da rodada `2026-09-26T1626` e o manifesto ficaram estáveis em duas verificações. Naquele momento o Desktop não estava aberto; a validação posterior está registrada acima.
 - **2026-09-26:** reconciliado o estado com o gate humano registrado em 2026-09-18: PBIP/TMDL alinhado e refresh validado. Permanecem pendentes a implementação dos filtros temporais e do painel Análise Setorial, o recálculo/comparação dos resultados históricos e as validações institucionais previstas na decisão canônica.
 - **2026-09-22:** revisão de memória confirmou o estado pós-submissão e o mockup da Análise Setorial; detectada atividade no PBIP (28/08, 7ª página criada no relatório e cache do SemanticModel atualizado) e depósito da base `relatorio_2026-08-31.parquet`; governança alinhada com AGENTS.md, briefing.md e decisoes.md.
 - **2026-08-28:** sessão no Power BI Desktop adicionou uma 7ª página ao relatório (`Página 1`) e atualizou os metadados/cache do modelo PBIP.
@@ -70,7 +73,7 @@ updated: "2026-09-26"
 - **2026-05-16:** Estrutura consolidada com READMEs em cada pasta
 
 ### Bloqueadores e Riscos
-- 🔴 **Bloqueadores remanescentes:** recálculo e comparação dos resultados históricos; validação formal de metas e goalposts pelo GT de Gestão de Riscos; aprovação da inclusão do IGRO na Matriz pelo Comitê Setorial. O refresh do PBIP foi confirmado como validado no gate humano de 2026-09-18.
+- 🔴 **Bloqueadores remanescentes:** recálculo e comparação dos resultados históricos; validação formal de metas e goalposts pelo GT de Gestão de Riscos; aprovação da inclusão do IGRO na Matriz pelo Comitê Setorial.
 - ⚠️ **Risco de rastreabilidade:** a estrutura documentada de dados diverge da estrutura real (`raw/`, `processed/`, `schema/`) e os CSVs processados atuais não devem ser tratados como fonte tabular estável.
 
 ### Próximos Passos
@@ -81,9 +84,10 @@ updated: "2026-09-26"
 3. ✅ Atualizar PBIP, desenho técnico e materiais de artigo após a decisão; fontes do PBIP corrigidas em 2026-08-10.
 4. ✅ Adicionar data de atualização dos dados em todas as 6 páginas do modelo com rodapés HTML personalizados (2026-08-21).
 5. ✅ Criar, revisar e salvar o mockup da página Análise setorial (2026-08-22).
-6. Implementar os filtros temporais e o painel Análise Setorial no PBIP em `07_dashboards/powerbi/`.
-7. Executar refresh, salvar o modelo e recalcular os resultados históricos.
-8. Preparar resumo executivo/apresentação para alta gestão e, depois, pesquisar novo periódico e adaptar o artigo.
+6. ✅ Atualizar o modelo no Desktop após o reapontamento das fontes e verificar visualmente a correção do painel IGRO (2026-09-26); o usuário confirmou o resultado. O ID carregado e as contagens não foram transcritos nesta memória.
+7. Implementar os filtros temporais e o painel Análise Setorial no PBIP em `07_dashboards/powerbi/`.
+8. Recalcular os resultados históricos e compará-los com os derivados antigos.
+9. Preparar resumo executivo/apresentação para alta gestão e, depois, pesquisar novo periódico e adaptar o artigo.
 
 ✅ **FASE P — Documentação (CONCLUÍDA em 2026-05-26):**
 1. ✅ P2: Validação de órgãos — artigo menciona **51 órgãos** consistentemente (linhas 37, 212)
@@ -101,7 +105,8 @@ updated: "2026-09-26"
 
 | Data | Status | Progresso | Nota |
 |------|--------|-----------|------|
-| 2026-09-26 | Em andamento | 87% | Memória reconciliada com o gate humano de 18/09: PBIP/TMDL alinhado e refresh validado; recálculo histórico e validações institucionais permanecem pendentes |
+| 2026-09-26 | Em andamento | 87% | Usuário confirmou refresh após o reapontamento das fontes e conferiu no Desktop o painel IGRO corrigido; recálculo histórico e validações institucionais permanecem pendentes. A confirmação visual não registrou ID/contagens numéricas. |
+| 2026-09-26 | Em andamento | 87% | Checkpoints anteriores da mesma data registravam refresh pós-TMDL pendente; foram superados pela validação posterior no Desktop. |
 | 2026-09-22 | Em andamento | 87% | Revisão confirmou estado pós-submissão e mockup da Análise Setorial; detectada atividade no PBIP (28/08) e base parquet de 31/08; governança alinhada |
 | 2026-08-22 | Em andamento | 87% | Mockup revisado e aprovado para continuidade; implementação do painel individual e filtros temporais ficou para a próxima sessão |
 | 2026-08-21 | Em andamento | 88% | Rodapés HTML com data de atualização adicionados em todas as 6 páginas; refresh validado |

@@ -41,7 +41,7 @@ IGRO consolidida **KRIs (Key Risk Indicators)** para monitorar dois riscos princ
 
 ## Estado Atual
 
-> **Governança metodológica — 2026-08-10:** o perfil do Desenho Técnico foi adotado como baseline canônico de trabalho. As medidas centrais e as referências de dados do PBIP/TMDL foram alinhadas; ainda faltam o refresh no Power BI Desktop, o recálculo histórico e a reconciliação das extrações. Não trate derivados antigos como comparáveis ao novo perfil sem declarar a parametrização usada. A decisão está registrada em [DECISAO_CANONICA_IGRO.md](00_admin/controle_versoes/DECISAO_CANONICA_IGRO.md).
+> **Governança metodológica — 2026-08-10; atualização operacional em 2026-09-26:** o perfil do Desenho Técnico foi adotado como baseline canônico de trabalho. O PBIP passou a selecionar uma rodada comum para as três tabelas fato, priorizando os snapshots do Hub. O usuário confirmou o refresh após o reapontamento e verificou no Desktop a correção do painel IGRO. Permanecem o recálculo histórico e a reconciliação das extrações. Não trate derivados antigos como comparáveis ao novo perfil sem declarar a parametrização usada. A decisão está registrada em [DECISAO_CANONICA_IGRO.md](00_admin/controle_versoes/DECISAO_CANONICA_IGRO.md).
 
 | Item | Status | Localização |
 |------|--------|-------------|
@@ -49,7 +49,7 @@ IGRO consolidida **KRIs (Key Risk Indicators)** para monitorar dois riscos princ
 | **Notebook (tabelas/gráficos)** | ✅ Operacional | `06_notebooks/exploracao/artigo_igro_graficos_tabelas.ipynb` |
 | **Tabela suplementar** | ✅ Gerada | `09_resultados/artigo_igro_figuras_tabelas/tabelas/tabela_suplementar_igro_51_orgaos.xlsx` |
 | **Dados processados** | ✅ Disponíveis | `02_dados/processed/` |
-| **Power BI (modelo)** | ✅ PBIP alinhado ao perfil canônico; refresh e recálculo pendentes | 07_dashboards/powerbi/04_powerbi_e_dax/indice_igro_v2.pbix |
+| **Power BI (modelo)** | ✅ Fonte comum e painel IGRO atualizados; refresh e correção visual conferidos no Desktop; recálculo histórico pendente | 07_dashboards/powerbi/04_powerbi_e_dax/indice_igro_v2.pbix |
 | **Documentação técnica** | 🔄 Baseline canônico e contrato definidos; fontes físicas em reconciliação | [Contrato de métricas](00_admin/planejamento/03_especificacao_e_produto/CONTRATO_METRICAS_IGRO.md) |
 
 **Submissão — Revista da CGU**

@@ -2,7 +2,7 @@
 
 **Objetivo:** Adicionar um cartão discreto ou nota de rodapé mostrando a data de atualização dos dados em todas as 6 páginas do modelo IGRO.
 
-**Status do dado:** Última atualização em **2026-08-18** (arquivos Parquet em `06_dados/01_brutos/`)
+**Status da fonte (2026-09-26):** o TMDL prioriza snapshots em `sgoe_hub/data/processed/`; o usuário confirmou refresh bem-sucedido após o reapontamento. `06_dados/01_brutos/` e o fallback do modelo foram preservados, mas o Hub não emitirá novas cópias de compatibilidade do IGRO. A data exibida pela medida reflete a data máxima dos registros carregados e, por si só, não comprova qual caminho foi usado.
 
 ---
 
@@ -84,7 +84,7 @@ Se preferir uma nota de rodapé textual em vez de um cartão:
    - Clique em **Inserir > Caixa de Texto**
    
 2. **Digite um rótulo dinâmico** (nota: Power BI não interpreta fórmulas DAX em caixas de texto diretamente)
-   - Você pode adicionar o rótulo manualmente: `"Dados atualizados em: 2026-08-18"`
+   - Você pode adicionar o rótulo manualmente: `"Dados atualizados em: AAAA-MM-DD"` (substitua pela data exibida no modelo após o refresh)
    - OU deixar genérico: `"Dados atualizados em: [consulte o refresh do modelo]"`
 
 3. **Posicione e formate:**

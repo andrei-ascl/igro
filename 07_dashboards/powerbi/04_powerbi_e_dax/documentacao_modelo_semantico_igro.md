@@ -6,7 +6,14 @@ Modelo de referencia: `indice_igro_v2` no Power BI Desktop
 
 Esta nota e um mapa funcional enxuto do modelo Power BI do IGRO. A ideia aqui nao e substituir o `.tmdl`, mas facilitar manutencao, auditoria e continuidade.
 
-> **Fonte de verdade metodológica:** o perfil canônico de trabalho foi definido no Desenho Técnico em 2026-08-10, as medidas centrais do TMDL e as referências de dados foram alinhadas nesta rodada. As tabelas fato selecionam o Parquet mais recente por prefixo em C:\Users\andrei.lima\OneDrive\Claude-Work\Projects\igro\06_dados\01_brutos. O PBIP agora declara compatibilityLevel 1606 e pode ser reaberto para refresh/salvamento; as saídas históricas ainda precisam ser recalculadas e validadas.
+> **Fonte e validação (revisão 2026-09-26):** as três tabelas TMDL cruzam os IDs de `relatorio`, `pesquisa` e `insatisfatorias` e selecionam a mesma rodada, priorizando `sgoe_hub/data/processed/` para os perfis locais `andre` e `andrei.lima`; `06_dados/01_brutos/` permanece como fallback. O usuário confirmou o refresh após o reapontamento e, após a correção do painel descrita abaixo, abriu o PBIP no Desktop e confirmou que estava correto. A confirmação visual não registrou nesta memória o ID carregado nem as contagens das tabelas. O Hub deixou de emitir novas cópias de compatibilidade do IGRO.
+
+### Painel IGRO — contexto e amostras (2026-09-26)
+
+- `_JSON Orgaos` itera `dOrgao_igro[sigla]`, permitindo que as medidas sejam avaliadas no contexto de cada órgão nas três tabelas fato.
+- Os cartões sem órgão selecionado usam os KPIs canônicos da rede; com um órgão selecionado, exibem os valores daquele órgão.
+- O JSON preserva valores sem cálculo como `null`. O painel mostra “Sem cálculo”/“—” e exclui índices sem score do ticker e do ranking, sem convertê-los para zero.
+- A revisão estática do TMDL e do HTML não encontrou bloqueadores. O usuário confirmou a conferência visual no Power BI Desktop em 2026-09-26.
 
 ## Visao geral
 

@@ -2,7 +2,9 @@
 
 Organiza as fontes de ouvidoria, as saídas processadas e o contrato de dados usado por notebooks, estudos e Power BI.
 
-> **Status de reconciliação — 2026-08-05:** a estrutura real vigente é `raw/`, `processed/` e `schema/`. Os nomes legados `01_brutos/`, `02_tratados/` e `03_amostras/` não devem ser usados em novos arquivos.
+> **Status de reconciliação — 2026-08-05:** a estrutura de dados deste projeto é `raw/`, `processed/` e `schema/`. Os nomes legados `01_brutos/`, `02_tratados/` e `03_amostras/` não devem ser usados em novos arquivos.
+>
+> **Entrada compartilhada do PBIP — 2026-09-26:** o modelo IGRO prioriza snapshots versionados em `../sgoe_hub/data/processed/`; o usuário confirmou que o refresh após o reapontamento foi realizado com sucesso. Os destinos de compatibilidade do IGRO foram removidos do Hub. Parquets antigos em `06_dados/01_brutos/` foram preservados como fallback local; não os apague sem aprovação.
 
 ---
 
@@ -19,6 +21,8 @@ Organiza as fontes de ouvidoria, as saídas processadas e o contrato de dados us
 O contrato provisório está em [`00_admin/planejamento/03_especificacao_e_produto/CONTRATO_METRICAS_IGRO.md`](../00_admin/planejamento/03_especificacao_e_produto/CONTRATO_METRICAS_IGRO.md).
 
 ## Fontes atualmente presentes
+
+Os Parquets listados abaixo são fontes locais preservadas para processamento e fallback. Para o PBIP, a fonte preferida é o snapshot canônico compartilhado do Hub (`../sgoe_hub/data/processed/`).
 
 - `raw/relatorio_2026-05-05.parquet`
 - `raw/pesquisa_2026-05-05.parquet`
@@ -47,6 +51,10 @@ padronização, filtros e derivação
 processed/ (saídas derivadas, com formato validado)
   ↓
 03_estudos/ + 09_resultados/ + 07_dashboards/
+
+sgoe_hub/data/processed/ (snapshots canônicos compartilhados)
+  ↓ [TMDL do IGRO; refresh pós-migração confirmado em 2026-09-26]
+07_dashboards/powerbi/
 ```
 
 ## Regras de Ouro

@@ -14,6 +14,8 @@ Formato: [Keep a Changelog](https://keepachangelog.com/)
 - `AGENTS.md`/`CLAUDE.md` — seção "Memória do projeto" documentando o papel de `memory.md` (raiz) vs `00_admin/controle_versoes/MEMORIA_PROJETO.md`
 
 ### Changed
+- `f_relatorio`, `f_pesquisa` e `f_insatisfatorias` selecionam a mesma rodada pelo ID comum aos três tipos, priorizando os snapshots do Hub e mantendo fallback local; o usuário confirmou o refresh após o reapontamento
+- Painel IGRO: corrigida a iteração por órgão e o cálculo dos cartões da rede; amostras insuficientes permanecem sem score em vez de aparecerem como zero. Revisão estática sem bloqueadores e conferência visual confirmada pelo usuário no Power BI Desktop
 - `09_resultados/artigo_igro_figuras_tabelas/` reorganizado em subpastas `figuras/` e `tabelas/`
 - `README.md`, `memory.md`, `MEMORIA_PROJETO.md`: artigo submetido à Revista da CGU em 08/06/2026 **não foi aceito** (resultado em 16/07/2026); projeto em fase de reposicionamento (resumo executivo + novo periódico)
 - `.gitignore`: adicionado `**/.reversa/` para evitar recorrência de estado transitório versionado

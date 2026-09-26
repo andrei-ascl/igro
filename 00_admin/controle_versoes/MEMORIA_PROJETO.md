@@ -1,8 +1,15 @@
 # Memoria do Projeto IGRO
 
-Atualizado em: 2026-08-22
+Atualizado em: 2026-09-26
 
 Este arquivo registra o estado operacional do projeto para continuidade entre sessoes.
+
+## Atualização operacional — 2026-09-26
+
+- As três tabelas TMDL selecionam uma rodada comum de `relatorio`, `pesquisa` e `insatisfatorias`, priorizando `sgoe_hub/data/processed/` e mantendo o fallback local.
+- O usuário confirmou o refresh após o reapontamento das fontes. Para a correção do painel IGRO, `_JSON Orgaos` passou a iterar a dimensão institucional, os cartões da rede usam as medidas canônicas e valores sem cálculo são preservados como `null`.
+- A revisão estática não encontrou bloqueadores; em 2026-09-26, o usuário abriu o PBIP no Desktop e confirmou visualmente que o painel estava correto. Essa confirmação não transcreveu o ID carregado nem as contagens das três tabelas.
+- Próximas ações: implementar os filtros temporais e a Análise Setorial; recalcular resultados históricos e concluir as validações institucionais.
 
 ## Objetivo do projeto
 
@@ -102,12 +109,12 @@ A decisao canonica formaliza:
 Registros de governanca:
 
 - 00_admin/controle_versoes/AUDITORIA_CONSOLIDAR_ATIVO_IGRO_2026-08-05.md
-- `00_admin/controle_versoes/DECISAO_CANONICA_IGRO.md` -> baseline canônico definido; refresh, recálculo e validação institucional pendentes
+- `00_admin/controle_versoes/DECISAO_CANONICA_IGRO.md` -> baseline canônico definido; recálculo e validação institucional pendentes
 - 00_admin/planejamento/03_especificacao_e_produto/CONTRATO_METRICAS_IGRO.md
 
 Pendencias de implementacao:
 
-- executar refresh no Power BI Desktop e salvar o PBIX/PBIP após a correção das fontes;
+- registrar o ID carregado e as contagens das três tabelas, caso seja necessária rastreabilidade numérica do refresh confirmado pelo usuário;
 - recalcular resultados históricos e comparar com os derivados anteriores;
 - reconciliar as extrações posteriores de 06_dados/01_brutos com 02_dados/raw;
 - obter validação institucional das metas/goalposts e aprovação do Comitê Setorial.
@@ -119,7 +126,7 @@ Estado atual dos documentos principais:
 - `00_admin/planejamento/03_especificacao_e_produto/10_Desenho_IGRO.md` -> especificacao tecnica do indice
 - `00_admin/planejamento/03_especificacao_e_produto/11_PRD_IGRO.md` -> escopo, MVP, dependencias e roadmap
 - `07_dashboards/powerbi/04_powerbi_e_dax/documentacao_modelo_semantico_igro.md` -> mapa do modelo Power BI
-- `00_admin/controle_versoes/DECISAO_CANONICA_IGRO.md` -> baseline canônico definido; refresh, recálculo e validação institucional pendentes
+- `00_admin/controle_versoes/DECISAO_CANONICA_IGRO.md` -> baseline canônico definido; recálculo e validação institucional pendentes
 - `00_admin/planejamento/03_especificacao_e_produto/CONTRATO_METRICAS_IGRO.md` -> contrato metodologico v0.2; reconciliacao fisica dos dados pendente
 - `01_referencias/artigos/02_benchmarking_e_referencias_brasileiras/09_Benchmarking_KRIs_Ouvidorias_Estaduais.md` -> benchmarking e metas de referencia
 - `01_referencias/livros/05_fontes_e_bibliografia/08_Bibliografia_Links.md` -> bibliografia principal
