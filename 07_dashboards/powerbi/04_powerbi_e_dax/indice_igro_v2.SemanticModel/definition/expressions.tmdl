@@ -172,11 +172,11 @@ expression fnCaminhoEntrada =
 		
 		            CaminhosPossiveis = {
 		                // Fase 1 (2026-09-26): Adicionar sgoe_hub/data/processed como primeira candidata (fonte canônica)
-		                "C:" & Barra & "Users" & Barra & "andrei.lima" & Barra & "OneDrive" & Barra & "Claude-Work" & Barra & "Projects" & Barra & "sgoe_hub" & Barra & "data" & Barra & "processed",
 		                "C:" & Barra & "Users" & Barra & "andre" & Barra & "OneDrive" & Barra & "Claude-Work" & Barra & "Projects" & Barra & "sgoe_hub" & Barra & "data" & Barra & "processed",
+		                "C:" & Barra & "Users" & Barra & "andrei.lima" & Barra & "OneDrive" & Barra & "Claude-Work" & Barra & "Projects" & Barra & "sgoe_hub" & Barra & "data" & Barra & "processed",
 		                // Fallback legado (06_dados/01_brutos)
-		                "C:" & Barra & "Users" & Barra & "andrei.lima" & Barra & "OneDrive" & Barra & "Claude-Work" & Barra & "Projects" & Barra & "igro" & Barra & "06_dados" & Barra & "01_brutos",
-		                "C:" & Barra & "Users" & Barra & "andrei.lima" & Barra & "OneDrive" & Barra & "Claude-Work" & Barra & "Projects" & Barra & "igro" & Barra & "02_dados" & Barra & "raw"
+		                "C:" & Barra & "Users" & Barra & "andre" & Barra & "OneDrive" & Barra & "Claude-Work" & Barra & "Projects" & Barra & "igro" & Barra & "06_dados" & Barra & "01_brutos",
+		                "C:" & Barra & "Users" & Barra & "andrei.lima" & Barra & "OneDrive" & Barra & "Claude-Work" & Barra & "Projects" & Barra & "igro" & Barra & "06_dados" & Barra & "01_brutos"
 		            },
 		
 		            CaminhoExistente =
