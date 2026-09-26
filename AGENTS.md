@@ -1,8 +1,10 @@
 # AGENTS.md
 
+última revisão: 2026-09-20
+
 Este arquivo orienta agentes como Codex e Claude ao trabalhar neste repositório. Ele funciona como uma camada geral de operação do projeto e deve ser lido em conjunto com o contexto da tarefa, com o `README.md` e, quando relevante, com o `CLAUDE.md`.
 
-## Objetivo do repositório
+## Propósito
 
 O projeto `igro` reúne pesquisa, especificação, documentação e artefatos de Power BI ligados ao **IGRO - Índice de Gestão de Riscos da Ouvidoria**.
 
@@ -16,19 +18,31 @@ O foco do trabalho costuma ser:
 
 Não é um repositório de aplicação tradicional. Em geral, não há build, app executável, suíte de testes ou pipeline de deploy para validar mudanças.
 
+## Stack / Ferramentas
+
+- Artefatos documentais em Markdown e modelo analítico em Power BI, incluindo
+  PBIP/TMDL, DAX e metadata.
+- Scripts e automações de apoio em `05_scripts/`; notebooks e protótipos em
+  `06_notebooks/`.
+- Skills locais em `skills/`, especialmente as aplicáveis ao modelo Power BI.
+
 ## Fontes de verdade
 
 Antes de editar, usar esta ordem de referência:
 
 1. Instrução explícita do usuário.
-2. Este `AGENTS.md`.
-3. `README.md` da raiz para navegação e estrutura atual.
-4. `CLAUDE.md` para contexto operacional adicional.
-5. Documentos centrais do projeto, especialmente:
-   - `00_admin/planejamento/03_especificacao_e_produto/10_Desenho_IGRO.md`
-   - `00_admin/planejamento/03_especificacao_e_produto/11_PRD_IGRO.md`
-   - `07_dashboards/powerbi/04_powerbi_e_dax/documentacao_modelo_semantico_igro.md`
-   - `00_admin/planejamento/MAPA_MIGRACAO_ESTRUTURA_2026-05-06.md`
+2. Estas instruções operacionais.
+3. `briefing.md` quando a tarefa envolver finalidade, escopo, público ou
+   entregáveis.
+4. `README.md` da raiz para navegação e estrutura atual.
+5. `CLAUDE.md` para contexto operacional adicional, sempre depois deste arquivo.
+6. Quando a tarefa exigir fonte metodológica ou técnica, consultar os documentos centrais:
+   - Para o perfil metodológico, [Desenho IGRO](00_admin/planejamento/03_especificacao_e_produto/10_Desenho_IGRO.md).
+   - Para requisitos e escopo, [PRD IGRO](00_admin/planejamento/03_especificacao_e_produto/11_PRD_IGRO.md).
+   - Para parâmetros, proveniência e gates, [Contrato de Métricas](00_admin/planejamento/03_especificacao_e_produto/CONTRATO_METRICAS_IGRO.md).
+   - Antes de alterar decisão metodológica, ler a [Decisão Canônica](00_admin/controle_versoes/DECISAO_CANONICA_IGRO.md).
+   - Antes de alterar o modelo Power BI, ler a [documentação do modelo semântico](07_dashboards/powerbi/04_powerbi_e_dax/documentacao_modelo_semantico_igro.md).
+   - Antes de mover ou consolidar estrutura, ler o [mapa de migração](00_admin/planejamento/MAPA_MIGRACAO_ESTRUTURA_2026-05-06.md).
 
 Se houver conflito entre documentos antigos e a estrutura atual, priorizar a estrutura descrita no `README.md` e no mapa de migração.
 
@@ -36,12 +50,23 @@ Se houver conflito entre documentos antigos e a estrutura atual, priorizar a est
 
 Existem dois arquivos de memória, com papéis distintos e complementares:
 
-- **`memory.md`** (raiz do repositório) — status estruturado e sincronizável (frontmatter `board_sync`), no padrão do hub `Claude-Work`. **Convenção fixa: sempre na raiz do projeto, nunca mover para subpasta.**
-- **`00_admin/controle_versoes/MEMORIA_PROJETO.md`** — histórico narrativo detalhado: decisões, contexto de sessões passadas, checkpoints. Complementa `memory.md`, não o substitui.
+- Para consultar ou atualizar o estado sincronizável, ler [memory.md](memory.md), na raiz do repositório. **Convenção fixa: nunca mover para subpasta.**
+- Para recuperar contexto e checkpoints históricos, ler [MEMORIA_PROJETO.md](00_admin/controle_versoes/MEMORIA_PROJETO.md); ela complementa `memory.md`, não o substitui.
 
 Ao atualizar o estado do projeto (fase, progresso, próxima ação), atualizar os dois quando a mudança afetar o status geral.
 
-## Estrutura do projeto
+## Estado e reconciliação
+
+- O perfil do Desenho Técnico foi adotado como baseline canônico de trabalho.
+- Para verificar as validações pendentes de metas, goalposts e inclusão na Matriz, consultar a [Decisão Canônica](00_admin/controle_versoes/DECISAO_CANONICA_IGRO.md).
+- No corte desta revisão, o usuário confirmou PBIP/TMDL alinhado e refresh
+  validado. README, memória de estado e a decisão canônica ainda contêm registros
+  históricos de pendências; antes de editar esses documentos ou declarar uma
+  nova fonte canônica, registrar e reconciliar explicitamente a divergência.
+- Não usar as memórias de estado ou histórica para substituir a decisão
+  canônica. Antes de registrar uma nova decisão estrutural, consultar [decisoes.md](decisoes.md), que é append-only.
+
+## Estrutura de pastas
 
 Usar a estrutura atual como padrão:
 
@@ -60,7 +85,7 @@ Usar a estrutura atual como padrão:
 
 Não recriar a estrutura antiga (`01_pesquisa_metodologica`, `04_powerbi_e_dax`, `07_entregaveis` etc.) a menos que o usuário peça explicitamente.
 
-## Como trabalhar aqui
+## Convenções específicas deste núcleo
 
 - Escrever preferencialmente em português do Brasil.
 - Manter siglas e termos técnicos consagrados quando fizer sentido: `KRI`, `KPI`, `PBIP`, `Power BI`, `DAX`, `Min-Max`, `Z-score`.
@@ -68,6 +93,45 @@ Não recriar a estrutura antiga (`01_pesquisa_metodologica`, `04_powerbi_e_dax`,
 - Preservar links internos, referências cruzadas e nomes já estabilizados.
 - Ao reorganizar conteúdo, registrar o racional quando a mudança afetar navegação, localização ou fluxo de trabalho.
 - Ao criar novos documentos, colocá-los na pasta conceitualmente correta em vez de acumular arquivos soltos na raiz.
+
+## Operações essenciais
+
+### Iniciar uma tarefa
+
+1. Ler estas instruções operacionais.
+2. Se a tarefa envolver escopo, público ou entregáveis, ler o [briefing.md](briefing.md).
+3. Ler [README.md](README.md) para navegação e estado documentado; consultar
+   [memory.md](memory.md) apenas para o estado volátil e as pendências atuais.
+4. Identificar a fonte canônica aplicável antes de editar qualquer derivado.
+
+### Alterar documentação e metodologia
+
+1. Conferir o Desenho Técnico, o PRD, o Contrato de Métricas e a decisão
+   canônica quando a alteração afetar fórmula, parâmetros, fonte, escopo ou
+   interpretação.
+2. Alterar somente o documento autorizado e atualizar derivados necessários,
+   preservando links, nomes estabilizados e rastreabilidade.
+3. Gerar ou revisar a saída no diretório conceitualmente correto (`09_resultados/`,
+   `08_apresentacoes/` ou `10_publicacao/`) e registrar o estado quando a tarefa
+   alterar o próximo passo do projeto.
+
+### Trabalhar no modelo Power BI
+
+1. Usar `07_dashboards/powerbi/04_powerbi_e_dax/` como local principal e ler a
+   documentação semântica, `metadata/` e as skills locais aplicáveis antes de
+   modificar medidas, relacionamentos ou fontes.
+2. Preservar estrutura, encoding, nomes e referências do PBIP/TMDL; não alterar
+   `.pbix`, `.pbip`, `.tmdl` ou metadata sem autorização específica.
+3. Após uma edição assistida por ferramenta externa, registrar exatamente o que
+   mudou e conferir os artefatos esperados; não declarar persistência no Desktop
+   sem evidência.
+
+### Publicar ou apresentar resultados
+
+Antes de preparar uma entrega institucional, conferir a versão metodológica,
+as fontes, o escopo de interpretação e os arquivos esperados em
+`09_resultados/`, `08_apresentacoes/` ou `10_publicacao/`. Não publicar derivado
+antigo como se fosse comparável ao perfil canônico sem declarar a parametrização.
 
 ## O que pode alterar
 
@@ -80,7 +144,7 @@ Normalmente é seguro:
 - atualizar documentação derivada do modelo Power BI;
 - adicionar skills novas em `skills/`.
 
-## O que exige cuidado extra
+## Limites — ações que exigem cuidado extra
 
 - arquivos `.pbix`;
 - arquivos `.tmdl` e estruturas PBIP;
@@ -90,10 +154,10 @@ Normalmente é seguro:
 
 Antes de mexer nesses itens, confirmar que a alteração é realmente necessária para cumprir a tarefa.
 
-## O que não deve alterar sem necessidade explícita
+### O que não deve alterar sem necessidade explícita
 
 - `settings.local.json`
-- `skill.md`
+- arquivos de instrução de skills
 - configurações locais usadas por ferramentas
 - artefatos binários de Power BI apenas por “organização estética”
 - textos metodológicos centrais de forma substantiva sem preservar coerência com os demais documentos
@@ -108,7 +172,7 @@ Evitar também:
 ## Regras específicas para Power BI
 
 - Priorizar a pasta `07_dashboards/powerbi/04_powerbi_e_dax/`.
-- Considerar `documentacao_modelo_semantico_igro.md` e `metadata/` como referências operacionais do modelo.
+- Para trabalhar no modelo, considerar a [documentação do modelo semântico](07_dashboards/powerbi/04_powerbi_e_dax/documentacao_modelo_semantico_igro.md) e `metadata/` como referências operacionais.
 - Se houver trabalho em PBIP/TMDL, preservar estrutura, encoding e nomes existentes.
 - Se houver edição assistida por ferramenta externa no modelo, relatar claramente o que foi alterado.
 - Não assumir que um `.pbix` pode ser modificado com segurança sem o usuário pedir isso.
@@ -146,6 +210,25 @@ Como este repositório é majoritariamente documental, validar por evidência ad
   - executar quando for seguro e fizer sentido;
   - se não executar, deixar isso explícito.
 
+## Ponteiros com gatilho declarado
+
+- Antes de alterar finalidade, escopo, público ou entregáveis → ler o [briefing.md](briefing.md).
+- Antes de registrar decisão estrutural → consultar [decisoes.md](decisoes.md); não copiar decisões da memória por heurística.
+- Para saber status, bloqueadores e próxima ação → ler [memory.md](memory.md) e, quando houver impacto no histórico, consultar [MEMORIA_PROJETO.md](00_admin/controle_versoes/MEMORIA_PROJETO.md).
+- Antes de alterar método, metas, goalposts, pesos, fórmula ou escopo de interpretação → ler o Desenho Técnico, o PRD, o Contrato de Métricas e a [Decisão Canônica](00_admin/controle_versoes/DECISAO_CANONICA_IGRO.md).
+- Antes de alterar medida, relacionamento, fonte, PBIP/TMDL ou metadata → ler a [documentação do modelo semântico](07_dashboards/powerbi/04_powerbi_e_dax/documentacao_modelo_semantico_igro.md), conferir `metadata/` e consultar as skills em `skills/powerbi-codex-skills/`.
+- Antes de alterar dados ou processamento → ler o README de `02_dados/`, o schema aplicável e o README de `03_estudos/`.
+- Antes de mover, renomear ou consolidar pastas → consultar o [mapa de migração](00_admin/planejamento/MAPA_MIGRACAO_ESTRUTURA_2026-05-06.md) e [LEGACY.md](LEGACY.md), preservando referências cruzadas.
+- Antes de publicar ou preparar apresentação → conferir os READMEs e os
+  artefatos esperados em `09_resultados/`, `08_apresentacoes/` e
+  `10_publicacao/`.
+- Antes de tarefa estratégica ou de conteúdo → seguir o contexto global vigente
+  em `C:\Users\andre\OneDrive\_contexto-ia\`; carregar somente os arquivos
+  neutros relevantes.
+- Para instruções específicas do Claude → ler CLAUDE depois deste arquivo;
+  em conflito, prevalecem o pedido do usuário, estas instruções e as fontes
+  canônicas indicadas aqui.
+
 ## Forma de resposta esperada do agente
 
 Ao concluir uma tarefa, o agente deve informar de forma concisa:
@@ -163,4 +246,3 @@ Se uma decisão envolver trade-off relevante, o agente deve explicitar a escolha
 - Preservar conteúdo e rastreabilidade.
 - Favorecer a estrutura atual do projeto.
 - Perguntar ao usuário apenas quando a decisão puder causar perda, ambiguidade forte ou retrabalho relevante.
-

@@ -1,9 +1,12 @@
 # Documentacao do modelo semantico IGRO
 
-Atualizado em: 2026-05-18  
+Conteúdo estrutural original: 2026-05-18
+Revisão de governança: 2026-08-10
 Modelo de referencia: `indice_igro_v2` no Power BI Desktop
 
 Esta nota e um mapa funcional enxuto do modelo Power BI do IGRO. A ideia aqui nao e substituir o `.tmdl`, mas facilitar manutencao, auditoria e continuidade.
+
+> **Fonte de verdade metodológica:** o perfil canônico de trabalho foi definido no Desenho Técnico em 2026-08-10, as medidas centrais do TMDL e as referências de dados foram alinhadas nesta rodada. As tabelas fato selecionam o Parquet mais recente por prefixo em C:\Users\andrei.lima\OneDrive\Claude-Work\Projects\igro\06_dados\01_brutos. O PBIP agora declara compatibilityLevel 1606 e pode ser reaberto para refresh/salvamento; as saídas históricas ainda precisam ser recalculadas e validadas.
 
 ## Visao geral
 
@@ -14,6 +17,21 @@ Esta nota e um mapa funcional enxuto do modelo Power BI do IGRO. A ideia aqui na
 | Medidas DAX | 117 | Inclui medidas tecnicas HTML/JSON usadas no dashboard. |
 | Colunas | 165 | Inventario detalhado fica em `metadata/`. |
 | Relacionamentos | 15 | Inclui relacoes ativas e inativas para analises temporais alternativas. |
+
+### Painel individual — análise setorial
+
+O mockup da página `Análise setorial` foi revisado e aprovado para continuidade em 2026-08-22. O arquivo está em `_mockups/analise_setorial_mockup.html`.
+
+Escopo visual definido:
+
+- filtros por `dOrgao_igro`, `dCalendario[Ano]` e `dCalendario[QuadriLabel]`;
+- modo de visão do período e modo de evolução histórica;
+- IGRO como KPI principal, com Sub-T, Sub-Q e alertas como contexto;
+- leitura executiva orientada ao KRI prioritário e à ação gerencial;
+- tabela dos cinco KRIs com resultado, referência, score e situação;
+- mini-cards de evidência com volumes, denominadores e cobertura explícitos.
+
+O mockup usa valores ilustrativos e não representa uma saída recalculada do modelo. Nenhuma página, medida ou relacionamento foi acrescentado ao PBIP nesta etapa. A implementação será retomada em sessão posterior.
 
 ## Estrutura do modelo
 
@@ -98,7 +116,10 @@ Observacao:
 | `HTML Dashboard IGRO` | Entregavel visual | Dashboard HTML principal. |
 | `HTML Dashboard Final` | Entregavel visual | Versao visual final do dashboard. |
 | `HTML Infografico IGRO` | Entregavel visual | Infografico executivo com hierarquia `indice composto -> subindices -> KRIs`. |
-| `HTML Barras 3 Medidas IGRO` | Entregavel visual | Painel HTML com tres graficos de barras por `QuadriLabel` para `idx_igro`, `idx_igro_sub_t` e `idx_igro_sub_q`. |
+| `HTML Evolucao Quadrimestral IGRO` | Entregavel visual | Painel unico com tres graficos de linha empilhados sobre eixo de tempo comum, por `QuadriLabel`. Ver `medida_html_evolucao_quadrimestral.dax`. |
+| `HTML IGRO Ano a Ano` | Entregavel visual | Evolucao ano a ano em pele escura. Vive na tabela `_medidas JSON - Dashboard`, nao em `_medidas`. |
+
+> **Correcao de registro (2026-08-21):** a medida `HTML Barras 3 Medidas IGRO`, descrita nas rodadas de 2026-05-18, **nao existe no TMDL atual** — foi perdida em alguma sincronizacao entre 05/2026 e 08/2026. O painel quadrimestral foi reconstruido do zero como `HTML Evolucao Quadrimestral IGRO`, em linha empilhada e nao em barras.
 
 ### Rodada de 2026-05-14
 
@@ -109,6 +130,18 @@ Mudancas registradas nesta rodada:
 - varias iteracoes visuais no modelo conectado para o infografico;
 - criacao do guia `ajuste_manual_subs_html_igro.md` para ajuste manual dos subindices;
 - uso combinado de iteracao no modelo conectado e sincronizacao do `.tmdl` apenas ao fim da sessao.
+
+## Rodada de 2026-08-21
+
+Mudancas registradas nesta rodada:
+
+- criacao da medida `HTML Evolucao Quadrimestral IGRO` (pasta `12 · JSON · Dashboard`): tres graficos de linha empilhados sobre eixo de tempo comum, escala vertical compartilhada e calculada a partir dos dados, quadrimestre em curso desenhado tracejado com ponto vazado;
+- **correcao de paleta**: `#f5b11f` (Sub-T) e `#e99020` (Sub-Q) estavam a ΔE 8,4 em visao normal — abaixo do piso de 15 — e a 7,5 sob deuteranopia. Nao eram distinguiveis lado a lado. A tripla passou a `#0891b2` / `#c2410c` / `#6d28d9`, aprovada nos seis checks de acessibilidade cromatica;
+- criacao das sete medidas de data de atualizacao (`dt_ultima_atualizacao_dados` e os seis rodapes `html_rodape_*`);
+- correcao de seis `lineageTag` malformados gravados nos rodapes (continham caracteres fora do hexadecimal);
+- correcao de um `lineageTag` malformado **pre-existente** em `idx_igro_sub_q`: `2a762a4d-37bc-41f8-ad98-b8e9ce7e056` tinha 11 caracteres no ultimo grupo em vez de 12, aparentemente truncado. Reparado para `...b8e9ce7e0560`. O valor antigo nao era referenciado em nenhum outro ponto do PBIP, e o novo foi conferido contra os 300 `lineageTag` do modelo para descartar colisao.
+
+Estado dos identificadores apos a rodada: 300 `lineageTag` no modelo semantico, **nenhum malformado e nenhum duplicado**. Em `_medidas.tmdl`: 126 medidas, 126 descricoes `///`, 127 `lineageTag` (126 medidas + a coluna tecnica `Value`).
 
 ## Rodada de 2026-05-18
 

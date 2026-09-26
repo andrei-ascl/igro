@@ -14,6 +14,7 @@ Esta pasta concentra os artefatos do modelo semantico e do dashboard IGRO no Pow
 | `dax_enterprise_guide_basedadosouvidoria.md` | Guia de referencia para padronizacao DAX no contexto da base de ouvidoria. |
 | `kit_comandos_mcp_powerbi.md` | Comandos e fluxo de trabalho com MCP Power BI. |
 | `nota_referencia_dax_obsidian.md` | Nota de referencia para uso das medidas e documentacao em Obsidian. |
+| `_mockups/` | Mockups revisáveis de páginas e componentes do relatório. |
 
 ## Manutencao recomendada
 
@@ -26,6 +27,25 @@ Esta pasta concentra os artefatos do modelo semantico e do dashboard IGRO no Pow
    - `EVALUATE INFO.RELATIONSHIPS()`
 4. Registrar a data nos nomes dos arquivos de inventario para manter historico de revisao.
 
+## Mockup da análise setorial
+
+Arquivo de referência visual:
+
+- `_mockups/analise_setorial_mockup.html`
+
+O mockup aprovado para continuidade apresenta:
+
+- filtros de setorial/órgão, ano e quadrimestre;
+- modos de visão do período e evolução histórica;
+- hierarquia visual com IGRO como indicador principal;
+- Sub-T, Sub-Q e quantidade de KRIs em alerta;
+- evolução temporal, leitura executiva e tabela dos cinco KRIs;
+- base de evidências em mini-cards, com valor e denominador explícitos.
+
+Diretriz visual: `goias-data-viz`, com paleta institucional, contraste e leitura seletiva para dashboard gerencial.
+
+**Estado:** mockup revisado em 2026-08-22; implementação no PBIP ainda pendente. Os valores exibidos são ilustrativos.
+
 ## Estado atual da documentacao
 
 Revisao de 2026-05-01:
@@ -36,4 +56,3 @@ Revisao de 2026-05-01:
 - 15 relacionamentos inventariados.
 - Tabelas classificadas como fato, dimensao, tabela tecnica ou sistema.
 - Medidas verificadas com descricao preenchida no modelo semantico.
-

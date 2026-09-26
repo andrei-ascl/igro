@@ -1,0 +1,104 @@
+═══════════════════════════════════════════════════════════════════════════════
+  REFERÊNCIA RÁPIDA: Data de Atualização dos Dados — IGRO
+═══════════════════════════════════════════════════════════════════════════════
+
+MEDIDA DAX A CRIAR:
+───────────────────────────────────────────────────────────────────────────────
+
+Nome: dt_ultima_atualizacao_dados
+Pasta: 11 · Rótulo · Cartão
+Descrição: Data da última manifestação nos dados
+
+Código:
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ dt_ultima_atualizacao_dados =                                               │
+│ VAR max_data_manifestacao = MAX ( f_relatorio[data_manifestacao] )          │
+│ VAR resultado =                                                             │
+│     IF (                                                                     │
+│         ISBLANK ( max_data_manifestacao ),                                  │
+│         TODAY (),                                                           │
+│         max_data_manifestacao                                              │
+│     )                                                                        │
+│ RETURN                                                                      │
+│     resultado                                                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+Formato: Data Curta
+
+
+VISUAL A ADICIONAR EM CADA PÁGINA:
+───────────────────────────────────────────────────────────────────────────────
+
+Tipo:        Cartão (Card Visual)
+Medida:      dt_ultima_atualizacao_dados
+Rótulo:      "Atualizado em:" (ativar em Formatar > Rótulo de categoria)
+Posição:     Canto inferior direito (~15px da borda)
+Tamanho:     ~150px × 40px
+Cor fundo:   #F2F2F2 (cinza muito claro)
+Borda:       Sim, #CCCCCC, 1px
+Fonte:       10-11pt
+
+
+PÁGINAS A PROCESSAR:
+───────────────────────────────────────────────────────────────────────────────
+
+Ordem de implementação:
+  [ ] 1. IGRO         (ativa)
+  [ ] 2. CLASSE
+  [ ] 3. GERAL
+  [ ] 4. NPS
+  [ ] 5. EVOLUÇÃO IGRO
+  [ ] 6. EXECUTIVA
+
+
+ATALHO: COPIAR E COLAR
+───────────────────────────────────────────────────────────────────────────────
+
+1. Crie o cartão na página IGRO
+2. Clique no cartão > Ctrl+C (copiar)
+3. Vá para próxima página > Ctrl+V (colar)
+4. Reposicione se necessário
+5. Repita para as 4 páginas restantes
+
+Tempo total: ~2 minutos
+
+
+CHECKLIST DE VALIDAÇÃO:
+───────────────────────────────────────────────────────────────────────────────
+
+Após implementar:
+  ✓ Medida criada em _medidas
+  ✓ Cartão adicionado em todas as 6 páginas
+  ✓ Data exibida corretamente (20/08/2026)
+  ✓ Posicionamento consistente (canto inferior direito)
+  ✓ Nenhum filtro de página afeta a data (sempre máximo global)
+  ✓ Modelo salvo (Ctrl+S)
+  ✓ Refresh testado (data atualiza dinamicamente)
+
+
+ARQUIVOS DE REFERÊNCIA:
+───────────────────────────────────────────────────────────────────────────────
+
+guia_data_atualizacao_dados.md
+  ├─ Passo 1: Criar medida DAX (completo)
+  ├─ Passo 2: Adicionar cartão em cada página (instruções detalhadas)
+  └─ Passo 3: Sincronizar e salvar
+
+posicionamento_cartoes_data_atualizacao.md
+  ├─ Diagramas visuais de cada página
+  ├─ Diretrizes de estilo
+  └─ Implementação rápida (copiar/colar)
+
+
+ÚLTIMA ATUALIZAÇÃO DOS DADOS:
+───────────────────────────────────────────────────────────────────────────────
+
+  Data: 2026-08-18
+  Fonte: 06_dados/01_brutos/
+  Arquivos mais recentes:
+    - relatorio_2026-08-18.parquet
+    - pesquisa_2026-08-18.parquet
+    - insatisfatorio_2026-08-18.parquet
+
+
+═══════════════════════════════════════════════════════════════════════════════

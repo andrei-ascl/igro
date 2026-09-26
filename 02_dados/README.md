@@ -1,146 +1,127 @@
 # Dados — Input/Output Management
 
-Organiza entradas (extrações de ouvidoria) e saídas (bases processadas, amostras, metadados).
+Organiza as fontes de ouvidoria, as saídas processadas e o contrato de dados usado por notebooks, estudos e Power BI.
+
+> **Status de reconciliação — 2026-08-05:** a estrutura real vigente é `raw/`, `processed/` e `schema/`. Os nomes legados `01_brutos/`, `02_tratados/` e `03_amostras/` não devem ser usados em novos arquivos.
 
 ---
 
 ## Quick Start (5 min)
 
-```bash
-# 1. Nova extração do SGOe chega
-cp ~/Downloads/manifestacoes_2026_05.xlsx 01_brutos/
-
-# 2. Documentar schema/filtros (se houver)
-# Editar schema_sgoe.md com nomes de colunas
-
-# 3. Processar base (script ou notebook em 06_notebooks/)
-# Lê de 01_brutos/ e escreve em 02_tratados/
-
-# 4. Validar saída
-ls 02_tratados/*.csv
-ls 03_amostras/
+```text
+1. Preserve a extração original em raw/.
+2. Consulte schema/dicionario_dados.md e o contrato de métricas antes de processar.
+3. Execute o notebook/script responsável e grave derivados em processed/.
+4. Valide período, universo, amostra, campos obrigatórios e rastreabilidade.
+5. Só depois consuma a saída em estudos, resultados ou Power BI.
 ```
 
----
+O contrato provisório está em [`00_admin/planejamento/03_especificacao_e_produto/CONTRATO_METRICAS_IGRO.md`](../00_admin/planejamento/03_especificacao_e_produto/CONTRATO_METRICAS_IGRO.md).
+
+## Fontes atualmente presentes
+
+- `raw/relatorio_2026-05-05.parquet`
+- `raw/pesquisa_2026-05-05.parquet`
+- `raw/insatisfatorio_2026-05-05.parquet`
+
+Não sobrescreva os arquivos em `raw/`. Se houver nova extração, preserve data e origem no nome.
 
 ## Estrutura de Pastas
 
 | Pasta | O quê | Imutável? | Quem escreve |
 |---|---|---|---|
-| **`01_brutos/`** | Extrações SGOe originais | ✅ Sim | Apenas entrada manual |
-| **`02_tratados/`** | Bases processadas (limpas, padronizadas) | ❌ Não | Notebook/script (executado) |
-| **`03_amostras/`** | Amostras para teste, validação, documentação | ❌ Não | Notebook/script (executado) |
-| **`04_external/`** | Referências externas (tabelas de lookup, catálogos) | ✅ Sim | Manual (quando necessário) |
-| **`schema/`** | Dicionário, mapeamentos, estrutura de dados | ⚠️ Quando base muda | Documentador |
+| **`raw/`** | Extrações originais em Parquet | ✅ Sim | Entrada/manual |
+| **`processed/`** | Saídas derivadas para notebooks, estudos e dashboards | ❌ Não | Notebook/script |
+| **`schema/`** | Dicionário, entidades, mapeamentos e contrato de dados | ⚠️ Revisar quando a base muda | Documentador |
+| **`external/`** | Não existe como pasta vigente; criar somente se uma fonte externa for incorporada | — | Manual, com registro |
 
----
+Os arquivos `processed/geral.csv` e `processed/matriz_orgao.csv` atualmente contêm encapsulamento HTML/JavaScript, não um CSV tabular estável. Eles devem ser tratados como exportações a corrigir ou renomear, e não como fonte tabular canônica.
 
-## Fluxo de Dados (5 passos)
+## Fluxo de Dados
 
+```text
+raw/ (Parquet original)
+  ↓ [notebook/script]
+padronização, filtros e derivação
+  ↓
+processed/ (saídas derivadas, com formato validado)
+  ↓
+03_estudos/ + 09_resultados/ + 07_dashboards/
 ```
-01_brutos/ (SGOe)
-  ↓ [notebook/script lê]
-[padroniza colunas, tipos, segmentações]
-  ↓
-02_tratados/ [salva base processada]
-  ↓
-[calcula indicadores: TMR, RES, RI, NPS]
-  ↓
-03_amostras/ [amostras para validação]
-  ↓
-06_notebooks/ + 07_dashboards/ [Power BI consome]
-```
-
----
 
 ## Regras de Ouro
 
 ✅ **Fazer:**
-- Salvar base original em `01_brutos/` sem modificações (read-only)
-- Documentar schema em `schema/` **antes** de processar
-- Incluir data de extração no nome do arquivo: `manifestacoes_2026_05_16.csv`
-- Gerar saídas reproduzíveis via notebook (jamais manual)
-- Documentar filtros aplicados (períodos, órgãos, tipos)
 
-❌ **NÃO fazer:**
-- Editar arquivos em `01_brutos/` manualmente
-- Guardar scripts ou notebooks nesta pasta (ficam em `06_notebooks/`)
-- Deixar saídas espalhadas (concentre em `02_tratados/`)
-- Processar sem documentar origin, filtros e data
+- preservar `raw/` sem modificações;
+- documentar origem, período, filtros e schema antes de processar;
+- registrar a extração no nome do arquivo;
+- gerar saídas reproduzíveis via notebook/script;
+- validar se a saída é realmente tabular antes de chamá-la de CSV;
+- registrar a variante metodológica usada e a regra de inclusão amostral.
 
----
+❌ **Não fazer:**
+
+- editar arquivos em `raw/` manualmente;
+- usar caminhos legados como se fossem a estrutura atual;
+- tratar `processed/` como fonte bruta;
+- misturar os resultados de 51 órgãos com a análise de sensibilidade de 47 órgãos sem declarar a regra;
+- promover resultados antes da decisão canônica do IGRO.
 
 ## Schema & Dicionário
 
-**Antes de processar, documentar em `schema/`:**
+O dicionário provisório está em [`schema/dicionario_dados.md`](schema/dicionario_dados.md). Ele separa entidades conhecidas do modelo e campos que ainda precisam de confirmação no schema físico/TMDL.
 
-| Campo | Tipo | Origem | Uso |
-|---|---|---|---|
-| `id_manifestacao` | int | SGOe | ID único |
-| `data_entrada` | date | SGOe | Temporal (TMR) |
-| `data_resposta` | date | SGOe | Cálculo TMR |
-| `orgao_destino` | string | SGOe | Segmentação |
-| `tipo_manifestacao` | string | SGOe | Segmentação |
-| `avaliacao_satisfacao` | int | SGOe | NPS, média |
-| `respondida` | boolean | SGOe | Resolutividade |
-
-**Guardar em:** `schema/dicionario_campos_sgoe.md`
-
----
+| Entidade conceitual | Papel | Fonte/uso |
+|---|---|---|
+| `f_relatorio` | Manifestações, prazos, status e órgão | `raw/relatorio_*.parquet`; TMR e risco 0044 |
+| `f_pesquisa` | Respostas de pesquisa e indicadores de qualidade | `raw/pesquisa_*.parquet`; RES, NPS e risco 0046 |
+| `f_insatisfatorias` | Registros/classificações de insatisfação | `raw/insatisfatorio_*.parquet`; RI |
+| `dCalendario` | Datas e quadrimestres | Modelo semântico Power BI |
+| `dOrgao_igro` | Dimensão de órgãos por `sigla` | Referência do IGRO |
 
 ## Configuração para Nova Extração
 
-Quando nova base chega do SGOe:
-
-1. **Receber:** Copiar em `01_brutos/nome_data.xlsx` (sem modificações)
-2. **Documentar schema:** 
-   - Quais colunas existem?
-   - Quais valores estão NULL?
-   - Quais foram renomeadas/recodificadas?
-   - Período coberto?
-3. **Registrar em:** `schema/dicionario_campos_sgoe.md` + `schema/metadados_extracao.md`
-4. **Processar:** Abrir notebook em `06_notebooks/` e definir `ARQUIVO_ENTRADA`
-5. **Validar:** Checar `02_tratados/` e `03_amostras/` para sucessos
-
----
+1. Preservar a nova fonte em `raw/` sem modificações.
+2. Registrar data, período, origem, universo e arquivos em `schema/`.
+3. Atualizar o dicionário se entidades, campos ou codificações mudarem.
+4. Processar pelo notebook/script responsável, sem escrever manualmente em `processed/`.
+5. Validar numeradores, denominadores, duplicidades, nulos, período e regra amostral.
 
 ## Checklist de Qualidade
 
-- [ ] Base original em `01_brutos/` sem modificação
-- [ ] Schema documentado em `schema/`
-- [ ] Nenhum NULL nas colunas obrigatórias (id, data, tipo)
-- [ ] Datas em formato ISO (YYYY-MM-DD)
-- [ ] Categorias padronizadas (sem typos: "Reclamação" vs "Reclamaçao")
-- [ ] Organismo/órgão codificado ou mapeado
-- [ ] Saídas em `02_tratados/` com ✅ sucesso
-- [ ] Amostra em `03_amostras/` pronta para testes
-- [ ] Nomes de arquivo claros + data (manifestacoes_2026_05_16.csv)
-
----
+- [ ] Fonte original preservada em `raw/`
+- [ ] Schema e dicionário atualizados
+- [ ] Período e data de extração registrados
+- [ ] Universo declarado (51 órgãos no escopo geral ou subconjunto explicitamente justificado)
+- [ ] Regra para os 47 órgãos completos da sensibilidade registrada quando aplicável
+- [ ] Campos obrigatórios, tipos, nulos e duplicidades verificados
+- [ ] Numeradores e denominadores dos KRIs reconciliados
+- [ ] Saída de `processed/` validada como formato declarado
+- [ ] Perfil de parâmetros/fórmula registrado
+- [ ] Qualquer amostra pequena sinalizada, excluída ou suavizada conforme decisão aprovada
 
 ## Integração com Projeto
 
 | Componente | Lê de | Escreve em |
 |---|---|---|
-| `06_notebooks/` | `01_brutos/` + `02_tratados/` | `02_tratados/` + `03_amostras/` |
-| `07_dashboards/powerbi/` | `02_tratados/` | — (Power BI Desktop) |
-| `09_resultados/` | `02_tratados/` | Gráficos, tabelas, exports |
-| `03_estudos/` | `02_tratados/` + `03_amostras/` | Validações, análises |
+| `06_notebooks/` | `raw/` e `processed/` | `processed/` e `09_resultados/` |
+| `03_estudos/` | `raw/`, `processed/` e schema | Validações e análises |
+| `07_dashboards/powerbi/` | Saídas processadas e modelo semântico | Power BI Desktop/PBIP |
+| `09_resultados/` | Saídas validadas | Gráficos, tabelas e relatórios |
 
-**Sincronização:** Sempre que nova extração SGOe é recebida, processar uma vez via notebook.
-
----
+**Sincronização:** toda nova extração deve ser processada uma vez, com registro suficiente para reproduzir a saída.
 
 ## Manutenção
 
-Quando skill de documentação revisar:
-- [ ] `01_brutos/` ainda é ponto oficial de entrada?
-- [ ] Schema em `schema/` acompanha a base atual?
-- [ ] Nomes de arquivos seguem convenção (com data)?
-- [ ] Links de rastreabilidade estão atualizados (qual célula gera qual saída)?
+- [ ] A estrutura real continua sendo `raw/`, `processed/`, `schema/`?
+- [ ] O dicionário acompanha a base física e o TMDL?
+- [ ] Os arquivos processados têm formato coerente com a extensão?
+- [ ] O contrato de métricas e a decisão canônica estão vinculados?
+- [ ] Os links de rastreabilidade estão atualizados?
 
 ---
 
-**Versão:** 2.0 (skill documentation-templates aplicada)  
-**Atualizado:** 2026-05-16  
+**Versão:** 2.1 (reconciliação da estrutura real e do contrato de dados)
+**Atualizado:** 2026-08-05
 **Mantido por:** Analista de Dados

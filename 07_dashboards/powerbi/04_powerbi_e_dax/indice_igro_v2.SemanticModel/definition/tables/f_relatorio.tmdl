@@ -208,15 +208,15 @@ table f_relatorio
 		source =
 				let
 				    CaminhoBase = fnCaminhoEntrada(),
-				    CaminhoArquivo =
-				        if Text.EndsWith(CaminhoBase, "\") or Text.EndsWith(CaminhoBase, "/")
-				        then CaminhoBase & "f_relatorio.parquet"
-				        else CaminhoBase & "\f_relatorio.parquet",
+				    Arquivos = Folder.Files(CaminhoBase),
+				    ArquivosParquet = Table.SelectRows(Arquivos, each [Extension] = ".parquet" and Text.StartsWith([Name], "relatorio_")),
+				    ArquivosOrdenados = Table.Sort(ArquivosParquet, {{"Date modified", Order.Descending}, {"Name", Order.Descending}}),
 				
 				    Fonte =
-				        Parquet.Document(
-				            File.Contents(CaminhoArquivo)
-				        ),
+				        if Table.RowCount(ArquivosOrdenados) = 0 then
+				            error "Nenhum arquivo Parquet compatível encontrado em: " & CaminhoBase
+				        else
+				            Parquet.Document(ArquivosOrdenados{0}[Content]),
 				
 				    #"Tipo Alterado" =
 				        Table.TransformColumnTypes(

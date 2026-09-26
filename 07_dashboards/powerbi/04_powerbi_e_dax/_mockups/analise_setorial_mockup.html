@@ -1,0 +1,669 @@
+<div id="igro-mockup-setorial" class="igro-mockup" aria-label="Mockup do painel IGRO Análise da Setorial">
+  <style>
+    #igro-mockup-setorial {
+      --igro-navy: #004f4b;
+      --igro-blue: #00766f;
+      --igro-support-blue: #00519e;
+      --igro-ink: #252423;
+      --igro-muted: #605e5c;
+      --igro-line: #d9e1ea;
+      --igro-surface: #ffffff;
+      --igro-canvas: #f9f9f9;
+      --igro-blue-soft: #edf5f4;
+      --igro-green: #1fa22e;
+      --igro-yellow: #ffdd00;
+      --igro-orange: #f7931e;
+      --igro-purple: #00519e;
+      --igro-red: #a6531a;
+      color: var(--igro-ink);
+      background: var(--igro-canvas);
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.4;
+      width: 100%;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    #igro-mockup-setorial *,
+    #igro-mockup-setorial *::before,
+    #igro-mockup-setorial *::after { box-sizing: border-box; }
+
+    #igro-mockup-setorial .igro-window {
+      width: min(1280px, 100%);
+      margin: 0 auto;
+      background: var(--igro-canvas);
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 18px 44px rgba(18, 35, 158, .12);
+      overflow: hidden;
+    }
+
+    #igro-mockup-setorial .igro-topbar {
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 10px 18px;
+      color: #fff;
+      background: var(--igro-navy);
+      border-top: 4px solid var(--igro-yellow);
+    }
+
+    #igro-mockup-setorial .igro-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 215px;
+    }
+
+    #igro-mockup-setorial .igro-brand-mark {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: #fff;
+      color: var(--igro-navy);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .03em;
+    }
+
+    #igro-mockup-setorial .igro-brand-title {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    #igro-mockup-setorial .igro-brand-subtitle {
+      margin-top: 1px;
+      color: rgba(255,255,255,.76);
+      font-size: 11px;
+    }
+
+    #igro-mockup-setorial .igro-nav {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex: 1;
+      min-width: 0;
+      overflow-x: auto;
+    }
+
+    #igro-mockup-setorial .igro-nav button {
+      min-height: 36px;
+      padding: 0 12px;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      background: transparent;
+      color: rgba(255,255,255,.78);
+      font: inherit;
+      font-size: 12px;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    #igro-mockup-setorial .igro-nav button:hover,
+    #igro-mockup-setorial .igro-nav button:focus-visible,
+    #igro-mockup-setorial .igro-nav button[aria-pressed="true"] {
+      color: #fff;
+      border-color: rgba(255,255,255,.42);
+      background: rgba(255,255,255,.12);
+      outline: none;
+    }
+
+    #igro-mockup-setorial .igro-refresh {
+      flex: 0 0 auto;
+      color: rgba(255,255,255,.76);
+      font-size: 11px;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    #igro-mockup-setorial .igro-content { padding: 18px; }
+
+    #igro-mockup-setorial .igro-heading-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 18px;
+      margin-bottom: 14px;
+    }
+
+    #igro-mockup-setorial h1,
+    #igro-mockup-setorial h2,
+    #igro-mockup-setorial p { margin: 0; }
+
+    #igro-mockup-setorial h1 {
+      color: var(--igro-navy);
+      font-size: 24px;
+      line-height: 1.15;
+      letter-spacing: -.02em;
+    }
+
+    #igro-mockup-setorial .igro-context {
+      margin-top: 5px;
+      color: var(--igro-muted);
+      font-size: 12px;
+    }
+
+    #igro-mockup-setorial .igro-context strong { color: var(--igro-ink); }
+
+    #igro-mockup-setorial .igro-mode {
+      display: flex;
+      gap: 4px;
+      padding: 3px;
+      border: 1px solid var(--igro-line);
+      border-radius: 8px;
+      background: var(--igro-surface);
+    }
+
+    #igro-mockup-setorial .igro-mode button {
+      min-height: 34px;
+      padding: 0 12px;
+      border: 0;
+      border-radius: 6px;
+      background: transparent;
+      color: var(--igro-muted);
+      font: inherit;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    #igro-mockup-setorial .igro-mode button[aria-pressed="true"] {
+      color: #fff;
+      background: var(--igro-navy);
+    }
+
+    #igro-mockup-setorial .igro-filterbar {
+      display: grid;
+      grid-template-columns: minmax(250px, 1.8fr) minmax(130px, .7fr) minmax(155px, .85fr) auto;
+      gap: 10px;
+      align-items: end;
+      padding: 12px;
+      border: 1px solid #cfe0f7;
+      border-radius: 8px;
+      background: var(--igro-blue-soft);
+      margin-bottom: 14px;
+    }
+
+    #igro-mockup-setorial .igro-field label {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--igro-navy);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+    }
+
+    #igro-mockup-setorial .igro-field select {
+      width: 100%;
+      min-height: 40px;
+      padding: 0 11px;
+      border: 1px solid #b7c9df;
+      border-radius: 6px;
+      background: #fff;
+      color: var(--igro-ink);
+      font: inherit;
+      cursor: pointer;
+    }
+
+    #igro-mockup-setorial .igro-field select:focus-visible,
+    #igro-mockup-setorial button:focus-visible { outline: 3px solid rgba(17,141,255,.35); outline-offset: 2px; }
+
+    #igro-mockup-setorial .igro-filter-note {
+      align-self: center;
+      color: var(--igro-muted);
+      font-size: 12px;
+      line-height: 1.25;
+      max-width: 155px;
+    }
+
+    #igro-mockup-setorial .igro-kpis {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr 1fr .9fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    #igro-mockup-setorial .igro-kpi,
+    #igro-mockup-setorial .igro-panel {
+      border: 1px solid var(--igro-line);
+      border-radius: 8px;
+      background: var(--igro-surface);
+      box-shadow: 0 2px 8px rgba(37,36,35,.04);
+    }
+
+    #igro-mockup-setorial .igro-kpi {
+      position: relative;
+      min-height: 100px;
+      padding: 13px 14px 12px;
+      overflow: hidden;
+    }
+
+    #igro-mockup-setorial .igro-kpi:first-child { border-top: 3px solid var(--igro-blue); }
+    #igro-mockup-setorial .igro-kpi:nth-child(4) { background: #fffaf3; }
+
+    #igro-mockup-setorial .igro-kpi::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 4px;
+      background: var(--igro-blue);
+    }
+
+    #igro-mockup-setorial .igro-kpi:nth-child(2)::before { background: var(--igro-orange); }
+    #igro-mockup-setorial .igro-kpi:nth-child(3)::before { background: var(--igro-purple); }
+    #igro-mockup-setorial .igro-kpi:nth-child(4)::before { background: var(--igro-yellow); }
+
+    #igro-mockup-setorial .igro-kpi-label {
+      color: var(--igro-muted);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    #igro-mockup-setorial .igro-kpi-value {
+      margin-top: 3px;
+      color: var(--igro-navy);
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    #igro-mockup-setorial .igro-kpi:first-child .igro-kpi-value { font-size: 36px; }
+    #igro-mockup-setorial .igro-kpi:nth-child(4) .igro-kpi-value { font-size: 26px; }
+
+    #igro-mockup-setorial .igro-kpi-meta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 6px;
+      color: var(--igro-muted);
+      font-size: 11px;
+    }
+
+    #igro-mockup-setorial .igro-kpi-meta strong { color: var(--igro-green); }
+    #igro-mockup-setorial .igro-kpi:nth-child(4) .igro-kpi-meta strong { color: var(--igro-orange); }
+
+    #igro-mockup-setorial .igro-main-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(320px, .9fr);
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    #igro-mockup-setorial .igro-panel-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      padding: 13px 14px 0;
+    }
+
+    #igro-mockup-setorial h2 {
+      color: var(--igro-ink);
+      font-size: 14px;
+      line-height: 1.25;
+    }
+
+    #igro-mockup-setorial .igro-panel-caption {
+      color: var(--igro-muted);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    #igro-mockup-setorial .igro-chart-wrap { padding: 8px 12px 10px; }
+    #igro-mockup-setorial .igro-chart { width: 100%; min-height: 196px; display: block; }
+    #igro-mockup-setorial .igro-chart text { font-family: "Segoe UI", Arial, sans-serif; }
+    #igro-mockup-setorial .igro-gridline { stroke: #e5eaf0; stroke-width: 1; }
+    #igro-mockup-setorial .igro-axis { fill: var(--igro-muted); font-size: 11px; }
+    #igro-mockup-setorial .igro-line-main { fill: none; stroke: var(--igro-blue); stroke-width: 3; }
+    #igro-mockup-setorial .igro-line-t { fill: none; stroke: var(--igro-support-blue); stroke-width: 2.5; }
+    #igro-mockup-setorial .igro-line-q { fill: none; stroke: var(--igro-green); stroke-width: 2.5; }
+    #igro-mockup-setorial .igro-point-main { fill: #fff; stroke: var(--igro-blue); stroke-width: 2.5; }
+    #igro-mockup-setorial .igro-point-t { fill: #fff; stroke: var(--igro-support-blue); stroke-width: 2; }
+    #igro-mockup-setorial .igro-point-q { fill: #fff; stroke: var(--igro-green); stroke-width: 2; }
+    #igro-mockup-setorial .igro-current-band { fill: rgba(17,141,255,.08); }
+    #igro-mockup-setorial .igro-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 0 14px 12px;
+      color: var(--igro-muted);
+      font-size: 12px;
+    }
+
+    #igro-mockup-setorial .igro-legend span { display: inline-flex; align-items: center; gap: 5px; }
+    #igro-mockup-setorial .igro-legend i { display: inline-block; width: 18px; height: 3px; border-radius: 2px; }
+
+    #igro-mockup-setorial .igro-reading { padding-bottom: 14px; }
+
+    #igro-mockup-setorial .igro-status {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 12px 14px 13px;
+      padding: 10px 11px;
+      border-left: 4px solid var(--igro-orange);
+      background: #fff6ed;
+    }
+
+    #igro-mockup-setorial .igro-status-mark {
+      display: grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #ffe2ce;
+      color: #9b431b;
+      font-weight: 700;
+    }
+
+    #igro-mockup-setorial .igro-status-title { color: #7c3413; font-weight: 700; }
+    #igro-mockup-setorial .igro-status-copy { color: #7c5a43; font-size: 11px; }
+
+    #igro-mockup-setorial .igro-reading-list {
+      display: grid;
+      gap: 9px;
+      padding: 0 14px;
+      margin: 0;
+      list-style: none;
+    }
+
+    #igro-mockup-setorial .igro-reading-list li { display: grid; grid-template-columns: 112px 1fr; gap: 10px; font-size: 11px; }
+    #igro-mockup-setorial .igro-reading-list strong { color: var(--igro-muted); font-weight: 600; }
+    #igro-mockup-setorial .igro-reading-list span { color: var(--igro-ink); }
+
+    #igro-mockup-setorial .igro-action {
+      margin: 13px 14px 0;
+      padding: 10px 11px;
+      border: 1px solid #cfe0f7;
+      border-radius: 6px;
+      background: var(--igro-blue-soft);
+    }
+
+    #igro-mockup-setorial .igro-critical-metric { display: flex; align-items: baseline; gap: 8px; margin: 4px 0 6px; }
+    #igro-mockup-setorial .igro-critical-value { color: var(--igro-orange); font-size: 25px; font-weight: 700; font-variant-numeric: tabular-nums; }
+    #igro-mockup-setorial .igro-critical-reference { color: var(--igro-muted); font-size: 12px; }
+    #igro-mockup-setorial .igro-action-label { color: var(--igro-navy); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
+    #igro-mockup-setorial .igro-action-text { margin-top: 3px; color: var(--igro-ink); font-size: 13px; }
+
+    #igro-mockup-setorial .igro-bottom-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(300px, .95fr);
+      gap: 14px;
+    }
+
+    #igro-mockup-setorial .igro-table-wrap { padding: 8px 14px 13px; overflow-x: auto; }
+    #igro-mockup-setorial table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    #igro-mockup-setorial th,
+    #igro-mockup-setorial td { padding: 8px 7px; border-bottom: 1px solid #edf0f3; text-align: left; white-space: nowrap; }
+    #igro-mockup-setorial th { color: var(--igro-muted); font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+    #igro-mockup-setorial td:first-child { color: var(--igro-ink); font-weight: 600; white-space: normal; }
+    #igro-mockup-setorial td:not(:first-child) { font-variant-numeric: tabular-nums; }
+    #igro-mockup-setorial .igro-status-pill { display: inline-flex; align-items: center; gap: 5px; font-weight: 700; }
+    #igro-mockup-setorial .igro-status-pill::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+    #igro-mockup-setorial .igro-status-pill.ok { color: var(--igro-green); }
+    #igro-mockup-setorial .igro-status-pill.warn { color: #9a7300; }
+    #igro-mockup-setorial .igro-status-pill.risk { color: var(--igro-red); }
+
+    #igro-mockup-setorial .igro-base-content { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; padding: 8px 14px 14px; }
+    #igro-mockup-setorial .igro-base-metric { min-height: 100px; padding: 11px; border: 1px solid #dbe4e2; border-top: 3px solid var(--igro-blue); border-radius: 6px; background: #fff; }
+    #igro-mockup-setorial .igro-base-metric:nth-child(2) { border-top-color: var(--igro-support-blue); }
+    #igro-mockup-setorial .igro-base-metric:nth-child(3) { border-top-color: var(--igro-orange); }
+    #igro-mockup-setorial .igro-base-label { color: var(--igro-muted); font-size: 11px; line-height: 1.25; }
+    #igro-mockup-setorial .igro-base-value { margin-top: 4px; color: var(--igro-navy); font-size: 24px; font-weight: 700; font-variant-numeric: tabular-nums; }
+    #igro-mockup-setorial .igro-base-note { margin-top: 4px; color: var(--igro-muted); font-size: 11px; line-height: 1.3; }
+    #igro-mockup-setorial .igro-base-note strong { color: var(--igro-ink); }
+
+    #igro-mockup-setorial .igro-footer { padding: 10px 18px 12px; color: var(--igro-muted); font-size: 10px; text-align: right; }
+
+    @media (max-width: 920px) {
+      #igro-mockup-setorial .igro-topbar { flex-wrap: wrap; }
+      #igro-mockup-setorial .igro-brand { min-width: auto; }
+      #igro-mockup-setorial .igro-refresh { margin-left: auto; }
+      #igro-mockup-setorial .igro-filterbar { grid-template-columns: 1fr 1fr; }
+      #igro-mockup-setorial .igro-filter-note { max-width: none; }
+      #igro-mockup-setorial .igro-main-grid,
+      #igro-mockup-setorial .igro-bottom-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 650px) {
+      #igro-mockup-setorial .igro-content { padding: 12px; }
+      #igro-mockup-setorial .igro-heading-row { display: block; }
+      #igro-mockup-setorial .igro-mode { margin-top: 12px; width: max-content; }
+      #igro-mockup-setorial .igro-filterbar { grid-template-columns: 1fr; }
+      #igro-mockup-setorial .igro-kpis,
+      #igro-mockup-setorial .igro-base-content { grid-template-columns: 1fr 1fr; }
+      #igro-mockup-setorial .igro-refresh { display: none; }
+      #igro-mockup-setorial .igro-reading-list li { grid-template-columns: 1fr; gap: 1px; }
+      #igro-mockup-setorial .igro-base-content { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #igro-mockup-setorial * { scroll-behavior: auto !important; transition: none !important; }
+    }
+  </style>
+
+  <div class="igro-window">
+    <header class="igro-topbar">
+      <div class="igro-brand">
+        <div class="igro-brand-mark">IGRO</div>
+        <div>
+          <div class="igro-brand-title">Índice de Gestão de Riscos da Ouvidoria</div>
+          <div class="igro-brand-subtitle">Mockup de página · análise individual</div>
+        </div>
+      </div>
+      <nav class="igro-nav" aria-label="Navegação simulada do relatório">
+        <button type="button" aria-pressed="false">IGRO</button>
+        <button type="button" aria-pressed="false">Executiva</button>
+        <button type="button" aria-pressed="false">Evolução</button>
+        <button type="button" aria-pressed="false">Classe</button>
+        <button type="button" aria-pressed="false">NPS</button>
+        <button type="button" aria-pressed="true">Análise setorial</button>
+      </nav>
+      <div class="igro-refresh">Atualização simulada<br><strong>22/08/2026 · 09:40</strong></div>
+    </header>
+
+    <main class="igro-content">
+      <div class="igro-heading-row">
+        <div>
+          <h1>Análise setorial</h1>
+          <p class="igro-context">Leitura individual de <strong id="igro-selected-unit">Secretaria de Administração</strong> · <span id="igro-selected-period">2026 · Todos os quadrimestres</span></p>
+        </div>
+        <div class="igro-mode" aria-label="Modo de análise">
+          <button type="button" data-mode="periodo" aria-pressed="true">Visão do período</button>
+          <button type="button" data-mode="evolucao" aria-pressed="false">Evolução histórica</button>
+        </div>
+      </div>
+
+      <section class="igro-filterbar" aria-label="Filtros da análise">
+        <div class="igro-field">
+          <label for="igro-unit">Setorial / órgão</label>
+          <select id="igro-unit">
+            <option value="administracao">Secretaria de Administração</option>
+            <option value="saude">Secretaria de Saúde</option>
+            <option value="educacao">Secretaria de Educação</option>
+          </select>
+        </div>
+        <div class="igro-field">
+          <label for="igro-year">Ano</label>
+          <select id="igro-year">
+            <option>2026</option>
+            <option>2025</option>
+            <option>2024</option>
+          </select>
+        </div>
+        <div class="igro-field">
+          <label for="igro-quadri">Quadrimestre</label>
+          <select id="igro-quadri">
+            <option value="todos">Todos</option>
+            <option value="q1">Q1</option>
+            <option value="q2">Q2</option>
+            <option value="q3">Q3</option>
+          </select>
+        </div>
+        <div class="igro-filter-note">Recomendação: órgão único; quadrimestre opcional para manter a série histórica legível.</div>
+      </section>
+
+      <section class="igro-kpis" aria-label="Indicadores principais">
+        <article class="igro-kpi">
+          <div class="igro-kpi-label">IGRO</div>
+          <div class="igro-kpi-value" id="igro-kpi-igro">0,71</div>
+          <div class="igro-kpi-meta"><strong id="igro-kpi-status">Risco moderado</strong><span id="igro-kpi-delta">▲ 0,06 vs. período anterior</span></div>
+        </article>
+        <article class="igro-kpi">
+          <div class="igro-kpi-label">Subíndice temporal</div>
+          <div class="igro-kpi-value" id="igro-kpi-t">0,65</div>
+          <div class="igro-kpi-meta"><strong>Atenção</strong><span>prazo de resposta</span></div>
+        </article>
+        <article class="igro-kpi">
+          <div class="igro-kpi-label">Subíndice de qualidade</div>
+          <div class="igro-kpi-value" id="igro-kpi-q">0,77</div>
+          <div class="igro-kpi-meta"><strong>Estável</strong><span>qualidade percebida</span></div>
+        </article>
+        <article class="igro-kpi">
+          <div class="igro-kpi-label">KRIs em alerta</div>
+          <div class="igro-kpi-value" id="igro-kpi-alertas">2/5</div>
+          <div class="igro-kpi-meta"><strong>Priorizar</strong><span>revisão de controles</span></div>
+        </article>
+      </section>
+
+      <section class="igro-main-grid">
+        <article class="igro-panel">
+          <div class="igro-panel-head">
+            <h2>Evolução do IGRO e subíndices</h2>
+            <span class="igro-panel-caption" id="igro-chart-caption">Q1/2024 → Q1/2026 · escala 0–1</span>
+          </div>
+          <div class="igro-chart-wrap">
+            <svg class="igro-chart" viewBox="0 0 700 220" role="img" aria-label="Gráfico de evolução simulada do IGRO, Sub-T e Sub-Q">
+              <title>Evolução simulada por quadrimestre</title>
+              <desc>O IGRO sobe de 0,58 para 0,71, com atenção concentrada no subíndice temporal.</desc>
+              <rect class="igro-current-band" x="604" y="14" width="56" height="174" rx="4"></rect>
+              <line class="igro-gridline" x1="52" y1="28" x2="660" y2="28"></line>
+              <line class="igro-gridline" x1="52" y1="80" x2="660" y2="80"></line>
+              <line class="igro-gridline" x1="52" y1="132" x2="660" y2="132"></line>
+              <line class="igro-gridline" x1="52" y1="184" x2="660" y2="184"></line>
+              <text class="igro-axis" x="28" y="32">0,9</text>
+              <text class="igro-axis" x="28" y="84">0,7</text>
+              <text class="igro-axis" x="28" y="136">0,5</text>
+              <text class="igro-axis" x="28" y="188">0,3</text>
+              <polyline class="igro-line-main" points="62,113 160,105 258,96 356,91 454,84 552,78 632,77"></polyline>
+              <polyline class="igro-line-t" points="62,129 160,121 258,116 356,111 454,102 552,91 632,93"></polyline>
+              <polyline class="igro-line-q" points="62,97 160,91 258,79 356,72 454,70 552,65 632,62"></polyline>
+              <g aria-hidden="true">
+                <circle class="igro-point-main" cx="62" cy="113" r="4"></circle><circle class="igro-point-main" cx="160" cy="105" r="4"></circle><circle class="igro-point-main" cx="258" cy="96" r="4"></circle><circle class="igro-point-main" cx="356" cy="91" r="4"></circle><circle class="igro-point-main" cx="454" cy="84" r="4"></circle><circle class="igro-point-main" cx="552" cy="78" r="4"></circle><circle class="igro-point-main" cx="632" cy="77" r="5"></circle>
+                <circle class="igro-point-t" cx="62" cy="129" r="3"></circle><circle class="igro-point-t" cx="160" cy="121" r="3"></circle><circle class="igro-point-t" cx="258" cy="116" r="3"></circle><circle class="igro-point-t" cx="356" cy="111" r="3"></circle><circle class="igro-point-t" cx="454" cy="102" r="3"></circle><circle class="igro-point-t" cx="552" cy="91" r="3"></circle><circle class="igro-point-t" cx="632" cy="93" r="4"></circle>
+                <circle class="igro-point-q" cx="62" cy="97" r="3"></circle><circle class="igro-point-q" cx="160" cy="91" r="3"></circle><circle class="igro-point-q" cx="258" cy="79" r="3"></circle><circle class="igro-point-q" cx="356" cy="72" r="3"></circle><circle class="igro-point-q" cx="454" cy="70" r="3"></circle><circle class="igro-point-q" cx="552" cy="65" r="3"></circle><circle class="igro-point-q" cx="632" cy="62" r="4"></circle>
+              </g>
+              <text class="igro-axis" x="52" y="207">Q1/24</text><text class="igro-axis" x="148" y="207">Q2/24</text><text class="igro-axis" x="246" y="207">Q3/24</text><text class="igro-axis" x="344" y="207">Q1/25</text><text class="igro-axis" x="442" y="207">Q2/25</text><text class="igro-axis" x="540" y="207">Q3/25</text><text class="igro-axis" x="613" y="207">Q1/26</text>
+            </svg>
+          </div>
+          <div class="igro-legend" aria-label="Legenda do gráfico">
+            <span><i style="background:#00766f"></i>IGRO</span>
+            <span><i style="background:#00519e"></i>Sub-T · tempo</span>
+            <span><i style="background:#1fa22e"></i>Sub-Q · qualidade</span>
+            <span><i style="width:12px;height:12px;border-radius:3px;background:rgba(17,141,255,.12);border:1px solid #b7d6fb"></i>período em análise</span>
+          </div>
+        </article>
+
+        <article class="igro-panel igro-reading">
+          <div class="igro-panel-head"><h2>Leitura executiva</h2><span class="igro-panel-caption">o que merece atenção?</span></div>
+          <div class="igro-status">
+            <div class="igro-status-mark">!</div>
+            <div><div class="igro-status-title" id="igro-reading-title">Atenção concentrada no prazo</div><div class="igro-status-copy" id="igro-reading-copy">O Sub-T limita o resultado da setorial neste recorte.</div></div>
+          </div>
+          <ul class="igro-reading-list">
+            <li><strong>KRI prioritário</strong><span id="igro-reading-kri">% de manifestações acima de 30 dias</span></li>
+            <li><strong>Movimento</strong><span id="igro-reading-movement">+8 p.p. vs. Q3/2025</span></li>
+            <li><strong>Qualidade</strong><span>Sub-Q acima do Sub-T; não é o gargalo atual</span></li>
+            <li><strong>Leitura</strong><span>tratar prazo antes de ampliar a meta de satisfação</span></li>
+          </ul>
+          <div class="igro-action">
+            <div class="igro-action-label">Exceção que orienta a ação</div>
+            <div class="igro-critical-metric"><span class="igro-critical-value">18,4%</span><span class="igro-critical-reference">acima de 30 dias · referência ≤ 10,0%</span></div>
+            <div class="igro-action-label">Ação sugerida</div>
+            <div class="igro-action-text">Revisar o estoque de manifestações antigas e o fluxo de distribuição interna.</div>
+          </div>
+        </article>
+      </section>
+
+      <section class="igro-bottom-grid">
+        <article class="igro-panel">
+          <div class="igro-panel-head"><h2>KRIs da setorial no período</h2><span class="igro-panel-caption">resultado · score · situação</span></div>
+          <div class="igro-table-wrap">
+            <table>
+              <thead><tr><th>KRI</th><th>Resultado</th><th>Meta / referência</th><th>Score</th><th>Situação</th></tr></thead>
+              <tbody>
+                <tr><td>Manifestações acima de 30 dias</td><td>18,4%</td><td>≤ 10,0%</td><td>0,42</td><td><span class="igro-status-pill risk">Crítico</span></td></tr>
+                <tr><td>Tempo médio de resposta</td><td>16,2 dias</td><td>≤ 20 dias</td><td>0,65</td><td><span class="igro-status-pill warn">Moderado</span></td></tr>
+                <tr><td>Resolutividade</td><td>78,0%</td><td>≥ 75,0%</td><td>0,78</td><td><span class="igro-status-pill ok">Adequado</span></td></tr>
+                <tr><td>Respostas insatisfatórias</td><td>8,1%</td><td>≤ 10,0%</td><td>0,81</td><td><span class="igro-status-pill ok">Adequado</span></td></tr>
+                <tr><td>Nota média de recomendação</td><td>8,3</td><td>≥ 8,0</td><td>0,83</td><td><span class="igro-status-pill ok">Adequado</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="igro-panel">
+          <div class="igro-panel-head"><h2>Base de evidências</h2><span class="igro-panel-caption">volume e cobertura</span></div>
+          <div class="igro-base-content">
+            <div class="igro-base-metric"><div class="igro-base-label">Volume finalizado</div><div class="igro-base-value">2.846</div><div class="igro-base-note">manifestações finalizadas no recorte</div></div>
+            <div class="igro-base-metric"><div class="igro-base-label">Pesquisas respondidas</div><div class="igro-base-value">412</div><div class="igro-base-note">respostas válidas sobre <strong>2.846</strong> finalizadas</div></div>
+            <div class="igro-base-metric"><div class="igro-base-label">Cobertura da pesquisa</div><div class="igro-base-value">14,5%</div><div class="igro-base-note"><strong>412 / 2.846</strong> · interpretar com cautela</div></div>
+          </div>
+        </article>
+      </section>
+    </main>
+    <footer class="igro-footer">Mockup para avaliação · valores ilustrativos · nenhuma alteração foi feita no PBIP</footer>
+  </div>
+
+  <script>
+    (() => {
+      const root = document.getElementById("igro-mockup-setorial");
+      if (!root) return;
+
+      const units = {
+        administracao: { name: "Secretaria de Administração", igro: "0,71", t: "0,65", q: "0,77", alerts: "2/5", title: "Atenção concentrada no prazo", copy: "O Sub-T limita o resultado da setorial neste recorte.", kri: "% de manifestações acima de 30 dias", movement: "+8 p.p. vs. Q3/2025" },
+        saude: { name: "Secretaria de Saúde", igro: "0,78", t: "0,74", q: "0,82", alerts: "1/5", title: "Resultado consistente", copy: "Os dois subíndices estão acima do patamar de atenção.", kri: "Tempo médio de resposta", movement: "+3 p.p. vs. Q3/2025" },
+        educacao: { name: "Secretaria de Educação", igro: "0,62", t: "0,55", q: "0,69", alerts: "3/5", title: "Risco operacional elevado", copy: "Prazo e qualidade pedem plano de ação coordenado.", kri: "Tempo médio de resposta", movement: "−5 p.p. vs. Q3/2025" }
+      };
+
+      const setText = (id, value) => { const node = root.querySelector(`#${id}`); if (node) node.textContent = value; };
+      const unit = root.querySelector("#igro-unit");
+      const year = root.querySelector("#igro-year");
+      const quadri = root.querySelector("#igro-quadri");
+
+      const render = () => {
+        const selected = units[unit.value];
+        const quadriLabel = quadri.value === "todos" ? "Todos os quadrimestres" : quadri.options[quadri.selectedIndex].text;
+        setText("igro-selected-unit", selected.name);
+        setText("igro-selected-period", `${year.value} · ${quadriLabel}`);
+        setText("igro-kpi-igro", selected.igro);
+        setText("igro-kpi-t", selected.t);
+        setText("igro-kpi-q", selected.q);
+        setText("igro-kpi-alertas", selected.alerts);
+        setText("igro-kpi-status", selected.igro === "0,62" ? "Risco alto" : selected.igro === "0,78" ? "Adequado" : "Risco moderado");
+        setText("igro-reading-title", selected.title);
+        setText("igro-reading-copy", selected.copy);
+        setText("igro-reading-kri", selected.kri);
+        setText("igro-reading-movement", selected.movement);
+        setText("igro-chart-caption", quadri.value === "todos" ? `Q1/2024 → Q1/${year.value} · escala 0–1` : `${year.value} · ${quadriLabel} · escala 0–1`);
+      };
+
+      [unit, year, quadri].forEach((control) => control.addEventListener("change", render));
+      root.querySelectorAll("[data-mode]").forEach((button) => button.addEventListener("click", () => {
+        root.querySelectorAll("[data-mode]").forEach((item) => item.setAttribute("aria-pressed", item === button ? "true" : "false"));
+        setText("igro-chart-caption", button.dataset.mode === "evolucao" ? "Série completa · quadrimestre preservado no eixo" : "Período selecionado · escala 0–1");
+      }));
+      root.querySelectorAll(".igro-nav button").forEach((button) => button.addEventListener("click", () => {
+        root.querySelectorAll(".igro-nav button").forEach((item) => item.setAttribute("aria-pressed", item === button ? "true" : "false"));
+      }));
+    })();
+  </script>
+</div>

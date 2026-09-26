@@ -193,67 +193,67 @@ table _medidas
 		displayFolder: 03 · Qualidade
 		lineageTag: 469688c8-7e98-458e-9896-8446bc626975
 
-	/// Meta do KRI 1 (% RDP): máximo de 1,0% de manifestações com mais de 30 dias. Valor 1 quando RDP <= 1,0%.
-	measure meta_igro_kri1 = 0.01
+	/// Meta canônica do KRI 1 (% RDP): máximo de 2,0% de manifestações com mais de 30 dias.
+	measure meta_igro_kri1 = 0.02
 		formatString: 0.00%
 		displayFolder: 05 · IGRO · Metas e Goalposts
 		lineageTag: 7f490f54-d6b1-4361-ac88-4c9efcd15d40
 
-	/// Goalpost do KRI 1 (% RDP): 2,0% como limite de aceitabilidade. Valor 0 quando RDP >= 2,0%.
-	measure goal_igro_kri1 = 0.02
+	/// Goalpost canônico do KRI 1 (% RDP): 15,0% como limite de deterioração severa.
+	measure goal_igro_kri1 = 0.15
 		formatString: 0.00%
 		displayFolder: 05 · IGRO · Metas e Goalposts
 		lineageTag: d77e1621-0491-459e-86d6-8f6f6fdec6a8
 
-	/// Meta do KRI 2 (TMR): 5 dias ou menos como excelência esperada. Valor 1 quando TMR <= 5 dias.
-	measure meta_igro_kri2 = 5.0
+	/// Meta canônica do KRI 2 (TMR): 10 dias ou menos.
+	measure meta_igro_kri2 = 10.0
 		formatString: #,0.0
 		displayFolder: 05 · IGRO · Metas e Goalposts
 		lineageTag: 04b4dce2-2dbd-4b78-be1c-544cbd64b038
 
-	/// Goalpost do KRI 2 (TMR): 10 dias como limite de aceitabilidade. Valor 0 quando TMR >= 10 dias.
-	measure goal_igro_kri2 = 10.0
+	/// Goalpost canônico do KRI 2 (TMR): 30 dias como limite de deterioração severa.
+	measure goal_igro_kri2 = 30.0
 		formatString: #,0.0
 		displayFolder: 05 · IGRO · Metas e Goalposts
 		lineageTag: 6a9854ff-4b9f-4735-ac1a-20322aa6fd5b
 
-	/// Meta do KRI 3 (TR - Resolutividade): 70% ou mais como resolutividade esperada. Valor 1 quando TR >= 70%.
+	/// Meta canônica do KRI 3 (TR - Resolutividade): 70% ou mais.
 	measure meta_igro_kri3 = 0.70
 		formatString: 0.00%
 		displayFolder: 05 · IGRO · Metas e Goalposts
 		lineageTag: aaa437a5-fbca-4eb2-be6f-dc8e3b4f032b
 
-	/// Goalpost do KRI 3 (TR - Resolutividade): 50% como piso aceitável. Valor 0 quando TR <= 50%.
-	measure goal_igro_kri3 = 0.50
+	/// Goalpost canônico do KRI 3 (TR - Resolutividade): 30% como piso de deterioração severa.
+	measure goal_igro_kri3 = 0.30
 		formatString: 0.00%
 		displayFolder: 05 · IGRO · Metas e Goalposts
 		lineageTag: 505b63dc-e3c6-4eb0-b743-fb5990d61d33
 
-	/// Meta do KRI 4 (% RI): 2,5% ou inferior como baixíssima insatisfação. Valor 1 quando RI <= 2,5%.
+	/// Meta canônica do KRI 4 (% RI): 2,5% ou inferior.
 	measure meta_igro_kri4 = 0.025
 		formatString: 0.00%
 		displayFolder: 05 · IGRO · Metas e Goalposts
 		lineageTag: d1dc6923-a176-427a-8758-0112bd9a83a9
 
-	/// Goalpost do KRI 4 (% RI): 3,5% como piso aceitável de insatisfação. Valor 0 quando RI >= 3,5%.
-	measure goal_igro_kri4 = 0.035
+	/// Goalpost canônico do KRI 4 (% RI): 20,0% como deterioração severa.
+	measure goal_igro_kri4 = 0.20
 		formatString: 0.00%
 		displayFolder: 05 · IGRO · Metas e Goalposts
 		lineageTag: 6562e9ec-716f-4901-9525-661b3c47d8e6
 
-	/// Meta do KRI 5 (Nota de Recomendação): 8,0 ou mais como excelente recomendação. Valor 1 quando NR >= 8,0.
-	measure meta_igro_kri5 = 8.0
+	/// Meta canônica do KRI 5 (Nota de Recomendação): 7,5 ou mais.
+	measure meta_igro_kri5 = 7.5
 		formatString: #,0.0
 		displayFolder: 05 · IGRO · Metas e Goalposts
 		lineageTag: 1bdba1d2-1459-49d6-8801-e8b7da9cf2ff
 
-	/// Goalpost do KRI 5 (Nota de Recomendação): 6,0 como recomendação aceitável. Valor 0 quando NR <= 6,0.
-	measure goal_igro_kri5 = 6.0
+	/// Goalpost canônico do KRI 5 (Nota de Recomendação): 4,0 como piso de deterioração severa.
+	measure goal_igro_kri5 = 4.0
 		formatString: #,0.0
 		displayFolder: 05 · IGRO · Metas e Goalposts
 		lineageTag: b02f6ab5-ff35-4b49-88ee-f52353787259
 
-	/// Score normalizado de 0 a 1 para o KRI 1 (% RDP): valor 1 quando RDP <= 1,0%; valor 0 quando RDP >= 2,0%.
+	/// Score canônico de 0 a 1 para o KRI 1 (% RDP): valor 1 quando RDP <= 2,0%; valor 0 quando RDP >= 15,0%.
 	measure idx_score_igro_kri1 =
 			VAR valor = [ind_pct_mais_30_dias]
 			VAR meta = [meta_igro_kri1]
@@ -265,7 +265,7 @@ table _medidas
 		displayFolder: 06 · IGRO · Scores KRI
 		lineageTag: 0734e67c-bf1e-4d4d-9fa0-b37835dedd68
 
-	/// Score normalizado de 0 a 1 para o KRI 2 (TMR): valor 1 quando TMR <= 5 dias; valor 0 quando TMR >= 10 dias.
+	/// Score canônico de 0 a 1 para o KRI 2 (TMR): valor 1 quando TMR <= 10 dias; valor 0 quando TMR >= 30 dias.
 	measure idx_score_igro_kri2 =
 			VAR valor = [ind_media_tempo_resposta]
 			VAR meta = [meta_igro_kri2]
@@ -277,19 +277,24 @@ table _medidas
 		displayFolder: 06 · IGRO · Scores KRI
 		lineageTag: 9cdcf00e-d9d4-48cc-8384-f01c541ca3be
 
-	/// Score normalizado de 0 a 1 para o KRI 3 (TR): valor 1 quando TR >= 70%; valor 0 quando TR <= 50%.
+	/// Score canônico de 0 a 1 para o KRI 3 (TR): valor 1 quando TR >= 70%; valor 0 quando TR <= 30%.
 	measure idx_score_igro_kri3 =
 			VAR valor = [ind_pct_resolutividade]
 			VAR meta = [meta_igro_kri3]
 			VAR goalpost = [goal_igro_kri3]
 			VAR score = DIVIDE ( valor - goalpost, meta - goalpost, 0 )
+			VAR amostra_insuficiente = [flag_amostra_insuficiente] = 1
 			RETURN
-			    MIN ( MAX ( score, 0 ), 1 )
+			    IF (
+			        amostra_insuficiente,
+			        BLANK(),
+			        MIN ( MAX ( score, 0 ), 1 )
+			    )
 		formatString: 0.00%
 		displayFolder: 06 · IGRO · Scores KRI
 		lineageTag: ecceac50-8a49-4114-90ef-3ee2726d116c
 
-	/// Score normalizado de 0 a 1 para o KRI 4 (% RI): valor 1 quando RI <= 2,5%; valor 0 quando RI >= 3,5%.
+	/// Score canônico de 0 a 1 para o KRI 4 (% RI): valor 1 quando RI <= 2,5%; valor 0 quando RI >= 20,0%.
 	measure idx_score_igro_kri4 =
 			VAR valor = [ind_pct_respostas_insatisfatorias]
 			VAR meta = [meta_igro_kri4]
@@ -301,53 +306,67 @@ table _medidas
 		displayFolder: 06 · IGRO · Scores KRI
 		lineageTag: 071b7b0c-c66f-4ae2-b4cf-eeb5e547098c
 
-	/// Score normalizado de 0 a 1 para o KRI 5 (Nota de Recomendação): valor 1 quando NR >= 8,0; valor 0 quando NR <= 6,0.
+	/// Score canônico de 0 a 1 para o KRI 5 (Nota de Recomendação): valor 1 quando NR >= 7,5; valor 0 quando NR <= 4,0.
 	measure idx_score_igro_kri5 =
 			VAR valor = [ind_media_nota_recomendacao]
 			VAR meta = [meta_igro_kri5]
 			VAR goalpost = [goal_igro_kri5]
 			VAR score = DIVIDE ( valor - goalpost, meta - goalpost, 0 )
+			VAR amostra_insuficiente = [flag_amostra_insuficiente] = 1
 			RETURN
-			    MIN ( MAX ( score, 0 ), 1 )
+			    IF (
+			        amostra_insuficiente,
+			        BLANK(),
+			        MIN ( MAX ( score, 0 ), 1 )
+			    )
 		formatString: 0.00%
 		displayFolder: 06 · IGRO · Scores KRI
 		lineageTag: cf6f6142-eb5e-44ba-b6cc-6d482a132b16
 
-	/// Subíndice de Tempestividade (IT): média ponderada TMR=60% e % RDP=40%.
+	/// Subíndice canônico de Tempestividade (Sub-T): pesos globais KRI 1=15% e KRI 2=25%.
 	measure idx_igro_sub_t =
 			VAR numerador =
-			    0.60 * [idx_score_igro_kri2]
-			        + 0.40 * [idx_score_igro_kri1]
+			    0.15 * [idx_score_igro_kri1]
+			        + 0.25 * [idx_score_igro_kri2]
+			VAR resultado =
+			    DIVIDE ( numerador, 0.40, 0 )
 			RETURN
-			    MIN ( MAX ( numerador, 0 ), 1 )
+			    MIN ( MAX ( resultado, 0 ), 1 )
 		formatString: 0.00%
 		displayFolder: 07 · IGRO · Índice
 		lineageTag: d85c5173-22df-4cf3-bd30-dd19df55f04f
 
-	/// Subíndice de Qualidade (IQ): média ponderada TR=40%, % RI=30% e Nota de Recomendação=30%.
+	/// Subíndice canônico de Qualidade (Sub-Q): pesos globais KRI 3=25%, KRI 4=15% e KRI 5=20%.
 	measure idx_igro_sub_q =
 			VAR numerador =
-			    0.40 * [idx_score_igro_kri3]
-			        + 0.30 * [idx_score_igro_kri4]
-			        + 0.30 * [idx_score_igro_kri5]
+			    0.25 * [idx_score_igro_kri3]
+			        + 0.15 * [idx_score_igro_kri4]
+			        + 0.20 * [idx_score_igro_kri5]
+			VAR resultado =
+			    DIVIDE ( numerador, 0.60, 0 )
+			VAR amostra_insuficiente = [flag_amostra_insuficiente] = 1
 			RETURN
-			    MIN ( MAX ( numerador, 0 ), 1 )
+			    IF (
+			        amostra_insuficiente,
+			        BLANK(),
+			        MIN ( MAX ( resultado, 0 ), 1 )
+			    )
 		formatString: 0.00%
 		displayFolder: 07 · IGRO · Índice
-		lineageTag: 2a762a4d-37bc-41f8-ad98-b8e9ce7e0562
+		lineageTag: 2a762a4d-37bc-41f8-ad98-b8e9ce7e0560
 
-	/// Índice de Gestão de Riscos de Ouvidorias. Média geométrica simples: √(IT × IQ). Conforme metodologia IGRO — artigo CGU.
+	/// Índice canônico de Gestão de Riscos de Ouvidorias: média geométrica ponderada Sub-T^0,40 × Sub-Q^0,60.
 	measure idx_igro =
 			VAR sub_t = [idx_igro_sub_t]
 			VAR sub_q = [idx_igro_sub_q]
 			VAR resultado =
 			    IF (
-			        AND ( sub_t > 0, sub_q > 0 ),
-			        SQRT ( sub_t * sub_q ),
-			        0
+			        OR ( ISBLANK ( sub_t ), ISBLANK ( sub_q ) ),
+			        BLANK(),
+			        POWER ( sub_t, 0.40 ) * POWER ( sub_q, 0.60 )
 			    )
 			RETURN
-			    MIN ( MAX ( resultado, 0 ), 1 )
+			    IF ( ISBLANK ( resultado ), BLANK(), MIN ( MAX ( resultado, 0 ), 1 ) )
 		formatString: 0.00%
 		displayFolder: 07 · IGRO · Índice
 		lineageTag: d1caa2e1-e5e7-4b81-be19-b467db94f3ce
@@ -552,50 +571,50 @@ table _medidas
 		displayFolder: 08 · Formatação
 		lineageTag: 2df1fd16-7df0-49ba-b844-70373e07b949
 
-	/// Rótulo de semáforo para o IGRO conforme faixas da metodologia (artigo CGU): Verde ≥90%, Amarelo 70–89%, Laranja 50–69%, Vermelho <50%.
+	/// Rótulo de semáforo canônico para o IGRO: Verde (>=80%), Amarelo (60–79%), Laranja (40–59%), Vermelho (<40%).
 	measure fmt_semaforo_igro =
 			VAR v = [idx_igro]
 			RETURN
 			    IF ( ISBLANK(v), BLANK(),
-			    IF ( v >= 0.90, "Controlado",
-			    IF ( v >= 0.70, "Em atenção",
-			    IF ( v >= 0.50, "Elevado", "Crítico" ))))
+			    IF ( v >= 0.80, "Risco Baixo",
+			    IF ( v >= 0.60, "Risco Moderado",
+			    IF ( v >= 0.40, "Risco Alto", "Risco Crítico" ))))
 		formatString: @
 		displayFolder: 08 · Formatação
 		lineageTag: 6860be8f-63fc-4b93-abee-253522d4a169
 
-	/// Rótulo de semáforo para o Sub-T com faixas da metodologia IGRO (artigo CGU).
+	/// Rótulo de semáforo canônico para o Sub-T: Verde (>=80%), Amarelo (60–79%), Laranja (40–59%), Vermelho (<40%).
 	measure fmt_semaforo_igro_sub_t =
 			VAR v = [idx_igro_sub_t]
 			RETURN
 			    IF ( ISBLANK(v), BLANK(),
-			    IF ( v >= 0.90, "Controlado",
-			    IF ( v >= 0.70, "Em atenção",
-			    IF ( v >= 0.50, "Elevado", "Crítico" ))))
+			    IF ( v >= 0.80, "Risco Baixo",
+			    IF ( v >= 0.60, "Risco Moderado",
+			    IF ( v >= 0.40, "Risco Alto", "Risco Crítico" ))))
 		formatString: @
 		displayFolder: 08 · Formatação
 		lineageTag: 4a69399b-ef67-466e-95a6-4228e1b57f43
 
-	/// Rótulo de semáforo para o Sub-Q com faixas da metodologia IGRO (artigo CGU).
+	/// Rótulo de semáforo canônico para o Sub-Q: Verde (>=80%), Amarelo (60–79%), Laranja (40–59%), Vermelho (<40%).
 	measure fmt_semaforo_igro_sub_q =
 			VAR v = [idx_igro_sub_q]
 			RETURN
 			    IF ( ISBLANK(v), BLANK(),
-			    IF ( v >= 0.90, "Controlado",
-			    IF ( v >= 0.70, "Em atenção",
-			    IF ( v >= 0.50, "Elevado", "Crítico" ))))
+			    IF ( v >= 0.80, "Risco Baixo",
+			    IF ( v >= 0.60, "Risco Moderado",
+			    IF ( v >= 0.40, "Risco Alto", "Risco Crítico" ))))
 		formatString: @
 		displayFolder: 08 · Formatação
 		lineageTag: 56f64d9e-34f3-4319-86fa-6ab695773a02
 
-	/// Cor de fundo hexadecimal para o IGRO conforme faixas da metodologia (artigo CGU). Controlado=#27AE60, Em atenção=#F39C12, Elevado=#E67E22, Crítico=#E74C3C.
+	/// Cor de fundo canônica para o IGRO: Risco Baixo=#EAF3DE, Moderado=#FAEEDA, Alto=#FAECE7, Crítico=#FCEBEB.
 	measure fmt_cor_fundo_igro =
 			VAR v = [idx_igro]
 			RETURN
 			    IF ( ISBLANK(v), BLANK(),
-			    IF ( v >= 0.90, "#27AE60",
-			    IF ( v >= 0.70, "#F39C12",
-			    IF ( v >= 0.50, "#E67E22", "#E74C3C" ))))
+			    IF ( v >= 0.80, "#EAF3DE",
+			    IF ( v >= 0.60, "#FAEEDA",
+			    IF ( v >= 0.40, "#FAECE7", "#FCEBEB" ))))
 		formatString: @
 		displayFolder: 08 · Formatação
 		lineageTag: 1dec7bbd-250b-4eb8-899d-130a7c7ed774
@@ -607,26 +626,26 @@ table _medidas
 		displayFolder: 08 · Formatação
 		lineageTag: 4e725663-f21f-420a-9898-47f4bae8ed62
 
-	/// Cor de fundo hexadecimal para o Sub-T conforme faixas da metodologia IGRO (artigo CGU).
+	/// Cor de fundo canônica para o Sub-T.
 	measure fmt_cor_fundo_igro_sub_t =
 			VAR v = [idx_igro_sub_t]
 			RETURN
 			    IF ( ISBLANK(v), BLANK(),
-			    IF ( v >= 0.90, "#27AE60",
-			    IF ( v >= 0.70, "#F39C12",
-			    IF ( v >= 0.50, "#E67E22", "#E74C3C" ))))
+			    IF ( v >= 0.80, "#EAF3DE",
+			    IF ( v >= 0.60, "#FAEEDA",
+			    IF ( v >= 0.40, "#FAECE7", "#FCEBEB" ))))
 		formatString: @
 		displayFolder: 08 · Formatação
 		lineageTag: 6a203f84-d1a7-40ac-9f69-2e1586660121
 
-	/// Cor de fundo hexadecimal para o Sub-Q conforme faixas da metodologia IGRO (artigo CGU).
+	/// Cor de fundo canônica para o Sub-Q.
 	measure fmt_cor_fundo_igro_sub_q =
 			VAR v = [idx_igro_sub_q]
 			RETURN
 			    IF ( ISBLANK(v), BLANK(),
-			    IF ( v >= 0.90, "#27AE60",
-			    IF ( v >= 0.70, "#F39C12",
-			    IF ( v >= 0.50, "#E67E22", "#E74C3C" ))))
+			    IF ( v >= 0.80, "#EAF3DE",
+			    IF ( v >= 0.60, "#FAEEDA",
+			    IF ( v >= 0.40, "#FAECE7", "#FCEBEB" ))))
 		formatString: @
 		displayFolder: 08 · Formatação
 		lineageTag: ca8b383d-be2f-4f1f-9603-35f68cd5ff5e
@@ -1709,19 +1728,19 @@ table _medidas
 			        "_flag", COALESCE(CALCULATE([flag_amostra_insuficiente]), 0)
 			    )
 			VAR _total = COUNTROWS(_tbl)
-			VAR _controlado = COUNTROWS(FILTER(_tbl, [_igro] >= 0.9))
-			VAR _atencao = COUNTROWS(FILTER(_tbl, [_igro] >= 0.7 && [_igro] < 0.9))
-			VAR _elevado = COUNTROWS(FILTER(_tbl, [_igro] >= 0.5 && [_igro] < 0.7))
-			VAR _critico = COUNTROWS(FILTER(_tbl, [_igro] < 0.5))
+			VAR _controlado = COUNTROWS(FILTER(_tbl, [_igro] >= 0.8))
+			VAR _atencao = COUNTROWS(FILTER(_tbl, [_igro] >= 0.6 && [_igro] < 0.8))
+			VAR _elevado = COUNTROWS(FILTER(_tbl, [_igro] >= 0.4 && [_igro] < 0.6))
+			VAR _critico = COUNTROWS(FILTER(_tbl, [_igro] < 0.4))
 			VAR _media = AVERAGEX(_tbl, [_igro])
 			VAR _CSS =
 			"<style>*{box-sizing:border-box;margin:0;padding:0}body{background:#061f20;color:#e2e8f0;font-family:Segoe UI,Arial,sans-serif;padding:14px}.w{max-width:1200px;margin:0 auto}h1{font-size:18px;font-weight:800;color:#f2c94c;margin-bottom:6px}.sub{font-size:11px;color:#8aa0aa;margin-bottom:14px}.note{font-size:10px;color:#78909a;margin-bottom:12px}.sb{display:grid;grid-template-columns:repeat(6,minmax(110px,1fr));gap:8px;margin-bottom:16px}.sc{background:#0d3436;border:1px solid #1f5559;border-radius:8px;padding:9px 12px}.v{font-size:18px;font-weight:800}.l{font-size:10px;color:#91a7b0;text-transform:uppercase;margin-top:2px}.cb{margin-bottom:18px}.ch{display:flex;align-items:center;gap:12px;background:#0d3436;border-left:4px solid #f2c94c;border-radius:8px;padding:9px 12px;margin-bottom:7px}.ch h2{font-size:13px;color:#f2c94c}.ch .m{font-size:10px;color:#91a7b0}.cs{margin-left:auto;display:flex;gap:14px;font-size:10px;color:#91a7b0}.cs b{color:#e2e8f0}.tw{overflow-x:auto;border:1px solid #1f5559;border-radius:8px}.tbl{width:100%;border-collapse:collapse;font-size:11px;color:#e2e8f0}.tbl th{background:#0a292b;color:#b8cad1;text-align:left;text-transform:uppercase;font-size:9px;padding:8px 9px;border-bottom:1px solid #1f5559;white-space:nowrap}.tbl td{color:#e2e8f0;padding:7px 9px;border-bottom:1px solid #0c2b2d;white-space:nowrap}.tbl td b{color:inherit}.tbl tr:last-child td{border-bottom:none}.tbl tr:hover td{background:#0d3436;color:#ffffff}.bar{height:5px;background:#11383b;border-radius:99px;overflow:hidden;margin-top:3px}.fill{height:100%;border-radius:99px}.flag{display:inline-block;width:7px;height:7px;border-radius:50%;background:#f97316;margin-left:5px}.empty{padding:28px;text-align:center;color:#78909a}</style>"
 			VAR _summary =
 			    "<div class='sb'>"
 			        & "<div class='sc'><div class='v' style='color:#f2c94c'>" & FORMAT(_total, "#,0") & "</div><div class='l'>Orgaos</div></div>"
-			        & "<div class='sc'><div class='v' style='color:#10b981'>" & FORMAT(_controlado, "#,0") & "</div><div class='l'>Controlado</div></div>"
+			        & "<div class='sc'><div class='v' style='color:#10b981'>" & FORMAT(_controlado, "#,0") & "</div><div class='l'>Risco Baixo</div></div>"
 			        & "<div class='sc'><div class='v' style='color:#f2c94c'>" & FORMAT(_atencao, "#,0") & "</div><div class='l'>Em Atencao</div></div>"
-			        & "<div class='sc'><div class='v' style='color:#f97316'>" & FORMAT(_elevado, "#,0") & "</div><div class='l'>Elevado</div></div>"
+			        & "<div class='sc'><div class='v' style='color:#f97316'>" & FORMAT(_elevado, "#,0") & "</div><div class='l'>Risco Alto</div></div>"
 			        & "<div class='sc'><div class='v' style='color:#ef4444'>" & FORMAT(_critico, "#,0") & "</div><div class='l'>Critico</div></div>"
 			        & "<div class='sc'><div class='v' style='color:#f2c94c'>" & FORMAT(_media, "0.0%") & "</div><div class='l'>IGRO medio</div></div>"
 			    & "</div>"
@@ -1779,7 +1798,7 @@ table _medidas
 		displayFolder: 12 · JSON · Dashboard
 		lineageTag: fc109f05-9661-4963-8f69-ef78a29d5774
 
-	/// Flag de amostra insuficiente para KRIs de pesquisa (v3 FPC corrigido). Denominador exclui manifestacoes anonimas, que nao podem gerar pesquisa de satisfacao. Flag=1 quando n_obs < 30 E taxa < 5% das finalizadas identificadas.
+	/// Flag canônica de amostra insuficiente: n_obs < 30 E taxa < 5% das finalizadas identificadas. Denominador exclui manifestações anônimas.
 	measure flag_amostra_insuficiente =
 			VAR n_obs  = [base_qtd_pesquisa]
 			VAR N_id   = [base_manifestacoes_identificadas]
@@ -1831,7 +1850,7 @@ table _medidas
 			VAR _html2 = SUBSTITUTE ( _html1, _oldDist, _newDist )
 			VAR _html3 = SUBSTITUTE ( _html2, _oldComp, _newComp )
 			VAR _renderOld = "function render(d,label){el('nps-v').textContent=parseFloat(d.n).toFixed(0);"
-			VAR _renderNew = "function render(d,label){const _n=parseFloat(d.n);const _fmtNps=_n<0?'-'+Math.abs(Math.round(_n)):String(Math.round(_n));const _igp=parseFloat(d.ig)*100;const _igLbl=_igp>=90?'Controlado':_igp>=70?'Em atencao':_igp>=50?'Elevado':'Critico';const _igCls=_igp>=90?'ok':_igp>=70?'att':_igp>=50?'elev':'crit';if(el('ig-badge')){el('ig-badge').textContent=_igLbl;el('ig-badge').className='ig-badge '+_igCls;}const _norm=Math.min(1,Math.max(0,(_n+100)/200));const _ang=Math.PI-(Math.PI*_norm);const _nx=160+84*Math.cos(_ang);const _ny=160-84*Math.sin(_ang);if(el('nps-needle')){el('nps-needle').setAttribute('x2',_nx.toFixed(1));el('nps-needle').setAttribute('y2',_ny.toFixed(1));}if(el('nps-band')){el('nps-band').textContent=_n>=50?'Alto':_n>=0?'Medio':'Baixo';}if(el('dist-nps')){el('dist-nps').textContent=_fmtNps;}if(el('dist-nps-2')){el('dist-nps-2').textContent=_fmtNps;}if(el('dist-q')){el('dist-q').textContent=fn0(d.q);}if(el('dist-q2')){el('dist-q2').textContent=fn0(d.q);}const clamp=(x)=>Math.max(0,Math.min(1,x));const _m=parseFloat(d.m),_t=parseFloat(d.t),_r=parseFloat(d.r),_i=parseFloat(d.i),_nt=parseFloat(d.nt);const _rk1=clamp(_m<=0.01?1:_m>=0.02?0:(0.02-_m)/0.01);const _rk2=clamp(_t<=5?1:_t>=10?0:(10-_t)/5);const _rk3=clamp(_r>=0.70?1:_r<=0.50?0:(_r-0.50)/0.20);const _rk4=clamp(_i<=0.025?1:_i>=0.035?0:(0.035-_i)/0.01);const _rk5=clamp(_nt>=8?1:_nt<=6?0:(_nt-6)/2);const _angles=[-90,-18,54,126,198],_vals=[_rk1,_rk2,_rk3,_rk4,_rk5],_pts=[];for(let j=0;j<5;j++){const a=_angles[j]*Math.PI/180,x=120+76*_vals[j]*Math.cos(a),y=105+76*_vals[j]*Math.sin(a);_pts.push(x.toFixed(1)+','+y.toFixed(1));const c=el('ra-'+(j+1));if(c){c.setAttribute('cx',x.toFixed(1));c.setAttribute('cy',y.toFixed(1));}}if(el('ra-poly')){el('ra-poly').setAttribute('points',_pts.join(' '));}if(el('rk1')){el('rk1').textContent=Math.round(_rk1*100)+'%';el('rv1').textContent='Atual: '+(_m*100).toFixed(1)+'%';el('rk2').textContent=Math.round(_rk2*100)+'%';el('rv2').textContent='Atual: '+_t.toFixed(2)+' dias';el('rk3').textContent=Math.round(_rk3*100)+'%';el('rv3').textContent='Atual: '+(_r*100).toFixed(1)+'%';el('rk4').textContent=Math.round(_rk4*100)+'%';el('rv4').textContent='Atual: '+(_i*100).toFixed(1)+'%';el('rk5').textContent=Math.round(_rk5*100)+'%';el('rv5').textContent='Atual: '+_nt.toFixed(2);}el('nps-v').textContent=_fmtNps;"
+			VAR _renderNew = "function render(d,label){const _n=parseFloat(d.n);const _fmtNps=_n<0?'-'+Math.abs(Math.round(_n)):String(Math.round(_n));const _igp=parseFloat(d.ig)*100;const _igLbl=_igp>=80?'Risco Baixo':_igp>=60?'Risco Moderado':_igp>=40?'Risco Alto':'Risco Critico';const _igCls=_igp>=80?'ok':_igp>=60?'att':_igp>=40?'elev':'crit';if(el('ig-badge')){el('ig-badge').textContent=_igLbl;el('ig-badge').className='ig-badge '+_igCls;}const _norm=Math.min(1,Math.max(0,(_n+100)/200));const _ang=Math.PI-(Math.PI*_norm);const _nx=160+84*Math.cos(_ang);const _ny=160-84*Math.sin(_ang);if(el('nps-needle')){el('nps-needle').setAttribute('x2',_nx.toFixed(1));el('nps-needle').setAttribute('y2',_ny.toFixed(1));}if(el('nps-band')){el('nps-band').textContent=_n>=50?'Alto':_n>=0?'Medio':'Baixo';}if(el('dist-nps')){el('dist-nps').textContent=_fmtNps;}if(el('dist-nps-2')){el('dist-nps-2').textContent=_fmtNps;}if(el('dist-q')){el('dist-q').textContent=fn0(d.q);}if(el('dist-q2')){el('dist-q2').textContent=fn0(d.q);}const clamp=(x)=>Math.max(0,Math.min(1,x));const _m=parseFloat(d.m),_t=parseFloat(d.t),_r=parseFloat(d.r),_i=parseFloat(d.i),_nt=parseFloat(d.nt);const _rk1=clamp(_m<=0.02?1:_m>=0.15?0:(0.15-_m)/0.13);const _rk2=clamp(_t<=10?1:_t>=30?0:(30-_t)/20);const _rk3=clamp(_r>=0.70?1:_r<=0.30?0:(_r-0.30)/0.40);const _rk4=clamp(_i<=0.025?1:_i>=0.20?0:(0.20-_i)/0.175);const _rk5=clamp(_nt>=7.5?1:_nt<=4?0:(_nt-4)/3.5);const _angles=[-90,-18,54,126,198],_vals=[_rk1,_rk2,_rk3,_rk4,_rk5],_pts=[];for(let j=0;j<5;j++){const a=_angles[j]*Math.PI/180,x=120+76*_vals[j]*Math.cos(a),y=105+76*_vals[j]*Math.sin(a);_pts.push(x.toFixed(1)+','+y.toFixed(1));const c=el('ra-'+(j+1));if(c){c.setAttribute('cx',x.toFixed(1));c.setAttribute('cy',y.toFixed(1));}}if(el('ra-poly')){el('ra-poly').setAttribute('points',_pts.join(' '));}if(el('rk1')){el('rk1').textContent=Math.round(_rk1*100)+'%';el('rv1').textContent='Atual: '+(_m*100).toFixed(1)+'%';el('rk2').textContent=Math.round(_rk2*100)+'%';el('rv2').textContent='Atual: '+_t.toFixed(2)+' dias';el('rk3').textContent=Math.round(_rk3*100)+'%';el('rv3').textContent='Atual: '+(_r*100).toFixed(1)+'%';el('rk4').textContent=Math.round(_rk4*100)+'%';el('rv4').textContent='Atual: '+(_i*100).toFixed(1)+'%';el('rk5').textContent=Math.round(_rk5*100)+'%';el('rv5').textContent='Atual: '+_nt.toFixed(2);}el('nps-v').textContent=_fmtNps;"
 			VAR _html4 = SUBSTITUTE ( _html3, _renderOld, _renderNew )
 			RETURN
 			    _html4
@@ -1988,44 +2007,67 @@ table _medidas
 		isHidden
 		lineageTag: 5c331581-da37-4c12-bed0-f8b2fba348f5
 
-	/// Infografico HTML do IGRO com composicao central do indice, subindices e cinco cards laterais para os KRIs.
+	/// Infografico HTML do IGRO com cabecalho institucional, resumo hierarquico e grade acessivel de KRIs.
 	measure 'HTML Infografico IGRO' =
-			VAR _igro = COALESCE([idx_igro], 0)
-			VAR _subT = COALESCE([idx_igro_sub_t], 0)
-			VAR _subQ = COALESCE([idx_igro_sub_q], 0)
-			VAR _kri1 = COALESCE([ind_pct_mais_30_dias], 0)
-			VAR _kri2 = COALESCE([ind_media_tempo_resposta], 0)
-			VAR _kri3 = COALESCE([ind_pct_resolutividade], 0)
-			VAR _kri4 = COALESCE([ind_pct_respostas_insatisfatorias], 0)
-			VAR _kri5 = COALESCE([ind_media_nota_recomendacao], 0)
-			VAR _s1 = COALESCE([idx_score_igro_kri1], 0)
-			VAR _s2 = COALESCE([idx_score_igro_kri2], 0)
-			VAR _s3 = COALESCE([idx_score_igro_kri3], 0)
-			VAR _s4 = COALESCE([idx_score_igro_kri4], 0)
-			VAR _s5 = COALESCE([idx_score_igro_kri5], 0)
-			VAR _igroColor = COALESCE([fmt_cor_fundo_igro], "#27AE60")
-			VAR _p1 = SUBSTITUTE(FORMAT(_s1 * 100, "0.0"), ",", ".")
-			VAR _p2 = SUBSTITUTE(FORMAT(_s2 * 100, "0.0"), ",", ".")
-			VAR _p3 = SUBSTITUTE(FORMAT(_s3 * 100, "0.0"), ",", ".")
-			VAR _p4 = SUBSTITUTE(FORMAT(_s4 * 100, "0.0"), ",", ".")
-			VAR _p5 = SUBSTITUTE(FORMAT(_s5 * 100, "0.0"), ",", ".")
-			VAR _ring = SUBSTITUTE(FORMAT(_igro * 628, "0.0"), ",", ".")
-			VAR _chip1 = IF(_s1 >= 0.85, "#1f9d6b", IF(_s1 >= 0.65, "#d97706", "#c2410c"))
-			VAR _chip2 = IF(_s2 >= 0.85, "#1f9d6b", IF(_s2 >= 0.65, "#d97706", "#c2410c"))
-			VAR _chip3 = IF(_s3 >= 0.85, "#1f9d6b", IF(_s3 >= 0.65, "#d97706", "#c2410c"))
-			VAR _chip4 = IF(_s4 >= 0.85, "#1f9d6b", IF(_s4 >= 0.65, "#d97706", "#c2410c"))
-			VAR _chip5 = IF(_s5 >= 0.85, "#1f9d6b", IF(_s5 >= 0.65, "#d97706", "#c2410c"))
+			VAR _igro = [idx_igro]
+			VAR _subT = [idx_igro_sub_t]
+			VAR _subQ = [idx_igro_sub_q]
+			VAR _kri1 = [ind_pct_mais_30_dias]
+			VAR _kri2 = [ind_media_tempo_resposta]
+			VAR _kri3 = [ind_pct_resolutividade]
+			VAR _kri4 = [ind_pct_respostas_insatisfatorias]
+			VAR _kri5 = [ind_media_nota_recomendacao]
+			VAR _s1 = [idx_score_igro_kri1]
+			VAR _s2 = [idx_score_igro_kri2]
+			VAR _s3 = [idx_score_igro_kri3]
+			VAR _s4 = [idx_score_igro_kri4]
+			VAR _s5 = [idx_score_igro_kri5]
+			VAR _igroVisual = IF(ISBLANK(_igro), 0, MIN(1, MAX(0, _igro)))
+			VAR _igroColor = IF(ISBLANK(_igro), "#64748b", COALESCE([fmt_cor_fundo_igro], "#00766f"))
+			VAR _status = IF(ISBLANK(_igro), "Sem dados", COALESCE([fmt_semaforo_igro], "Sem faixa"))
+			VAR _igroText = IF(ISBLANK(_igro), "—", FORMAT(_igro, "0.0%"))
+			VAR _subTText = IF(ISBLANK(_subT), "—", FORMAT(_subT, "0.0%"))
+			VAR _subQText = IF(ISBLANK(_subQ), "—", FORMAT(_subQ, "0.0%"))
+			VAR _kri1Text = IF(ISBLANK(_kri1), "—", FORMAT(_kri1, "0.0%"))
+			VAR _kri2Text = IF(ISBLANK(_kri2), "—", FORMAT(_kri2, "0.0") & " dias")
+			VAR _kri3Text = IF(ISBLANK(_kri3), "—", FORMAT(_kri3, "0.0%"))
+			VAR _kri4Text = IF(ISBLANK(_kri4), "—", FORMAT(_kri4, "0.0%"))
+			VAR _kri5Text = IF(ISBLANK(_kri5), "—", FORMAT(_kri5, "0.0"))
+			VAR _s1Text = IF(ISBLANK(_s1), "—", FORMAT(_s1, "0%"))
+			VAR _s2Text = IF(ISBLANK(_s2), "—", FORMAT(_s2, "0%"))
+			VAR _s3Text = IF(ISBLANK(_s3), "—", FORMAT(_s3, "0%"))
+			VAR _s4Text = IF(ISBLANK(_s4), "—", FORMAT(_s4, "0%"))
+			VAR _s5Text = IF(ISBLANK(_s5), "—", FORMAT(_s5, "0%"))
+			VAR _p1 = IF(ISBLANK(_s1), 0, MIN(100, MAX(0, _s1 * 100)))
+			VAR _p2 = IF(ISBLANK(_s2), 0, MIN(100, MAX(0, _s2 * 100)))
+			VAR _p3 = IF(ISBLANK(_s3), 0, MIN(100, MAX(0, _s3 * 100)))
+			VAR _p4 = IF(ISBLANK(_s4), 0, MIN(100, MAX(0, _s4 * 100)))
+			VAR _p5 = IF(ISBLANK(_s5), 0, MIN(100, MAX(0, _s5 * 100)))
+			VAR _ring = SUBSTITUTE(FORMAT(_igroVisual * 301.6, "0.0"), ",", ".")
+			VAR _chip1 = IF(ISBLANK(_s1), "#94a3b8", IF(_s1 >= 0.80, "#1fa22e", IF(_s1 >= 0.60, "#fbb03b", IF(_s1 >= 0.40, "#f7931e", "#d56f24"))))
+			VAR _chip2 = IF(ISBLANK(_s2), "#94a3b8", IF(_s2 >= 0.80, "#1fa22e", IF(_s2 >= 0.60, "#fbb03b", IF(_s2 >= 0.40, "#f7931e", "#d56f24"))))
+			VAR _chip3 = IF(ISBLANK(_s3), "#94a3b8", IF(_s3 >= 0.80, "#1fa22e", IF(_s3 >= 0.60, "#fbb03b", IF(_s3 >= 0.40, "#f7931e", "#d56f24"))))
+			VAR _chip4 = IF(ISBLANK(_s4), "#94a3b8", IF(_s4 >= 0.80, "#1fa22e", IF(_s4 >= 0.60, "#fbb03b", IF(_s4 >= 0.40, "#f7931e", "#d56f24"))))
+			VAR _chip5 = IF(ISBLANK(_s5), "#94a3b8", IF(_s5 >= 0.80, "#1fa22e", IF(_s5 >= 0.60, "#fbb03b", IF(_s5 >= 0.40, "#f7931e", "#d56f24"))))
+			VAR _state1 = IF(ISBLANK(_s1), "Sem dados", IF(_s1 >= 0.80, "Risco baixo", IF(_s1 >= 0.60, "Moderado", IF(_s1 >= 0.40, "Alto", "Crítico"))))
+			VAR _state2 = IF(ISBLANK(_s2), "Sem dados", IF(_s2 >= 0.80, "Risco baixo", IF(_s2 >= 0.60, "Moderado", IF(_s2 >= 0.40, "Alto", "Crítico"))))
+			VAR _state3 = IF(ISBLANK(_s3), "Sem dados", IF(_s3 >= 0.80, "Risco baixo", IF(_s3 >= 0.60, "Moderado", IF(_s3 >= 0.40, "Alto", "Crítico"))))
+			VAR _state4 = IF(ISBLANK(_s4), "Sem dados", IF(_s4 >= 0.80, "Risco baixo", IF(_s4 >= 0.60, "Moderado", IF(_s4 >= 0.40, "Alto", "Crítico"))))
+			VAR _state5 = IF(ISBLANK(_s5), "Sem dados", IF(_s5 >= 0.80, "Risco baixo", IF(_s5 >= 0.60, "Moderado", IF(_s5 >= 0.40, "Alto", "Crítico"))))
 			VAR _html =
 			    "<!DOCTYPE html><html lang='pt-BR'><head><meta charset='UTF-8'><style>" &
-			    "*{box-sizing:border-box}body{margin:0;padding:0;background:#f4f1ed;font-family:Segoe UI,Arial,sans-serif;color:#122026}.wrap{width:1100px;height:640px;margin:0 auto;position:relative;background:radial-gradient(circle at 18% 28%,rgba(255,255,255,.95),rgba(255,255,255,.6) 26%,transparent 52%),linear-gradient(135deg,#faf7f2 0%,#f1ece6 100%);overflow:hidden}.title{position:absolute;top:24px;left:0;right:0;text-align:center;font-size:14px;letter-spacing:3px;text-transform:uppercase;color:#5b646a}.title b{font-size:36px;letter-spacing:1px;color:#101517}.title span{font-size:11px;letter-spacing:5px;color:#59727b}.ring-box{position:absolute;left:34px;top:126px;width:320px;height:320px}.ring-label{position:absolute;left:92px;top:92px;width:138px;height:138px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#fff;border:8px solid rgba(18,32,38,.05);box-shadow:0 12px 30px rgba(0,0,0,.10)}.ring-label .k{font-size:10px;letter-spacing:3.1px;text-transform:uppercase;color:#6a767d;line-height:1.45;margin-bottom:8px;text-align:center}.ring-label .m{font-size:18px;font-weight:900;letter-spacing:2px;color:#132026;line-height:1;text-transform:uppercase}.ring-label .v{font-size:40px;font-weight:900;color:#132026;line-height:.95;margin-top:10px}.ring-label .s{margin-top:10px;padding:6px 14px;border-radius:999px;color:#fff;font-size:11px;font-weight:700;letter-spacing:.5px}.center-copy{position:absolute;left:38px;top:500px;width:270px;text-align:left}.center-copy .eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#637179;margin-bottom:8px}.center-copy .sub{font-size:13px;color:#4e5b62;line-height:1.35}.center-copy .sub strong{color:#132026}.map{position:absolute;left:276px;top:104px;width:760px;height:440px}.subs{position:absolute;left:388px;top:92px;width:274px;display:flex;flex-direction:column;gap:88px}.subcard{position:relative;height:88px;border-radius:24px;padding:14px 86px 14px 84px;color:#fff;display:flex;flex-direction:column;justify-content:center;box-shadow:0 12px 24px rgba(0,0,0,.12)}.subcard .node{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:50px;height:50px;border-radius:50%;background:#263238;border:5px solid #f4f1ed;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;letter-spacing:.6px}.subcard .t{font-size:11px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;line-height:1}.subcard .v{font-size:36px;font-weight:900;line-height:1;margin-top:8px}.subcard .l{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:11px;font-weight:700;text-align:right;max-width:64px;line-height:1.15}.subTempo{background:linear-gradient(135deg,#f4ae1a,#ef9808)}.subQual{background:linear-gradient(135deg,#ea8a18,#dc7606)}.groups{position:absolute;left:706px;top:110px;width:330px}.group{position:absolute;left:0;width:330px}.group.g1{top:0}.group.g2{top:228px}.glabel{margin:0 0 12px 12px;font-size:10px;letter-spacing:2.6px;text-transform:uppercase;color:#617078}.cards{display:flex;flex-direction:column;gap:14px}.card{position:relative;height:64px;border-radius:32px;padding:10px 18px 10px 82px;display:flex;align-items:center;justify-content:space-between;color:#fff;box-shadow:0 10px 22px rgba(0,0,0,.13)}.card .node{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;background:#263238;border:5px solid #f4f1ed;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;letter-spacing:.6px}.txt{max-width:138px}.txt .t{font-size:10px;font-weight:700;line-height:1.16}.txt .v{font-size:24px;font-weight:900;line-height:.95;margin-top:4px}.meta{text-align:right;min-width:108px}.chip{display:inline-block;padding:6px 10px;border-radius:999px;font-size:10px;font-weight:800;letter-spacing:.35px;color:#fff}.bar{margin-top:8px;width:108px;height:8px;background:rgba(255,255,255,.18);border-radius:999px;overflow:hidden}.fill{height:100%;background:#fff;border-radius:999px;box-shadow:0 0 10px rgba(255,255,255,.25)}.k1{background:linear-gradient(135deg,#6fb6bb,#5aa0a7)}.k2{background:linear-gradient(135deg,#0d7c91,#09657a)}.k3{background:linear-gradient(135deg,#8bc4c5,#75b0b4)}.k4{background:linear-gradient(135deg,#0b8aa4,#086d84)}.k5{background:linear-gradient(135deg,#83bcc0,#6ca5ab)}.legend{position:absolute;left:454px;bottom:14px;font-size:11px;color:#657179;letter-spacing:.3px;max-width:520px;text-align:left}</style></head><body><div class='wrap'>" &
-			    "<div class='title'><b>IGRO</b> <span>VIS&Atilde;O EXECUTIVA</span></div>" &
-			    "<div class='ring-box'><svg viewBox='0 0 320 320' width='320' height='320'><circle cx='160' cy='160' r='96' fill='none' stroke='rgba(19,32,38,.09)' stroke-width='20'/><circle cx='160' cy='160' r='96' fill='none' stroke='" & _igroColor & "' stroke-width='20' stroke-linecap='round' stroke-dasharray='" & _ring & " 999' transform='rotate(-90 160 160)'/><path d='M 258 88 C 294 112 308 148 308 186 C 308 224 294 260 258 292' fill='none' stroke='#1a1f22' stroke-width='3'/><circle cx='260' cy='88' r='10' fill='#111'/><circle cx='256' cy='292' r='10' fill='#111'/></svg><div class='ring-label'><div class='k'>&Iacute;NDICE<br/>COMPOSTO</div><div class='m'>IGRO</div><div class='v'>" & FORMAT(_igro, "0.0%") & "</div><div class='s' style='background:" & _igroColor & "'>" & COALESCE([fmt_semaforo_igro], "Sem faixa") & "</div></div></div>" &
-			    "<div class='center-copy'><div class='eyebrow'>Leitura do painel</div><div class='sub'><strong>IGRO</strong> sintetiza o risco da ouvidoria. O painel separa a leitura em tr&ecirc;s n&iacute;veis: &iacute;ndice composto, sub&iacute;ndices e KRIs.</div></div>" &
-			    "<div class='map'><svg viewBox='0 0 780 456' width='780' height='456'><path d='M 60 128 C 120 136 156 154 182 178 C 198 194 206 212 206 224' fill='none' stroke='#1b1f22' stroke-width='3'/><path d='M 60 350 C 120 326 156 304 182 280 C 198 264 206 246 206 234' fill='none' stroke='#1b1f22' stroke-width='3'/><line x1='206' y1='180' x2='278' y2='180' stroke='#1b1f22' stroke-width='3'/><line x1='206' y1='328' x2='278' y2='328' stroke='#1b1f22' stroke-width='3'/><line x1='278' y1='180' x2='388' y2='180' stroke='#1b1f22' stroke-width='2.5'/><line x1='278' y1='328' x2='388' y2='328' stroke='#1b1f22' stroke-width='2.5'/><line x1='388' y1='180' x2='454' y2='180' stroke='#1b1f22' stroke-width='2.5'/><line x1='388' y1='328' x2='454' y2='328' stroke='#1b1f22' stroke-width='2.5'/><line x1='454' y1='144' x2='520' y2='144' stroke='#1b1f22' stroke-width='2.5'/><line x1='454' y1='222' x2='520' y2='222' stroke='#1b1f22' stroke-width='2.5'/><line x1='454' y1='376' x2='520' y2='376' stroke='#1b1f22' stroke-width='2.5'/><line x1='454' y1='454' x2='520' y2='454' stroke='#1b1f22' stroke-width='2.5'/><line x1='454' y1='532' x2='520' y2='532' stroke='#1b1f22' stroke-width='2.5'/><circle cx='278' cy='180' r='11' fill='#f0aa27' stroke='#111' stroke-width='4'/><circle cx='278' cy='328' r='11' fill='#e9861d' stroke='#111' stroke-width='4'/><circle cx='388' cy='180' r='10' fill='#f0aa27' stroke='#111' stroke-width='4'/><circle cx='388' cy='328' r='10' fill='#e9861d' stroke='#111' stroke-width='4'/><circle cx='454' cy='180' r='10' fill='#f0aa27' stroke='#111' stroke-width='4'/><circle cx='454' cy='328' r='10' fill='#e9861d' stroke='#111' stroke-width='4'/><circle cx='520' cy='144' r='9' fill='#89d4d5' stroke='#111' stroke-width='4'/><circle cx='520' cy='222' r='9' fill='#0690aa' stroke='#111' stroke-width='4'/><circle cx='520' cy='376' r='9' fill='#89d4d5' stroke='#111' stroke-width='4'/><circle cx='520' cy='454' r='9' fill='#0690aa' stroke='#111' stroke-width='4'/><circle cx='520' cy='532' r='9' fill='#89d4d5' stroke='#111' stroke-width='4'/></svg></div>" &
-			    "<div class='subs'><div class='subcard subTempo'><div class='node'>SUB T</div><div class='t'>Sub-Tempo</div><div class='v'>" & FORMAT(_subT, "0.0%") & "</div><div class='l'>" & COALESCE([fmt_semaforo_igro_sub_t], "Sem faixa") & "</div></div><div class='subcard subQual'><div class='node'>SUB Q</div><div class='t'>Sub-Qualidade</div><div class='v'>" & FORMAT(_subQ, "0.0%") & "</div><div class='l'>" & COALESCE([fmt_semaforo_igro_sub_q], "Sem faixa") & "</div></div></div>" &
-			    "<div class='groups'><div class='group g1'><div class='glabel'>KRIs de tempo</div><div class='cards'><div class='card k1'><div class='node'>KRI 1</div><div class='txt'><div class='t'>% acima de 30 dias</div><div class='v'>" & FORMAT(_kri1, "0.0%") & "</div></div><div class='meta'><div class='chip' style='background:" & _chip1 & "'>Score " & FORMAT(_s1, "0%") & "</div><div class='bar'><div class='fill' style='width:" & _p1 & "%'></div></div></div></div><div class='card k2'><div class='node'>KRI 2</div><div class='txt'><div class='t'>Tempo m&eacute;dio de resposta</div><div class='v'>" & FORMAT(_kri2, "0.0") & " dias</div></div><div class='meta'><div class='chip' style='background:" & _chip2 & "'>Score " & FORMAT(_s2, "0%") & "</div><div class='bar'><div class='fill' style='width:" & _p2 & "%'></div></div></div></div></div></div><div class='group g2'><div class='glabel'>KRIs de qualidade</div><div class='cards'><div class='card k3'><div class='node'>KRI 3</div><div class='txt'><div class='t'>Resolutividade</div><div class='v'>" & FORMAT(_kri3, "0.0%") & "</div></div><div class='meta'><div class='chip' style='background:" & _chip3 & "'>Score " & FORMAT(_s3, "0%") & "</div><div class='bar'><div class='fill' style='width:" & _p3 & "%'></div></div></div></div><div class='card k4'><div class='node'>KRI 4</div><div class='txt'><div class='t'>Respostas insatisfat&oacute;rias</div><div class='v'>" & FORMAT(_kri4, "0.0%") & "</div></div><div class='meta'><div class='chip' style='background:" & _chip4 & "'>Score " & FORMAT(_s4, "0%") & "</div><div class='bar'><div class='fill' style='width:" & _p4 & "%'></div></div></div></div><div class='card k5'><div class='node'>KRI 5</div><div class='txt'><div class='t'>Nota de recomenda&ccedil;&atilde;o</div><div class='v'>" & FORMAT(_kri5, "0.0") & "</div></div><div class='meta'><div class='chip' style='background:" & _chip5 & "'>Score " & FORMAT(_s5, "0%") & "</div><div class='bar'><div class='fill' style='width:" & _p5 & "%'></div></div></div></div></div></div></div>" &
-			    "<div class='legend'>Chips verdes indicam melhor ader&ecirc;ncia. Chips &acirc;mbar e laranja mostram onde o modelo est&aacute; pedindo aten&ccedil;&atilde;o.</div>" &
-			    "</div></body></html>"
+			    "*{box-sizing:border-box}body{margin:0;background:#054222;font-family:'Segoe UI',Arial,sans-serif;color:#102028}.wrap{width:1100px;min-height:700px;margin:0 auto;background:#f5f5f5;overflow:hidden}.header{height:92px;padding:16px 30px 14px;background:#054222;border-bottom:7px solid #ffdd00;display:flex;align-items:center;justify-content:space-between}.brand{color:#fff}.brand b{display:block;font-size:34px;line-height:1;letter-spacing:1px}.brand small{display:block;margin-top:7px;font-size:11px;letter-spacing:2.8px;text-transform:uppercase;color:#d7ece0}.context{text-align:right;color:#fff;font-size:11px;line-height:1.45;max-width:360px}.context strong{display:block;font-size:13px;color:#ffdd00}.content{padding:20px 28px 22px}.summary{display:grid;grid-template-columns:1.12fr .94fr .94fr;gap:14px;height:190px}.panel{background:#fff;border:1px solid #dfe6e3;border-radius:18px;box-shadow:0 8px 20px rgba(16,42,33,.08)}.main-panel{padding:18px 20px;display:flex;align-items:center;gap:18px}.ring{width:132px;height:132px;flex:0 0 132px}.main-copy{min-width:0}.eyebrow{font-size:10px;letter-spacing:2.4px;text-transform:uppercase;color:#60736b}.main-copy h1{margin:6px 0 3px;font-size:20px;line-height:1.1;color:#054222}.main-value{font-size:42px;line-height:1;font-weight:900;color:#004f4b}.status{display:inline-flex;align-items:center;gap:7px;margin-top:10px;padding:7px 11px;border-radius:999px;background:#f0f4f2;color:#27433a;font-size:10px;font-weight:800;letter-spacing:.2px}.dot{width:8px;height:8px;border-radius:50%;display:inline-block}.main-note{margin-top:12px;font-size:10px;line-height:1.35;color:#60706a;max-width:170px}.sub-stack{display:grid;grid-template-rows:1fr 1fr;gap:14px}.subcard{padding:16px 18px;border-radius:18px;color:#fff;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 8px 18px rgba(16,42,33,.1)}.subcard .label{font-size:10px;font-weight:900;letter-spacing:2px;text-transform:uppercase}.subcard .value{font-size:34px;line-height:1;font-weight:900}.subcard .foot{display:flex;justify-content:space-between;gap:10px;font-size:10px;font-weight:700}.subTempo{background:linear-gradient(135deg,#00766f,#005b56)}.subQual{background:linear-gradient(135deg,#f7931e,#d56f24)}.kri-section{margin-top:18px}.section-head{display:flex;align-items:flex-end;justify-content:space-between;margin:0 2px 10px}.section-kicker{font-size:10px;letter-spacing:2.3px;text-transform:uppercase;color:#60736b}.section-head h2{margin:3px 0 0;font-size:18px;color:#054222}.section-note{font-size:10px;color:#6b7b75;text-align:right}.kri-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}.kri{grid-column:span 2;min-height:154px;padding:14px;border-radius:16px;color:#fff;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 8px 18px rgba(16,42,33,.11)}.kri:nth-child(4),.kri:nth-child(5){grid-column:span 3}.kri-top{display:flex;align-items:center;justify-content:space-between;gap:8px}.kri-tag{display:inline-flex;align-items:center;padding:5px 9px;border-radius:999px;background:rgba(5,66,34,.78);font-size:10px;font-weight:900;letter-spacing:.6px}.score{display:inline-flex;align-items:center;padding:5px 8px;border-radius:999px;background:rgba(255,255,255,.9);font-size:10px;font-weight:900;color:#102028}.kri-name{margin-top:12px;min-height:28px;font-size:11px;font-weight:800;line-height:1.2}.kri-value{margin-top:4px;font-size:27px;line-height:1;font-weight:900}.kri-meta{margin-top:5px;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;opacity:.9}.kri-state{display:flex;align-items:center;gap:6px;margin-top:11px;font-size:10px;font-weight:800}.state-dot{width:7px;height:7px;border-radius:50%;display:inline-block;background:#fff}.track{height:6px;margin-top:9px;border-radius:999px;background:rgba(255,255,255,.25);overflow:hidden}.fill{height:100%;background:#fff;border-radius:999px}.kri1{background:linear-gradient(135deg,#00766f,#005b56)}.kri2{background:linear-gradient(135deg,#00519e,#153274)}.kri3{background:linear-gradient(135deg,#1fa22e,#14751f)}.kri4{background:linear-gradient(135deg,#f7931e,#d56f24)}.kri5{background:linear-gradient(135deg,#6b7280,#4b5563)}.footer{display:flex;justify-content:space-between;gap:16px;margin-top:17px;padding:10px 2px 0;border-top:1px solid #d6dfdb;color:#687871;font-size:9px;line-height:1.35}.footer strong{color:#054222}.footer .right{text-align:right}@media(max-width:900px){.wrap{width:100%;height:auto}.header{height:auto;gap:14px}.context{text-align:left}.content{padding:16px}.summary{height:auto;grid-template-columns:1fr}.main-panel{min-height:180px}.kri-grid{grid-template-columns:repeat(2,1fr)}.kri,.kri:nth-child(4),.kri:nth-child(5){grid-column:span 1}.footer{display:block}.footer .right{text-align:left;margin-top:4px}}</style></head><body><main class='wrap'>" &
+			    "<header class='header'><div class='brand'><b>IGRO</b><small>Vis&atilde;o executiva de risco da ouvidoria</small></div><div class='context'><strong>Resultado composto + drivers</strong>Leitura por sub&iacute;ndices e cinco KRIs<br/>Base metodol&oacute;gica: metas e goalposts</div></header>" &
+			    "<div class='content'><section class='summary'>" &
+			    "<article class='panel main-panel'><svg class='ring' viewBox='0 0 120 120' role='img' aria-label='&Iacute;ndice IGRO'><circle cx='60' cy='60' r='48' fill='none' stroke='#e4ece8' stroke-width='10'/><circle cx='60' cy='60' r='48' fill='none' stroke='" & _igroColor & "' stroke-width='10' stroke-linecap='round' stroke-dasharray='" & _ring & " 999' transform='rotate(-90 60 60)'/><circle cx='60' cy='60' r='3' fill='" & _igroColor & "'/></svg><div class='main-copy'><div class='eyebrow'>&Iacute;ndice composto</div><h1>IGRO consolidado</h1><div class='main-value'>" & _igroText & "</div><div class='status'><span class='dot' style='background:" & _igroColor & "'></span>" & _status & "</div><div class='main-note'>A leitura combina tempo de resposta e qualidade percebida.</div></div></article>" &
+			    "<div class='sub-stack'><article class='subcard subTempo'><div class='label'>Sub-Tempo</div><div class='value'>" & _subTText & "</div><div class='foot'><span>Tempestividade</span><span>" & COALESCE([fmt_semaforo_igro_sub_t], "Sem dados") & "</span></div></article><article class='subcard subQual'><div class='label'>Sub-Qualidade</div><div class='value'>" & _subQText & "</div><div class='foot'><span>Qualidade percebida</span><span>" & COALESCE([fmt_semaforo_igro_sub_q], "Sem dados") & "</span></div></article></div>" &
+			    "</section><section class='kri-section'><div class='section-head'><div><div class='section-kicker'>Drivers do índice</div><h2>KRIs do modelo</h2></div><div class='section-note'>Score normalizado &middot; status indicado por cor e r&oacute;tulo</div></div><div class='kri-grid'>" &
+			    "<article class='kri kri1'><div><div class='kri-top'><span class='kri-tag'>KRI 1 &middot; TEMPO</span><span class='score'>" & _s1Text & "</span></div><div class='kri-name'>Percentual acima de 30 dias</div><div class='kri-value'>" & _kri1Text & "</div><div class='kri-meta'>Atraso</div><div class='kri-state'><span class='state-dot' style='background:" & _chip1 & "'></span>" & _state1 & "</div></div><div class='track'><div class='fill' style='width:" & SUBSTITUTE(FORMAT(_p1, "0.0"), ",", ".") & "%'></div></div></article>" &
+			    "<article class='kri kri2'><div><div class='kri-top'><span class='kri-tag'>KRI 2 &middot; TEMPO</span><span class='score'>" & _s2Text & "</span></div><div class='kri-name'>Tempo m&eacute;dio de resposta</div><div class='kri-value'>" & _kri2Text & "</div><div class='kri-meta'>Prazo</div><div class='kri-state'><span class='state-dot' style='background:" & _chip2 & "'></span>" & _state2 & "</div></div><div class='track'><div class='fill' style='width:" & SUBSTITUTE(FORMAT(_p2, "0.0"), ",", ".") & "%'></div></div></article>" &
+			    "<article class='kri kri3'><div><div class='kri-top'><span class='kri-tag'>KRI 3 &middot; QUALIDADE</span><span class='score'>" & _s3Text & "</span></div><div class='kri-name'>Resolutividade</div><div class='kri-value'>" & _kri3Text & "</div><div class='kri-meta'>Resultado</div><div class='kri-state'><span class='state-dot' style='background:" & _chip3 & "'></span>" & _state3 & "</div></div><div class='track'><div class='fill' style='width:" & SUBSTITUTE(FORMAT(_p3, "0.0"), ",", ".") & "%'></div></div></article>" &
+			    "<article class='kri kri4'><div><div class='kri-top'><span class='kri-tag'>KRI 4 &middot; QUALIDADE</span><span class='score'>" & _s4Text & "</span></div><div class='kri-name'>Respostas insatisfat&oacute;rias</div><div class='kri-value'>" & _kri4Text & "</div><div class='kri-meta'>Experi&ecirc;ncia</div><div class='kri-state'><span class='state-dot' style='background:" & _chip4 & "'></span>" & _state4 & "</div></div><div class='track'><div class='fill' style='width:" & SUBSTITUTE(FORMAT(_p4, "0.0"), ",", ".") & "%'></div></div></article>" &
+			    "<article class='kri kri5'><div><div class='kri-top'><span class='kri-tag'>KRI 5 &middot; QUALIDADE</span><span class='score'>" & _s5Text & "</span></div><div class='kri-name'>Nota de recomenda&ccedil;&atilde;o</div><div class='kri-value'>" & _kri5Text & "</div><div class='kri-meta'>Confian&ccedil;a</div><div class='kri-state'><span class='state-dot' style='background:" & _chip5 & "'></span>" & _state5 & "</div></div><div class='track'><div class='fill' style='width:" & SUBSTITUTE(FORMAT(_p5, "0.0"), ",", ".") & "%'></div></div></article>" &
+			    "</div></section><footer class='footer'><div><strong>Fonte:</strong> modelo sem&acirc;ntico IGRO &middot; leitura executiva dos indicadores normalizados.</div><div class='right'><strong>Nota:</strong> Sem dados significa que o gate amostral n&atilde;o foi atendido.</div></footer></div></main></body></html>"
 			RETURN
 			    _html
 		displayFolder: 12 · JSON · Dashboard
@@ -2077,6 +2119,296 @@ table _medidas
 			    _html
 		displayFolder: 12 Â· JSON Â· Dashboard
 		lineageTag: 2fce6528-b296-49b7-b499-76f20f351d20
+
+	/// Data da última manifestação nos dados; reflete a atualização mais recente do modelo.
+	measure dt_ultima_atualizacao_dados =
+			VAR max_data_manifestacao = MAX ( f_relatorio[data_manifestacao] )
+			VAR resultado =
+			    IF (
+			        ISBLANK ( max_data_manifestacao ),
+			        TODAY (),
+			        max_data_manifestacao
+			    )
+			RETURN
+			    resultado
+		formatString: YYYY-MM-DD
+		displayFolder: 11 · Rótulo · Cartão
+		lineageTag: c4e1f5a8-7d9a-4e9e-b3c2-a1b5d8e9f2c3
+
+	/// Rodapé HTML para página IGRO (azul/dourado)
+	measure html_rodape_igro = "<div style='width:100%;padding:12px 16px;background:linear-gradient(90deg,#f5f1ea 0%,#fbf8f3 100%);border-top:2px solid #79bcc0;font-family:Segoe UI,Arial,sans-serif;font-size:11px;color:#4e5c64;display:flex;justify-content:space-between;align-items:center;'><span style='letter-spacing:0.5px;'>Dados atualizados em: <strong style='color:#0f1720;font-weight:600;'>" & FORMAT([dt_ultima_atualizacao_dados], "dd/mm/yyyy") & "</strong></span><span style='font-size:9px;color:#9aa5ad;'>IGRO • Modelo Semântico v2.0</span></div>"
+		displayFolder: 12 · JSON · Dashboard
+		lineageTag: 3f8a1c67-42db-4e05-9a1f-6c7b2e5d90a4
+
+	/// Rodapé HTML para página CLASSE (azul/verde)
+	measure html_rodape_classe = "<div style='width:100%;padding:12px 16px;background:linear-gradient(90deg,#f0f8f7 0%,#f8fcfb 100%);border-top:2px solid #5fa5ab;font-family:Segoe UI,Arial,sans-serif;font-size:11px;color:#4e5c64;display:flex;justify-content:space-between;align-items:center;'><span style='letter-spacing:0.5px;'>Dados atualizados em: <strong style='color:#0f1720;font-weight:600;'>" & FORMAT([dt_ultima_atualizacao_dados], "dd/mm/yyyy") & "</strong></span><span style='font-size:9px;color:#9aa5ad;'>CLASSE • Análise por Categoria</span></div>"
+		displayFolder: 12 · JSON · Dashboard
+		lineageTag: 7b2e9d14-58ca-4f36-8d02-1e4a6f9c3b57
+
+	/// Rodapé HTML para página GERAL (cinza/neutro)
+	measure html_rodape_geral = "<div style='width:100%;padding:12px 16px;background:linear-gradient(90deg,#f8f8f8 0%,#fafafa 100%);border-top:2px solid #b0b8c0;font-family:Segoe UI,Arial,sans-serif;font-size:11px;color:#4e5c64;display:flex;justify-content:space-between;align-items:center;'><span style='letter-spacing:0.5px;'>Dados atualizados em: <strong style='color:#0f1720;font-weight:600;'>" & FORMAT([dt_ultima_atualizacao_dados], "dd/mm/yyyy") & "</strong></span><span style='font-size:9px;color:#9aa5ad;'>GERAL • Visão Consolidada</span></div>"
+		displayFolder: 12 · JSON · Dashboard
+		lineageTag: a1d47f92-6b03-4c8e-95af-2d80e6b1743c
+
+	/// Rodapé HTML para página NPS (verde/teal)
+	measure html_rodape_nps = "<div style='width:100%;padding:12px 16px;background:linear-gradient(90deg,#f0faf9 0%,#f8fcfb 100%);border-top:2px solid #138ca4;font-family:Segoe UI,Arial,sans-serif;font-size:11px;color:#4e5c64;display:flex;justify-content:space-between;align-items:center;'><span style='letter-spacing:0.5px;'>Dados atualizados em: <strong style='color:#0f1720;font-weight:600;'>" & FORMAT([dt_ultima_atualizacao_dados], "dd/mm/yyyy") & "</strong></span><span style='font-size:9px;color:#9aa5ad;'>NPS • Satisfação e Recomendação</span></div>"
+		displayFolder: 12 · JSON · Dashboard
+		lineageTag: 5c93e0a8-1f47-42bd-b6e3-0a9d745cf218
+
+	/// Rodapé HTML para página EVOLUÇÃO IGRO (laranja/âmbar)
+	measure html_rodape_evolucao = "<div style='width:100%;padding:12px 16px;background:linear-gradient(90deg,#fef8f3 0%,#fffbf7 100%);border-top:2px solid #f5b11f;font-family:Segoe UI,Arial,sans-serif;font-size:11px;color:#4e5c64;display:flex;justify-content:space-between;align-items:center;'><span style='letter-spacing:0.5px;'>Dados atualizados em: <strong style='color:#0f1720;font-weight:600;'>" & FORMAT([dt_ultima_atualizacao_dados], "dd/mm/yyyy") & "</strong></span><span style='font-size:9px;color:#9aa5ad;'>EVOLUÇÃO • Série Temporal IGRO</span></div>"
+		displayFolder: 12 · JSON · Dashboard
+		lineageTag: e60b3d15-9c82-4a7f-83d1-472e6b9ac085
+
+	/// Rodapé HTML para página EXECUTIVA (azul escuro/premium)
+	measure html_rodape_executiva = "<div style='width:100%;padding:12px 16px;background:linear-gradient(90deg,#102028 0%,#1a2f3d 100%);border-top:3px solid #79bcc0;font-family:Segoe UI,Arial,sans-serif;font-size:11px;color:#b0b8c0;display:flex;justify-content:space-between;align-items:center;'><span style='letter-spacing:0.5px;'>Dados atualizados em: <strong style='color:#e0f4f6;font-weight:600;'>" & FORMAT([dt_ultima_atualizacao_dados], "dd/mm/yyyy") & "</strong></span><span style='font-size:9px;color:#6b7b84;'>EXECUTIVA • Briefing para Liderança</span></div>"
+		displayFolder: 12 · JSON · Dashboard
+		lineageTag: 2d75c8b3-04ef-41a9-9e6c-38b5f0d729e1
+
+	/// Painel HTML unico: evolucao quadrimestral de idx_igro, idx_igro_sub_t e idx_igro_sub_q em tres graficos de linha empilhados sobre eixo de tempo comum. Escala comum ajustada aos dados; quadrimestre em curso tracejado.
+	measure 'HTML Evolucao Quadrimestral IGRO' =
+			VAR _dt_max =
+			    CALCULATE ( MAX ( f_relatorio[data_manifestacao] ), REMOVEFILTERS () )
+			VAR _bruto =
+			    ADDCOLUMNS (
+			        SUMMARIZE ( dCalendario, dCalendario[AnoQuadri], dCalendario[QuadriLabel] ),
+			        "@igro", [idx_igro],
+			        "@t", [idx_igro_sub_t],
+			        "@q", [idx_igro_sub_q],
+			        "@n", [base_qtd_manifestacoes],
+			        "@fim", CALCULATE ( MAX ( dCalendario[Date] ) )
+			    )
+			VAR _base =
+			    FILTER ( _bruto, NOT ISBLANK ( [@igro] ) && [@n] > 0 )
+			VAR _n = COUNTROWS ( _base )
+			VAR _dados =
+			    ADDCOLUMNS (
+			        _base,
+			        "@i", RANKX ( _base, [AnoQuadri], , ASC, DENSE ) - 1,
+			        "@parcial", IF ( [@fim] > _dt_max, 1, 0 )
+			    )
+			VAR _vmin = MINX ( _dados, MIN ( MIN ( [@igro], [@t] ), [@q] ) )
+			VAR _vmax = MAXX ( _dados, MAX ( MAX ( [@igro], [@t] ), [@q] ) )
+			VAR _lo = MAX ( 0, FLOOR ( ( _vmin - 0.03 ) * 20, 1 ) / 20 )
+			VAR _hi = MIN ( 1, CEILING ( ( _vmax + 0.03 ) * 20, 1 ) / 20 )
+			VAR _amp = MAX ( _hi - _lo, 0.05 )
+			VAR _step = IF ( _amp >= 0.25, 0.10, 0.05 )
+			VAR _W = 1120
+			VAR _TOP = 16
+			VAR _ROWH = 148
+			VAR _GAP = 18
+			VAR _PL = 190
+			VAR _PR = 1078
+			VAR _PW = _PR - _PL
+			VAR _BOT = _TOP + 3 * _ROWH + 2 * _GAP
+			VAR _H = _BOT + 30
+			VAR _dx = IF ( _n > 1, DIVIDE ( _PW, _n - 1 ), 0 )
+			VAR _iparc = MAXX ( FILTER ( _dados, [@parcial] = 1 ), [@i] )
+			VAR _q0 = CONCATENATEX ( FILTER ( _dados, [@i] = 0 ), [QuadriLabel] )
+			VAR _qn = CONCATENATEX ( FILTER ( _dados, [@i] = _n - 1 ), [QuadriLabel] )
+			VAR _series =
+			    DATATABLE (
+			        "sIdx", INTEGER,
+			        "sNome", STRING,
+			        "sSub", STRING,
+			        "sCor", STRING,
+			        {
+			            { 0, "IGRO", "&#205;NDICE COMPOSTO", "#0891b2" },
+			            { 1, "Sub-T", "TEMPESTIVIDADE &#183; PESO 0,40", "#c2410c" },
+			            { 2, "Sub-Q", "QUALIDADE &#183; PESO 0,60", "#6d28d9" }
+			        }
+			    )
+			VAR _defs =
+			    "<defs>"
+			        & CONCATENATEX (
+			            _series,
+			            "<linearGradient id='g" & [sIdx] & "' x1='0' y1='0' x2='0' y2='1'>"
+			                & "<stop offset='0%' stop-color='" & [sCor] & "' stop-opacity='.22'/>"
+			                & "<stop offset='100%' stop-color='" & [sCor] & "' stop-opacity='0'/>"
+			                & "</linearGradient>",
+			            "",
+			            [sIdx], ASC
+			        )
+			        & "</defs>"
+			VAR _guias =
+			    CONCATENATEX (
+			        _dados,
+			        VAR _gx = SUBSTITUTE ( FORMAT ( _PL + _dx * [@i], "0.0" ), ",", "." )
+			        RETURN
+			            "<line x1='" & _gx & "' y1='" & _TOP & "' x2='" & _gx & "' y2='" & _BOT
+			                & "' stroke='rgba(16,32,40,.055)' stroke-width='1'/>",
+			        "",
+			        [@i], ASC
+			    )
+			VAR _linhas =
+			    CONCATENATEX (
+			        _series,
+			        VAR _si = [sIdx]
+			        VAR _cor = [sCor]
+			        VAR _top = _TOP + _si * ( _ROWH + _GAP )
+			        VAR _bot = _top + _ROWH
+			        VAR _pts = ADDCOLUMNS ( _dados, "@v", SWITCH ( _si, 0, [@igro], 1, [@t], [@q] ) )
+			        VAR _fech = FILTER ( _pts, [@parcial] = 0 )
+			        VAR _imaxf = MAXX ( _fech, [@i] )
+			        VAR _grid =
+			            CONCATENATEX (
+			                FILTER (
+			                    GENERATESERIES ( 0, 1, _step ),
+			                    [Value] >= _lo - 0.0001 && [Value] <= _hi + 0.0001
+			                ),
+			                VAR _yt = _bot - DIVIDE ( [Value] - _lo, _amp ) * _ROWH
+			                VAR _yts = SUBSTITUTE ( FORMAT ( _yt, "0.0" ), ",", "." )
+			                RETURN
+			                    "<line x1='" & _PL & "' y1='" & _yts & "' x2='" & _PR & "' y2='" & _yts
+			                        & "' stroke='rgba(16,32,40,.09)' stroke-width='1'/>"
+			                        & "<text x='" & _PL - 9 & "' y='"
+			                        & SUBSTITUTE ( FORMAT ( _yt + 3.2, "0.0" ), ",", "." )
+			                        & "' fill='#8b98a0' text-anchor='end' font-family='Consolas,monospace' font-size='9'>"
+			                        & FORMAT ( [Value] * 100, "0" ) & "</text>",
+			                ""
+			            )
+			        VAR _linha =
+			            CONCATENATEX (
+			                _fech,
+			                IF ( [@i] = 0, "M", "L" )
+			                    & SUBSTITUTE ( FORMAT ( _PL + _dx * [@i], "0.0" ), ",", "." ) & ","
+			                    & SUBSTITUTE ( FORMAT ( _bot - DIVIDE ( [@v] - _lo, _amp ) * _ROWH, "0.0" ), ",", "." ),
+			                " ",
+			                [@i], ASC
+			            )
+			        VAR _tem_solido = NOT ISBLANK ( _imaxf )
+			        VAR _area =
+			            IF (
+			                _tem_solido,
+			                _linha
+			                    & " L" & SUBSTITUTE ( FORMAT ( _PL + _dx * _imaxf, "0.0" ), ",", "." ) & "," & _bot
+			                    & " L" & _PL & "," & _bot & " Z",
+			                ""
+			            )
+			        VAR _trace =
+			            IF (
+			                ISBLANK ( _iparc ) || _iparc = 0,
+			                "",
+			                "<path d='M"
+			                    & SUBSTITUTE ( FORMAT ( _PL + _dx * ( _iparc - 1 ), "0.0" ), ",", "." ) & ","
+			                    & SUBSTITUTE ( FORMAT ( _bot - DIVIDE ( MAXX ( FILTER ( _pts, [@i] = _iparc - 1 ), [@v] ) - _lo, _amp ) * _ROWH, "0.0" ), ",", "." )
+			                    & " L" & SUBSTITUTE ( FORMAT ( _PL + _dx * _iparc, "0.0" ), ",", "." ) & ","
+			                    & SUBSTITUTE ( FORMAT ( _bot - DIVIDE ( MAXX ( FILTER ( _pts, [@i] = _iparc ), [@v] ) - _lo, _amp ) * _ROWH, "0.0" ), ",", "." )
+			                    & "' fill='none' stroke='" & _cor
+			                    & "' stroke-width='2' stroke-dasharray='4 3.5' stroke-linecap='round'/>"
+			            )
+			        VAR _marc =
+			            CONCATENATEX (
+			                _pts,
+			                VAR _px = SUBSTITUTE ( FORMAT ( _PL + _dx * [@i], "0.0" ), ",", "." )
+			                VAR _py = SUBSTITUTE ( FORMAT ( _bot - DIVIDE ( [@v] - _lo, _amp ) * _ROWH, "0.0" ), ",", "." )
+			                VAR _pp = [@parcial] = 1
+			                RETURN
+			                    "<circle cx='" & _px & "' cy='" & _py & "' r='4.2' fill='"
+			                        & IF ( _pp, "#f7f4ef", _cor ) & "' stroke='"
+			                        & IF ( _pp, _cor, "#f7f4ef" ) & "' stroke-width='"
+			                        & IF ( _pp, "1.8", "2" ) & "'><title>"
+			                        & [QuadriLabel] & IF ( _pp, " (parcial)", "" ) & " &#183; "
+			                        & FORMAT ( [@v], "0.0%" ) & "</title></circle>",
+			                "",
+			                [@i], ASC
+			            )
+			        VAR _v0 = MAXX ( FILTER ( _pts, [@i] = 0 ), [@v] )
+			        VAR _vl = MAXX ( FILTER ( _pts, [@i] = _n - 1 ), [@v] )
+			        VAR _rot =
+			            "<text x='" & _PL & "' y='"
+			                & SUBSTITUTE ( FORMAT ( _bot - DIVIDE ( _v0 - _lo, _amp ) * _ROWH - 9, "0.0" ), ",", "." )
+			                & "' fill='#102028' text-anchor='start' font-family='Consolas,monospace' font-size='10.5' font-weight='600'>"
+			                & FORMAT ( _v0 * 100, "0.0" ) & "</text>"
+			                & "<text x='" & SUBSTITUTE ( FORMAT ( _PL + _dx * ( _n - 1 ), "0.0" ), ",", "." ) & "' y='"
+			                & SUBSTITUTE ( FORMAT ( _bot - DIVIDE ( _vl - _lo, _amp ) * _ROWH - 11, "0.0" ), ",", "." )
+			                & "' fill='#102028' text-anchor='middle' font-family='Consolas,monospace' font-size='10.5' font-weight='600'>"
+			                & FORMAT ( _vl * 100, "0.0" ) & "</text>"
+			        VAR _delta = _vl - _v0
+			        VAR _lbl =
+			            "<text x='16' y='" & _top + 22 & "' fill='#102028' font-family='Segoe UI,sans-serif' font-size='14' font-weight='600'>"
+			                & [sNome] & "</text>"
+			                & "<rect x='16' y='" & _top + 30 & "' width='26' height='3' rx='1.5' fill='" & _cor & "'/>"
+			                & "<text x='16' y='" & _top + 50 & "' fill='#7d8c94' font-family='Segoe UI,sans-serif' font-size='9.5'>"
+			                & [sSub] & "</text>"
+			                & "<text x='16' y='" & _top + 74 & "' fill='" & _cor & "' font-family='Consolas,monospace' font-size='11' font-weight='600'>"
+			                & IF ( _delta >= 0, "+", "&#8722;" ) & FORMAT ( ABS ( _delta ) * 100, "0.0" ) & " p.p.</text>"
+			                & "<text x='16' y='" & _top + 89 & "' fill='#7d8c94' font-family='Segoe UI,sans-serif' font-size='9.5'>DESDE "
+			                & _q0 & "</text>"
+			        RETURN
+			            _grid
+			                & IF (
+			                    _tem_solido,
+			                    "<path d='" & _area & "' fill='url(#g" & _si & ")'/>"
+			                        & "<path d='" & _linha & "' fill='none' stroke='" & _cor
+			                        & "' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>",
+			                    ""
+			                )
+			                & _trace
+			                & "<line x1='" & _PL & "' y1='" & _bot & "' x2='" & _PR & "' y2='" & _bot
+			                & "' stroke='rgba(16,32,40,.20)' stroke-width='1'/>"
+			                & _marc & _rot & _lbl,
+			        "",
+			        [sIdx], ASC
+			    )
+			VAR _eixox =
+			    CONCATENATEX (
+			        _dados,
+			        "<text x='" & SUBSTITUTE ( FORMAT ( _PL + _dx * [@i], "0.0" ), ",", "." )
+			            & "' y='" & _BOT + 19 & "' fill='"
+			            & IF ( [@parcial] = 1, "#7d8c94", "#8b98a0" )
+			            & "' text-anchor='middle' font-family='Consolas,monospace' font-size='10.5'"
+			            & IF ( [@parcial] = 1, " font-style='italic'", "" ) & ">"
+			            & LEFT ( [QuadriLabel], 3 ) & RIGHT ( [QuadriLabel], 2 ) & "</text>",
+			        "",
+			        [@i], ASC
+			    )
+			VAR _svg =
+			    "<svg viewBox='0 0 " & _W & " " & _H & "' preserveAspectRatio='xMidYMid meet' "
+			        & "style='display:block;width:100%;height:auto;overflow:visible' role='img' "
+			        & "aria-label='Tres graficos de linha empilhados: IGRO, Sub-T e Sub-Q por quadrimestre'>"
+			        & _defs & _guias & _linhas & _eixox
+			        & "</svg>"
+			VAR _faixa =
+			    "Eixo vertical em faixa ampliada: " & FORMAT ( _lo, "0%" ) & "&#8211;" & FORMAT ( _hi, "0%" )
+			        & ". N&#227;o come&#231;a em zero."
+			VAR _nota_parcial =
+			    IF (
+			        ISBLANK ( _iparc ),
+			        "",
+			        "<span style='display:inline-flex;align-items:center;gap:6px'>"
+			            & "<svg width='26' height='9'><line x1='1' y1='5' x2='25' y2='5' stroke='#0891b2' "
+			            & "stroke-width='2' stroke-dasharray='4 3' stroke-linecap='round'/></svg>"
+			            & _qn & " em curso &#8212; dados at&#233; " & FORMAT ( _dt_max, "dd/mm/yyyy" ) & "</span>"
+			    )
+			VAR _html =
+			    "<!DOCTYPE html><html lang='pt-BR'><head><meta charset='UTF-8'><style>"
+			        & "*{box-sizing:border-box;margin:0;padding:0}"
+			        & "body{background:linear-gradient(135deg,#fbf9f5 0%,#f2eee7 100%);color:#102028;"
+			        & "font-family:'Segoe UI',system-ui,sans-serif;padding:20px 24px 16px}"
+			        & ".hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;padding-bottom:12px;"
+			        & "margin-bottom:14px;border-bottom:1px solid rgba(16,32,40,.11)}"
+			        & ".kk{font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:#6b7b84}"
+			        & ".tt{font-size:15px;font-weight:600;letter-spacing:-.01em}"
+			        & ".sp{flex:1}.st{font-size:10.5px;color:#6b7b84;font-family:Consolas,monospace}"
+			        & ".ft{margin-top:12px;padding-top:11px;border-top:1px solid rgba(16,32,40,.11);"
+			        & "display:flex;gap:18px;flex-wrap:wrap;align-items:center;font-size:10px;color:#6b7b84}"
+			        & "</style></head><body>"
+			        & "<div class='hd'><div><div class='kk'>Evolu&#231;&#227;o quadrimestral</div>"
+			        & "<div class='tt'>IGRO e sub&#237;ndices &#183; " & _q0 & " &#8211; " & _qn & "</div></div>"
+			        & "<span class='sp'></span><span class='st'>escala comum " & FORMAT ( _lo, "0%" )
+			        & "&#8211;" & FORMAT ( _hi, "0%" ) & "</span></div>"
+			        & _svg
+			        & "<div class='ft'>" & _nota_parcial & "<span>" & _faixa & "</span></div>"
+			        & "</body></html>"
+			VAR _vazio =
+			    "<div style='font-family:Segoe UI,sans-serif;color:#6b7b84;padding:24px;font-size:13px'>"
+			        & "Menos de dois quadrimestres com dados no contexto atual &#8212; "
+			        & "sem s&#233;rie hist&#243;rica para exibir.</div>"
+			RETURN
+			    IF ( ISBLANK ( _n ) || _n < 2, _vazio, _html )
+		displayFolder: 12 · JSON · Dashboard
+		lineageTag: 9e4c1b60-7a38-42d5-b18f-05c9e37a6b42
 
 	column Value
 		lineageTag: 6041b9ee-9a33-41f6-b9e2-e5271bf9b28c

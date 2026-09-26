@@ -1,0 +1,303 @@
+// =============================================================================
+// HTML Evolucao Quadrimestral IGRO
+// -----------------------------------------------------------------------------
+// Painel HTML unico com tres graficos de linha empilhados sobre um eixo de tempo
+// comum: idx_igro, idx_igro_sub_t e idx_igro_sub_q por dCalendario[QuadriLabel].
+//
+// Destino ......: visual HTML Content, 1160 x 640 px (pagina EVOLUCAO IGRO)
+// Escala .......: comum as tres series, ajustada aos dados e arredondada a 5%
+// Parcial ......: o quadrimestre em curso entra tracejado, com ponto vazado
+// Paleta .......: #0891b2 / #c2410c / #6d28d9 (validada: 6 checks PASS)
+// Criado em ....: 2026-08-21
+// =============================================================================
+
+// ---------- 1. Base por quadrimestre ----------
+// REMOVEFILTERS() sem argumento: o corte de dados e global, nao o maximo do orgao
+// filtrado. Sem isso, um orgao que parou de receber manifestacoes marcaria o
+// proprio ultimo quadrimestre como "em curso".
+VAR _dt_max =
+    CALCULATE ( MAX ( f_relatorio[data_manifestacao] ), REMOVEFILTERS () )
+
+VAR _bruto =
+    ADDCOLUMNS (
+        SUMMARIZE ( dCalendario, dCalendario[AnoQuadri], dCalendario[QuadriLabel] ),
+        "@igro", [idx_igro],
+        "@t", [idx_igro_sub_t],
+        "@q", [idx_igro_sub_q],
+        "@n", [base_qtd_manifestacoes],
+        "@fim", CALCULATE ( MAX ( dCalendario[Date] ) )
+    )
+
+VAR _base =
+    FILTER ( _bruto, NOT ISBLANK ( [@igro] ) && [@n] > 0 )
+
+VAR _n = COUNTROWS ( _base )
+
+VAR _dados =
+    ADDCOLUMNS (
+        _base,
+        "@i", RANKX ( _base, [AnoQuadri], , ASC, DENSE ) - 1,
+        "@parcial", IF ( [@fim] > _dt_max, 1, 0 )
+    )
+
+// ---------- 2. Escala vertical comum ----------
+VAR _vmin = MINX ( _dados, MIN ( MIN ( [@igro], [@t] ), [@q] ) )
+VAR _vmax = MAXX ( _dados, MAX ( MAX ( [@igro], [@t] ), [@q] ) )
+VAR _lo = MAX ( 0, FLOOR ( ( _vmin - 0.03 ) * 20, 1 ) / 20 )
+VAR _hi = MIN ( 1, CEILING ( ( _vmax + 0.03 ) * 20, 1 ) / 20 )
+VAR _amp = MAX ( _hi - _lo, 0.05 )
+// Limiar em 0,25 e nao em 0,30: uma faixa de exatamente 30 p.p. sofre com ruido
+// de ponto flutuante no comparador e alternaria entre 4 e 7 linhas de grade.
+VAR _step = IF ( _amp >= 0.25, 0.10, 0.05 )
+
+// ---------- 3. Geometria ----------
+VAR _W = 1120
+VAR _TOP = 16
+VAR _ROWH = 148
+VAR _GAP = 18
+VAR _PL = 190
+VAR _PR = 1078
+VAR _PW = _PR - _PL
+VAR _BOT = _TOP + 3 * _ROWH + 2 * _GAP
+VAR _H = _BOT + 30
+VAR _dx = IF ( _n > 1, DIVIDE ( _PW, _n - 1 ), 0 )
+
+VAR _iparc = MAXX ( FILTER ( _dados, [@parcial] = 1 ), [@i] )
+VAR _q0 = CONCATENATEX ( FILTER ( _dados, [@i] = 0 ), [QuadriLabel] )
+VAR _qn = CONCATENATEX ( FILTER ( _dados, [@i] = _n - 1 ), [QuadriLabel] )
+
+// ---------- 4. Definicao das tres series ----------
+VAR _series =
+    DATATABLE (
+        "sIdx", INTEGER,
+        "sNome", STRING,
+        "sSub", STRING,
+        "sCor", STRING,
+        {
+            { 0, "IGRO", "&#205;NDICE COMPOSTO", "#0891b2" },
+            { 1, "Sub-T", "TEMPESTIVIDADE &#183; PESO 0,40", "#c2410c" },
+            { 2, "Sub-Q", "QUALIDADE &#183; PESO 0,60", "#6d28d9" }
+        }
+    )
+
+// ---------- 5. Gradientes de area ----------
+VAR _defs =
+    "<defs>"
+        & CONCATENATEX (
+            _series,
+            "<linearGradient id='g" & [sIdx] & "' x1='0' y1='0' x2='0' y2='1'>"
+                & "<stop offset='0%' stop-color='" & [sCor] & "' stop-opacity='.22'/>"
+                & "<stop offset='100%' stop-color='" & [sCor] & "' stop-opacity='0'/>"
+                & "</linearGradient>",
+            "",
+            [sIdx], ASC
+        )
+        & "</defs>"
+
+// ---------- 6. Guias verticais compartilhadas ----------
+VAR _guias =
+    CONCATENATEX (
+        _dados,
+        VAR _gx = SUBSTITUTE ( FORMAT ( _PL + _dx * [@i], "0.0" ), ",", "." )
+        RETURN
+            "<line x1='" & _gx & "' y1='" & _TOP & "' x2='" & _gx & "' y2='" & _BOT
+                & "' stroke='rgba(16,32,40,.055)' stroke-width='1'/>",
+        "",
+        [@i], ASC
+    )
+
+// ---------- 7. As tres linhas ----------
+VAR _linhas =
+    CONCATENATEX (
+        _series,
+        VAR _si = [sIdx]
+        VAR _cor = [sCor]
+        VAR _top = _TOP + _si * ( _ROWH + _GAP )
+        VAR _bot = _top + _ROWH
+        VAR _pts = ADDCOLUMNS ( _dados, "@v", SWITCH ( _si, 0, [@igro], 1, [@t], [@q] ) )
+        VAR _fech = FILTER ( _pts, [@parcial] = 0 )
+        VAR _imaxf = MAXX ( _fech, [@i] )
+
+        // grade horizontal + rotulos do eixo Y
+        VAR _grid =
+            CONCATENATEX (
+                FILTER (
+                    GENERATESERIES ( 0, 1, _step ),
+                    [Value] >= _lo - 0.0001 && [Value] <= _hi + 0.0001
+                ),
+                VAR _yt = _bot - DIVIDE ( [Value] - _lo, _amp ) * _ROWH
+                VAR _yts = SUBSTITUTE ( FORMAT ( _yt, "0.0" ), ",", "." )
+                RETURN
+                    "<line x1='" & _PL & "' y1='" & _yts & "' x2='" & _PR & "' y2='" & _yts
+                        & "' stroke='rgba(16,32,40,.09)' stroke-width='1'/>"
+                        & "<text x='" & _PL - 9 & "' y='"
+                        & SUBSTITUTE ( FORMAT ( _yt + 3.2, "0.0" ), ",", "." )
+                        & "' fill='#8b98a0' text-anchor='end' font-family='Consolas,monospace' font-size='9'>"
+                        & FORMAT ( [Value] * 100, "0" ) & "</text>",
+                ""
+            )
+
+        // traco solido sobre os quadrimestres fechados
+        VAR _linha =
+            CONCATENATEX (
+                _fech,
+                IF ( [@i] = 0, "M", "L" )
+                    & SUBSTITUTE ( FORMAT ( _PL + _dx * [@i], "0.0" ), ",", "." ) & ","
+                    & SUBSTITUTE ( FORMAT ( _bot - DIVIDE ( [@v] - _lo, _amp ) * _ROWH, "0.0" ), ",", "." ),
+                " ",
+                [@i], ASC
+            )
+
+        // se nenhum quadrimestre estiver fechado, nao ha traco solido nem area
+        VAR _tem_solido = NOT ISBLANK ( _imaxf )
+
+        VAR _area =
+            IF (
+                _tem_solido,
+                _linha
+                    & " L" & SUBSTITUTE ( FORMAT ( _PL + _dx * _imaxf, "0.0" ), ",", "." ) & "," & _bot
+                    & " L" & _PL & "," & _bot & " Z",
+                ""
+            )
+
+        // perna tracejada ate o quadrimestre em curso
+        VAR _trace =
+            IF (
+                ISBLANK ( _iparc ) || _iparc = 0,
+                "",
+                "<path d='M"
+                    & SUBSTITUTE ( FORMAT ( _PL + _dx * ( _iparc - 1 ), "0.0" ), ",", "." ) & ","
+                    & SUBSTITUTE ( FORMAT ( _bot - DIVIDE ( MAXX ( FILTER ( _pts, [@i] = _iparc - 1 ), [@v] ) - _lo, _amp ) * _ROWH, "0.0" ), ",", "." )
+                    & " L" & SUBSTITUTE ( FORMAT ( _PL + _dx * _iparc, "0.0" ), ",", "." ) & ","
+                    & SUBSTITUTE ( FORMAT ( _bot - DIVIDE ( MAXX ( FILTER ( _pts, [@i] = _iparc ), [@v] ) - _lo, _amp ) * _ROWH, "0.0" ), ",", "." )
+                    & "' fill='none' stroke='" & _cor
+                    & "' stroke-width='2' stroke-dasharray='4 3.5' stroke-linecap='round'/>"
+            )
+
+        // marcadores com anel da cor do fundo + tooltip nativo
+        VAR _marc =
+            CONCATENATEX (
+                _pts,
+                VAR _px = SUBSTITUTE ( FORMAT ( _PL + _dx * [@i], "0.0" ), ",", "." )
+                VAR _py = SUBSTITUTE ( FORMAT ( _bot - DIVIDE ( [@v] - _lo, _amp ) * _ROWH, "0.0" ), ",", "." )
+                VAR _pp = [@parcial] = 1
+                RETURN
+                    "<circle cx='" & _px & "' cy='" & _py & "' r='4.2' fill='"
+                        & IF ( _pp, "#f7f4ef", _cor ) & "' stroke='"
+                        & IF ( _pp, _cor, "#f7f4ef" ) & "' stroke-width='"
+                        & IF ( _pp, "1.8", "2" ) & "'><title>"
+                        & [QuadriLabel] & IF ( _pp, " (parcial)", "" ) & " &#183; "
+                        & FORMAT ( [@v], "0.0%" ) & "</title></circle>",
+                "",
+                [@i], ASC
+            )
+
+        // rotulos diretos: apenas primeiro e ultimo ponto
+        VAR _v0 = MAXX ( FILTER ( _pts, [@i] = 0 ), [@v] )
+        VAR _vl = MAXX ( FILTER ( _pts, [@i] = _n - 1 ), [@v] )
+        VAR _rot =
+            "<text x='" & _PL & "' y='"
+                & SUBSTITUTE ( FORMAT ( _bot - DIVIDE ( _v0 - _lo, _amp ) * _ROWH - 9, "0.0" ), ",", "." )
+                & "' fill='#102028' text-anchor='start' font-family='Consolas,monospace' font-size='10.5' font-weight='600'>"
+                & FORMAT ( _v0 * 100, "0.0" ) & "</text>"
+                & "<text x='" & SUBSTITUTE ( FORMAT ( _PL + _dx * ( _n - 1 ), "0.0" ), ",", "." ) & "' y='"
+                & SUBSTITUTE ( FORMAT ( _bot - DIVIDE ( _vl - _lo, _amp ) * _ROWH - 11, "0.0" ), ",", "." )
+                & "' fill='#102028' text-anchor='middle' font-family='Consolas,monospace' font-size='10.5' font-weight='600'>"
+                & FORMAT ( _vl * 100, "0.0" ) & "</text>"
+
+        // bloco de identificacao na calha esquerda
+        VAR _delta = _vl - _v0
+        VAR _lbl =
+            "<text x='16' y='" & _top + 22 & "' fill='#102028' font-family='Segoe UI,sans-serif' font-size='14' font-weight='600'>"
+                & [sNome] & "</text>"
+                & "<rect x='16' y='" & _top + 30 & "' width='26' height='3' rx='1.5' fill='" & _cor & "'/>"
+                & "<text x='16' y='" & _top + 50 & "' fill='#7d8c94' font-family='Segoe UI,sans-serif' font-size='9.5'>"
+                & [sSub] & "</text>"
+                & "<text x='16' y='" & _top + 74 & "' fill='" & _cor & "' font-family='Consolas,monospace' font-size='11' font-weight='600'>"
+                & IF ( _delta >= 0, "+", "&#8722;" ) & FORMAT ( ABS ( _delta ) * 100, "0.0" ) & " p.p.</text>"
+                & "<text x='16' y='" & _top + 89 & "' fill='#7d8c94' font-family='Segoe UI,sans-serif' font-size='9.5'>DESDE "
+                & _q0 & "</text>"
+
+        RETURN
+            _grid
+                & IF (
+                    _tem_solido,
+                    "<path d='" & _area & "' fill='url(#g" & _si & ")'/>"
+                        & "<path d='" & _linha & "' fill='none' stroke='" & _cor
+                        & "' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/>",
+                    ""
+                )
+                & _trace
+                & "<line x1='" & _PL & "' y1='" & _bot & "' x2='" & _PR & "' y2='" & _bot
+                & "' stroke='rgba(16,32,40,.20)' stroke-width='1'/>"
+                & _marc & _rot & _lbl,
+        "",
+        [sIdx], ASC
+    )
+
+// ---------- 8. Eixo X desenhado uma vez ----------
+VAR _eixox =
+    CONCATENATEX (
+        _dados,
+        "<text x='" & SUBSTITUTE ( FORMAT ( _PL + _dx * [@i], "0.0" ), ",", "." )
+            & "' y='" & _BOT + 19 & "' fill='"
+            & IF ( [@parcial] = 1, "#7d8c94", "#8b98a0" )
+            & "' text-anchor='middle' font-family='Consolas,monospace' font-size='10.5'"
+            & IF ( [@parcial] = 1, " font-style='italic'", "" ) & ">"
+            & LEFT ( [QuadriLabel], 3 ) & RIGHT ( [QuadriLabel], 2 ) & "</text>",
+        "",
+        [@i], ASC
+    )
+
+// ---------- 9. Montagem ----------
+VAR _svg =
+    "<svg viewBox='0 0 " & _W & " " & _H & "' preserveAspectRatio='xMidYMid meet' "
+        & "style='display:block;width:100%;height:auto;overflow:visible' role='img' "
+        & "aria-label='Tres graficos de linha empilhados: IGRO, Sub-T e Sub-Q por quadrimestre'>"
+        & _defs & _guias & _linhas & _eixox
+        & "</svg>"
+
+VAR _faixa =
+    "Eixo vertical em faixa ampliada: " & FORMAT ( _lo, "0%" ) & "&#8211;" & FORMAT ( _hi, "0%" )
+        & ". N&#227;o come&#231;a em zero."
+
+VAR _nota_parcial =
+    IF (
+        ISBLANK ( _iparc ),
+        "",
+        "<span style='display:inline-flex;align-items:center;gap:6px'>"
+            & "<svg width='26' height='9'><line x1='1' y1='5' x2='25' y2='5' stroke='#0891b2' "
+            & "stroke-width='2' stroke-dasharray='4 3' stroke-linecap='round'/></svg>"
+            & _qn & " em curso &#8212; dados at&#233; " & FORMAT ( _dt_max, "dd/mm/yyyy" ) & "</span>"
+    )
+
+VAR _html =
+    "<!DOCTYPE html><html lang='pt-BR'><head><meta charset='UTF-8'><style>"
+        & "*{box-sizing:border-box;margin:0;padding:0}"
+        & "body{background:linear-gradient(135deg,#fbf9f5 0%,#f2eee7 100%);color:#102028;"
+        & "font-family:'Segoe UI',system-ui,sans-serif;padding:20px 24px 16px}"
+        & ".hd{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;padding-bottom:12px;"
+        & "margin-bottom:14px;border-bottom:1px solid rgba(16,32,40,.11)}"
+        & ".kk{font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:#6b7b84}"
+        & ".tt{font-size:15px;font-weight:600;letter-spacing:-.01em}"
+        & ".sp{flex:1}.st{font-size:10.5px;color:#6b7b84;font-family:Consolas,monospace}"
+        & ".ft{margin-top:12px;padding-top:11px;border-top:1px solid rgba(16,32,40,.11);"
+        & "display:flex;gap:18px;flex-wrap:wrap;align-items:center;font-size:10px;color:#6b7b84}"
+        & "</style></head><body>"
+        & "<div class='hd'><div><div class='kk'>Evolu&#231;&#227;o quadrimestral</div>"
+        & "<div class='tt'>IGRO e sub&#237;ndices &#183; " & _q0 & " &#8211; " & _qn & "</div></div>"
+        & "<span class='sp'></span><span class='st'>escala comum " & FORMAT ( _lo, "0%" )
+        & "&#8211;" & FORMAT ( _hi, "0%" ) & "</span></div>"
+        & _svg
+        & "<div class='ft'>" & _nota_parcial & "<span>" & _faixa & "</span></div>"
+        & "</body></html>"
+
+// Abaixo de dois quadrimestres nao ha serie temporal para desenhar: uma linha
+// precisa de pelo menos dois pontos, e a geometria (_dx) divide por _n - 1.
+VAR _vazio =
+    "<div style='font-family:Segoe UI,sans-serif;color:#6b7b84;padding:24px;font-size:13px'>"
+        & "Menos de dois quadrimestres com dados no contexto atual &#8212; "
+        & "sem s&#233;rie hist&#243;rica para exibir.</div>"
+
+RETURN
+    IF ( ISBLANK ( _n ) || _n < 2, _vazio, _html )

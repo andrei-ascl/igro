@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "2e0cde26677db865ddf7",
+  "position": {
+    "x": 8,
+    "y": 0,
+    "z": 0,
+    "height": 720,
+    "width": 1272,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "htmlContent443BE3AD55E043BF878BED274D3A6855",
+    "query": {
+      "queryState": {
+        "content": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_medidas"
+                    }
+                  },
+                  "Property": "HTML Evolucao Quadrimestral IGRO"
+                }
+              },
+              "queryRef": "_medidas.HTML Evolucao Quadrimestral IGRO",
+              "nativeQueryRef": "HTML Evolucao Quadrimestral IGRO"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

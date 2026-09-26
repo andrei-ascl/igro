@@ -39,15 +39,6 @@ table f_pesquisa
 
 		annotation SummarizationSetBy = Automatic
 
-	/// Subdivisão do órgão responsável, permitindo análise de satisfação em nível mais granular.
-	column suborgao
-		dataType: string
-		lineageTag: bbea35dd-196c-4c41-a395-1e2ddd05e71e
-		summarizeBy: none
-		sourceColumn: suborgao
-
-		annotation SummarizationSetBy = Automatic
-
 	/// Tipo da manifestação avaliada, permitindo cruzar satisfação por categoria (Reclamação, Solicitação etc.).
 	column tipo_manifestacao
 		dataType: string
@@ -100,6 +91,14 @@ table f_pesquisa
 
 		annotation SummarizationSetBy = Automatic
 
+	column Suborgao
+		dataType: string
+		lineageTag: 6728d6c3-4bc2-43f0-9983-6c9901c5368f
+		summarizeBy: none
+		sourceColumn: Suborgao
+
+		annotation SummarizationSetBy = Automatic
+
 	partition f_pesquisa = m
 		mode: import
 		source =
@@ -115,19 +114,15 @@ table f_pesquisa
 				    // 2. Caminho completo do arquivo
 				    // Monta o caminho corretamente com ou sem "\" no final.
 				    // =========================================================
-				    CaminhoArquivo =
-				        if Text.EndsWith(CaminhoPasta, "\") or Text.EndsWith(CaminhoPasta, "/")
-				        then CaminhoPasta & "f_pesquisa.parquet"
-				        else CaminhoPasta & "\f_pesquisa.parquet",
+				    Arquivos = Folder.Files(CaminhoPasta),
+				    ArquivosParquet = Table.SelectRows(Arquivos, each [Extension] = ".parquet" and Text.StartsWith([Name], "pesquisa_")),
+				    ArquivosOrdenados = Table.Sort(ArquivosParquet, {{"Date modified", Order.Descending}, {"Name", Order.Descending}}),
 				
-				    // =========================================================
-				    // 3. Leitura do arquivo Parquet
-				    // Carrega os dados diretamente do arquivo.
-				    // =========================================================
 				    Fonte =
-				        Parquet.Document(
-				            File.Contents(CaminhoArquivo)
-				        ),
+				        if Table.RowCount(ArquivosOrdenados) = 0 then
+				            error "Nenhum arquivo Parquet compatível encontrado em: " & CaminhoPasta
+				        else
+				            Parquet.Document(ArquivosOrdenados{0}[Content]),
 				
 				    // =========================================================
 				    // 4. Remover colunas vazias ou sem utilidade

@@ -16,9 +16,10 @@
 **Para continuar trabalho em progresso:**
 
 1. Verifique status atual em `00_admin/controle_versoes/MEMORIA_PROJETO.md`
-2. Abra notebook: `06_notebooks/exploracao/artigo_igro_graficos_tabelas.ipynb`
-3. Verifique dados processados em `02_dados/processed/`
-4. Consulte resultados em `09_resultados/relatorios/` e `09_resultados/tabelas/`
+2. Leia a [auditoria de consolidação](00_admin/controle_versoes/AUDITORIA_CONSOLIDAR_ATIVO_IGRO_2026-08-05.md), a [decisão canônica](00_admin/controle_versoes/DECISAO_CANONICA_IGRO.md) e o [contrato de métricas](00_admin/planejamento/03_especificacao_e_produto/CONTRATO_METRICAS_IGRO.md)
+3. Só então abra o notebook: `06_notebooks/exploracao/artigo_igro_graficos_tabelas.ipynb`
+4. Verifique dados processados em `02_dados/processed/`
+5. Consulte resultados em `09_resultados/relatorios/` e `09_resultados/tabelas/`
 
 ---
 
@@ -40,14 +41,16 @@ IGRO consolidida **KRIs (Key Risk Indicators)** para monitorar dois riscos princ
 
 ## Estado Atual
 
+> **Governança metodológica — 2026-08-10:** o perfil do Desenho Técnico foi adotado como baseline canônico de trabalho. As medidas centrais e as referências de dados do PBIP/TMDL foram alinhadas; ainda faltam o refresh no Power BI Desktop, o recálculo histórico e a reconciliação das extrações. Não trate derivados antigos como comparáveis ao novo perfil sem declarar a parametrização usada. A decisão está registrada em [DECISAO_CANONICA_IGRO.md](00_admin/controle_versoes/DECISAO_CANONICA_IGRO.md).
+
 | Item | Status | Localização |
 |------|--------|-------------|
 | **Artigo científico** | Pós-submissão: não aceito pela Revista da CGU | `10_publicacao/versao_final/artigo_igro_cgu_revisado_final.docx` |
 | **Notebook (tabelas/gráficos)** | ✅ Operacional | `06_notebooks/exploracao/artigo_igro_graficos_tabelas.ipynb` |
 | **Tabela suplementar** | ✅ Gerada | `09_resultados/artigo_igro_figuras_tabelas/tabelas/tabela_suplementar_igro_51_orgaos.xlsx` |
 | **Dados processados** | ✅ Disponíveis | `02_dados/processed/` |
-| **Power BI (modelo)** | ✅ v2 estável | `07_dashboards/powerbi/04_powerbi_e_dax/indice_igro_v2.pbix` |
-| **Documentação técnica** | ✅ Consolidada | `07_dashboards/powerbi/04_powerbi_e_dax/documentacao_modelo_semantico_igro.md` |
+| **Power BI (modelo)** | ✅ PBIP alinhado ao perfil canônico; refresh e recálculo pendentes | 07_dashboards/powerbi/04_powerbi_e_dax/indice_igro_v2.pbix |
+| **Documentação técnica** | 🔄 Baseline canônico e contrato definidos; fontes físicas em reconciliação | [Contrato de métricas](00_admin/planejamento/03_especificacao_e_produto/CONTRATO_METRICAS_IGRO.md) |
 
 **Submissão — Revista da CGU**
 - Submetido em: **08 de junho de 2026**
@@ -66,7 +69,7 @@ IGRO consolidida **KRIs (Key Risk Indicators)** para monitorar dois riscos princ
 | `00_admin/planejamento/` | Desenho técnico, PRD, cronograma, mapa de migração | ✅ Sim |
 | `00_admin/controle_versoes/` | Memória do projeto, validações, histórico | ✅ Sim |
 | `01_referencias/` | Bibliografia, benchmarking, guias OCDE/JRC, referências normativas | ✅ Sim |
-| `02_dados/` | Brutos, processados, amostras, schema, dicionário | ✅ Sim |
+| `02_dados/` | `raw/`, `processed/`, `schema/` e dicionário; `external/` não vigente | ✅ Sim |
 | `03_estudos/` | Pesquisa metodológica, análises, validações de robustez | ✅ Sim |
 | `04_notas_tecnicas/` | Rascunhos, revisões, versões finais | ✅ Sim |
 | `05_scripts/` | Automações, Power Query, utilitários e scripts de apoio a apresentações | — |
@@ -93,6 +96,8 @@ IGRO consolidida **KRIs (Key Risk Indicators)** para monitorar dois riscos princ
 **Para acompanhamento:**
 - 📌 [memory.md](memory.md) — Status estruturado e sincronizável (raiz do repositório, convenção fixa — nunca mover para subpasta)
 - 📝 [Memória do Projeto](00_admin/controle_versoes/MEMORIA_PROJETO.md) — Histórico narrativo, decisões, próximos passos
+- 🧭 [Auditoria do ativo](00_admin/controle_versoes/AUDITORIA_CONSOLIDAR_ATIVO_IGRO_2026-08-05.md) — Evidências, derivados e bloqueadores
+- ⚖️ [Decisão canônica](00_admin/controle_versoes/DECISAO_CANONICA_IGRO.md) — Baseline metodológico e parâmetros aprovados no projeto
 - 🗺️ [Mapa de Migração](00_admin/planejamento/MAPA_MIGRACAO_ESTRUTURA_2026-05-06.md) — Estrutura antiga vs. nova
 
 **Para trabalhar com dados:**
@@ -113,12 +118,13 @@ IGRO consolidida **KRIs (Key Risk Indicators)** para monitorar dois riscos princ
 
 Para consolidar uma release:
 
-1. **Decisões metodológicas** → `00_admin/planejamento/03_especificacao_e_produto/10_Desenho_IGRO.md`
-2. **Escopo e requisitos** → `00_admin/planejamento/03_especificacao_e_produto/11_PRD_IGRO.md`
-3. **Dados e validação** → `02_dados/` + `03_estudos/` (schema, processamento, robustez)
-4. **Modelo e medidas** → `07_dashboards/powerbi/04_powerbi_e_dax/`
-5. **Relatórios e artigos** → `09_resultados/relatorios/` + `10_publicacao/`
-6. **Registro e memória** → `00_admin/controle_versoes/MEMORIA_PROJETO.md`
+1. **Auditoria e decisão canônica** → `00_admin/controle_versoes/` + [contrato de métricas](00_admin/planejamento/03_especificacao_e_produto/CONTRATO_METRICAS_IGRO.md)
+2. **Decisões metodológicas** → `00_admin/planejamento/03_especificacao_e_produto/10_Desenho_IGRO.md`
+3. **Escopo e requisitos** → `00_admin/planejamento/03_especificacao_e_produto/11_PRD_IGRO.md`
+4. **Dados e validação** → `02_dados/` + `03_estudos/` (schema, processamento, robustez)
+5. **Modelo e medidas** → `07_dashboards/powerbi/04_powerbi_e_dax/`
+6. **Relatórios e artigos** → `09_resultados/relatorios/` + `10_publicacao/`
+7. **Registro e memória** → `00_admin/controle_versoes/MEMORIA_PROJETO.md`
 
 ---
 
@@ -128,7 +134,7 @@ Para consolidar uma release:
 
 | Artefato | Descrição |
 |----------|-----------|
-| `indice_igro_v2.pbix` | ✅ Modelo atual (stable) |
+| `indice_igro_v2.pbix` | ✅ Modelo atual (stable); fórmula ainda não canônica |
 | `indice_igro_v2.pbip` | 📦 Projeto Git-first (Power BI Projects) |
 | `indice_igro.pbix` | 📦 Versão anterior (referência) |
 | `documentacao_modelo_semantico_igro.md` | 📋 Especificação de medidas e relacionamentos |
@@ -172,5 +178,5 @@ Para consolidar uma release:
 ---
 
 **Versão:** 2.5  
-**Atualizado:** 2026-07-25  
+**Atualizado:** 2026-08-05
 **Mantido por:** Andrei Azevedo de Souza da Cunha Lima

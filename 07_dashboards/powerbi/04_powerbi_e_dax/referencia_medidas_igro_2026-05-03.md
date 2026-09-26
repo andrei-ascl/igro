@@ -1,10 +1,13 @@
 # Referencia de medidas DAX do modelo IGRO
 
-Atualizado em: 2026-05-14  
+Inventário original: 2026-05-14
+Revisão de governança: 2026-08-10
 Modelo conectado: `indice_igro_v2` no Power BI Desktop  
 Escopo: inventario funcional das 116 medidas da tabela tecnica `_medidas`
 
 Esta nota serve como referencia rapida para manutencao, auditoria metodologica e futuras evolucoes do dashboard. O agrupamento abaixo segue a `displayFolder` definida no modelo.
+
+> **Nota de uso:** esta referência foi atualizada junto com o alinhamento das medidas centrais do PBIP ao perfil canônico. O PBIX ainda precisa ser salvo/atualizado no Power BI Desktop e os resultados históricos precisam ser recalculados. Consulte a decisão canônica e o contrato de métricas.
 
 ## 01 - Volume
 
@@ -73,34 +76,34 @@ Esta nota serve como referencia rapida para manutencao, auditoria metodologica e
 
 | Medida | Descricao |
 |---|---|
-| `meta_igro_kri1` | Meta do KRI 1 (`% RDP`): maximo de `1,0%` de manifestacoes com mais de 30 dias. Valor `1` quando `RDP <= 1,0%`. |
-| `goal_igro_kri1` | Goalpost do KRI 1 (`% RDP`): `2,0%` como limite de aceitabilidade. Valor `0` quando `RDP >= 2,0%`. |
-| `meta_igro_kri2` | Meta do KRI 2 (`TMR`): `5` dias ou menos como excelencia esperada. Valor `1` quando `TMR <= 5` dias. |
-| `goal_igro_kri2` | Goalpost do KRI 2 (`TMR`): `10` dias como limite de aceitabilidade. Valor `0` quando `TMR >= 10` dias. |
-| `meta_igro_kri3` | Meta do KRI 3 (`TR - Resolutividade`): `70%` ou mais como resolutividade esperada. Valor `1` quando `TR >= 70%`. |
-| `goal_igro_kri3` | Goalpost do KRI 3 (`TR - Resolutividade`): `50%` como piso aceitavel. Valor `0` quando `TR <= 50%`. |
-| `meta_igro_kri4` | Meta do KRI 4 (`% RI`): `2,5%` ou inferior como baixissima insatisfacao. Valor `1` quando `RI <= 2,5%`. |
-| `goal_igro_kri4` | Goalpost do KRI 4 (`% RI`): `3,5%` como piso aceitavel de insatisfacao. Valor `0` quando `RI >= 3,5%`. |
-| `meta_igro_kri5` | Meta do KRI 5 (Nota de Recomendacao): `8,0` ou mais como excelente recomendacao. Valor `1` quando `NR >= 8,0`. |
-| `goal_igro_kri5` | Goalpost do KRI 5 (Nota de Recomendacao): `6,0` como recomendacao aceitavel. Valor `0` quando `NR <= 6,0`. |
+| meta_igro_kri1 | Meta canônica do KRI 1: máximo de 2,0% de manifestações acima de 30 dias. Valor 1 quando RDP <= 2,0%. |
+| goal_igro_kri1 | Goalpost canônico do KRI 1: 15,0% como deterioração severa. Valor 0 quando RDP >= 15,0%. |
+| meta_igro_kri2 | Meta canônica do KRI 2: 10 dias ou menos. Valor 1 quando TMR <= 10 dias. |
+| goal_igro_kri2 | Goalpost canônico do KRI 2: 30 dias como deterioração severa. Valor 0 quando TMR >= 30 dias. |
+| meta_igro_kri3 | Meta canônica do KRI 3: 70% ou mais de resolutividade. |
+| goal_igro_kri3 | Goalpost canônico do KRI 3: 30% como deterioração severa. Valor 0 quando TR <= 30%. |
+| meta_igro_kri4 | Meta canônica do KRI 4: 2,5% ou menos de respostas insatisfatórias. |
+| goal_igro_kri4 | Goalpost canônico do KRI 4: 20,0% como deterioração severa. Valor 0 quando RI >= 20,0%. |
+| meta_igro_kri5 | Meta canônica do KRI 5: nota de recomendação 7,5 ou mais. |
+| goal_igro_kri5 | Goalpost canônico do KRI 5: nota 4,0 como deterioração severa. Valor 0 quando NR <= 4,0. |
 | `flag_amostra_insuficiente` | Flag de amostra insuficiente para KRIs de pesquisa (v3 FPC corrigido). Denominador exclui manifestacoes anonimas, que nao podem gerar pesquisa de satisfacao. `Flag = 1` quando `n_obs < 30` e taxa `< 5%` das finalizadas identificadas. |
 
 ## 06 - IGRO - Scores KRI
 
 | Medida | Descricao |
 |---|---|
-| `idx_score_igro_kri1` | Score normalizado de `0` a `1` para o KRI 1 (`% RDP`): valor `1` quando `RDP <= 1,0%`; valor `0` quando `RDP >= 2,0%`. |
-| `idx_score_igro_kri2` | Score normalizado de `0` a `1` para o KRI 2 (`TMR`): valor `1` quando `TMR <= 5` dias; valor `0` quando `TMR >= 10` dias. |
-| `idx_score_igro_kri3` | Score normalizado de `0` a `1` para o KRI 3 (`TR`): valor `1` quando `TR >= 70%`; valor `0` quando `TR <= 50%`. |
-| `idx_score_igro_kri4` | Score normalizado de `0` a `1` para o KRI 4 (`% RI`): valor `1` quando `RI <= 2,5%`; valor `0` quando `RI >= 3,5%`. |
-| `idx_score_igro_kri5` | Score normalizado de `0` a `1` para o KRI 5 (Nota de Recomendacao): valor `1` quando `NR >= 8,0`; valor `0` quando `NR <= 6,0`. |
+| idx_score_igro_kri1 | Score canônico do KRI 1: 1 quando RDP <= 2,0%; 0 quando RDP >= 15,0%. |
+| idx_score_igro_kri2 | Score canônico do KRI 2: 1 quando TMR <= 10 dias; 0 quando TMR >= 30 dias. |
+| idx_score_igro_kri3 | Score canônico do KRI 3: 1 quando TR >= 70%; 0 quando TR <= 30%; sem cálculo com amostra insuficiente. |
+| idx_score_igro_kri4 | Score canônico do KRI 4: 1 quando RI <= 2,5%; 0 quando RI >= 20,0%. |
+| idx_score_igro_kri5 | Score canônico do KRI 5: 1 quando NR >= 7,5; 0 quando NR <= 4,0; sem cálculo com amostra insuficiente. |
 
 ## 07 - IGRO - Indice
 
 | Medida | Descricao |
 |---|---|
-| `idx_igro_sub_t` | Subindice de Tempestividade (IT): media ponderada `TMR = 60%` e `% RDP = 40%`. |
-| `idx_igro_sub_q` | Subindice de Qualidade (IQ): media ponderada `TR = 40%`, `% RI = 30%` e Nota de Recomendacao = `30%`. |
+| idx_igro_sub_t | Subíndice canônico de Tempestividade: pesos globais KRI 1 = 15% e KRI 2 = 25%. |
+| idx_igro_sub_q | Subíndice canônico de Qualidade: pesos globais KRI 3 = 25%, KRI 4 = 15% e KRI 5 = 20%; sem cálculo com amostra insuficiente. |
 | `idx_igro` | Indice de Gestao de Riscos de Ouvidorias. Media geometrica simples: `sqrt(IT x IQ)`. Conforme metodologia IGRO - artigo CGU. |
 
 ## 08 - Formatacao

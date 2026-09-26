@@ -1,7 +1,9 @@
 # Desenho Técnico do IGRO — Índice de Gestão de Riscos da Ouvidoria
 
 > Especificação técnica completa. Consolida as decisões metodológicas dos arquivos 01–09.
-> Versão 1.0 — Abril/2026
+> Versão 1.1 — 2026-08-10
+
+> **Fonte de verdade metodológica — 2026-08-10:** este documento define o perfil canônico de trabalho do IGRO. As medidas centrais e as fontes do PBIP/TMDL foram alinhadas a esta especificação; pesos uniformes permanecem como cenário de sensibilidade. Consulte a [decisão canônica](../../controle_versoes/DECISAO_CANONICA_IGRO.md) e o [contrato de métricas](CONTRATO_METRICAS_IGRO.md) para governança e proveniência.
 
 ---
 

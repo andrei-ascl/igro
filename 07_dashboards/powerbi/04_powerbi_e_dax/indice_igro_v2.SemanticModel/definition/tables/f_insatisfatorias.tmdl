@@ -152,17 +152,19 @@ table f_insatisfatorias
 		annotation SummarizationSetBy = Automatic
 
 	column Prazo_interno
-		dataType: string
+		dataType: int64
+		formatString: 0
 		lineageTag: 6857c056-73b4-4cb5-aa51-99cb32fdf6e4
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: Prazo_interno
 
 		annotation SummarizationSetBy = Automatic
 
 	column Prazo_externo
-		dataType: string
+		dataType: int64
+		formatString: 0
 		lineageTag: 29382688-179c-4815-a911-177fd1dd2080
-		summarizeBy: none
+		summarizeBy: sum
 		sourceColumn: Prazo_externo
 
 		annotation SummarizationSetBy = Automatic
@@ -232,16 +234,15 @@ table f_insatisfatorias
 				        fnCaminhoEntrada(),
 				
 				    // Caminho completo do arquivo
-				    CaminhoArquivo =
-				        if Text.EndsWith(CaminhoPasta, "\") or Text.EndsWith(CaminhoPasta, "/")
-				        then CaminhoPasta & "f_insatisfatorias.parquet"
-				        else CaminhoPasta & "\f_insatisfatorias.parquet",
+				    Arquivos = Folder.Files(CaminhoPasta),
+				    ArquivosParquet = Table.SelectRows(Arquivos, each [Extension] = ".parquet" and Text.StartsWith([Name], "insatisfatorio_")),
+				    ArquivosOrdenados = Table.Sort(ArquivosParquet, {{"Date modified", Order.Descending}, {"Name", Order.Descending}}),
 				
-				    // Carregar arquivo Parquet
 				    Fonte =
-				        Parquet.Document(
-				            File.Contents(CaminhoArquivo)
-				        ),
+				        if Table.RowCount(ArquivosOrdenados) = 0 then
+				            error "Nenhum arquivo Parquet compatível encontrado em: " & CaminhoPasta
+				        else
+				            Parquet.Document(ArquivosOrdenados{0}[Content]),
 				
 				    // Renomear colunas para padrão minúsculo
 				    ColunasRenomeadas =
